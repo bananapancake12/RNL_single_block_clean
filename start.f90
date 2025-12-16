@@ -688,7 +688,7 @@ end if
     write(*,*) dirlist
     write(*,*)
   end if
-  call nonlinRead
+  call nonlinRead(myid)
   call MPI_BARRIER(MPI_COMM_WORLD,ierr)
 
   
@@ -1345,6 +1345,8 @@ subroutine proc_lims_planes(myid)
   jgal(vgrid,2) = limPL_excw(vgrid,2,myid)
   jgal(pgrid,1) = limPL_excw(pgrid,1,myid)
   jgal(pgrid,2) = limPL_excw(pgrid,2,myid)
+
+  write(6,*) "limPL_excw(ugrid,1,myid)", limPL_excw(ugrid,1,myid), "limPL_excw(ugrid,2,myid)", limPL_excw(ugrid,2,myid)
 
 
   if (myid == 0) then
@@ -2208,99 +2210,97 @@ end subroutine
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
   
-subroutine nonlinRead
+subroutine nonlinRead(myid)
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!    read in important interactions  !!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  ! currently quite bad, only works for bands of the same size
-  ! also file read with access = stream is bad
-  ! also some files are read multiple times due to upper and lower channel
-  ! also the load in each processor is not perfectly balanced
-
   use declaration
-  implicit none
+    implicit none
 
-  integer j, jread, x, type, length, jlow, jupp, len, i
-  character*2 extj
-  integer, allocatable :: tmpInt(:)
+    integer j, jread, x, type, length, jlow, jupp, len, i, myid
+    character*2 extj
+    integer, allocatable :: tmpInt(:)
 
-  jlow = N(4,0) +1 
-  jupp = N(4,nband)-1
+    jlow = limPL_excw(ugrid,1,myid)
+    jupp = limPL_excw(ugrid,2,myid)
 
-
-  write(6,*) "check 1"
-
-  !write(6,*) "jgal", size(jgal,1), size(jgal,2)
-
-  ! ! jgal is (3,2)
-  ! write(6,*) "jgal ="
-  ! do i = 1, 3
-  !     write(6,*) jgal(i,1), jgal(i,2)
-  ! end do
-
-  ! write(6,*) "ngal", size(ngal,1), size(ngal,2)
-  ! write(6,*) "ngal:"
-  ! do i = 1,4
-  !   write(6,*) ngal(i,0:4)
-  ! end do
+    ! write(6,*) "jlow", jlow, "jupp", jupp
+    write(*,*) 'rank', myid, 'limPL_excw ugrid=', limPL_excw(ugrid,1,myid), limPL_excw(ugrid,2,myid)
 
 
-  if (jlow > (Ngal(3,nband)+1)/2) then !! bad :/
-    jlow = jlow-1
-  end if
-  jupp = min(jupp,Ngal(3,nband))
 
-  allocate(nonlin(jlow:jupp,9))
-
-  do j = jlow,jupp
-    if (j > (Ngal(3,nband)+1)/2) then
-      jread = Ngal(3,nband)+1-j
-    else
-      jread = j
+    if (jlow > (Ngal(3,nband)+1)/2) then !! bad :/
+      jlow = jlow-1
     end if
-    write(extj,'(i2.2)') jread
+    jupp = min(jupp,Ngal(3,nband))
 
-    fnameima = trim(dirlist)//trim(heading)//extj//'.dat'
+    allocate(nonlin(jlow:jupp,9))
 
-    open(40, file=fnameima, form='unformatted',access='stream', status='old')
+    do j = jlow,jupp
+      if (j > (Ngal(3,nband)+1)/2) then
+        jread = Ngal(3,nband)+1-j
+      else 
+        jread = j
+        write(6,*) "jread", jread
+      end if
+      write(extj,'(i2.2)') jread
 
-    allocate(tmpInt(3))
-    read(40) tmpInt
-    if (tmpInt(1)/= N(1,2)/2-1) then
-      write(*,*) "nx number does not agree between list and simulation"
-      stop
-    elseif (tmpInt(2)/= N(2,2)/2-1) then
-      write(*,*) "nz number does not agree between list and simulation"
-      stop
-    elseif (tmpInt(3)/= jread) then
-      write(*,*) "something wrong with the j index of the list"
-      stop
-    end if
-    deallocate(tmpInt)
+      fnameima = trim(dirlist)//trim(heading)//extj//'.dat'
 
-    allocate(tmpInt(2))
-    write(6,*) "check 2"
+      ! write(*,*) 'DEBUG rank', myid, ' j=', j, ' jread=', jread, ' extj=[', extj, ']'
 
-    do x = 1,9
+      
+      open(40, file=fnameima, form='unformatted',access='stream', status='old')
+
+      allocate(tmpInt(3))
       read(40) tmpInt
-      type = tmpInt(1)
-      length = tmpInt(2)
-      ! write(6,*) "length", length
-      allocate(nonlin(j,type)%list(length,4))
-      read(40) nonlin(j,type)%list
-      ! do len = 1,length
-      !   read(40) nonlin(j,type)%list(len,:)
-      ! end do
+      if (tmpInt(1)/= N(1,nband)/2-1) then
+        write(*,*) "nx number does not agree between list and simulation"
+        stop
+      elseif (tmpInt(2)/= N(2,nband)/2-1) then
+        write(*,*) "nz number does not agree between list and simulation"
+        stop
+      elseif (tmpInt(3)/= jread) then
+        write(*,*) "something wrong with the j index of the list"
+        stop
+      end if
+      deallocate(tmpInt)
+      
+      allocate(tmpInt(2))
+      
+
+      ! weight(j)=0
+      do x = 1,9
+        read(40) tmpInt
+        type = tmpInt(1)
+        length = tmpInt(2)
+
+        if (length < 0 .or. length > 200000000) then
+          write(*,*) 'STOP: length insane on rank', myid, ' j=', j,' length=', length
+          stop
+        end if
+
+        ! write(6,*) "length", length
+        allocate(nonlin(j,type)%list(length,4))
+        read(40) nonlin(j,type)%list
+
+        ! write(6,*) "read done rank", myid, " j=", j
+        ! do len = 1,length
+        !   read(40) nonlin(j,type)%list(len,:)
+        ! end do 
+        ! write(6,*) 'rank', myid
+      end do
+
+      ! write(6,*) "j=", j, "jlow", jlow, "jupp", jupp 
+      ! write(6,*) 'rank', myid, 'j=', j, 'jlow=', jlow, 'jupp=', jupp
+
+      deallocate(tmpInt)
+      close(40)
     end do
-    write(6,*) "check 3", j 
-
-    deallocate(tmpInt)
-    close(40)
-  end do
 
 
-end subroutine
+  end subroutine
 
 
 
@@ -2329,18 +2329,17 @@ subroutine get_weights
   character*2 extj
   integer, allocatable :: tmpInt(:)
 
+  integer, parameter :: CHUNK = 1000000          ! 1e6 ints ~ 4 MB buffer
+  integer :: nrem, nread
+  integer, allocatable:: dump(:)
 
+  if (.not. allocated(dump)) then
+  allocate(dump(CHUNK))
+  end if
 
   jlow = N(4,0) +1 
   jupp = N(4,nband)-1
 
-
-  ! if (jlow > (Ngal(3,nband)+1)/2) then !! bad :/
-  !   jlow = jlow-1
-  ! end if
-  ! jupp = min(jupp,Ngal(3,nband))
-
-  ! allocate(nonlin(jlow:jupp,9))
 
   if (allocated(weight)) deallocate(weight)
   allocate(weight(jlow:jupp+1))
@@ -2402,6 +2401,7 @@ subroutine get_weights
         read(40) dump(1:nread)
         nrem = nrem - nread
       end do
+      
     end do
 
     write(6,*) "j=", j, "weight", weight(j)
