@@ -1,0 +1,770 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/DNS_single_block_clean.
+
+JobID: 19058353
+======
+Time: Tue Dec  9 13:58:47 GMT 2025
+Running on master node: cpu-r-67
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/DNS_single_block_clean
+
+Nodes allocated:
+================
+cpu-r-67
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.03516024698     
+ Ny:
+           0           0           0         150           0
+           0           0           0         151           0
+           1           0           0         150           0
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =           0
+ iproc           0 nplanes           3 proc_load           4
+ iproc           1 nplanes           3 proc_load           4
+ iproc           2 nplanes           3 proc_load           4
+ iproc           3 nplanes           3 proc_load           4
+ iproc           4 nplanes           3 proc_load           4
+ iproc           5 nplanes           3 proc_load           4
+ iproc           6 nplanes           3 proc_load           4
+ iproc           7 nplanes           3 proc_load           4
+ iproc           8 nplanes           3 proc_load           4
+ iproc           9 nplanes           3 proc_load           4
+ iproc          10 nplanes           3 proc_load           4
+ iproc          11 nplanes           3 proc_load           4
+ iproc          12 nplanes           3 proc_load           4
+ iproc          13 nplanes           3 proc_load           4
+ iproc          14 nplanes           3 proc_load           4
+ iproc          15 nplanes           3 proc_load           4
+ iproc          16 nplanes           3 proc_load           4
+ iproc          17 nplanes           3 proc_load           4
+ iproc          18 nplanes           3 proc_load           4
+ iproc          19 nplanes           3 proc_load           4
+ iproc          20 nplanes           3 proc_load           4
+ iproc          21 nplanes           3 proc_load           4
+ iproc          22 nplanes           3 proc_load           4
+ iproc          23 nplanes           3 proc_load           4
+ iproc          24 nplanes           3 proc_load           4
+ iproc          25 nplanes           3 proc_load           4
+ iproc          26 nplanes           3 proc_load           4
+ iproc          27 nplanes           3 proc_load           4
+ iproc          28 nplanes           3 proc_load           4
+ iproc          29 nplanes           3 proc_load           4
+ iproc          30 nplanes           3 proc_load           4
+ iproc          31 nplanes           2 proc_load           3
+ iproc          32 nplanes           2 proc_load           3
+ iproc          33 nplanes           2 proc_load           3
+ iproc          34 nplanes           2 proc_load           3
+ iproc          35 nplanes           2 proc_load           3
+ iproc          36 nplanes           2 proc_load           3
+ iproc          37 nplanes           2 proc_load           3
+ iproc          38 nplanes           2 proc_load           3
+ iproc          39 nplanes           2 proc_load           3
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          39
+  Calling read in
+ =====> Finished Start
+  Calling read in
+  Calling read in
+  Calling read in
+ =====> Calling getini 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ >>> entered proc_lims_columns, myid =          25
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ 
+ WARNING startfile size           2
+ N_new=
+           0           0           0         128          -2
+           0           0           0         128           0
+           0           0           0         150           0
+           0           0           0         151           0
+ 
+ N_old=
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ 
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+ >>> entered proc_lims_columns, myid =           4
+  Calling read in
+ >>> entered proc_lims_columns, myid =          37
+  Calling read in
+ >>> entered proc_lims_columns, myid =          19
+  Calling read in
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          22
+  Calling read in
+  Calling read in
+ >>> entered proc_lims_columns, myid =           2
+  Calling read in
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          32
+  Calling read in
+  Calling read in
+ >>> entered proc_lims_columns, myid =          35
+  Calling read in
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =          14
+  Calling read in
+  Calling read in
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          17
+  Calling read in
+  Calling read in
+ >>> entered proc_lims_columns, myid =           1
+  Calling read in
+ u2 from file ./input//u2_0128x0128x0153_t09455.dat,
+ u3 from file ./input//u3_0128x0128x0153_t09455.dat,
+ and p from file ./input//p_0128x0128x0153_t09455.dat,
+ 
+ call divergence            0
+ call init stats           0
+ finished init_stats           0
+ call init_sl stats           0
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx               0           0         128
+ Nz               0           0         128
+ Nyv              0           0           0         150
+ Nyu              0           0           0         151
+ Ngalx            0           0         192
+ Ngalz            0           0         192
+ Ngaly            0           0         150
+ Ngalyu           0           0         151
+ 
+ dymin   1.230965454125155E-003
+ dymax   1.624822065087976E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ finished getini           0
+ 
+ Initialised
+ call divergence            1
+ call init stats           1
+ finished init_stats           1
+ call init_sl stats           1
+ finished getini           1
+ call divergence            2
+ call init stats           2
+ finished init_stats           2
+ call init_sl stats           2
+ finished getini           2
+ call divergence            3
+ call init stats           3
+ finished init_stats           3
+ call init_sl stats           3
+ finished getini           3
+ call divergence            4
+ call init stats           4
+ finished init_stats           4
+ call init_sl stats           4
+ finished getini           4
+ call divergence            5
+ call init stats           5
+ finished init_stats           5
+ call init_sl stats           5
+ finished getini           5
+ call divergence            6
+ call init stats           6
+ finished init_stats           6
+ call init_sl stats           6
+ finished getini           6
+ call divergence            7
+ call init stats           7
+ finished init_stats           7
+ call init_sl stats           7
+ finished getini           7
+ call divergence            8
+ call init stats           8
+ finished init_stats           8
+ call init_sl stats           8
+ finished getini           8
+ call divergence            9
+ call init stats           9
+ finished init_stats           9
+ call init_sl stats           9
+ finished getini           9
+ call divergence           10
+ call init stats          10
+ finished init_stats          10
+ call init_sl stats          10
+ finished getini          10
+ call divergence           11
+ call init stats          11
+ finished init_stats          11
+ call init_sl stats          11
+ finished getini          11
+ call divergence           12
+ call init stats          12
+ finished init_stats          12
+ call init_sl stats          12
+ finished getini          12
+ call divergence           13
+ call init stats          13
+ finished init_stats          13
+ call init_sl stats          13
+ finished getini          13
+ call divergence           14
+ call init stats          14
+ finished init_stats          14
+ call init_sl stats          14
+ finished getini          14
+ call divergence           15
+ call init stats          15
+ finished init_stats          15
+ call init_sl stats          15
+ finished getini          15
+ call divergence           16
+ call init stats          16
+ finished init_stats          16
+ call init_sl stats          16
+ finished getini          16
+ call divergence           17
+ call init stats          17
+ finished init_stats          17
+ call init_sl stats          17
+ finished getini          17
+ call divergence           18
+ call init stats          18
+ finished init_stats          18
+ call init_sl stats          18
+ finished getini          18
+ call divergence           19
+ call init stats          19
+ finished init_stats          19
+ call init_sl stats          19
+ finished getini          19
+ call divergence           20
+ call init stats          20
+ finished init_stats          20
+ call init_sl stats          20
+ finished getini          20
+ call divergence           21
+ call init stats          21
+ finished init_stats          21
+ call init_sl stats          21
+ finished getini          21
+ call divergence           22
+ call init stats          22
+ finished init_stats          22
+ call init_sl stats          22
+ finished getini          22
+ call divergence           23
+ call init stats          23
+ finished init_stats          23
+ call init_sl stats          23
+ finished getini          23
+ call divergence           24
+ call init stats          24
+ finished init_stats          24
+ call init_sl stats          24
+ finished getini          24
+ call divergence           25
+ call init stats          25
+ finished init_stats          25
+ call init_sl stats          25
+ finished getini          25
+ call divergence           26
+ call init stats          26
+ finished init_stats          26
+ call init_sl stats          26
+ finished getini          26
+ call divergence           27
+ call init stats          27
+ finished init_stats          27
+ call init_sl stats          27
+ finished getini          27
+ call divergence           28
+ call init stats          28
+ finished init_stats          28
+ call init_sl stats          28
+ finished getini          28
+ call divergence           29
+ call init stats          29
+ finished init_stats          29
+ call init_sl stats          29
+ finished getini          29
+ call divergence           30
+ call init stats          30
+ finished init_stats          30
+ call init_sl stats          30
+ finished getini          30
+ call divergence           31
+ call init stats          31
+ finished init_stats          31
+ call init_sl stats          31
+ finished getini          31
+ call divergence           32
+ call init stats          32
+ finished init_stats          32
+ call init_sl stats          32
+ finished getini          32
+ call divergence           33
+ call init stats          33
+ finished init_stats          33
+ call init_sl stats          33
+ finished getini          33
+ call divergence           34
+ call init stats          34
+ finished init_stats          34
+ call init_sl stats          34
+ finished getini          34
+ call divergence           35
+ call init stats          35
+ finished init_stats          35
+ call init_sl stats          35
+ finished getini          35
+ call divergence           36
+ call init stats          36
+ finished init_stats          36
+ call init_sl stats          36
+ finished getini          36
+ call divergence           37
+ call init stats          37
+ finished init_stats          37
+ call init_sl stats          37
+ finished getini          37
+ call divergence           38
+ call init stats          38
+ finished init_stats          38
+ call init_sl stats          38
+ finished getini          38
+ call divergence           39
+ call init stats          39
+ finished init_stats          39
+ call init_sl stats          39
+ finished getini          39
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.117130486877720E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   5.421308479773927E-003
+ Qx     1.75848768070073     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423825947899     
+ Uslp -8.368765290197057E-006
+ =====> Ops in Planes
+ =====> Planes to modes
+ =====> Derivatives
+ =====> CFL and Stats
+ cfl u1  0.122597735292252                0
+ cfl u1  3.051193992536943E-002           1
+ cfl u1  1.960364858332213E-002           2
+ cfl u1  1.643867374893017E-002           3
+ cfl u1  1.570144016205853E-002           4
+ cfl u1  1.464952538936701E-002           5
+ cfl u1  1.441301449577765E-002           6
+ cfl u1  1.448288965665472E-002           7
+ cfl u1  1.439953120992217E-002           8
+ cfl u1  1.439198605785179E-002           9
+ cfl u1  1.438149150312720E-002          10
+ cfl u1  1.395780506297411E-002          11
+ cfl u1  1.373478089547051E-002          12
+ cfl u1  1.367143306326886E-002          13
+ cfl u1  1.367982746455120E-002          14
+ cfl u1  1.370605118686973E-002          15
+ cfl u1  1.374650710574744E-002          16
+ cfl u1  1.375601936174417E-002          17
+ cfl u1  1.380094549858147E-002          18
+ cfl u1  1.401980021617208E-002          19
+ cfl u1  1.391254427043278E-002          20
+ cfl u1  1.389093620634204E-002          21
+ cfl u1  1.402414791847277E-002          22
+ cfl u1  1.421791969082557E-002          23
+ cfl u1  1.435739571668449E-002          24
+ cfl u1  1.434167559009156E-002          25
+ cfl u1  1.408043468106200E-002          26
+ cfl u1  1.406393838480623E-002          27
+ cfl u1  1.462865754210258E-002          28
+ cfl u1  1.471581311163285E-002          29
+ cfl u1  1.486221730010494E-002          30
+ cfl u1  1.501650369571235E-002          31
+ cfl u1  1.511797748913567E-002          32
+ cfl u1  1.540510340506498E-002          33
+ cfl u1  1.569636647442415E-002          34
+ cfl u1  1.652509089691725E-002          35
+ cfl u1  1.719266925902093E-002          36
+ cfl u1  1.945827736910730E-002          37
+ cfl u1  2.853932813688588E-002          38
+ cfl u1  6.979796234593742E-002          39
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ =====> Planes to modes
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ =====> Planes to modes
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ 
+ iter           1
+ t     5.292826217194301E-003
+ dtv   2.117130486877720E-003
+ dtc   1.367143306326886E-002
+ dt    5.292826217194301E-003
+ err   9.680937366098833E-017
+ Qx     1.75846115857187     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423716642241     
+ Uslp  2.099751077404081E-015
+ =====> Ops in Planes
+ =====> Planes to modes
+ =====> Derivatives
+ =====> CFL and Stats
+ cfl u1  0.122466299550098                0
+  CFL and Stats =====> calc omega
+ cfl u1  3.048741446185209E-002           1
+ cfl u1  1.959362339822807E-002           2
+ cfl u1  1.644579088672876E-002           3
+ cfl u1  1.570602905829548E-002           4
+ cfl u1  1.465326263442754E-002           5
+ cfl u1  1.441393117841375E-002           6
+ cfl u1  1.448518376879346E-002           7
+ cfl u1  1.439711765608340E-002           8
+ cfl u1  1.439056481200730E-002           9
+ cfl u1  1.438283182770143E-002          10
+ cfl u1  1.396197057511853E-002          11
+ cfl u1  1.373270027284659E-002          12
+ cfl u1  1.367407710676247E-002          13
+ cfl u1  1.367826147616496E-002          14
+ cfl u1  1.370623163259995E-002          15
+ cfl u1  1.374749771976245E-002          16
+ cfl u1  1.376018993952264E-002          17
+ cfl u1  1.380234389416131E-002          18
+ cfl u1  1.403096717864526E-002          19
+ cfl u1  1.390217026240781E-002          20
+ cfl u1  1.388839695346451E-002          21
+ cfl u1  1.402604795395044E-002          22
+ cfl u1  1.421686740848871E-002          23
+ cfl u1  1.435734111393092E-002          24
+ cfl u1  1.433919236726313E-002          25
+ cfl u1  1.406911447261117E-002          26
+ cfl u1  1.405426952961539E-002          27
+ cfl u1  1.463692062243675E-002          28
+ cfl u1  1.470692072733802E-002          29
+ cfl u1  1.485950795482792E-002          30
+ cfl u1  1.500860183021456E-002          31
+ cfl u1  1.511132992144834E-002          32
+ cfl u1  1.540051570799739E-002          33
+ cfl u1  1.568727840085336E-002          34
+ cfl u1  1.651952206685941E-002          35
+ cfl u1  1.717982609674776E-002          36
+ cfl u1  1.944815576926157E-002          37
+ cfl u1  2.851762378027960E-002          38
+ cfl u1  6.999141951992825E-002          39
+ wx -5.082162626210114E-003  1.352928924922181E-002  9.338667538336821E-003
+  2.246938769044904E-002 -3.957044457105003E-003  2.008472686961197E-002
+ -1.408396519124891E-003  2.461469581241313E-003 -8.370806227090561E-003
+  9.155513160124796E-003 -6.257527263958390E-003  2.842871244529516E-004
+  1.634569905440640E-003 -6.435522995577030E-003 -3.804938569590587E-003
+ -3.405318988758747E-003 -1.924361956989490E-005 -4.819934684687889E-003
+  1.488419277943974E-003  3.261454977678309E-003 -7.184411969904329E-004
+  2.111446689536954E-004  4.974506205563128E-004 -7.040940980203681E-005
+ -2.168074150500962E-003 -4.722194693408070E-005 -7.018332507730297E-004
+  1.072578597476443E-003 -2.556222466490574E-004  8.972230139350634E-004
+  9.921256535322402E-004  2.698469269460516E-004  5.121751424557892E-004
+  3.582828622004078E-004  1.708834672853626E-004 -5.065478080447501E-004
+  7.654903326709787E-004 -4.161585647703445E-004  3.531801418569684E-004
+  7.014030447613404E-006  1.842136278783146E-005 -3.593783153137830E-004
+ -2.433461061680038E-004 -8.650172493464164E-005 -3.744806454232463E-004
+ -1.195040607085391E-004 -9.539787183638306E-006  3.850473219720544E-004
+  1.074454819072446E-004  6.734046791039530E-005  5.422866430493154E-005
+ -1.070914847524498E-004 -1.884232038029761E-004 -3.645375878365716E-005
+ -6.461583986046354E-005  3.275928710256694E-005  1.019326787632345E-004
+  1.467029610651456E-004  1.305281736387987E-004  1.295280567438372E-005
+  9.291157729198856E-005 -4.239538751742198E-005 -3.977330426626533E-005
+ -9.165381238155016E-005 -4.209052130822286E-005 -1.040304933417307E-005
+ -7.708214789869691E-006  4.776116916176671E-005  3.774729873667150E-005
+  2.666186063565119E-006  1.381623208884238E-005 -3.615791091481749E-005
+ -2.660259751288760E-005 -4.525996081179189E-005 -1.576322610862896E-005
+  6.849503278917622E-006 -4.250948055496951E-006  1.644455911255195E-005
+  1.436508705734307E-005  3.890574315148232E-006 -9.150752741175394E-006
+ -7.849191703864282E-006 -1.137646298973386E-005  4.360469555965197E-006
+  4.122297287092345E-006  1.964725460772043E-005  1.859357457045131E-005
+ -1.774593420820544E-007  5.248039019169256E-006 -1.262524101434898E-005
+ -1.620906669964471E-005 -1.193538514597308E-005 -1.083830125479424E-005
+  7.453462223575540E-006  6.773554239921458E-006  1.273344240071247E-005
+  1.081484546092462E-005 -2.197683075230439E-006  1.376150497763095E-007
+ -9.461120206181194E-006 -1.069375284737824E-005 -3.873629003735481E-006
+ -2.465831741836006E-006  2.237135700671349E-006 -3.060761783790960E-007
+  2.465887083153458E-006  3.720504116642031E-006 -7.986741119510800E-007
+ -1.422613716780366E-006 -2.589270801842158E-006 -3.096674680490815E-006
+ -1.285576755285645E-006 -4.428789636942235E-007  3.424565072294446E-006
+  2.668922393558731E-006  7.566215446299993E-007  1.054247141845040E-006
+ -1.815339662068367E-006 -2.037425869934995E-006 -3.963407284169889E-007
+ -1.628644770982394E-006 -4.410872000768965E-007 -3.288881055397187E-007
+  2.268159046630451E-006  2.013403417528660E-006 -5.991878385881591E-007
+  1.344719464286550E-006 -1.318620963740606E-006 -1.651158749010063E-006
+ -2.174882341179082E-006
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ =====> Planes to modes
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ =====> Planes to modes
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ 
+ iter           2
+ t     1.058565243438860E-002
+ dtv   2.117130486877720E-003
+ dtc   1.367407710676247E-002
+ dt    5.292826217194301E-003
+ err   7.318806362944029E-017
+ Qx     1.75844177626965     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423608219542     
+ Uslp  2.099407025122022E-015
+ process           1 over
+ process           2 over
+ process           3 over
+ process           4 over
+ process           5 over
+ process           6 over
+ process           7 over
+ process           8 over
+ process           9 over
+ process          10 over
+ process          11 over
+ process          12 over
+ process          13 over
+ process          14 over
+ process          15 over
+ process          16 over
+ process          17 over
+ process          18 over
+ process          19 over
+ process          20 over
+ process          21 over
+ process          22 over
+ process          23 over
+ process          24 over
+ process          25 over
+ process          26 over
+ process          27 over
+ process          28 over
+ process          29 over
+ process          30 over
+ process          31 over
+ process          32 over
+ process          33 over
+ process          34 over
+ process          35 over
+ process          36 over
+ process          37 over
+ process          38 over
+ process          39 over
+ process           0 over
+ 
+ ---------------LITTLE HARSH---------------
+          'That wasn't that harsh'         
+ ------------------------------------------
+ 
