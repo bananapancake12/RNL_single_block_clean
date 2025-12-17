@@ -474,13 +474,13 @@ end if
 
   ! !! added nonlin read here so read before allocating proc_lims_planes
 
-  call MPI_BARRIER(MPI_COMM_WORLD,ierr)
-  if (myid == 0) then
-    write(*,*) 'Getting Weights'
-    write(*,*) dirlist
-    write(*,*)
-    call get_weights
-  end if
+  ! call MPI_BARRIER(MPI_COMM_WORLD,ierr)
+  ! if (myid == 0) then
+  !   write(*,*) 'Getting Weights'
+  !   write(*,*) dirlist
+  !   write(*,*)
+  !   call get_weights
+  ! end if
   
   call MPI_BARRIER(MPI_COMM_WORLD,ierr)
   ! write(*,*) 'finished reading nonlinear interaction list'
@@ -688,7 +688,7 @@ end if
     write(*,*) dirlist
     write(*,*)
   end if
-  call nonlinRead(myid)
+  call nonlinRead
   call MPI_BARRIER(MPI_COMM_WORLD,ierr)
 
   
@@ -1130,10 +1130,8 @@ subroutine proc_lims_planes(myid)
   integer :: myid, ierr
   ! integer :: iplanes
   integer :: iproc, i 
-  ! real(8) :: loadT, loadP, maxload
-  ! real(8), allocatable :: load_band(:), i_load(:)
   integer(8) :: weight_tot, ideal_load
-  integer :: jlow, jupp, proc_planess
+  integer :: jlow, jupp, proc_planes
   integer :: rem_planes
 
   ! new declarations 
@@ -1166,32 +1164,32 @@ subroutine proc_lims_planes(myid)
   ! Simple equal-plane partition in j: give each proc roughly same no. planes for DNS
   !-------------------------------------------------------------------------------------
   
-  ! ! total number of active planes in j (without walls)
-  ! iplanes = jupp - jlow + 1
+  ! total number of active planes in j (without walls)
+  iplanes = jupp - jlow + 1
 
-  ! ! base number of planes per proc and remainder
-  ! proc_planes = iplanes / np
-  ! rem_planes  = mod(iplanes, np)
+  ! base number of planes per proc and remainder
+  proc_planes = iplanes / np
+  rem_planes  = mod(iplanes, np)
 
-  ! j = jlow
-  ! do iproc = 0, np-1
+  j = jlow
+  do iproc = 0, np-1
 
-  !    ! first rem_planes procs get one extra plane
-  !    if (iproc < rem_planes) then
-  !       nplanes(iproc) = proc_planes + 1
-  !    else
-  !       nplanes(iproc) = proc_planes
-  !    end if
+     ! first rem_planes procs get one extra plane
+     if (iproc < rem_planes) then
+        nplanes(iproc) = proc_planes + 1
+     else
+        nplanes(iproc) = proc_planes
+     end if
 
-  !    jmin_plane(iproc) = j
-  !    jmax_plane(iproc) = j + nplanes(iproc) - 1
+     jmin_plane(iproc) = j
+     jmax_plane(iproc) = j + nplanes(iproc) - 1
 
-  !    j = jmax_plane(iproc) + 1
+     j = jmax_plane(iproc) + 1
 
-  !    ! if you still want a "load" number, just set it ~ nplanes
-  !    proc_load(iproc) = nplanes(iproc)
+     ! if you still want a "load" number, just set it ~ nplanes
+     proc_load(iproc) = nplanes(iproc)
 
-  ! end do
+  end do
 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! RNL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1201,97 +1199,97 @@ subroutine proc_lims_planes(myid)
   ! then sends his info to the other procs who can access it 
 
 
-  if (myid ==0) then 
+  ! if (myid ==0) then 
 
-    weight_tot = sum(weight)  
-    ideal_load = weight_tot / np
+  !   weight_tot = sum(weight)  
+  !   ideal_load = weight_tot / np
 
-    write(6,*) "weight_tot",weight_tot, "ideal_load", ideal_load
-    ! write(6,*) "weight(151)",weight(151), "weight(1)", weight(1)
+  !   write(6,*) "weight_tot",weight_tot, "ideal_load", ideal_load
+  !   ! write(6,*) "weight(151)",weight(151), "weight(1)", weight(1)
 
-    jmin_plane(0) = jlow
+  !   jmin_plane(0) = jlow
 
-    !initialising values 
-    cumulative_load = 0.0d0
-    iproc = 0
-    j = jlow
-    proc_load = 0
-    nplanes   = 0
+  !   !initialising values 
+  !   cumulative_load = 0.0d0
+  !   iproc = 0
+  !   j = jlow
+  !   proc_load = 0
+  !   nplanes   = 0
 
-    do while (j <= jupp .and. iproc <= np-1)
+  !   do while (j <= jupp .and. iproc <= np-1)
 
-      cumulative_load = cumulative_load + weight(j)
-      ! write(6,*) "cumulative_load", cumulative_load, "j",j , "weight", weight(j)
-      j = j+1
+  !     cumulative_load = cumulative_load + weight(j)
+  !     ! write(6,*) "cumulative_load", cumulative_load, "j",j , "weight", weight(j)
+  !     j = j+1
       
       
-      if (cumulative_load >= ideal_load) then
-        !write(6,*) "enetered if statement"
+  !     if (cumulative_load >= ideal_load) then
+  !       !write(6,*) "enetered if statement"
 
-        cumulative_load_1 = cumulative_load - weight(j-1)
-        cumulative_load_2 = cumulative_load
+  !       cumulative_load_1 = cumulative_load - weight(j-1)
+  !       cumulative_load_2 = cumulative_load
 
-        if (abs(cumulative_load_1 - ideal_load )< abs(cumulative_load_2 - ideal_load)) then
-          cut_plane = j-1
-          proc_load(iproc) = cumulative_load_1
-        else
-          cut_plane = j 
-          proc_load(iproc) = cumulative_load_2
-        end if
+  !       if (abs(cumulative_load_1 - ideal_load )< abs(cumulative_load_2 - ideal_load)) then
+  !         cut_plane = j-1
+  !         proc_load(iproc) = cumulative_load_1
+  !       else
+  !         cut_plane = j 
+  !         proc_load(iproc) = cumulative_load_2
+  !       end if
         
       
-        ! jmax_plane(iproc) = cut_plane
-        ! iproc = iproc + 1
+  !       ! jmax_plane(iproc) = cut_plane
+  !       ! iproc = iproc + 1
 
-        ! if (iproc < np-1) then
-        !   jmin_plane(iproc) = cut_plane + 1
-        ! else
-        !   jmin_plane(iproc) = cut_plane + 1                     ! setting last proc to be whatever is left 
-        !   jmax_plane(iproc) = jupp
-        !   proc_load(iproc)  = weight_tot - sum(proc_load(0:iproc-1))
-        !   !exit
-        ! end if
+  !       ! if (iproc < np-1) then
+  !       !   jmin_plane(iproc) = cut_plane + 1
+  !       ! else
+  !       !   jmin_plane(iproc) = cut_plane + 1                     ! setting last proc to be whatever is left 
+  !       !   jmax_plane(iproc) = jupp
+  !       !   proc_load(iproc)  = weight_tot - sum(proc_load(0:iproc-1))
+  !       !   !exit
+  !       ! end if
 
-        jmax_plane(iproc) = cut_plane
+  !       jmax_plane(iproc) = cut_plane
 
-        if (iproc == np-1) then
-          jmax_plane(iproc) = jupp
-          proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
-          exit
-        else
-          iproc = iproc + 1
-          jmin_plane(iproc) = cut_plane + 1
-        end if
-
-
-
-        cumulative_load = 0.0d0
-        j = cut_plane + 1
-      end if
-
-    end do
-
-    ! Safety check 
-    ! If the loop ended because j ran out (j > jupp) before we reached iproc=np-1,
-    ! finalise the current proc with the remainder and mark the rest empty.
-    ! its unlikely but it could be taking the upper bound everytime so we could potentially run out.. 
-
-    if (iproc <= np-1 .and. j > jupp) then
-      jmax_plane(iproc) = jupp
-      proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
-      do i = iproc+1, np-1
-        jmin_plane(i) = jupp + 1
-        jmax_plane(i) = jupp
-        proc_load(i)  = 0.0d0
-      end do
-    end if
+  !       if (iproc == np-1) then
+  !         jmax_plane(iproc) = jupp
+  !         proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
+  !         exit
+  !       else
+  !         iproc = iproc + 1
+  !         jmin_plane(iproc) = cut_plane + 1
+  !       end if
 
 
-  end if 
 
-  call MPI_BCAST(jmin_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
-  call MPI_BCAST(jmax_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
-  call MPI_BCAST(proc_load,  np, MPI_DOUBLE_PRECISION,   0, MPI_COMM_WORLD, ierr)
+  !       cumulative_load = 0.0d0
+  !       j = cut_plane + 1
+  !     end if
+
+  !   end do
+
+  !   ! Safety check 
+  !   ! If the loop ended because j ran out (j > jupp) before we reached iproc=np-1,
+  !   ! finalise the current proc with the remainder and mark the rest empty.
+  !   ! its unlikely but it could be taking the upper bound everytime so we could potentially run out.. 
+
+  !   if (iproc <= np-1 .and. j > jupp) then
+  !     jmax_plane(iproc) = jupp
+  !     proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
+  !     do i = iproc+1, np-1
+  !       jmin_plane(i) = jupp + 1
+  !       jmax_plane(i) = jupp
+  !       proc_load(i)  = 0.0d0
+  !     end do
+  !   end if
+
+
+  ! end if 
+
+  ! call MPI_BCAST(jmin_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
+  ! call MPI_BCAST(jmax_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
+  ! call MPI_BCAST(proc_load,  np, MPI_DOUBLE_PRECISION,   0, MPI_COMM_WORLD, ierr)
 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!! Same from here for DNS and RNL !!!!!!!!!!!!!!!!!!!!!
@@ -2209,99 +2207,183 @@ end subroutine
   !!!!!!!!!!!!!!!!!!!    nonlin read old    !!!!!!!!!!!!!!!!!!! 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-  
-subroutine nonlinRead(myid)
+! this is the slight;y adapted version of nonlinRead from before the weights
+! subroutine nonlinRead(myid)
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   !!!!!!!!!!!!    read in important interactions  !!!!!!!!!!!!!!
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!   use declaration
+!     implicit none
+
+!     integer j, jread, x, type, length, jlow, jupp, len, i, myid
+!     character*2 extj
+!     integer, allocatable :: tmpInt(:)
+
+!     jlow = limPL_excw(ugrid,1,myid)
+!     jupp = limPL_excw(ugrid,2,myid)
+
+!     ! write(6,*) "jlow", jlow, "jupp", jupp
+!     write(*,*) 'rank', myid, 'limPL_excw ugrid=', limPL_excw(ugrid,1,myid), limPL_excw(ugrid,2,myid)
+
+
+
+!     if (jlow > (Ngal(3,nband)+1)/2) then !! bad :/
+!       jlow = jlow-1
+!     end if
+!     jupp = min(jupp,Ngal(3,nband))
+
+!     allocate(nonlin(jlow:jupp,9))
+
+!     do j = jlow,jupp
+!       if (j > (Ngal(3,nband)+1)/2) then
+!         jread = Ngal(3,nband)+1-j
+!       else 
+!         jread = j
+!         write(6,*) "jread", jread
+!       end if
+!       write(extj,'(i2.2)') jread
+
+!       fnameima = trim(dirlist)//trim(heading)//extj//'.dat'
+
+!       ! write(*,*) 'DEBUG rank', myid, ' j=', j, ' jread=', jread, ' extj=[', extj, ']'
+
+      
+!       open(40, file=fnameima, form='unformatted',access='stream', status='old')
+
+!       allocate(tmpInt(3))
+!       read(40) tmpInt
+!       if (tmpInt(1)/= N(1,nband)/2-1) then
+!         write(*,*) "nx number does not agree between list and simulation"
+!         stop
+!       elseif (tmpInt(2)/= N(2,nband)/2-1) then
+!         write(*,*) "nz number does not agree between list and simulation"
+!         stop
+!       elseif (tmpInt(3)/= jread) then
+!         write(*,*) "something wrong with the j index of the list"
+!         stop
+!       end if
+!       deallocate(tmpInt)
+      
+!       allocate(tmpInt(2))
+      
+
+!       ! weight(j)=0
+!       do x = 1,9
+!         read(40) tmpInt
+!         type = tmpInt(1)
+!         length = tmpInt(2)
+
+!         ! write(6,*) "length", length
+!         allocate(nonlin(j,type)%list(length,4))
+!         read(40) nonlin(j,type)%list
+
+!         ! write(6,*) "read done rank", myid, " j=", j
+!         ! do len = 1,length
+!         !   read(40) nonlin(j,type)%list(len,:)
+!         ! end do 
+!         ! write(6,*) 'rank', myid
+!       end do
+
+!       ! write(6,*) "j=", j, "jlow", jlow, "jupp", jupp 
+!       ! write(6,*) 'rank', myid, 'j=', j, 'jlow=', jlow, 'jupp=', jupp
+
+!       deallocate(tmpInt)
+!       close(40)
+!     end do
+
+
+!   end subroutine
+! 
+
+! this is joys original version of nonlin read  
+subroutine nonlinRead
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!    read in important interactions  !!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+  ! currently quite bad, only works for bands of the same size
+  ! also file read with access = stream is bad
+  ! also some files are read multiple times due to upper and lower channel
+  ! also the load in each processor is not perfectly balanced
+
   use declaration
-    implicit none
+  implicit none
 
-    integer j, jread, x, type, length, jlow, jupp, len, i, myid
-    character*2 extj
-    integer, allocatable :: tmpInt(:)
+  integer j, jread, x, type, length, jlow, jupp, len, i
+  character*2 extj
+  integer, allocatable :: tmpInt(:)
 
-    jlow = limPL_excw(ugrid,1,myid)
-    jupp = limPL_excw(ugrid,2,myid)
+  jlow = min(jgal(vgrid, 1), jgal(ugrid, 1))
+  jupp = max(jgal(vgrid, 2), jgal(ugrid, 2))
 
-    ! write(6,*) "jlow", jlow, "jupp", jupp
-    write(*,*) 'rank', myid, 'limPL_excw ugrid=', limPL_excw(ugrid,1,myid), limPL_excw(ugrid,2,myid)
+  !write(6,*) "jgal", size(jgal,1), size(jgal,2)
+
+  ! ! jgal is (3,2)
+  ! write(6,*) "jgal ="
+  ! do i = 1, 3
+  !     write(6,*) jgal(i,1), jgal(i,2)
+  ! end do
+
+  ! write(6,*) "ngal", size(ngal,1), size(ngal,2)
+  ! write(6,*) "ngal:"
+  ! do i = 1,4
+  !   write(6,*) ngal(i,0:4)
+  ! end do
 
 
+  if (jlow > (Ngal(3,nband)+1)/2) then !! bad :/
+    jlow = jlow-1
+  end if
+  jupp = min(jupp,Ngal(3,nband))
 
-    if (jlow > (Ngal(3,nband)+1)/2) then !! bad :/
-      jlow = jlow-1
+  allocate(nonlin(jlow:jupp,9))
+
+  do j = jlow,jupp
+    if (j > (Ngal(3,nband)+1)/2) then
+      jread = Ngal(3,nband)+1-j
+    else
+      jread = j
     end if
-    jupp = min(jupp,Ngal(3,nband))
+    write(extj,'(i2.2)') jread
 
-    allocate(nonlin(jlow:jupp,9))
+    fnameima = trim(dirlist)//trim(heading)//extj//'.dat'
 
-    do j = jlow,jupp
-      if (j > (Ngal(3,nband)+1)/2) then
-        jread = Ngal(3,nband)+1-j
-      else 
-        jread = j
-        write(6,*) "jread", jread
-      end if
-      write(extj,'(i2.2)') jread
+    open(40, file=fnameima, form='unformatted',access='stream', status='old')
 
-      fnameima = trim(dirlist)//trim(heading)//extj//'.dat'
+    allocate(tmpInt(3))
+    read(40) tmpInt
+    if (tmpInt(1)/= N(1,2)/2-1) then
+      write(*,*) "nx number does not agree between list and simulation"
+      stop
+    elseif (tmpInt(2)/= N(2,2)/2-1) then
+      write(*,*) "nz number does not agree between list and simulation"
+      stop
+    elseif (tmpInt(3)/= jread) then
+      write(*,*) "something wrong with the j index of the list"
+      stop
+    end if
+    deallocate(tmpInt)
 
-      ! write(*,*) 'DEBUG rank', myid, ' j=', j, ' jread=', jread, ' extj=[', extj, ']'
+    allocate(tmpInt(2))
 
-      
-      open(40, file=fnameima, form='unformatted',access='stream', status='old')
-
-      allocate(tmpInt(3))
+    do x = 1,9
       read(40) tmpInt
-      if (tmpInt(1)/= N(1,nband)/2-1) then
-        write(*,*) "nx number does not agree between list and simulation"
-        stop
-      elseif (tmpInt(2)/= N(2,nband)/2-1) then
-        write(*,*) "nz number does not agree between list and simulation"
-        stop
-      elseif (tmpInt(3)/= jread) then
-        write(*,*) "something wrong with the j index of the list"
-        stop
-      end if
-      deallocate(tmpInt)
-      
-      allocate(tmpInt(2))
-      
-
-      ! weight(j)=0
-      do x = 1,9
-        read(40) tmpInt
-        type = tmpInt(1)
-        length = tmpInt(2)
-
-        if (length < 0 .or. length > 200000000) then
-          write(*,*) 'STOP: length insane on rank', myid, ' j=', j,' length=', length
-          stop
-        end if
-
-        ! write(6,*) "length", length
-        allocate(nonlin(j,type)%list(length,4))
-        read(40) nonlin(j,type)%list
-
-        ! write(6,*) "read done rank", myid, " j=", j
-        ! do len = 1,length
-        !   read(40) nonlin(j,type)%list(len,:)
-        ! end do 
-        ! write(6,*) 'rank', myid
-      end do
-
-      ! write(6,*) "j=", j, "jlow", jlow, "jupp", jupp 
-      ! write(6,*) 'rank', myid, 'j=', j, 'jlow=', jlow, 'jupp=', jupp
-
-      deallocate(tmpInt)
-      close(40)
+      type = tmpInt(1)
+      length = tmpInt(2)
+      allocate(nonlin(j,type)%list(length,4))
+      read(40) nonlin(j,type)%list
+      ! do len = 1,length
+      !   read(40) nonlin(j,type)%list(len,:)
+      ! end do
     end do
 
+    deallocate(tmpInt)
+    close(40)
+  end do
 
-  end subroutine
 
+end subroutine
 
 
 
