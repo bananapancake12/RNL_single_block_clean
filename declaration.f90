@@ -18,6 +18,13 @@ module declaration
   integer, parameter :: vgrid = 1 ! faces: v
   integer, parameter :: pgrid = 3 ! centres not including ghost points: p
 
+
+  ! NEW AND CHANGED VARIABLES
+  
+  integer :: Ngal_x, Ngal_z
+  integer :: Nspec_x, Nspec_z
+  integer :: nyu, nyv, nyp, nyu_LB, nyv_LB, nyp_LB
+
   
   ! All variables
 
@@ -63,13 +70,13 @@ module declaration
   integer kRK
   real(8) t,dt,CFL,maxt,dtv,dtc,dti,Re
 
-  integer nribs,npeak !TODO remove
-  integer dnx,dnz
-  integer ntilex,ntilez
-  integer npeakx,npeakz
-  real(8) Lfracx,Lfracz
-  real(8) posth
-  real(8) post_spacing
+  ! integer nribs,npeak !TODO remove
+  ! integer dnx,dnz
+  ! integer ntilex,ntilez
+  ! integer npeakx,npeakz
+  ! real(8) Lfracx,Lfracz
+  ! real(8) posth
+  ! real(8) post_spacing
   real(8) bslpu1,bslpu3
   
   real(8) gridweighting_bc_u1,gridweighting_bc_u3

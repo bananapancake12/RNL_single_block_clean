@@ -7,12 +7,12 @@
 ########################     compiler     #########################
 
 #CSD3
-F90 = mpif90
-F77 = mpif90
+# F90 = mpif90
+# F77 = mpif90
 
 #WSL
-# F90 = mpiifx
-# F77 = mpiifx
+F90 = mpiifx
+F77 = mpiifx
 #F90 = $(BGP_SYS)/bin/mpixlf90
 #F77 = $(BGP_SYS)/bin/mpixlf77
 
@@ -45,7 +45,6 @@ CALCDIR = $(INIT)
 
 OBJECTS = $(OBJ)/declaration.o\
           $(OBJ)/start.o\
-          $(OBJ)/boundary_post_coll.o\
           $(OBJ)/stats.o\
           $(OBJ)/sl_stats2.o\
           $(OBJ)/inst_sl_stats.o\
@@ -75,10 +74,6 @@ $(OBJDIR)/declaration.o : $(SRCDIR)/declaration.f90 $(SRCDIR)/makefile
 $(OBJDIR)/start.o : $(SRCDIR)/start.f90 $(SRCDIR)/makefile
 	@echo compiling start.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/start.f90
-
-$(OBJDIR)/boundary_post_coll.o : $(SRCDIR)/boundary_post_coll.f90 $(SRCDIR)/makefile
-	@echo compiling boundary_post_coll.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/boundary_post_coll.f90
 
 $(OBJDIR)/stats.o : $(SRCDIR)/stats.f90 $(SRCDIR)/makefile
 	@echo compiling stats.f90
