@@ -450,30 +450,30 @@ subroutine der_x(u,dudx,kx)
   implicit none
 
   integer i,k
-  complex(8) u   (0:Ngal(1,nband)/2,Ngal(2,nband))
-  complex(8) dudx(0:Ngal(1,nband)/2,Ngal(2,nband))
+  complex(8) u   (0:Ngal_x/2,Ngal_z)
+  complex(8) dudx(0:Ngal_x/2,Ngal_z)
   complex(8) kx(0:Nspec_x/2)
 
   do k = 1,Nspec_z/2
     do i = 0,Nspec_x/2
       dudx(i,k) = kx(i)*u(i,k)
     end do
-    do i = Nspec_x/2+1,Ngal(1,nband)/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
+    do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
       dudx(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
     end do
   end do
 
   !Zeros includes mode Nz/2+1 mode (zero for advection derrivatives)
-  do k = Nspec_z/2+1,Ngal(2,nband)-Nspec_z/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
-    do i = 0,Ngal(1,nband)/2                        !!!!!!!!!!!!
+  do k = Nspec_z/2+1,Ngal_z-Nspec_z/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
+    do i = 0,Ngal_x/2                        !!!!!!!!!!!!
       dudx(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
     end do
   end do
-  do k = Ngal(2,nband)-Nspec_z/2+2,Ngal(2,nband)
+  do k = Ngal_z-Nspec_z/2+2,Ngal_z
     do i = 0,Nspec_x/2
       dudx(i,k) = kx(i )*u(i,k)
     end do
-    do i = Nspec_x/2+1,Ngal(1,nband)/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
+    do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
       dudx(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
     end do
   end do
@@ -489,11 +489,11 @@ subroutine der_x_N(u,dudx,kx) !For N
   implicit none
 
   integer i,k,dk2,k2
-  complex(8) u   (0:Nspec_x/2,N(2,nband))
-  complex(8) dudx(0:Nspec_x/2,N(2,nband))
+  complex(8) u   (0:Nspec_x/2,Nspec_z)
+  complex(8) dudx(0:Nspec_x/2,Nspec_z)
   complex(8) kx(0:Nspec_x/2)
 
-  do k = 1,N(2,nband)
+  do k = 1,Nspec_z
     do i = 0,Nspec_x/2
       dudx(i,k) = kx(i)*u(i,k)
     end do
@@ -511,32 +511,32 @@ subroutine der_z(u,dudz,kz)
   implicit none
 
   integer i,k,dk2,k2
-  complex(8) u   (0:Ngal(1,nband)/2,Ngal(2,nband))
-  complex(8) dudz(0:Ngal(1,nband)/2,Ngal(2,nband))
-  complex(8) kz(1:N(2,nband))
+  complex(8) u   (0:Ngal_x/2,Ngal_z)
+  complex(8) dudz(0:Ngal_x/2,Ngal_z)
+  complex(8) kz(1:Nspec_z)
 
-  dk2=N(2,nband)-Ngal(2,nband)
+  dk2=Nspec_z-Ngal_z
 
-  do k = 1,N(2,nband)/2
+  do k = 1,Nspec_z/2
     do i = 0,Nspec_x/2
       dudz(i,k) = kz(k)*u(i,k)
     end do
-    do i = Nspec_x/2+1,Ngal(1,nband)/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
+    do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
       dudz(i,k) = 0d0
     end do
   end do
   !Zeros includes mode Nz/2+1 mode (zero for advection derrivatives)
-  do k = N(2,nband)/2+1,Ngal(2,nband)-N(2,nband)/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
-    do i = 0,Ngal(1,nband)/2
+  do k = Nspec_z/2+1,Ngal_z-Nspec_z/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
+    do i = 0,Ngal_x/2
       dudz(i,k) = 0d0
     end do
   end do
-  do k = Ngal(2,nband)-N(2,nband)/2+2,Ngal(2,nband)
+  do k = Ngal_z-Nspec_z/2+2,Ngal_z
     k2 = k+dk2
     do i = 0,Nspec_x/2
       dudz(i,k) = kz(k2)*u(i,k)
     end do
-    do i = Nspec_x/2+1,Ngal(1,nband)/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
+    do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
       dudz(i,k) = 0d0
     end do
   end do
@@ -553,12 +553,12 @@ subroutine der_z_N(u,dudz,kz)
   implicit none
 
   integer i,k,dk2,k2
-  complex(8) u   (0:Nspec_x/2,N(2,nband))
-  complex(8) dudz(0:Nspec_x/2,N(2,nband))
-  complex(8) kz(1:N(2,nband))
+  complex(8) u   (0:Nspec_x/2,Nspec_z)
+  complex(8) dudz(0:Nspec_x/2,Nspec_z)
+  complex(8) kz(1:Nspec_z)
 
 
-    do k = 1,N(2,nband)
+    do k = 1,Nspec_z
       do i = 0,Nspec_x/2
 	      dudz(i,k) = kz(k)*u(i,k)
       end do
@@ -655,7 +655,7 @@ subroutine dtc_calc(u1,u2,u3,myid)
 
   u3mloc = maxval(abs(u3))
   
-  dt = min(1d0/(alp*(Nspec_x/2)*u1mloc),1d0/(bet*(N(2,nband)/2)*u3mloc),1d0/(u2mloc*dthetavi))
+  dt = min(1d0/(alp*(Nspec_x/2)*u1mloc),1d0/(bet*(Nspec_z/2)*u3mloc),1d0/(u2mloc*dthetavi))
 
   ! write(6,*) "u1max", u1mloc
   ! write(6,*) "u2max", u2mloc
@@ -677,20 +677,20 @@ subroutine four_to_phys_u(u1,u2,u3)
   use declaration
   implicit none
 
-  real(8) u1 (Ngal(1,nband)+2,Ngal(2,nband))
-  real(8) u2 (Ngal(1,nband)+2,Ngal(2,nband))
-  real(8) u3 (Ngal(1,nband)+2,Ngal(2,nband))
+  real(8) u1 (Ngal_x+2,Ngal_z)
+  real(8) u2 (Ngal_x+2,Ngal_z)
+  real(8) u3 (Ngal_x+2,Ngal_z)
   
-  u1(:,Ngal(2,nband)/2+1)=0d0
-  u2(:,Ngal(2,nband)/2+1)=0d0
-  u3(:,Ngal(2,nband)/2+1)=0d0
+  u1(:,Ngal_z/2+1)=0d0
+  u2(:,Ngal_z/2+1)=0d0
+  u3(:,Ngal_z/2+1)=0d0
   
-  call cft(u1,Ngal(1,nband)+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-  call rft(u1,Ngal(1,nband)+2,Ngal(2,nband),1,buffRal_x%b)
-  call cft(u2,Ngal(1,nband)+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-  call rft(u2,Ngal(1,nband)+2,Ngal(2,nband),1,buffRal_x%b)
-  call cft(u3,Ngal(1,nband)+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-  call rft(u3,Ngal(1,nband)+2,Ngal(2,nband),1,buffRal_x%b)
+  call cft(u1,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
+  call rft(u1,Ngal_x+2,Ngal_z,1,buffRal_x%b)
+  call cft(u2,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
+  call rft(u2,Ngal_x+2,Ngal_z,1,buffRal_x%b)
+  call cft(u3,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
+  call rft(u3,Ngal_x+2,Ngal_z,1,buffRal_x%b)
   
 end subroutine
 
@@ -704,12 +704,12 @@ subroutine four_to_phys_du(du)
 
   use declaration
   implicit none
-  real(8) du  (Ngal(1,nband)+2,Ngal(2,nband))
+  real(8) du  (Ngal_x+2,Ngal_z)
 
-  du(:,Ngal(2,nband)/2+1)=0d0
+  du(:,Ngal_z/2+1)=0d0
   
-  call cft(du   ,Ngal(1,nband)+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-  call rft(du   ,Ngal(1,nband)+2,Ngal(2,nband),1,buffRal_x%b)
+  call cft(du   ,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
+  call rft(du   ,Ngal_x+2,Ngal_z,1,buffRal_x%b)
 
 end subroutine
 
@@ -724,9 +724,9 @@ subroutine four_to_phys_N(du)
   use declaration
   implicit none
 
-  real(8) du  (Nspec_x+2,N(2,nband))
+  real(8) du  (Nspec_x+2,Nspec_z)
   call cft(du   ,Nspec_x+2,2,(Nspec_x+2)/2,1,buffC_z%b)
-  call rft(du   ,Nspec_x+2,N(2,nband),1,buffR_x%b)
+  call rft(du   ,Nspec_x+2,Nspec_z,1,buffR_x%b)
 
 end subroutine
 
@@ -757,10 +757,17 @@ subroutine modes_to_planes_UVP (xPL,x,grid,myid,status,ierr)
 
   jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
   jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
-  if (jminR==Ny(grid,nband-1)+1 .and. jmaxR>=jminR) then
+  ! if (jminR==Ny(grid,nband-1)+1 .and. jmaxR>=jminR) then
+  !   jminR = jminR-1
+  ! end if
+  ! if (jmaxR==Ny(grid,nband  )   .and. jmaxR>=jminR) then
+  !   jmaxR = jmaxR+1
+  ! end if
+
+  if (jminR==Ny(grid,0)+1 .and. jmaxR>=jminR) then
     jminR = jminR-1
   end if
-  if (jmaxR==Ny(grid,nband  )   .and. jmaxR>=jminR) then
+  if (jmaxR==Ny(grid,nband)   .and. jmaxR>=jminR) then
     jmaxR = jmaxR+1
   end if
   do j = jminR,jmaxR
@@ -844,7 +851,7 @@ subroutine modes_to_planes_phys (xPL,x,grid,myid,status,ierr)
   integer inode,yourid
   integer msizeR,msizeS
   type(cfield) x  
-  real(8)      xPL(Nspec_x+2,N(2,nband),jgal(grid,1)-1:jgal(grid,2)+1)
+  real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
   complex(8), allocatable :: buffS(:,:),buffR(:,:)
 
 
@@ -942,7 +949,7 @@ subroutine modes_to_planes_phys_lims (xPL,x,nystart,nyend,grid,myid,myiband,stat
   integer inode,yourid
   integer msizeR,msizeS
   type(cfield) x  
-  real(8)      xPL(Nspec_x+2,N(2,nband),limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
+  real(8)      xPL(Nspec_x+2,Nspec_z,limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
   complex(8), allocatable :: buffS(:,:),buffR(:,:)
 
   plband = bandPL_FFT(myid)
@@ -1045,7 +1052,7 @@ subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,myid,status,ier
   integer inode,yourid
   integer msizeR,msizeS
   type(cfield) x
-  real(8)      xPL(Nspec_x+2,N(2,nband),jgal(grid,1)-1:jgal(grid,2)+1)
+  real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
   complex(8), allocatable :: buffS(:,:),buffR(:,:)
   
   yourid = myid
@@ -1157,7 +1164,7 @@ subroutine ops_in_planes(myid,flagst)
   do j = limPL_excw(ugrid,1,myid),limPL_excw(ugrid,2,myid)
     ! nonlinear interaction into 0th mode (bad, much easier to do if multiply by 4 and do one quadrant but need to think about k = 0 terms carefully)
     do i = -(Nspec_x/2),Nspec_x/2
-      do k = -(N(2,nband)/2),N(2,nband)/2-1
+      do k = -(Nspec_z/2),Nspec_z/2-1
         la = i
         lp = -i
         ia = iLkup(la)
@@ -1276,8 +1283,8 @@ subroutine ops_in_planes(myid,flagst)
     !   ! write(11) wu_cPL(:,:,j)
     ! end if  
 
-    do k = 1,Ngal(2,nband)
-      do i = 1,Ngal(1,nband)
+    do k = 1,Ngal_z
+      do i = 1,Ngal_x
         Nu1PL(i,k,j) = du1dx(i,k)+du1dz(i,k)
         Nu3PL(i,k,j) = du3dx(i,k)+du3dz(i,k)
       end do
@@ -1305,7 +1312,7 @@ subroutine ops_in_planes(myid,flagst)
   do j = limPL_excw(vgrid,1,myid),limPL_excw(vgrid,2,myid)
     ! nonlinear interaction into 0th mode
     do i = -(Nspec_x/2),Nspec_x/2
-      do k = -(N(2,nband)/2-1),N(2,nband)/2-1
+      do k = -(Nspec_z/2-1),Nspec_z/2-1
         la = i
         lp = -i
         ia = iLkup(la)
@@ -1365,8 +1372,8 @@ subroutine ops_in_planes(myid,flagst)
       write(6,*) "=====> Finished Derivatives", myid
     end if 
 
-    do k = 1,Ngal(2,nband)
-      do i = 1,Ngal(1,nband)
+    do k = 1,Ngal_z
+      do i = 1,Ngal_x
         Nu2PL(i,k,j) = du2dx(i,k)+du2dz(i,k)   
       end do
     end do
@@ -1515,8 +1522,8 @@ subroutine ops_in_planes2(myid,flagst)
 
     call four_to_phys_u(u1PL(1,1,j),u2PL_itp(1,1,j),u3PL(1,1,j))
 
-    do k = 1,Ngal(2,nband)
-      do i = 1,Ngal(1,nband)
+    do k = 1,Ngal_z
+      do i = 1,Ngal_x
         uu_cPL(i,k,j) = u1PL    (i,k,j)*u1PL    (i,k,j)
         uw_cPL(i,k,j) = u1PL    (i,k,j)*u3PL    (i,k,j)
         vv_cPL(i,k,j) = u2PL_itp(i,k,j)*u2PL_itp(i,k,j)
@@ -1555,8 +1562,8 @@ subroutine ops_in_planes2(myid,flagst)
     call der_x(uw_cPL(1,1,j),du3dx,k1F_x)
     call der_z(ww_cPL(1,1,j),du3dz,k1F_z)
    
-    do k = 1,Ngal(2,nband)
-      do i = 1,Ngal(1,nband)
+    do k = 1,Ngal_z
+      do i = 1,Ngal_x
         Nu1PL(i,k,j) = du1dx(i,k)+du1dz(i,k)
         Nu3PL(i,k,j) = du3dx(i,k)+du3dz(i,k)
       end do
@@ -1589,8 +1596,8 @@ subroutine ops_in_planes2(myid,flagst)
     
     call four_to_phys_u(u1PL_itp(1,1,j),u2PL(1,1,j),u3PL_itp(1,1,j))
     
-    do k = 1,Ngal(2,nband)
-      do i = 1,Ngal(1,nband)
+    do k = 1,Ngal_z
+      do i = 1,Ngal_x
         uv_fPL(i,k,j) = u1PL_itp(i,k,j)*u2PL(i,k,j)
         wv_fPL(i,k,j) = u3PL_itp(i,k,j)*u2PL(i,k,j)
       end do
@@ -1613,8 +1620,8 @@ subroutine ops_in_planes2(myid,flagst)
     call der_x(uv_fPL(1,1,j),du2dx,k1F_x)
     call der_z(wv_fPL(1,1,j),du2dz,k1F_z)
 
-    do k = 1,Ngal(2,nband)
-      do i = 1,Ngal(1,nband)
+    do k = 1,Ngal_z
+      do i = 1,Ngal_x
         Nu2PL(i,k,j) = du2dx(i,k)+du2dz(i,k)   
       end do
     end do
@@ -1636,12 +1643,12 @@ subroutine phys_to_four_du(duPL)
   use declaration
   implicit none
 
-  real(8) duPL(Ngal(1,nband)+2,Ngal(2,nband))
+  real(8) duPL(Ngal_x+2,Ngal_z)
 
-  call rft(duPL,Ngal(1,nband)+2,Ngal(2,nband),-1,buffRal_x%b)
-  call cft(duPL,Ngal(1,nband)+2,2,(Nspec_x+2)/2,-1,buffCal_z%b)
+  call rft(duPL,Ngal_x+2,Ngal_z,-1,buffRal_x%b)
+  call cft(duPL,Ngal_x+2,2,(Nspec_x+2)/2,-1,buffCal_z%b)
   
-  duPL(:,Ngal(2,nband)/2+1)=0d0 !oddball advective term = 0
+  duPL(:,Ngal_z/2+1)=0d0 !oddball advective term = 0
 
 end subroutine
 
@@ -1657,9 +1664,9 @@ subroutine phys_to_four_N(duPL)
   implicit none
 
 
-  real(8) duPL(Nspec_x+2,N(2,nband))
+  real(8) duPL(Nspec_x+2,Nspec_z)
 
-  call rft(duPL,Nspec_x+2,N(2,nband),-1,buffR_x%b)
+  call rft(duPL,Nspec_x+2,Nspec_z,-1,buffR_x%b)
   call cft(duPL,Nspec_x+2,2,(Nspec_x+2)/2,-1,buffC_z%b)
   
   !duPL(:,N(2,iband)/2+1)=0d0
@@ -1809,7 +1816,7 @@ subroutine planes_to_modes_phys_lims (x,xPL,nystart,nyend,grid,myid,status,ierr)
   integer inode,yourid
   integer msizeR,msizeS
   type(cfield) x
-  real(8)      xPL(Nspec_x+2,N(2,nband),limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
+  real(8)      xPL(Nspec_x+2,Nspec_z,limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
   complex(8), allocatable:: buffS(:,:),buffR(:,:)
 
   ! Loop for itself
@@ -1967,7 +1974,7 @@ subroutine record_out(u1,myid)
 
   if (myid/=0) then
     nx = Nspec_x+2
-    nz = N(2,nband)
+    nz = Nspec_z
     allocate(buffSR(nx,nz))
     do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
       call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
@@ -1998,7 +2005,7 @@ subroutine record_out(u1,myid)
     write(10) N
     write(10) yu,dthetavi,dthdyu
     nx = Nspec_x+2
-    nz = N(2,nband)
+    nz = Nspec_z
     allocate(buffSR(nx,nz))
     do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
        call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
@@ -2007,7 +2014,7 @@ subroutine record_out(u1,myid)
     deallocate(buffSR)
     do iproc = 1,np-1
       nx = Nspec_x+2
-      nz = N(2,nband)
+      nz = Nspec_z
       allocate(buffSR(nx,nz))
       do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,123*iproc,MPI_COMM_WORLD,status,ierr)
@@ -2023,7 +2030,7 @@ subroutine record_out(u1,myid)
     write(10) N
     write(10) yv,dthetavi,dthdyv
     nx = Nspec_x+2
-    nz = N(2,nband)
+    nz = Nspec_z
     allocate(buffSR(nx,nz))
     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
       call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
@@ -2032,7 +2039,7 @@ subroutine record_out(u1,myid)
     deallocate(buffSR)
     do iproc = 1,np-1
       nx = Nspec_x+2
-      nz = N(2,nband)
+      nz = Nspec_z
       allocate(buffSR(nx,nz))
       do j = limPL_incw(vgrid,1,iproc),limPL_incw(vgrid,2,iproc)
         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,124*iproc,MPI_COMM_WORLD,status,ierr)
@@ -2048,7 +2055,7 @@ subroutine record_out(u1,myid)
     write(10) N
     write(10) yu,dthetavi,dthdyu
     nx = Nspec_x+2
-    nz = N(2,nband)
+    nz = Nspec_z
     allocate(buffSR(nx,nz))
     do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
       call u_to_buff(buffSR,u3PL(1,1,j),nx,nz,igal,kgal)
@@ -2057,7 +2064,7 @@ subroutine record_out(u1,myid)
     deallocate(buffSR)
     do iproc = 1,np-1
       nx = Nspec_x+2
-      nz = N(2,nband)
+      nz = Nspec_z
       allocate(buffSR(nx,nz))
       do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,125*iproc,MPI_COMM_WORLD,status,ierr)
@@ -2073,7 +2080,7 @@ subroutine record_out(u1,myid)
     write(10) N
     write(10) yu,dthetavi,dthdyu
     nx = Nspec_x+2
-    nz = N(2,nband)
+    nz = Nspec_z
     allocate(buffSR(nx,nz))
     do j = limPL_incw(pgrid,1,myid),limPL_incw(pgrid,2,myid)
       call u_to_buff(buffSR,ppPL(1,1,j),nx,nz,igal,kgal)
