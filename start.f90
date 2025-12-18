@@ -1478,11 +1478,11 @@ subroutine mblock_ini(u1,u2,u3,p,myid,status,ierr)
   write(6,*) " Calling read in"
   call read_in(myid)
    
-  ! write(6,*) " start pplanes to modes"
-  call planes_to_modes_UVP(u1,u1PL,2,myid,status,ierr)
-  call planes_to_modes_UVP(u2,u2PL,1,myid,status,ierr)
-  call planes_to_modes_UVP(u3,u3PL,2,myid,status,ierr)
-  call planes_to_modes_UVP(p ,ppPL,3,myid,status,ierr)
+  ! write(6,*) " start planes to modes"
+  call planes_to_modes_UVP(u1,u1PL,2,nyu,nyu_LB,myid,status,ierr)
+  call planes_to_modes_UVP(u2,u2PL,1,nyv,nyv_LB,myid,status,ierr)
+  call planes_to_modes_UVP(u3,u3PL,2,nyu,nyu_LB,myid,status,ierr)
+  call planes_to_modes_UVP(p ,ppPL,3,nyp,nyp_LB,myid,status,ierr)
   ! write(6,*) " finished pplanes to modes"
 
   ! if(myid ==0) then 
@@ -1627,10 +1627,10 @@ subroutine mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)
   end do
   deallocate(nxxu,nzzu,nxxv,nzzv)
 
-  call planes_to_modes_UVP(u1,u1PL,ugrid,myid,status,ierr)
-  call planes_to_modes_UVP(u2,u2PL,vgrid,myid,status,ierr)
-  call planes_to_modes_UVP(u3,u3PL,ugrid,myid,status,ierr)
-  call planes_to_modes_UVP(p ,ppPL,pgrid,myid,status,ierr)
+  call planes_to_modes_UVP(u1,u1PL,ugrid,nyu,nyu_LB,myid,status,ierr)
+  call planes_to_modes_UVP(u2,u2PL,vgrid,nyv,nyv_LB,myid,status,ierr)
+  call planes_to_modes_UVP(u3,u3PL,ugrid,nyu,nyu_LB,myid,status,ierr)
+  call planes_to_modes_UVP(p ,ppPL,pgrid,nyp,nyp_LB,myid,status,ierr)
 
 end subroutine
 

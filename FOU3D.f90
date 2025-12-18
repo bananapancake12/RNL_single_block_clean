@@ -259,9 +259,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   end if
 
   !C! Shift y derrivative products to modes
-  call planes_to_modes_UVP(uv_f,uv_fPL,vgrid,myid,status,ierr)
-  call planes_to_modes_UVP(vv_c,vv_cPL,ugrid,myid,status,ierr)
-  call planes_to_modes_UVP(wv_f,wv_fPL,vgrid,myid,status,ierr)
+  call planes_to_modes_UVP(uv_f,uv_fPL,vgrid,nyv,nyv_LB,myid,status,ierr)
+  call planes_to_modes_UVP(vv_c,vv_cPL,ugrid,nyu,nyu_LB,myid,status,ierr)
+  call planes_to_modes_UVP(wv_f,wv_fPL,vgrid,nyv,nyv_LB,myid,status,ierr)
 
 
   !C! Shift x/z derrivatives to modes
@@ -321,7 +321,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
     
     !C! Calculate Omega_x
     u2PLN=0d0
-    call modes_to_planes_phys (u2PLN,u2,vgrid,myid,status,ierr)    
+    call modes_to_planes_phys (u2PLN,u2,vgrid,nyv,nyv_LB,myid,status,ierr)    
     
     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
       call der_z_N(u2PLN(1,1,j),wx(:,:,j),k1F_z) !C! u2PL in Fourier space
@@ -335,7 +335,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   
     call der_yv_h_wx(du3dy_columns%f,u3%f,myid)
 
-    call modes_to_planes_phys(du3dy_planes,du3dy_columns,vgrid,myid,status,ierr)
+    call modes_to_planes_phys(du3dy_planes,du3dy_columns,vgrid,nyv,nyv_LB,myid,status,ierr)
     
     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
       do i = 1,Nspec_x+2
@@ -835,7 +835,7 @@ subroutine modes_to_planes_UVP (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
 
 end subroutine
 
-subroutine modes_to_planes_phys (xPL,x,grid,myid,status,ierr)
+subroutine modes_to_planes_phys (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!! MODES TO PLANES !!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -854,15 +854,16 @@ subroutine modes_to_planes_phys (xPL,x,grid,myid,status,ierr)
   type(cfield) x  
   real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
   complex(8), allocatable :: buffS(:,:),buffR(:,:)
+  integer, intent(in) :: nygrid, nygrid_LB
 
 
   yourid = myid
   jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
   jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
-  if (jminR==Ny(grid,0)+1  ) then
+  if (jminR==nygrid_LB+1  ) then
         jminR = jminR-1
       end if
-      if (jmaxR==Ny(grid,nband)) then
+      if (jmaxR==nygrid) then
         jmaxR = jmaxR+1
       end if
   do j = jminR,jmaxR
@@ -887,16 +888,16 @@ subroutine modes_to_planes_phys (xPL,x,grid,myid,status,ierr)
       jmaxS = min(planelim(grid,2,yourid),jlim(2,grid)-1)
       jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
       jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
-      if (jminS==Ny(grid,0)+1  ) then
+      if (jminS==nygrid_LB+1  ) then
         jminS = jminS-1
       end if
-      if (jmaxS==Ny(grid,nband)) then
+      if (jmaxS==nygrid) then
         jmaxS = jmaxS+1
       end if
-      if (jminR==Ny(grid,0)+1  ) then
+      if (jminR==nygrid_LB+1  ) then
         jminR = jminR-1
       end if
-      if (jmaxR==Ny(grid,nband)) then
+      if (jmaxR==nygrid) then
         jmaxR = jmaxR+1
       end if
       allocate(buffS(jminS:jmaxS,columns_num(  myid)))
@@ -933,109 +934,109 @@ subroutine modes_to_planes_phys (xPL,x,grid,myid,status,ierr)
 
 end subroutine
 
-subroutine modes_to_planes_phys_lims (xPL,x,nystart,nyend,grid,myid,myiband,status,ierr)
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!! MODES TO PLANES USED IN FFT TRID LU!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine modes_to_planes_phys_lims (xPL,x,nystart,nyend,grid,nygrid,nygrid_LB,myid,myiband,status,ierr)
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! !!!!!!!!!! MODES TO PLANES USED IN FFT TRID LU!!!!!!!!!!!!!!!!
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  use declaration
-  implicit none
+!   use declaration
+!   implicit none
 
-  include 'mpif.h'             ! MPI variables
-  integer status(MPI_STATUS_SIZE),ierr,myid
+!   include 'mpif.h'             ! MPI variables
+!   integer status(MPI_STATUS_SIZE),ierr,myid
 
-  integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,plband,grid,myiband
-  integer column,nystart,nyend
+!   integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,plband,grid,myiband
+!   integer column,nystart,nyend
 
-  integer inode,yourid
-  integer msizeR,msizeS
-  type(cfield) x  
-  real(8)      xPL(Nspec_x+2,Nspec_z,limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
-  complex(8), allocatable :: buffS(:,:),buffR(:,:)
+!   integer inode,yourid
+!   integer msizeR,msizeS
+!   type(cfield) x  
+!   real(8)      xPL(Nspec_x+2,Nspec_z,limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
+!   complex(8), allocatable :: buffS(:,:),buffR(:,:)
 
-  plband = bandPL_FFT(myid)
-  yourid = myid
-  ! do iband = sband,eband
-    ! jband = iband
-!     jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid,jband)+1),nystart)
-!     jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid,jband)-1),nyend)
-jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid)),nystart)
-jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid)),nyend)
-!     if (jminR==Ny(grid,0)+1  ) then
-!           jminR = jminR-1
-!         end if
-!         if (jmaxR==Ny(grid,nband)) then
-!           jmaxR = jmaxR+1
-!         end if
-    do j = jminR,jmaxR
-      do column = 1,columns_num(yourid)
-        i = columns_i(column,yourid)
-        k = columns_k(column,yourid) - dk_phys(column,yourid)
-        xPL(2*i+1,k,j) = dreal(x%f(j,column))
-        xPL(2*i+2,k,j) = dimag(x%f(j,column))
-      end do
-    end do
-  ! end do
+!   plband = bandPL_FFT(myid)
+!   yourid = myid
+!   ! do iband = sband,eband
+!     ! jband = iband
+! !     jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid,jband)+1),nystart)
+! !     jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid,jband)-1),nyend)
+! jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid)),nystart)
+! jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid)),nyend)
+! !     if (jminR==Ny(grid,0)+1  ) then
+! !           jminR = jminR-1
+! !         end if
+! !         if (jmaxR==Ny(grid,nband)) then
+! !           jmaxR = jmaxR+1
+! !         end if
+!     do j = jminR,jmaxR
+!       do column = 1,columns_num(yourid)
+!         i = columns_i(column,yourid)
+!         k = columns_k(column,yourid) - dk_phys(column,yourid)
+!         xPL(2*i+1,k,j) = dreal(x%f(j,column))
+!         xPL(2*i+2,k,j) = dimag(x%f(j,column))
+!       end do
+!     end do
+!   ! end do
 
-  do inode = 1,pnodes-1
-    yourid = ieor(myid,inode)
-    if (yourid<np) then
-      ! do iband = sband,eband
-        !jband=crossband(iband,yourid)
-        ! jband = iband
-!         jminS = max(max(limPL_FFT(grid,1,yourid),jlim(1,grid,iband)+1),nystart)
-!         jmaxS = min(min(limPL_FFT(grid,2,yourid),jlim(2,grid,iband)-1),nyend)
-!         jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid,jband)+1),nystart)
-!         jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid,jband)-1),nyend)
-jminS = max(max(limPL_FFT(grid,1,yourid),jlim(1,grid)),nystart)
-jmaxS = min(min(limPL_FFT(grid,2,yourid),jlim(2,grid)),nyend)
-jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid)),nystart)
-jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid)),nyend)
-!         if (jminS==Ny(grid,0)+1  ) then
-!           jminS = jminS-1
-!         end if
-!         if (jmaxS==Ny(grid,nband)) then
-!           jmaxS = jmaxS+1
-!         end if
-!         if (jminR==Ny(grid,0)+1  ) then
-!           jminR = jminR-1
-!         end if
-!         if (jmaxR==Ny(grid,nband)) then
-!           jmaxR = jmaxR+1
-!         end if
-        allocate(buffS(jminS:jmaxS,columns_num(  myid)))
-        allocate(buffR(jminR:jmaxR,columns_num(yourid)))
-        msizeS = 2*(columns_num(  myid)*(jmaxS-jminS+1))  ! 2 times because it's complex
-        msizeR = 2*(columns_num(yourid)*(jmaxR-jminR+1))
-        msizeS = max(msizeS,0)
-        msizeR = max(msizeR,0)
+!   do inode = 1,pnodes-1
+!     yourid = ieor(myid,inode)
+!     if (yourid<np) then
+!       ! do iband = sband,eband
+!         !jband=crossband(iband,yourid)
+!         ! jband = iband
+! !         jminS = max(max(limPL_FFT(grid,1,yourid),jlim(1,grid,iband)+1),nystart)
+! !         jmaxS = min(min(limPL_FFT(grid,2,yourid),jlim(2,grid,iband)-1),nyend)
+! !         jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid,jband)+1),nystart)
+! !         jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid,jband)-1),nyend)
+! jminS = max(max(limPL_FFT(grid,1,yourid),jlim(1,grid)),nystart)
+! jmaxS = min(min(limPL_FFT(grid,2,yourid),jlim(2,grid)),nyend)
+! jminR = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid)),nystart)
+! jmaxR = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid)),nyend)
+! !         if (jminS==Ny(grid,0)+1  ) then
+! !           jminS = jminS-1
+! !         end if
+! !         if (jmaxS==Ny(grid,nband)) then
+! !           jmaxS = jmaxS+1
+! !         end if
+! !         if (jminR==Ny(grid,0)+1  ) then
+! !           jminR = jminR-1
+! !         end if
+! !         if (jmaxR==Ny(grid,nband)) then
+! !           jmaxR = jmaxR+1
+! !         end if
+!         allocate(buffS(jminS:jmaxS,columns_num(  myid)))
+!         allocate(buffR(jminR:jmaxR,columns_num(yourid)))
+!         msizeS = 2*(columns_num(  myid)*(jmaxS-jminS+1))  ! 2 times because it's complex
+!         msizeR = 2*(columns_num(yourid)*(jmaxR-jminR+1))
+!         msizeS = max(msizeS,0)
+!         msizeR = max(msizeR,0)
 
-        do j = jminS,jmaxS
-          do column = 1,columns_num(myid)
-            buffS(j,column) = x%f(j,column)
+!         do j = jminS,jmaxS
+!           do column = 1,columns_num(myid)
+!             buffS(j,column) = x%f(j,column)
 
-          end do
-        end do
+!           end do
+!         end do
 
-        call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
-&                         MPI_COMM_WORLD,status,ierr)
-        do j = jminR,jmaxR
-          do column = 1,columns_num(yourid)
-            i = columns_i(column,yourid)
-            k = columns_k(column,yourid) - dk_phys(column, yourid)
-            xPL(2*i+1,k,j) = dreal(buffR(j,column))
-            xPL(2*i+2,k,j) = dimag(buffR(j,column))
-          end do
-        end do
+!         call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &
+! &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
+! &                         MPI_COMM_WORLD,status,ierr)
+!         do j = jminR,jmaxR
+!           do column = 1,columns_num(yourid)
+!             i = columns_i(column,yourid)
+!             k = columns_k(column,yourid) - dk_phys(column, yourid)
+!             xPL(2*i+1,k,j) = dreal(buffR(j,column))
+!             xPL(2*i+2,k,j) = dimag(buffR(j,column))
+!           end do
+!         end do
 
-        deallocate(buffR,buffS)
+!         deallocate(buffR,buffS)
 
-      ! end do
-    end if
-  end do
+!       ! end do
+!     end if
+!   end do
 
-end subroutine
+! end subroutine
 
 subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1325,6 +1326,12 @@ subroutine ops_in_planes(myid,flagst)
               & iNeg(i)*iNeg(-i)*u1PL_itp(ia+1,ka,j)*u2PL(ip+1,kp,j)
         uv_fPL(2,1,j) = uv_fPL(2,1,j) + u1PL_itp(ia,ka,j)*u2PL(ip+1,kp,j)*iNeg(-i) + &
               & iNeg(i)*u1PL_itp(ia+1,ka,j)*u2PL(ip,kp,j)
+
+        ! write(6,*) 'myid=', myid, ' j=', j, ' uv_fPL(1,1,j)=', uv_fPL(1,1,j)
+        ! write(6,*) 'myid=', myid, ' j=', j, ' uv_fPL(2,1,j)=', uv_fPL(2,1,j)
+
+
+
 
         wv_fPL(1,1,j) = wv_fPL(1,1,j) + u3PL_itp(ia,ka,j)*u2PL(ip,kp,j) - &
               & iNeg(i)*iNeg(-i)*u3PL_itp(ia+1,ka,j)*u2PL(ip+1,kp,j)
@@ -1675,7 +1682,7 @@ subroutine phys_to_four_N(duPL)
 end subroutine
 
 
-subroutine planes_to_modes_UVP (x,xPL,grid,myid,status,ierr)
+subroutine planes_to_modes_UVP (x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES  NEW !!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1700,6 +1707,7 @@ subroutine planes_to_modes_UVP (x,xPL,grid,myid,status,ierr)
   type(cfield) x  
   real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
   complex(8), allocatable:: buffS(:,:),buffR(:,:)
+  integer, intent(in) :: nygrid,nygrid_LB
 
   ! write(6,*) "starting self transpose"
 
@@ -1708,10 +1716,10 @@ subroutine planes_to_modes_UVP (x,xPL,grid,myid,status,ierr)
 
   jminR = max(limPL_excw(grid,1,myid),jlim(1,grid)+1)  ! Select the planes to transpose 
   jmaxR = min(limPL_excw(grid,2,myid),jlim(2,grid)-1)
-  if (jminR==Ny(grid,0)+1 .and. jmaxR>=jminR) then   ! Special cases: walls
+  if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then   ! Special cases: walls
     jminR = jminR-1
   end if
-  if (jmaxR==Ny(grid,nband  )   .and. jmaxR>=jminR) then
+  if (jmaxR==nygrid   .and. jmaxR>=jminR) then
     jmaxR = jmaxR+1
   end if
 
@@ -1737,16 +1745,16 @@ subroutine planes_to_modes_UVP (x,xPL,grid,myid,status,ierr)
 
         ! Adding the walls =
 
-        if (jminS==Ny(grid,0)+1  ) then
+        if (jminS==nygrid_LB+1  ) then
           jminS=jminS-1
         end if
-        if (jmaxS==Ny(grid,nband)) then
+        if (jmaxS==nygrid) then
           jmaxS=jmaxS+1
         end if
-        if (jminR==Ny(grid,0)+1  ) then
+        if (jminR==nygrid_LB+1  ) then
           jminR=jminR-1
         end if
-        if (jmaxR==Ny(grid,nband)) then
+        if (jmaxR==nygrid) then
           jmaxR=jmaxR+1
         end if
         allocate(buffS(jminS:jmaxS,columns_num(yourid)))
