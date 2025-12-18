@@ -1709,6 +1709,7 @@ subroutine planes_to_modes_UVP (x,xPL,grid,myid,status,ierr)
 
   do j = jminR,jmaxR
     do column = 1,columns_num(myid)
+    write(6,*) "col", column, "myid", myid
       i = columns_i(column,myid)
       k = columns_k(column,myid) - dk(column,myid)
       x%f(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC

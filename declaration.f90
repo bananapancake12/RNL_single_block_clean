@@ -23,7 +23,7 @@ module declaration
 
   integer bandit(3)
   integer np,pnodes
-  integer,pointer:: procs(:),procs_b(:),procs_c(:)
+  integer,pointer:: procs(:)
   integer,pointer:: N(:,:),Ngal(:,:),Ny(:,:)
   ! integer,pointer:: jlim(:,:,:) ! Change name ffs
   integer,pointer:: planelim(:,:,:)
@@ -32,11 +32,15 @@ module declaration
   integer,pointer:: bandPL(:)
   integer,pointer:: bandPL_FFT(:)
   integer           jgal(3,2),igal,kgal !TODO get rid of jgal
-  ! integer,pointer:: dk(:,:,:,:)
-  ! integer,pointer:: columns_i(:,:,:)
-  ! integer,pointer:: columns_k(:,:,:)
-  ! integer,pointer:: columns_num(:,:)
-  ! integer,pointer:: dk_phys(:,:,:,:)
+
+
+  ! NEW AND CHANGED VARIABLES
+  
+  integer :: Ngal_x, Ngal_z
+  integer :: Nspec_x, Nspec_z
+  integer :: nyu, nyv, nyp, nyu_LB, nyv_LB, nyp_LB
+  
+  integer, allocatable :: Ny_dom(:,:)
 
   integer, allocatable :: columns_num(:)
   integer, allocatable :: columns_i(:,:)

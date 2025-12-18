@@ -96,10 +96,17 @@ program littleharsh
   ! type(cfield), allocatable:: Nu1(:),Nu2(:),Nu3(:)
   ! type(cfield), allocatable:: du1(:),du2(:),du3(:)
 
-  type(cfield) :: u1, u2, u3, p, psi
-  type(cfield) :: div
-  type(cfield) :: Nu1, Nu2, Nu3
-  type(cfield) :: du1, du2, du3
+  ! type(cfield) :: u1, u2, u3, p, psi
+  ! type(cfield) :: div
+  ! type(cfield) :: Nu1, Nu2, Nu3
+  ! type(cfield) :: du1, du2, du3
+
+  complex(8), allocatable :: u1(:,:), u2(:,:), u3(:,:)
+  complex(8), allocatable :: p(:,:), psi(:,:)
+  complex(8), allocatable :: div(:,:)
+  complex(8), allocatable :: Nu1(:,:), Nu2(:,:), Nu3(:,:)
+  complex(8), allocatable :: du1(:,:), du2(:,:), du3(:,:)
+
 
   type(rfield), allocatable :: a(:)
 
@@ -133,39 +140,41 @@ program littleharsh
 itersl=iter0
 nstatsl = nwrite
 
-  allocate( u1%f ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
-  allocate( u2%f ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
-  allocate( u3%f ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
+  allocate( u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
+  allocate( u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
+  allocate( u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
 
-  allocate( du1%f( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
-  allocate( du2%f( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
-  allocate( du3%f( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
+  allocate( du1( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
+  allocate( du2( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
+  allocate( du3( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
 
-  allocate( Nu1%f( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
-  allocate( Nu2%f( jlim(1,vgrid) + 1  : jlim(2,vgrid) - 1,  columns_num(myid) ) )
-  allocate( Nu3%f( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
+  allocate( Nu1( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
+  allocate( Nu2( jlim(1,vgrid) + 1  : jlim(2,vgrid) - 1,  columns_num(myid) ) )
+  allocate( Nu3( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
 
-  allocate( p%f  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
-  allocate( psi%f( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
-  allocate( div%f( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+  allocate( p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+  allocate( psi( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+  allocate( div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+
 
   allocate( a  (2))
 
   allocate( a(ugrid)%fr(3,jlim(1,ugrid):jlim(2,ugrid)) )
   allocate( a(vgrid)%fr(3,jlim(1,vgrid):jlim(2,vgrid)) )
 
-  u1%f  = 0d0
-  u2%f  = 0d0
-  u3%f  = 0d0
-  du1%f = 0d0
-  du2%f = 0d0
-  du3%f = 0d0
-  Nu1%f = 0d0
-  Nu2%f = 0d0
-  Nu3%f = 0d0
-  p%f   = 0d0
-  psi%f = 0d0
-  div%f = 0d0
+  u1  = 0d0
+  u2  = 0d0
+  u3  = 0d0
+  du1 = 0d0
+  du2 = 0d0
+  du3 = 0d0
+  Nu1 = 0d0
+  Nu2 = 0d0
+  Nu3 = 0d0
+  p   = 0d0
+  psi = 0d0
+  div = 0d0
+
   a(ugrid)%fr = 0d0
   a(vgrid)%fr = 0d0
 

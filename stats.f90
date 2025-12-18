@@ -84,162 +84,162 @@ subroutine stats(myid,status,ierr)
    end do
 
 
-   call condup1  (UmC,U2mC,u1PL(1,1,limPL_incw(ugrid,1,myid)),1d0,ugrid,myid)
-   call condup1  (VmC,V2mC,u2PL(1,1,limPL_incw(vgrid,1,myid)),-1d0,vgrid,myid)
-   call condup1  (WmC,W2mC,u3PL(1,1,limPL_incw(ugrid,1,myid)),1d0,ugrid,myid)
-   call condup1  (PmC,P2mC,ppPL(1,1,limPL_incw(pgrid,1,myid)),1d0,pgrid,myid)
-   call condup1  (wxmC,wx2mC,wx,1d0,vgrid,myid)
-   call condup2  (UVmC,u1PL(1,1,limPL_incw(ugrid,1,myid)),u2PL_itp(1,1,limPL_incw(ugrid,1,myid)),1d0,-1d0,ugrid,myid)
-   call condup2  (UWmC,u1PL(1,1,limPL_incw(ugrid,1,myid)),u3PL    (1,1,limPL_incw(ugrid,1,myid)),1d0,1d0,ugrid,myid)
-   call condup2  (VWmC,u2PL(1,1,limPL_incw(vgrid,1,myid)),u3PL_itp(1,1,limPL_incw(vgrid,1,myid)),-1d0,1d0,vgrid,myid)
+   ! call condup1  (UmC,U2mC,u1PL(1,1,limPL_incw(ugrid,1,myid)),1d0,ugrid,myid)
+   ! call condup1  (VmC,V2mC,u2PL(1,1,limPL_incw(vgrid,1,myid)),-1d0,vgrid,myid)
+   ! call condup1  (WmC,W2mC,u3PL(1,1,limPL_incw(ugrid,1,myid)),1d0,ugrid,myid)
+   ! call condup1  (PmC,P2mC,ppPL(1,1,limPL_incw(pgrid,1,myid)),1d0,pgrid,myid)
+   ! call condup1  (wxmC,wx2mC,wx,1d0,vgrid,myid)
+   ! call condup2  (UVmC,u1PL(1,1,limPL_incw(ugrid,1,myid)),u2PL_itp(1,1,limPL_incw(ugrid,1,myid)),1d0,-1d0,ugrid,myid)
+   ! call condup2  (UWmC,u1PL(1,1,limPL_incw(ugrid,1,myid)),u3PL    (1,1,limPL_incw(ugrid,1,myid)),1d0,1d0,ugrid,myid)
+   ! call condup2  (VWmC,u2PL(1,1,limPL_incw(vgrid,1,myid)),u3PL_itp(1,1,limPL_incw(vgrid,1,myid)),-1d0,1d0,vgrid,myid)
 
 
 end subroutine
 
-subroutine conddown1(YmC,Y2mC,x,grid,myid)
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN1   !!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine conddown1(YmC,Y2mC,x,grid,myid)
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN1   !!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-   use declaration
-   implicit none
+!    use declaration
+!    implicit none
 
-   integer i,i1,k,k1,j,j1,ix,iz,grid,myid
-   real(8) x   (igal,kgal,limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   !   real(8) x   (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   real(8) YmC (dnx ,dnz ,limPL_incw(grid,1,myid)-Ny(grid,0):limPL_incw(grid,2,myid)-Ny(grid,0))
-   real(8) Y2mC(dnx ,dnz ,limPL_incw(grid,1,myid)-Ny(grid,0):limPL_incw(grid,2,myid)-Ny(grid,0))
+!    integer i,i1,k,k1,j,j1,ix,iz,grid,myid
+!    real(8) x   (igal,kgal,limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    !   real(8) x   (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    real(8) YmC (dnx ,dnz ,limPL_incw(grid,1,myid)-Ny(grid,0):limPL_incw(grid,2,myid)-Ny(grid,0))
+!    real(8) Y2mC(dnx ,dnz ,limPL_incw(grid,1,myid)-Ny(grid,0):limPL_incw(grid,2,myid)-Ny(grid,0))
 
-   do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
-      j1 = j-Ny(grid,0)
-      do k = 1,dnz
-         do i = 1,dnx
-            do iz = 1,ntilez
-               !k1 = indkor(k+dnz*(iz-1))
-               k1 = k+dnz*(iz-1)
-               do ix = 1,ntilex
-                  !i1 = indior(i+dnx*(ix-1))
-                  i1 = i+dnx*(ix-1)
-                  YmC (i,k,j1) = YmC (i,k,j1)+x(i1,k1,j)
-                  Y2mC(i,k,j1) = Y2mC(i,k,j1)+x(i1,k1,j)**2
-               end do
-            end do
-         end do
-      end do
-   end do
+!    ! do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
+!    !    j1 = j-Ny(grid,0)
+!    !    do k = 1,dnz
+!    !       do i = 1,dnx
+!    !          do iz = 1,ntilez
+!    !             !k1 = indkor(k+dnz*(iz-1))
+!    !             k1 = k+dnz*(iz-1)
+!    !             do ix = 1,ntilex
+!    !                !i1 = indior(i+dnx*(ix-1))
+!    !                i1 = i+dnx*(ix-1)
+!    !                YmC (i,k,j1) = YmC (i,k,j1)+x(i1,k1,j)
+!    !                Y2mC(i,k,j1) = Y2mC(i,k,j1)+x(i1,k1,j)**2
+!    !             end do
+!    !          end do
+!    !       end do
+!    !    end do
+!    ! end do
 
-end subroutine
+! end subroutine
 
-subroutine conddown2(YmC,x1,x2,grid,myid)
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN2   !!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine conddown2(YmC,x1,x2,grid,myid)
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN2   !!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-   use declaration
-   implicit none
+!    use declaration
+!    implicit none
 
-   integer i,i1,k,k1,j,j1,ix,iz,grid,myid
-   real(8) x1  (igal,kgal,limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   real(8) x2  (igal,kgal,limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   !   real(8) x1  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   !   real(8) x2  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   real(8) YmC (dnx ,dnz ,limPL_incw(grid,1,myid)-Ny(grid,0):limPL_incw(grid,2,myid)-Ny(grid,0))
+!    integer i,i1,k,k1,j,j1,ix,iz,grid,myid
+!    real(8) x1  (igal,kgal,limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    real(8) x2  (igal,kgal,limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    !   real(8) x1  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    !   real(8) x2  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    real(8) YmC (dnx ,dnz ,limPL_incw(grid,1,myid)-Ny(grid,0):limPL_incw(grid,2,myid)-Ny(grid,0))
 
-   do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
-      j1 = j-Ny(grid,0)
-      do k = 1,dnz
-         do i = 1,dnx
-            do iz = 1,ntilez
-               !k1 = indkor(k+dnz*(iz-1))
-               k1 = k+dnz*(iz-1)
-               do ix = 1,ntilex
-                  !i1 = indior(i+dnx*(ix-1))
-                  i1 = i+dnx*(ix-1)
-                  YmC(i,k,j1) = YmC(i,k,j1)+ x1(i1,k1,j) &
-                     &                                     *x2(i1,k1,j)
-               end do
-            end do
-         end do
-      end do
-   end do
+!    do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
+!       j1 = j-Ny(grid,0)
+!       do k = 1,dnz
+!          do i = 1,dnx
+!             do iz = 1,ntilez
+!                !k1 = indkor(k+dnz*(iz-1))
+!                k1 = k+dnz*(iz-1)
+!                do ix = 1,ntilex
+!                   !i1 = indior(i+dnx*(ix-1))
+!                   i1 = i+dnx*(ix-1)
+!                   YmC(i,k,j1) = YmC(i,k,j1)+ x1(i1,k1,j) &
+!                      &                                     *x2(i1,k1,j)
+!                end do
+!             end do
+!          end do
+!       end do
+!    end do
 
-end subroutine
+! end subroutine
 
-subroutine condup1(YmC,Y2mC,x,xsign,grid,myid)
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN2   !!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine condup1(YmC,Y2mC,x,xsign,grid,myid)
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN2   !!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-   use declaration
-   implicit none
+!    use declaration
+!    implicit none
 
-   integer i,i1,k,k1,j,j1,ix,iz,grid,myid
-   real(8) x   (igal,kgal, limPL_incw(grid,1,myid)                 : limPL_incw(grid,2,myid))
-   !real(8) x   (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   real(8) YmC (dnx ,dnz ,-limPL_incw(grid,2,myid)+Ny(grid,nband)+1:-limPL_incw(grid,1,myid)+Ny(grid,nband)+1)
-   real(8) Y2mC(dnx ,dnz ,-limPL_incw(grid,2,myid)+Ny(grid,nband)+1:-limPL_incw(grid,1,myid)+Ny(grid,nband)+1)
-   real(8) xsign
+!    integer i,i1,k,k1,j,j1,ix,iz,grid,myid
+!    real(8) x   (igal,kgal, limPL_incw(grid,1,myid)                 : limPL_incw(grid,2,myid))
+!    !real(8) x   (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    real(8) YmC (dnx ,dnz ,-limPL_incw(grid,2,myid)+Ny(grid,nband)+1:-limPL_incw(grid,1,myid)+Ny(grid,nband)+1)
+!    real(8) Y2mC(dnx ,dnz ,-limPL_incw(grid,2,myid)+Ny(grid,nband)+1:-limPL_incw(grid,1,myid)+Ny(grid,nband)+1)
+!    real(8) xsign
 
-   do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
-      j1 = -j+Ny(grid,nband)+1
-      do k = 1,dnz
-         do i = 1,dnx
-            do iz = 1,ntilez
-               !k1 = indkor(k+dnz*(iz-1))
-               !k1 = indkor(dnz*iz+2-k)                   ! Opposite direction to bottom wall
-               k1 = k+dnz*(iz-1)
-               do ix = 1,ntilex
-                  !i1 = indior(i+dnx*(ix-1))
-                  !i1 = indior(dnx*ix+2-i)                 ! Opposite direction to bottom wall
-                  i1 = i+dnx*(ix-1)
-                  YmC (i,k,j1) = YmC (i,k,j1)+x(i1,k1,j)*xsign
-                  Y2mC(i,k,j1) = Y2mC(i,k,j1)+x(i1,k1,j)**2
-               end do
-            end do
-         end do
-      end do
-   end do
+!    do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
+!       j1 = -j+Ny(grid,nband)+1
+!       do k = 1,dnz
+!          do i = 1,dnx
+!             do iz = 1,ntilez
+!                !k1 = indkor(k+dnz*(iz-1))
+!                !k1 = indkor(dnz*iz+2-k)                   ! Opposite direction to bottom wall
+!                k1 = k+dnz*(iz-1)
+!                do ix = 1,ntilex
+!                   !i1 = indior(i+dnx*(ix-1))
+!                   !i1 = indior(dnx*ix+2-i)                 ! Opposite direction to bottom wall
+!                   i1 = i+dnx*(ix-1)
+!                   YmC (i,k,j1) = YmC (i,k,j1)+x(i1,k1,j)*xsign
+!                   Y2mC(i,k,j1) = Y2mC(i,k,j1)+x(i1,k1,j)**2
+!                end do
+!             end do
+!          end do
+!       end do
+!    end do
 
-end subroutine
+! end subroutine
 
-subroutine condup2(YmC,x1,x2,xsign1,xsign2,grid,myid)
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN2   !!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine condup2(YmC,x1,x2,xsign1,xsign2,grid,myid)
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!    CONDDOWN2   !!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-   use declaration
-   implicit none
+!    use declaration
+!    implicit none
 
-   integer i,i1,k,k1,j,j1,ix,iz,grid,myid
-   real(8) x1  (igal,kgal, limPL_incw(grid,1,myid)                 : limPL_incw(grid,2,myid))
-   real(8) x2  (igal,kgal, limPL_incw(grid,1,myid)                 : limPL_incw(grid,2,myid))
-   !   real(8) x1  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   !   real(8) x2  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
-   real(8) YmC (dnx ,dnz ,-limPL_incw(grid,2,myid)+Ny(grid,nband)+1:-limPL_incw(grid,1,myid)+Ny(grid,nband)+1)
-   real(8) xsign1
-   real(8) xsign2
+!    integer i,i1,k,k1,j,j1,ix,iz,grid,myid
+!    real(8) x1  (igal,kgal, limPL_incw(grid,1,myid)                 : limPL_incw(grid,2,myid))
+!    real(8) x2  (igal,kgal, limPL_incw(grid,1,myid)                 : limPL_incw(grid,2,myid))
+!    !   real(8) x1  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    !   real(8) x2  (N(1,bandPL(myid))+2,N(2,bandPL(myid)),limPL_incw(grid,1,myid)           :limPL_incw(grid,2,myid))
+!    real(8) YmC (dnx ,dnz ,-limPL_incw(grid,2,myid)+Ny(grid,nband)+1:-limPL_incw(grid,1,myid)+Ny(grid,nband)+1)
+!    real(8) xsign1
+!    real(8) xsign2
 
-   do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
-      j1 = -j+Ny(grid,nband)+1
-      do k = 1,dnz
-         do i = 1,dnx
-            do iz = 1,ntilez
-               !k1 = indkor(k+dnz*(iz-1))
-               !k1 = indkor(dnz*iz+2-k)                   ! Opposite direction to bottom wall
-               k1 = k+dnz*(iz-1)
-               do ix = 1,ntilex
-                  !i1 = indior(i+dnx*(ix-1))
-                  !i1 = indior(dnx*ix+2-i)                 ! Opposite direction to bottom wall
-                  i1 = i+dnx*(ix-1)
-                  YmC(i,k,j1) = YmC(i,k,j1)+ x1(i1,k1,j)*xsign1 &
-                     &                                     *x2(i1,k1,j)*xsign2
-               end do
-            end do
-         end do
-      end do
-   end do
+!    do j = limPL_incw(grid,1,myid),limPL_incw(grid,2,myid)
+!       j1 = -j+Ny(grid,nband)+1
+!       do k = 1,dnz
+!          do i = 1,dnx
+!             do iz = 1,ntilez
+!                !k1 = indkor(k+dnz*(iz-1))
+!                !k1 = indkor(dnz*iz+2-k)                   ! Opposite direction to bottom wall
+!                k1 = k+dnz*(iz-1)
+!                do ix = 1,ntilex
+!                   !i1 = indior(i+dnx*(ix-1))
+!                   !i1 = indior(dnx*ix+2-i)                 ! Opposite direction to bottom wall
+!                   i1 = i+dnx*(ix-1)
+!                   YmC(i,k,j1) = YmC(i,k,j1)+ x1(i1,k1,j)*xsign1 &
+!                      &                                     *x2(i1,k1,j)*xsign2
+!                end do
+!             end do
+!          end do
+!       end do
+!    end do
 
-end subroutine
+! end subroutine
 
 subroutine write_stats(myid,status,ierr)
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -271,76 +271,76 @@ subroutine write_stats(myid,status,ierr)
       call MPI_SEND(VWm ,limPL_incw(vgrid,2,myid)-limPL_incw(vgrid,1,myid)+1,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
       call MPI_SEND(wxm ,limPL_incw(vgrid,2,myid)-limPL_incw(vgrid,1,myid)+1,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
       call MPI_SEND(wx2m,limPL_incw(vgrid,2,myid)-limPL_incw(vgrid,1,myid)+1,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-      if (bandPL(myid)==1) then
-         ! Conditional statistics
-         msizeu = dnx*dnz*(limPL_incw(ugrid,2,myid)-limPL_incw(ugrid,1,myid)+1)
-         msizev = dnx*dnz*(limPL_incw(vgrid,2,myid)-limPL_incw(vgrid,1,myid)+1)
-         msizep = dnx*dnz*(limPL_incw(pgrid,2,myid)-limPL_incw(pgrid,1,myid)+1)
-         if(msizeu>0)then
+      ! if (bandPL(myid)==1) then
+      !    ! Conditional statistics
+      !    msizeu = dnx*dnz*(limPL_incw(ugrid,2,myid)-limPL_incw(ugrid,1,myid)+1)
+      !    msizev = dnx*dnz*(limPL_incw(vgrid,2,myid)-limPL_incw(vgrid,1,myid)+1)
+      !    msizep = dnx*dnz*(limPL_incw(pgrid,2,myid)-limPL_incw(pgrid,1,myid)+1)
+      !    if(msizeu>0)then
       
-            if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
-               call MPI_SEND(UmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-               call MPI_SEND(U2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            endif
-            if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
-               call MPI_SEND(VmC  ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-               call MPI_SEND(V2mC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            endif
-            if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
-               call MPI_SEND(WmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-               call MPI_SEND(W2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            endif
-            if(myid<Ny(pgrid,1)-Ny(pgrid,0))then
-               call MPI_SEND(PmC  ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-               call MPI_SEND(P2mC ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            endif
-            if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
-               call MPI_SEND(UVmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-               call MPI_SEND(UWmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            endif
-            if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
-               call MPI_SEND(VWmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-               call MPI_SEND(wxmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-               call MPI_SEND(wx2mC,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            endif
+      !       ! if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
+      !       !    call MPI_SEND(UmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !    call MPI_SEND(U2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       ! endif
+      !       ! if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
+      !       !    call MPI_SEND(VmC  ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !    call MPI_SEND(V2mC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       ! endif
+      !       ! if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
+      !       !    call MPI_SEND(WmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !    call MPI_SEND(W2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       ! endif
+      !       ! if(myid<Ny(pgrid,1)-Ny(pgrid,0))then
+      !       !    call MPI_SEND(PmC  ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !    call MPI_SEND(P2mC ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       ! endif
+      !       ! if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
+      !       !    call MPI_SEND(UVmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !    call MPI_SEND(UWmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       ! endif
+      !       ! if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
+      !       !    call MPI_SEND(VWmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !    call MPI_SEND(wxmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !    call MPI_SEND(wx2mC,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       ! endif
 
-         endif
-      elseif(bandPL(myid)==nband)then
-         ! Conditional statistics
-         msizeu = dnx*dnz*(limPL_incw(ugrid,2,myid)-limPL_incw(ugrid,1,myid)+1)
-         msizev = dnx*dnz*(limPL_incw(vgrid,2,myid)-limPL_incw(vgrid,1,myid)+1)
-         msizep = dnx*dnz*(limPL_incw(pgrid,2,myid)-limPL_incw(pgrid,1,myid)+1)
-         if(msizeu>0)then
+      !    endif
+      ! elseif(bandPL(myid)==nband)then
+      !    ! Conditional statistics
+      !    msizeu = dnx*dnz*(limPL_incw(ugrid,2,myid)-limPL_incw(ugrid,1,myid)+1)
+      !    msizev = dnx*dnz*(limPL_incw(vgrid,2,myid)-limPL_incw(vgrid,1,myid)+1)
+      !    msizep = dnx*dnz*(limPL_incw(pgrid,2,myid)-limPL_incw(pgrid,1,myid)+1)
+      !    if(msizeu>0)then
 	
-            !if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
-            call MPI_SEND(UmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            call MPI_SEND(U2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            !endif
-            !if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
-            call MPI_SEND(VmC  ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            call MPI_SEND(V2mC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            !endif
-            !if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
-            call MPI_SEND(WmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            call MPI_SEND(W2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            !endif
-            !if(myid<Ny(pgrid,1)-Ny(pgrid,0))then
-            call MPI_SEND(PmC  ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            call MPI_SEND(P2mC ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            !endif
-            !if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
-            call MPI_SEND(UVmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            call MPI_SEND(UWmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            !endif
-            !if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
-            call MPI_SEND(VWmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            call MPI_SEND(wxmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-            call MPI_SEND(wx2mC,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
-         !endif
+      !       !if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
+      !       call MPI_SEND(UmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       call MPI_SEND(U2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !endif
+      !       !if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
+      !       call MPI_SEND(VmC  ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       call MPI_SEND(V2mC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !endif
+      !       !if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
+      !       call MPI_SEND(WmC  ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       call MPI_SEND(W2mC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !endif
+      !       !if(myid<Ny(pgrid,1)-Ny(pgrid,0))then
+      !       call MPI_SEND(PmC  ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       call MPI_SEND(P2mC ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !endif
+      !       !if(myid<Ny(ugrid,1)-Ny(ugrid,0))then
+      !       call MPI_SEND(UVmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       call MPI_SEND(UWmC ,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       !endif
+      !       !if(myid<Ny(vgrid,1)-Ny(vgrid,0))then
+      !       call MPI_SEND(VWmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       call MPI_SEND(wxmC ,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !       call MPI_SEND(wx2mC,msizev,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
+      !    !endif
       
-         endif
+      !    endif
 	
-      end if
+      ! end if
     
    else                ! MASTER
       fnameimb = trim(dirout)//'stats_'//ext1//'x'//ext2//'x'//ext3//'_'//ext4//'.dat'
@@ -372,28 +372,28 @@ subroutine write_stats(myid,status,ierr)
       deallocate(xu)
       deallocate(xv)
       deallocate(xp)
-      msizeu = dnx*dnz*(limPL_incw(ugrid,2,myid)-limPL_incw(ugrid,1,myid)+1)
-      if(msizeu>0)then
-         allocate(xCu  (dnx,dnz,0:Ny(ugrid,1)-Ny(ugrid,0)),buffCu(dnx,dnz,0:Ny(ugrid,1)-Ny(ugrid,0)))
-         allocate(xCv  (dnx,dnz,0:Ny(vgrid,1)-Ny(vgrid,0)),buffCv(dnx,dnz,0:Ny(vgrid,1)-Ny(vgrid,0)))
-         allocate(xCp  (dnx,dnz,0:Ny(pgrid,1)-Ny(pgrid,0)),buffCp(dnx,dnz,0:Ny(pgrid,1)-Ny(pgrid,0)))
-         call recvXC(xCu ,UmC  ,buffCu ,dnx,dnz,ugrid,status,ierr)
-         call recvXC(xCu ,U2mC ,buffCu ,dnx,dnz,ugrid,status,ierr)
-         call recvXC(xCv ,VmC  ,buffCv ,dnx,dnz,vgrid,status,ierr)
-         call recvXC(xCv ,V2mC ,buffCv ,dnx,dnz,vgrid,status,ierr)
-         call recvXC(xCu ,WmC  ,buffCu ,dnx,dnz,ugrid,status,ierr)
-         call recvXC(xCu ,W2mC ,buffCu ,dnx,dnz,ugrid,status,ierr)
-         call recvXC(xCp ,PmC  ,buffCp ,dnx,dnz,pgrid,status,ierr)
-         call recvXC(xCp ,P2mC ,buffCp ,dnx,dnz,pgrid,status,ierr)
-         call recvXC(xCu ,UVmC ,buffCu ,dnx,dnz,ugrid,status,ierr)
-         call recvXC(xCu ,UWmC ,buffCu ,dnx,dnz,ugrid,status,ierr)
-         call recvXC(xCv ,VWmC ,buffCv ,dnx,dnz,vgrid,status,ierr)
-         call recvXC(xCv ,wxmC ,buffCv ,dnx,dnz,vgrid,status,ierr)
-         call recvXC(xCv ,wx2mC,buffCv ,dnx,dnz,vgrid,status,ierr)
-         deallocate(xCu,buffCu)
-         deallocate(xCv,buffCv)
-         deallocate(xCp,buffCp)
-      endif
+      ! msizeu = dnx*dnz*(limPL_incw(ugrid,2,myid)-limPL_incw(ugrid,1,myid)+1)
+      ! if(msizeu>0)then
+      !    allocate(xCu  (dnx,dnz,0:Ny(ugrid,1)-Ny(ugrid,0)),buffCu(dnx,dnz,0:Ny(ugrid,1)-Ny(ugrid,0)))
+      !    allocate(xCv  (dnx,dnz,0:Ny(vgrid,1)-Ny(vgrid,0)),buffCv(dnx,dnz,0:Ny(vgrid,1)-Ny(vgrid,0)))
+      !    allocate(xCp  (dnx,dnz,0:Ny(pgrid,1)-Ny(pgrid,0)),buffCp(dnx,dnz,0:Ny(pgrid,1)-Ny(pgrid,0)))
+      !    call recvXC(xCu ,UmC  ,buffCu ,dnx,dnz,ugrid,status,ierr)
+      !    call recvXC(xCu ,U2mC ,buffCu ,dnx,dnz,ugrid,status,ierr)
+      !    call recvXC(xCv ,VmC  ,buffCv ,dnx,dnz,vgrid,status,ierr)
+      !    call recvXC(xCv ,V2mC ,buffCv ,dnx,dnz,vgrid,status,ierr)
+      !    call recvXC(xCu ,WmC  ,buffCu ,dnx,dnz,ugrid,status,ierr)
+      !    call recvXC(xCu ,W2mC ,buffCu ,dnx,dnz,ugrid,status,ierr)
+      !    call recvXC(xCp ,PmC  ,buffCp ,dnx,dnz,pgrid,status,ierr)
+      !    call recvXC(xCp ,P2mC ,buffCp ,dnx,dnz,pgrid,status,ierr)
+      !    call recvXC(xCu ,UVmC ,buffCu ,dnx,dnz,ugrid,status,ierr)
+      !    call recvXC(xCu ,UWmC ,buffCu ,dnx,dnz,ugrid,status,ierr)
+      !    call recvXC(xCv ,VWmC ,buffCv ,dnx,dnz,vgrid,status,ierr)
+      !    call recvXC(xCv ,wxmC ,buffCv ,dnx,dnz,vgrid,status,ierr)
+      !    call recvXC(xCv ,wx2mC,buffCv ,dnx,dnz,vgrid,status,ierr)
+      !    deallocate(xCu,buffCu)
+      !    deallocate(xCv,buffCv)
+      !    deallocate(xCp,buffCp)
+      ! endif
       close(10)
    end if
 
@@ -412,19 +412,19 @@ subroutine write_stats(myid,status,ierr)
    wx2m  = 0d0
    istat = 0
 
-   UmC   = 0d0
-   U2mC  = 0d0
-   VmC   = 0d0
-   V2mC  = 0d0
-   WmC   = 0d0
-   W2mC  = 0d0
-   PmC   = 0d0
-   P2mC  = 0d0
-   UVmC  = 0d0
-   UWmC  = 0d0
-   VWmC  = 0d0
-   wxmC  = 0d0
-   wx2mC = 0d0
+   ! UmC   = 0d0
+   ! U2mC  = 0d0
+   ! VmC   = 0d0
+   ! V2mC  = 0d0
+   ! WmC   = 0d0
+   ! W2mC  = 0d0
+   ! PmC   = 0d0
+   ! P2mC  = 0d0
+   ! UVmC  = 0d0
+   ! UWmC  = 0d0
+   ! VWmC  = 0d0
+   ! wxmC  = 0d0
+   ! wx2mC = 0d0
 
 
 end subroutine
