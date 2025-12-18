@@ -121,12 +121,12 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
 
   !C! Shift 6 velocity fields into planes
   !!!!!!!!!!  modes to planes: !!!!!!!!!!
-  call modes_to_planes_UVP ( u1PL,    u1,    ugrid,myid,status,ierr)
-  call modes_to_planes_UVP ( u2PL,    u2,    vgrid,myid,status,ierr)
-  call modes_to_planes_UVP ( u3PL,    u3,    ugrid,myid,status,ierr)
-  call modes_to_planes_UVP ( u1PL_itp,u1_itp,vgrid,myid,status,ierr)
-  call modes_to_planes_UVP ( u2PL_itp,u2_itp,ugrid,myid,status,ierr)
-  call modes_to_planes_UVP ( u3PL_itp,u3_itp,vgrid,myid,status,ierr)
+  call modes_to_planes_UVP ( u1PL,    u1,    ugrid,nyu,nyu_LB,myid,status,ierr)
+  call modes_to_planes_UVP ( u2PL,    u2,    vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_UVP ( u3PL,    u3,    ugrid,nyu,nyu_LB,myid,status,ierr)
+  call modes_to_planes_UVP ( u1PL_itp,u1_itp,vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_UVP ( u2PL_itp,u2_itp,ugrid,nyu,nyu_LB,myid,status,ierr)
+  call modes_to_planes_UVP ( u3PL_itp,u3_itp,vgrid,nyv,nyv_LB,myid,status,ierr)
 
 
   
@@ -164,7 +164,7 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   if (flagwr==1) then
     call error(div,myid,ierr)
     ppPL = 0d0
-    call modes_to_planes_UVP(ppPL,p,3,myid,status,ierr)
+    call modes_to_planes_UVP(ppPL,p,3,nyp,nyp_LB,myid,status,ierr)
     !call modes_to_planes_UVP(ppPL,div,3,myid,status,ierr) !Output divergence for checking
     call record_out(u1,myid)
   end if
@@ -731,7 +731,7 @@ subroutine four_to_phys_N(du)
 end subroutine
 
 
-subroutine modes_to_planes_UVP (xPL,x,grid,myid,status,ierr)
+subroutine modes_to_planes_UVP (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!! MODES TO PLANES !!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -748,6 +748,7 @@ subroutine modes_to_planes_UVP (xPL,x,grid,myid,status,ierr)
   integer msizeR,msizeS
   type(cfield) x
   real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
+  integer, intent(in) :: nygrid, nygrid_LB
   complex(8), allocatable :: buffS(:,:),buffR(:,:)
 
   ! Loop for itself
@@ -764,10 +765,10 @@ subroutine modes_to_planes_UVP (xPL,x,grid,myid,status,ierr)
   !   jmaxR = jmaxR+1
   ! end if
 
-  if (jminR==Ny(grid,0)+1 .and. jmaxR>=jminR) then
+  if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then
     jminR = jminR-1
   end if
-  if (jmaxR==Ny(grid,nband)   .and. jmaxR>=jminR) then
+  if (jmaxR==nygrid   .and. jmaxR>=jminR) then
     jmaxR = jmaxR+1
   end if
   do j = jminR,jmaxR
@@ -788,16 +789,16 @@ subroutine modes_to_planes_UVP (xPL,x,grid,myid,status,ierr)
       jmaxS = min(planelim(grid,2,yourid),jlim(2,grid)-1)
       jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
       jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
-      if (jminS==Ny(grid,0)+1  ) then
+      if (jminS==nygrid_LB+1  ) then
         jminS = jminS-1
       end if
-      if (jmaxS==Ny(grid,nband)) then
+      if (jmaxS==nygrid) then
         jmaxS = jmaxS+1
       end if
-      if (jminR==Ny(grid,0)+1  ) then
+      if (jminR==nygrid_LB+1  ) then
         jminR = jminR-1
       end if
-      if (jmaxR==Ny(grid,nband)) then
+      if (jmaxR==nygrid) then
         jmaxR = jmaxR+1
       end if
       allocate(buffS(jminS:jmaxS,columns_num(  myid)))

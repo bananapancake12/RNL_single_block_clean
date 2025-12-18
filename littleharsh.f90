@@ -449,10 +449,10 @@ subroutine finalize(u1,u2,u3,p,div,myid,status,ierr)
   u2PL = 0d0
   u3PL = 0d0
   ppPL = 0d0
-  call modes_to_planes_UVP(u1PL,u1,2,myid,status,ierr)
-  call modes_to_planes_UVP(u2PL,u2,1,myid,status,ierr)
-  call modes_to_planes_UVP(u3PL,u3,2,myid,status,ierr)
-  call modes_to_planes_UVP(ppPL, p,3,myid,status,ierr)
+  call modes_to_planes_UVP(u1PL,u1,2,nyu,nyu_LB,myid,status,ierr)
+  call modes_to_planes_UVP(u2PL,u2,1,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_UVP(u3PL,u3,2,nyu,nyu_LB,myid,status,ierr)
+  call modes_to_planes_UVP(ppPL, p,3,nyp,nyp_LB,myid,status,ierr)
 
   call record_out(u1,myid)
 
