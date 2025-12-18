@@ -493,7 +493,7 @@ subroutine flowrateIm(Qu,u)
   implicit none
   integer j
   real(8) Qu
-  complex(8) u(N(4,0):N(4,nband)+1)
+  complex(8) u(nyu_LB:nyu+1)
 
   Qu = 0d0
   do j = 1,nn+1
@@ -532,7 +532,7 @@ subroutine flowrate_corr(u,mpg,g)
   implicit none
   integer j
   real(8) Qx0,Qx1,bdt,g,mpg
-  complex(8) u(N(4,0):N(4,nband)+1)
+  complex(8) u(nyu_LB:nyu+1)
 
   !!!!!!!!!   dummy u11:  !!!!!!!!!
   ! Super meeeean!!
@@ -565,7 +565,7 @@ subroutine maxvel(u)
   use declaration
   implicit none
 
-  complex(8) u(N(4,0):N(4,nband)+1)
+  complex(8) u(nyu_LB:nyu+1)
   integer j
 
   Umax = 0d0
@@ -728,7 +728,7 @@ subroutine RHS0_u1(du1,u1,Nu1,p,myid)
   ! TODO TRICK: We know that mode(0,1) is the first column of proc 0
   if (myid==0) then
     C1 = -dRK(kRK)*mpgx
-    do j=N(4,0)+1,N(4,nband)
+    do j=nyu_LB+1,nyu
     !do j=1,nn+1              !       In case you want not to apply pressure gradient in the immersed boundary
       du1%f(j,1) = du1%f(j,1) + C1        ! check why they had midband here 
     end do
@@ -1031,7 +1031,7 @@ subroutine v_corr(u1,u2,u3,psi,div,myid,status,ierr)
   real(8) weighting
   
  
-  allocate(vcorrPL(N(1,nband)+2,N(2,nband),jgal(ugrid,1)-1:jgal(ugrid,2)+1))
+  allocate(vcorrPL(Nspec_x+2,Nspec_z,jgal(ugrid,1)-1:jgal(ugrid,2)+1))
   !!!!!!!!!      u1:      !!!!!!!!!
   dtrk = dt*(aRK(kRK)+bRK(kRK))
  
