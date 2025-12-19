@@ -178,7 +178,7 @@ nstatsl = nwrite
 
   ! Get the initial conditions
   call getini(u1,u2,u3,p,div,myid,status,ierr)
-  write(6,*) 'finished getini', myid
+  ! write(6,*) 'finished getini', myid
 
 nextqt = floor(t*10d0)/10d0+0.1d0
 !write(*,*) 'nextqt'

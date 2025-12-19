@@ -96,23 +96,40 @@ module declaration
   integer ppp
   real(8) dyq
 
-  ! Variables in planes
-  real(8),pointer::  u1PL(:,:,:), u2PL(:,:,:), u3PL(:,:,:)
-  real(8),pointer::  u1PL_itp(:,:,:), u2PL_itp(:,:,:), u3PL_itp(:,:,:)
-  real(8),pointer:: Nu1PL(:,:,:),Nu2PL(:,:,:),Nu3PL(:,:,:)
-  real(8),pointer:: du1PL(:,:,:),du2PL(:,:,:),du3PL(:,:,:)
-  real(8),pointer::    wx(:,:,:), ppPL(:,:,:)
+  ! ! Variables in planes
+  ! real(8),pointer::  u1PL(:,:,:), u2PL(:,:,:), u3PL(:,:,:)
+  ! real(8),pointer::  u1PL_itp(:,:,:), u2PL_itp(:,:,:), u3PL_itp(:,:,:)
+  ! real(8), allocatable :: Nu1PL(:,:,:),Nu2PL(:,:,:),Nu3PL(:,:,:)
+  ! real(8),pointer:: du1PL(:,:,:),du2PL(:,:,:),du3PL(:,:,:)
+  ! real(8),pointer::    wx(:,:,:), ppPL(:,:,:)
   
-  real(8),pointer:: Qcrit(:,:,:)
+  ! real(8),pointer:: Qcrit(:,:,:)
 
-  real(8),pointer::  u1PLN(:,:,:), u2PLN(:,:,:), u3PLN(:,:,:), ppPLN(:,:,:)
-  real(8),pointer::  u1PL_itpN(:,:,:), u2PL_itpN(:,:,:), u3PL_itpN(:,:,:)
+  ! real(8),pointer::  u1PLN(:,:,:), u2PLN(:,:,:), u3PLN(:,:,:), ppPLN(:,:,:)
+  ! real(8),pointer::  u1PL_itpN(:,:,:), u2PL_itpN(:,:,:), u3PL_itpN(:,:,:)
+
+  ! ! Cross products in planes
+  ! real(8),pointer::  uu_cPL (:,:,:), uv_fPL (:,:,:), uw_cPL (:,:,:)
+  ! real(8),pointer::  vu_fPL (:,:,:), vv_cPL (:,:,:), vw_fPL (:,:,:)
+  ! real(8),pointer::  wu_cPL (:,:,:), wv_fPL (:,:,:), ww_cPL (:,:,:)
+  ! real(8),pointer:: Nu1PL_dy(:,:,:),Nu2PL_dy(:,:,:),Nu3PL_dy(:,:,:)
+
+  real(8), allocatable :: u1PL(:,:,:), u2PL(:,:,:), u3PL(:,:,:)
+  real(8), allocatable :: u1PL_itp(:,:,:), u2PL_itp(:,:,:), u3PL_itp(:,:,:)
+  real(8), allocatable :: Nu1PL(:,:,:), Nu2PL(:,:,:), Nu3PL(:,:,:)
+  real(8), allocatable :: du1PL(:,:,:), du2PL(:,:,:), du3PL(:,:,:)
+  real(8), allocatable :: wx(:,:,:), ppPL(:,:,:)
+  real(8), allocatable :: Qcrit(:,:,:)
+  real(8), allocatable :: u1PLN(:,:,:), u2PLN(:,:,:), u3PLN(:,:,:), ppPLN(:,:,:)
+  real(8), allocatable :: u1PL_itpN(:,:,:), u2PL_itpN(:,:,:), u3PL_itpN(:,:,:)
 
   ! Cross products in planes
-  real(8),pointer::  uu_cPL (:,:,:), uv_fPL (:,:,:), uw_cPL (:,:,:)
-  real(8),pointer::  vu_fPL (:,:,:), vv_cPL (:,:,:), vw_fPL (:,:,:)
-  real(8),pointer::  wu_cPL (:,:,:), wv_fPL (:,:,:), ww_cPL (:,:,:)
-  real(8),pointer:: Nu1PL_dy(:,:,:),Nu2PL_dy(:,:,:),Nu3PL_dy(:,:,:)
+  real(8), allocatable :: uu_cPL(:,:,:), uv_fPL(:,:,:), uw_cPL(:,:,:)
+  real(8), allocatable :: vu_fPL(:,:,:), vv_cPL(:,:,:), vw_fPL(:,:,:)
+  real(8), allocatable :: wu_cPL(:,:,:), wv_fPL(:,:,:), ww_cPL(:,:,:)
+
+  real(8), allocatable :: Nu1PL_dy(:,:,:), Nu2PL_dy(:,:,:), Nu3PL_dy(:,:,:)
+
 
   ! Spectra
   real(8),pointer::  spU(:,:), spV(:,:), spW(:,:)

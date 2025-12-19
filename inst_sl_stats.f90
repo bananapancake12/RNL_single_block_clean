@@ -42,15 +42,15 @@ subroutine inst_sl_stats(u1,u3,myid,status,ierr)
   u1_f_PL = 0d0
   u3_f_PL = 0d0
 
-  call modes_to_planes_phys_lims_2(du1dy_PL,du1dy_columns,jlim(1,vgrid),jlim(1,vgrid),vgrid,myid,status,ierr)
-  call modes_to_planes_phys_lims_2(du3dy_PL,du3dy_columns,jlim(1,vgrid),jlim(1,vgrid),vgrid,myid,status,ierr)
-  call modes_to_planes_phys_lims_2(du1dy_PL,du1dy_columns,jlim(2,vgrid),jlim(2,vgrid),vgrid,myid,status,ierr)
-  call modes_to_planes_phys_lims_2(du3dy_PL,du3dy_columns,jlim(2,vgrid),jlim(2,vgrid),vgrid,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(du1dy_PL,du1dy_columns,jlim(1,vgrid),jlim(1,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(du3dy_PL,du3dy_columns,jlim(1,vgrid),jlim(1,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(du1dy_PL,du1dy_columns,jlim(2,vgrid),jlim(2,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(du3dy_PL,du3dy_columns,jlim(2,vgrid),jlim(2,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
   
-  call modes_to_planes_phys_lims_2(u1_f_PL,u1_itp,jlim(1,vgrid),jlim(1,vgrid),vgrid,myid,status,ierr)
-  call modes_to_planes_phys_lims_2(u3_f_PL,u3_itp,jlim(1,vgrid),jlim(1,vgrid),vgrid,myid,status,ierr)
-  call modes_to_planes_phys_lims_2(u1_f_PL,u1_itp,jlim(2,vgrid),jlim(2,vgrid),vgrid,myid,status,ierr)
-  call modes_to_planes_phys_lims_2(u3_f_PL,u3_itp,jlim(2,vgrid),jlim(2,vgrid),vgrid,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(u1_f_PL,u1_itp,jlim(1,vgrid),jlim(1,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(u3_f_PL,u3_itp,jlim(1,vgrid),jlim(1,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(u1_f_PL,u1_itp,jlim(2,vgrid),jlim(2,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
+  call modes_to_planes_phys_lims_2(u3_f_PL,u3_itp,jlim(2,vgrid),jlim(2,vgrid),vgrid,nyv,nyv_LB,myid,status,ierr)
   
   if(myid==np-1)then !send
     call MPI_SEND(u1_f_PL(1,1,jlim(2,vgrid)),(N(1,nband)+2)*N(2,nband)   ,MPI_REAL8   ,0,myid,MPI_COMM_WORLD,ierr)

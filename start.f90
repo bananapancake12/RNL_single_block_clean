@@ -527,8 +527,8 @@ end if
   gridweighting_bc_u1 = (yu(0) - yv(0)) / (yu(1) - yv(0))
   gridweighting_bc_u3 = (yu(0) - yv(0)) / (yu(1) - yv(0))
 
-  write(6,*) 'gridweighting_bc_u1 after = ', gridweighting_bc_u1
-  write(6,*) 'gridweighting_bc_u3 after = ', gridweighting_bc_u3
+  ! write(6,*) 'gridweighting_bc_u1 after = ', gridweighting_bc_u1
+  ! write(6,*) 'gridweighting_bc_u3 after = ', gridweighting_bc_u3
 
 
 
@@ -1321,7 +1321,7 @@ subroutine proc_lims_planes(myid)
   jgal(pgrid,1) = limPL_excw(pgrid,1,myid)
   jgal(pgrid,2) = limPL_excw(pgrid,2,myid)
 
-  write(6,*) "limPL_excw(ugrid,1,myid)", limPL_excw(ugrid,1,myid), "limPL_excw(ugrid,2,myid)", limPL_excw(ugrid,2,myid)
+  write(6,*) "jgal(ugrid,1)", jgal(ugrid,1), "jgal(ugrid,2)", jgal(ugrid,2), myid
 
 
   if (myid == 0) then
@@ -1419,12 +1419,12 @@ subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
   iwrite = iter
 
   ! 'Probably' this is used to initialize the divergence in the case of a new simulation
-   write(6,*) "call divergence ", myid
+  ! write(6,*) "call divergence ", myid
   call divergence(div%f,u1%f,u2%f,u3%f,myid)
 
-   write(6,*) "call init stats", myid
+  ! write(6,*) "call init stats", myid
   call init_stats(myid)
-   write(6,*) "finished init_stats", myid
+  ! write(6,*) "finished init_stats", myid
   
   write(6,*) "call init_sl stats", myid
   call init_sl_stats(myid)

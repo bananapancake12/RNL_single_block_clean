@@ -265,9 +265,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
 
 
   !C! Shift x/z derrivatives to modes
-  call planes_to_modes_NUVP(Nu1,Nu1PL,ugrid,myid,status,ierr)
-  call planes_to_modes_NUVP(Nu2,Nu2PL,vgrid,myid,status,ierr)
-  call planes_to_modes_NUVP(Nu3,Nu3PL,ugrid,myid,status,ierr)
+  call planes_to_modes_NUVP(Nu1,Nu1PL,ugrid,nyu,nyu_LB,myid,status,ierr)
+  call planes_to_modes_NUVP(Nu2,Nu2PL,vgrid,nyv,nyv_LB,myid,status,ierr)
+  call planes_to_modes_NUVP(Nu3,Nu3PL,ugrid,nyu,nyu_LB,myid,status,ierr)
 
   if(myid==0) then
     write(6,*) "=====> Derivatives"
@@ -742,7 +742,7 @@ subroutine modes_to_planes_UVP (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
   include 'mpif.h'             ! MPI variables
   integer status(MPI_STATUS_SIZE),ierr,myid
 
-  integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,plband,grid
+  integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,grid
   integer column
   integer inode,yourid
   integer msizeR,msizeS
@@ -758,12 +758,6 @@ subroutine modes_to_planes_UVP (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
 
   jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
   jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
-  ! if (jminR==Ny(grid,nband-1)+1 .and. jmaxR>=jminR) then
-  !   jminR = jminR-1
-  ! end if
-  ! if (jmaxR==Ny(grid,nband  )   .and. jmaxR>=jminR) then
-  !   jmaxR = jmaxR+1
-  ! end if
 
   if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then
     jminR = jminR-1
@@ -815,8 +809,8 @@ subroutine modes_to_planes_UVP (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
         end do
       end do
 
-      call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
+      call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &
+&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
 &                         MPI_COMM_WORLD,status,ierr)
       do j = jminR,jmaxR
         do column = 1,columns_num(yourid)
@@ -846,7 +840,7 @@ subroutine modes_to_planes_phys (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
   include 'mpif.h'             ! MPI variables
   integer status(MPI_STATUS_SIZE),ierr,myid
 
-  integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,plband,grid !myiband
+  integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,grid !myiband
   integer column
 
   integer inode,yourid
@@ -914,8 +908,8 @@ subroutine modes_to_planes_phys (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
         end do
       end do
 
-      call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
+      call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &
+&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
 &                         MPI_COMM_WORLD,status,ierr)
       do j = jminR,jmaxR
         do column = 1,columns_num(yourid)
@@ -1038,7 +1032,7 @@ end subroutine
 
 ! end subroutine
 
-subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,myid,status,ierr)
+subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,nygrid,nygrid_LB,myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!! MODES TO PLANES !!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1049,22 +1043,23 @@ subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,myid,status,ier
   include 'mpif.h'             ! MPI variables
   integer status(MPI_STATUS_SIZE),ierr,myid
 
-  integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,plband,grid
+  integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,grid
   integer column,nystart,nyend
   integer inode,yourid
   integer msizeR,msizeS
   type(cfield) x
   real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
   complex(8), allocatable :: buffS(:,:),buffR(:,:)
+  integer, intent(in) :: nygrid,nygrid_LB 
   
   yourid = myid
 
     jminR = max(max(limPL_incw(grid,1,  myid),jlim(1,grid)+1),nystart)
     jmaxR = min(min(limPL_incw(grid,2,  myid),jlim(2,grid)-1),nyend)
-    if (jminR==Ny(grid,0)+1  ) then
+    if (jminR==nygrid_LB+1  ) then
           jminR = jminR-1
         end if
-        if (jmaxR==Ny(grid,nband)) then
+        if (jmaxR==nygrid) then
           jmaxR = jmaxR+1
         end if
         
@@ -1084,16 +1079,16 @@ subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,myid,status,ier
         jmaxS = min(min(limPL_incw(grid,2,yourid),jlim(2,grid)-1),nyend)
         jminR = max(max(limPL_incw(grid,1,  myid),jlim(1,grid)+1),nystart)
         jmaxR = min(min(limPL_incw(grid,2,  myid),jlim(2,grid)-1),nyend)
-        if (jminS==Ny(grid,0)+1  ) then
+        if (jminS==nygrid_LB+1  ) then
           jminS = jminS-1
         end if
-        if (jmaxS==Ny(grid,nband)) then
+        if (jmaxS==nygrid) then
           jmaxS = jmaxS+1
         end if
-        if (jminR==Ny(grid,0)+1  ) then
+        if (jminR==nygrid_LB+1  ) then
           jminR = jminR-1
         end if
-        if (jmaxR==Ny(grid,nband)) then
+        if (jmaxR==nygrid) then
           jmaxR = jmaxR+1
         end if
                 
@@ -1110,8 +1105,8 @@ subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,myid,status,ier
           end do
         end do
 
-        call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
+        call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &
+&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
 &                         MPI_COMM_WORLD,status,ierr)
 
         do j = jminR,jmaxR
@@ -1233,7 +1228,7 @@ subroutine ops_in_planes(myid,flagst)
 
     ! write(6,*) "=====> Non Linear advection", myid
 
-    if (j > (Ngal(3,nband)+1)/2) then
+    if (j > (nyv+1)/2) then
       jidx = j-1
     else 
       jidx = j
@@ -1284,6 +1279,7 @@ subroutine ops_in_planes(myid,flagst)
     !   write(11) du3dz
     !   ! write(11) wu_cPL(:,:,j)
     ! end if  
+    ! write(6,*) "j=", j, myid
 
     do k = 1,Ngal_z
       do i = 1,Ngal_x
@@ -1329,9 +1325,6 @@ subroutine ops_in_planes(myid,flagst)
 
         ! write(6,*) 'myid=', myid, ' j=', j, ' uv_fPL(1,1,j)=', uv_fPL(1,1,j)
         ! write(6,*) 'myid=', myid, ' j=', j, ' uv_fPL(2,1,j)=', uv_fPL(2,1,j)
-
-
-
 
         wv_fPL(1,1,j) = wv_fPL(1,1,j) + u3PL_itp(ia,ka,j)*u2PL(ip,kp,j) - &
               & iNeg(i)*iNeg(-i)*u3PL_itp(ia+1,ka,j)*u2PL(ip+1,kp,j)
@@ -1438,65 +1431,6 @@ subroutine nonlinInter(jlist, x_cPL, uaPL, upPL)
   end do
 
   ! write(6,*) "kLkup", kLkup(:)
-
-  ! full convolution
-
-  ! do iit = 0,0 !0,N(1,1)/2-1
-  !   do kkt = -(N(2,1)/2-1),N(2,1)/2-1
-  !     if (iit == 0 .and. kkt ==0) cycle
-  !     IkkcNeg = 1 - max(isign(1,kkt),0)
-  !     do iia = -7,7,7!-N(1,1)/2+1+iit, N(1,1)/2-1
-  !       do kka = -N(2,1)/2+1 + kkt*(1-IkkcNeg), N(2,1)/2 - 1 + kkt*IkkcNeg
-  !         if (iia ==0 .and. kka ==0) cycle
-  !         if (iit == iia .and. kkt == kka) cycle
-  !         la = iia
-  !         lp = iit-iia
-  !         ia = iLkup(la)
-  !         ip = iLkup(lp)
-  !         it = iLkup(iit)
-  !         ka = kLkup(iNeg(la)*kka)
-  !         kp = kLkup(iNeg(lp)*(kkt-kka))
-  !         kt = kLkup(kkt)
-  !         x_cPL(it,kt) = x_cPL(it,kt) + uaPL(ia,ka)*upPL(ip,kp) - iNeg(la)*iNeg(lp)*uaPL(ia+1,ka)*upPL(ip+1,kp) 
-  !         x_cPL(it+1,kt) = x_cPL(it+1,kt) + iNeg(lp)*uaPL(ia,ka)*upPL(ip+1,kp) + iNeg(la)*uaPL(ia+1,ka)*upPL(ip,kp) 
-  !         ! x = uaPL(ia,ka)*upPL(ip,kp) - iNeg(la)*iNeg(lp)*uaPL(ia+1,ka)*upPL(ip+1,kp)
-  !         ! xx = iNeg(lp)*uaPL(ia,ka)*upPL(ip+1,kp) + iNeg(la)*uaPL(ia+1,ka)*upPL(ip,kp)
-  !         ! if (kt == 44 .and. it == 121 .and. abs(xx)>1e-12 ) then
-  !         !   write(*,*) xx, iia, kka, ia, ka
-  !         ! end if
-  !       end do
-  !     end do
-  !   end do
-  ! end do
-
-  ! do iit = 7,7!1,N(1,1)/2-1
-  !   do kkt = -(N(2,1)/2-1),N(2,1)/2-1
-  !     if (iit == 0 .and. kkt ==0) cycle
-  !     IkkcNeg = 1 - max(isign(1,kkt),0)
-  !     do iia = 0,iit,iit!-N(1,1)/2+1+iit, N(1,1)/2-1
-  !       do kka = -N(2,1)/2+1 + kkt*(1-IkkcNeg), N(2,1)/2 - 1 + kkt*IkkcNeg
-  !         if (iia ==0 .and. kka ==0) cycle
-  !         if (iit == iia .and. kkt == kka) cycle
-  !         la = iia
-  !         lp = iit-iia
-  !         ia = iLkup(la)
-  !         ip = iLkup(lp)
-  !         it = iLkup(iit)
-  !         ka = kLkup(iNeg(la)*kka)
-  !         kp = kLkup(iNeg(lp)*(kkt-kka))
-  !         kt = kLkup(kkt)
-  !         x_cPL(it,kt) = x_cPL(it,kt) + uaPL(ia,ka)*upPL(ip,kp) - iNeg(la)*iNeg(lp)*uaPL(ia+1,ka)*upPL(ip+1,kp) 
-  !         x_cPL(it+1,kt) = x_cPL(it+1,kt) + iNeg(lp)*uaPL(ia,ka)*upPL(ip+1,kp) + iNeg(la)*uaPL(ia+1,ka)*upPL(ip,kp) 
-  !         ! x = uaPL(ia,ka)*upPL(ip,kp) - iNeg(la)*iNeg(lp)*uaPL(ia+1,ka)*upPL(ip+1,kp)
-  !         ! xx = iNeg(lp)*uaPL(ia,ka)*upPL(ip+1,kp) + iNeg(la)*uaPL(ia+1,ka)*upPL(ip,kp)
-  !         ! if (kt == 44 .and. it == 121 .and. abs(xx)>1e-12 ) then
-  !         !   write(*,*) xx, iia, kka, ia, ka
-  !         ! end if
-  !       end do
-  !     end do
-  !   end do
-  ! end do
-  
 
 end subroutine
 
@@ -1779,8 +1713,8 @@ subroutine planes_to_modes_UVP (x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
 
         ! call cpu_time(t_start)
         
-        call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &   ! SEND_RECV so it can send and receive at the same time
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
+        call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &   ! SEND_RECV so it can send and receive at the same time
+&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
 &                         MPI_COMM_WORLD,status,ierr)
 
         ! call cpu_time(t_end)
@@ -1802,91 +1736,91 @@ subroutine planes_to_modes_UVP (x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
 
 end subroutine
 
-subroutine planes_to_modes_phys_lims (x,xPL,nystart,nyend,grid,myid,status,ierr)
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES. USED IN FFT TRID LU !!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine planes_to_modes_phys_lims (x,xPL,nystart,nyend,grid,myid,status,ierr)
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! !!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES. USED IN FFT TRID LU !!!!!!!!!!!!!!!!!!!!!!!
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! i dont think this is called at all...
+! ! i dont think this is called at all...
 
-! Prepare the vectors for the Fourier transform
-! The procs broadcast the data they have of a plane, and receive the data of a pencil,
-!  they also transpose the data for the Fourier transform XZY -> YXZ
+! ! Prepare the vectors for the Fourier transform
+! ! The procs broadcast the data they have of a plane, and receive the data of a pencil,
+! !  they also transpose the data for the Fourier transform XZY -> YXZ
 
-  use declaration
-  implicit none
+!   use declaration
+!   implicit none
 
-  include 'mpif.h'             ! MPI variables
-  integer status(MPI_STATUS_SIZE),ierr,myid
+!   include 'mpif.h'             ! MPI variables
+!   integer status(MPI_STATUS_SIZE),ierr,myid
 
-  integer i,k,j,jminS,jmaxS,jminR,jmaxR,plband,grid
-  integer column,nystart,nyend
-  integer jband
-  integer inode,yourid
-  integer msizeR,msizeS
-  type(cfield) x
-  real(8)      xPL(Nspec_x+2,Nspec_z,limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
-  complex(8), allocatable:: buffS(:,:),buffR(:,:)
+!   integer i,k,j,jminS,jmaxS,jminR,jmaxR,plband,grid
+!   integer column,nystart,nyend
+!   integer jband
+!   integer inode,yourid
+!   integer msizeR,msizeS
+!   type(cfield) x
+!   real(8)      xPL(Nspec_x+2,Nspec_z,limPL_FFT(grid,1,myid):limPL_FFT(grid,2,myid))
+!   complex(8), allocatable:: buffS(:,:),buffR(:,:)
 
-  ! Loop for itself
-  ! Transpose the cube that it already owns
-  plband = bandPL_FFT(myid) ! Return the band (phys) the proc works at
-  ! do iband = sband,eband
-  jminR = max(max(limPL_FFT(grid,1,myid),jlim(1,grid)),nystart)  ! Select the planes to transpose 
-  jmaxR = min(min(limPL_FFT(grid,2,myid),jlim(2,grid)),nyend  )
+!   ! Loop for itself
+!   ! Transpose the cube that it already owns
+!   plband = bandPL_FFT(myid) ! Return the band (phys) the proc works at
+!   ! do iband = sband,eband
+!   jminR = max(max(limPL_FFT(grid,1,myid),jlim(1,grid)),nystart)  ! Select the planes to transpose 
+!   jmaxR = min(min(limPL_FFT(grid,2,myid),jlim(2,grid)),nyend  )
   
-  do j = jminR,jmaxR
-    do column = 1,columns_num(myid)
-      i = columns_i(column,myid)
-      k = columns_k(column,myid) - dk_phys(column,myid)
-      x%f(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
-    end do
-  end do
-  ! end do
+!   do j = jminR,jmaxR
+!     do column = 1,columns_num(myid)
+!       i = columns_i(column,myid)
+!       k = columns_k(column,myid) - dk_phys(column,myid)
+!       x%f(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
+!     end do
+!   end do
+!   ! end do
 
-  do inode = 1,pnodes-1
-    yourid = ieor(myid,inode)   ! XOR. It's used to pair procs 1-to-1
-    if (yourid<np) then
-      ! do iband = sband,eband
-      !jband = crossband(iband,yourid)
-      ! jband = iband
-      jminS = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid)),nystart)  ! Select the planes to be SENT.
-      jmaxS = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid)),nyend  )  ! max and min because maybe this proc needs less planes that the other proc has
-      jminR = max(max(limPL_FFT(grid,1,yourid),jlim(1,grid)),nystart)  ! Select the planes to be RECEIVED
-      jmaxR = min(min(limPL_FFT(grid,2,yourid),jlim(2,grid)),nyend  )
+!   do inode = 1,pnodes-1
+!     yourid = ieor(myid,inode)   ! XOR. It's used to pair procs 1-to-1
+!     if (yourid<np) then
+!       ! do iband = sband,eband
+!       !jband = crossband(iband,yourid)
+!       ! jband = iband
+!       jminS = max(max(limPL_FFT(grid,1,  myid),jlim(1,grid)),nystart)  ! Select the planes to be SENT.
+!       jmaxS = min(min(limPL_FFT(grid,2,  myid),jlim(2,grid)),nyend  )  ! max and min because maybe this proc needs less planes that the other proc has
+!       jminR = max(max(limPL_FFT(grid,1,yourid),jlim(1,grid)),nystart)  ! Select the planes to be RECEIVED
+!       jmaxR = min(min(limPL_FFT(grid,2,yourid),jlim(2,grid)),nyend  )
 
-      allocate(buffS(jminS:jmaxS,columns_num(yourid)))
-      allocate(buffR(jminR:jmaxR,columns_num(  myid)))
-      msizeS = 2*(columns_num(yourid)*(jmaxS-jminS+1))     ! Size of the data to be SENDER (times 2, because it is complex)
-      msizeR = 2*(columns_num(  myid)*(jmaxR-jminR+1))     ! Size of the data to be RECEIVED
-      msizeS = max(msizeS,0)                                     ! The size has to be 0 or positive. 
-      msizeR = max(msizeR,0)
+!       allocate(buffS(jminS:jmaxS,columns_num(yourid)))
+!       allocate(buffR(jminR:jmaxR,columns_num(  myid)))
+!       msizeS = 2*(columns_num(yourid)*(jmaxS-jminS+1))     ! Size of the data to be SENDER (times 2, because it is complex)
+!       msizeR = 2*(columns_num(  myid)*(jmaxR-jminR+1))     ! Size of the data to be RECEIVED
+!       msizeS = max(msizeS,0)                                     ! The size has to be 0 or positive. 
+!       msizeR = max(msizeR,0)
 
-      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      do j=jminS,jmaxS
-        do column = 1,columns_num(yourid)
-          i = columns_i(column,yourid)
-          k = columns_k(column,yourid) - dk_phys(column,yourid)
-          buffS(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j))     ! The data is transposed and stored in a buffer
-        end do
-      end do
-      call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &   ! SEND_RECV so it can send and receive at the same time
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
-&                         MPI_COMM_WORLD,status,ierr)
-      do j=jminR,jmaxR
-        do column = 1,columns_num(myid)
-          x%f(j,column) = buffR(j,column)                         ! Store the data received
-        end do
-      end do
-      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      deallocate(buffR,buffS)
-      ! end do
-    end if
-  end do
-end subroutine
+!       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!       do j=jminS,jmaxS
+!         do column = 1,columns_num(yourid)
+!           i = columns_i(column,yourid)
+!           k = columns_k(column,yourid) - dk_phys(column,yourid)
+!           buffS(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j))     ! The data is transposed and stored in a buffer
+!         end do
+!       end do
+!       call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &   ! SEND_RECV so it can send and receive at the same time
+! &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
+! &                         MPI_COMM_WORLD,status,ierr)
+!       do j=jminR,jmaxR
+!         do column = 1,columns_num(myid)
+!           x%f(j,column) = buffR(j,column)                         ! Store the data received
+!         end do
+!       end do
+!       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!       deallocate(buffR,buffS)
+!       ! end do
+!     end if
+!   end do
+! end subroutine
 
 
-subroutine planes_to_modes_NUVP(x,xPL,grid,myid,status,ierr)
+subroutine planes_to_modes_NUVP(x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES !!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1902,13 +1836,14 @@ subroutine planes_to_modes_NUVP(x,xPL,grid,myid,status,ierr)
   include 'mpif.h'             ! MPI variables
   integer status(MPI_STATUS_SIZE),ierr,myid
 
-  integer i,k,j,jminS,jmaxS,jminR,jmaxR,plband,grid
+  integer i,k,j,jminS,jmaxS,jminR,jmaxR,grid
   integer column
   integer inode,yourid
   integer msizeR,msizeS
   type(cfield) x
   real(8)      xPL(igal,kgal,jgal(grid,1):jgal(grid,2))
   complex(8), allocatable:: buffS(:,:),buffR(:,:)
+  integer, intent(in) :: nygrid, nygrid_LB
 
   ! Loop for itself
   ! Transpose the cube that it already owns
@@ -1916,11 +1851,19 @@ subroutine planes_to_modes_NUVP(x,xPL,grid,myid,status,ierr)
 
   jminR = max(limPL_excw(grid,1,myid),jlim(1,grid)+1)  ! Select the planes to transpose 
   jmaxR = min(limPL_excw(grid,2,myid),jlim(2,grid)-1)
+
+  write(6,*) "jminR", jminR, "jmaxR", jmaxR, "myid", myid
+
   do j = jminR,jmaxR
     do column = 1,columns_num(myid)
       i = columns_i(column,myid)
       k = columns_k(column,myid) - dk(column,myid)
+      ! write(6,*) "j=", j, "mpi", myid
+      ! write(6,*) 'myid=', myid, ' j=', j, ' l3=', lbound(XPL,3), ' u3=', ubound(XPL,3)
+      call flush(6)
+
       x%f(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
+      ! write(6,*) "j=", j, "mpi", myid
     end do
   end do
 
@@ -1946,9 +1889,16 @@ subroutine planes_to_modes_NUVP(x,xPL,grid,myid,status,ierr)
           buffS(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j))     ! The data is transposed and stored in a buffer
         end do
       end do
-      call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid+7*nband+11*nband, &   ! SEND_RECV so it can send and receive at the same time
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid+11*nband+7*nband, &
+      call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &   ! SEND_RECV so it can send and receive at the same time
+&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
 &                         MPI_COMM_WORLD,status,ierr)
+
+
+!       call MPI_SENDRECV( buffS, msizeS, MPI_DOUBLE_COMPLEX, yourid, 77*yourid + 53*myid, &
+! &                        buffR, msizeR, MPI_DOUBLE_COMPLEX, yourid, 53*yourid + 77*myid, &
+! &                        MPI_COMM_WORLD, status, ierr )
+
+
       do j=jminR,jmaxR
         do column = 1,columns_num(myid)
           x%f(j,column) = buffR(j,column)                         ! Store the data received
@@ -2140,8 +2090,8 @@ subroutine record_out(u1,myid)
 
     Uslip = ((u1%f(1,1))*(-1d0-yu(0))+(u1%f(0,1))*(yu(1)+1d0))/(yu(1)-yu(0))
 
-    call flowrateIm(Qx,u1%f(N(4,0),1))
-    call maxvel(u1%f(N(4,0),1))
+    call flowrateIm(Qx,u1%f(nyu_LB,1))
+    call maxvel(u1%f(nyu_LB,1))
     write(*,*) ''
     write(*,*) 'iter',iter
     write(*,*) 't   ',t
@@ -2190,8 +2140,8 @@ subroutine write_Qcrit(myid)
 
 
   if (myid/=0) then
-    nx = Ngal(1,2)+2
-    nz = Ngal(2,2)
+    nx = Ngal_x+2
+    nz = Ngal_z
     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
       call MPI_SEND(Qcrit(:,:,j),nx*nz,MPI_REAL8,0,127*myid,MPI_COMM_WORLD,ierr)
     end do
@@ -2205,8 +2155,8 @@ subroutine write_Qcrit(myid)
     write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
     write(10) N
     write(10) yv,dthetavi,dthdyv
-    nx = Ngal(1,2)+2
-    nz = Ngal(2,2)
+    nx = Ngal_x+2
+    nz = Ngal_z
     !allocate(buffSR(nx,nz))
     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
       !call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
@@ -2214,8 +2164,8 @@ subroutine write_Qcrit(myid)
     end do
     !deallocate(buffSR)
     do iproc = 1,np-1
-      nx = Ngal(1,2)+2
-      nz = Ngal(2,2)
+      nx = Ngal_x+2
+      nz = Ngal_z
       allocate(buffSR(nx,nz))
       do j = limPL_incw(vgrid,1,iproc),limPL_incw(vgrid,2,iproc)
         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,127*iproc,MPI_COMM_WORLD,status,ierr)
