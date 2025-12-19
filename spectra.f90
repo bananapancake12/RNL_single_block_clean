@@ -79,9 +79,9 @@ subroutine write_spect(myid,status,ierr)
     call MPI_SEND(spUV,msizeu,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
     call MPI_SEND(spP ,msizep,MPI_REAL8,0,myid,MPI_COMM_WORLD,ierr)
   else
-    allocate(buffSPu(0:N(1,nband)/2,1:N(2,nband)/2+1,jlim(1,ugrid):jlim(2,ugrid)))
-    allocate(buffSPv(0:N(1,nband)/2,1:N(2,nband)/2+1,jlim(1,vgrid):jlim(2,vgrid)))
-    allocate(buffSPp(0:N(1,nband)/2,1:N(2,nband)/2+1,jlim(1,pgrid):jlim(2,pgrid)))
+    allocate(buffSPu(0:Nspec_x/2,1:Nspec_z/2+1,jlim(1,ugrid):jlim(2,ugrid)))
+    allocate(buffSPv(0:Nspec_x/2,1:Nspec_z/2+1,jlim(1,vgrid):jlim(2,vgrid)))
+    allocate(buffSPp(0:Nspec_x/2,1:Nspec_z/2+1,jlim(1,pgrid):jlim(2,pgrid)))
 
     fnameimb='output/spU_' //ext1//'x'//ext2//'x'//ext3//'_'//ext4//'.dat'
     call recvwrspec(spU ,buffSPu,ugrid,myid,status,ierr)
@@ -121,7 +121,7 @@ subroutine recvwrspec(spX,buffSP,grid,myid,status,ierr)
   integer msize
   real(8)    spX(jlim(1,grid):jlim(2,grid),columns_num(myid))
   !The following +1 in 1:N(2,midband)/2+1 shouldn't be there but is consistent with the postprocessing....
-  real(8) buffSP(0:N(1,nband)/2,1:N(2,nband)/2+1,jlim(1,grid):jlim(2,grid))
+  real(8) buffSP(0:Nspec_x/2,1:Nspec_z/2+1,jlim(1,grid):jlim(2,grid))
   real(8), allocatable:: buffrecv(:,:)
   integer, allocatable:: dummint(:)
 
@@ -131,8 +131,8 @@ subroutine recvwrspec(spX,buffSP,grid,myid,status,ierr)
     do column = 1,columns_num(myid)
       i = columns_i(column,myid)
       k = columns_k(column,myid)
-      if (k > N(2,nband)/2) then
-        kk = N(2,nband)+2-k
+      if (k > Nspec_z/2) then
+        kk = Nspec_z+2-k
       else
         kk = k
       end if
@@ -149,8 +149,8 @@ subroutine recvwrspec(spX,buffSP,grid,myid,status,ierr)
       do column = 1,columns_num(iproc)
         i = columns_i(column,iproc)
         k = columns_k(column,iproc)
-        if (k > N(2,nband)/2) then
-          kk = N(2,nband)+2-k
+        if (k > Nspec_z/2) then
+          kk = Nspec_z+2-k
         else
           kk = k
         end if
@@ -161,8 +161,8 @@ subroutine recvwrspec(spX,buffSP,grid,myid,status,ierr)
   end do
 
   do j = jlim(1,grid),jlim(2,grid)
-    do k = 1,N(2,nband)/2
-      do i = 1,N(1,nband)/2
+    do k = 1,Nspec_z/2
+      do i = 1,Nspec_x/2
         buffSP(i,k,j) = 2d0*buffSP(i,k,j)
       end do
     end do
@@ -179,16 +179,5 @@ subroutine recvwrspec(spX,buffSP,grid,myid,status,ierr)
   write(10) istat
   write(10) buffSP
   close(10)
-
-
-  ! ===== PRINT WHAT WAS WRITTEN (real values) =====
-
-  ! write(6,*) "dummint = ", 0
-  ! write(6,*) "t,Re,alp,bet,mpgx,nband,iter = ", t, Re, alp, bet, mpgx, nband, iter
-  ! write(6,*) "N = ", N
-  ! write(6,*) "yu,dthetai,dthdyu = ", yu, dthetai, dthdyu
-  ! write(6,*) "yv,dthetai,dthdyv = ", yv, dthetai, dthdyv
-  ! write(6,*) "istat = ", istat
-  ! write(6,*) "buffSP written, size = ", size(buffSP)
 
 end subroutine

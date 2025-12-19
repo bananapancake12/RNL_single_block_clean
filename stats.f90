@@ -353,22 +353,22 @@ subroutine write_stats(myid,status,ierr)
       write(10) yu,dthetai,dthdyu
       write(10) yv,dthetai,dthdyv
       write(10) istat
-      allocate(xu(Ny(ugrid,0):Ny(ugrid,nband)+1))
-      allocate(xv(Ny(vgrid,0):Ny(vgrid,nband)+1))
-      allocate(xp(Ny(pgrid,0):Ny(pgrid,nband)+1))
-      call recvX(xu,Um  ,ugrid,status,ierr)                       ! All procs
-      call recvX(xu,U2m ,ugrid,status,ierr)
-      call recvX(xv,Vm  ,vgrid,status,ierr)
-      call recvX(xv,V2m ,vgrid,status,ierr)
-      call recvX(xu,Wm  ,ugrid,status,ierr)
-      call recvX(xu,W2m ,ugrid,status,ierr)
-      call recvX(xp,Pm  ,pgrid,status,ierr)
-      call recvX(xp,P2m ,pgrid,status,ierr)
-      call recvX(xu,UVm ,ugrid,status,ierr)
-      call recvX(xu,UWm ,ugrid,status,ierr)
-      call recvX(xv,VWm ,vgrid,status,ierr)
-      call recvX(xv,wxm ,vgrid,status,ierr)
-      call recvX(xv,wx2m,vgrid,status,ierr)
+      allocate(xu(nyu_LB:nyu+1))
+      allocate(xv(nyv_LB:nyv+1))
+      allocate(xp(nyp_LB:nyp+1))
+      call recvX(xu,Um  ,ugrid,nyu,nyu_LB,status,ierr)                       ! All procs
+      call recvX(xu,U2m ,ugrid,nyu,nyu_LB,status,ierr)
+      call recvX(xv,Vm  ,vgrid,nyv,nyv_LB,status,ierr)
+      call recvX(xv,V2m ,vgrid,nyv,nyv_LB,status,ierr)
+      call recvX(xu,Wm  ,ugrid,nyu,nyu_LB,status,ierr)
+      call recvX(xu,W2m ,ugrid,nyu,nyu_LB,status,ierr)
+      call recvX(xp,Pm  ,pgrid,nyp,nyp_LB,status,ierr)
+      call recvX(xp,P2m ,pgrid,nyp,nyp_LB,status,ierr)
+      call recvX(xu,UVm ,ugrid,nyu,nyu_LB,status,ierr)
+      call recvX(xu,UWm ,ugrid,nyu,nyu_LB,status,ierr)
+      call recvX(xv,VWm ,vgrid,nyv,nyv_LB,status,ierr)
+      call recvX(xv,wxm ,vgrid,nyv,nyv_LB,status,ierr)
+      call recvX(xv,wx2m,vgrid,nyv,nyv_LB,status,ierr)
       deallocate(xu)
       deallocate(xv)
       deallocate(xp)
@@ -429,7 +429,7 @@ subroutine write_stats(myid,status,ierr)
 
 end subroutine
 
-subroutine recvX(x,Xm,grid,status,ierr)
+subroutine recvX(x,Xm,grid,nygrid,nygrid_LB,status,ierr)
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    !!!!!!!!!!!!!!!!!!!!!!!!!    recvX    !!!!!!!!!!!!!!!!!!!!!!!!
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -440,9 +440,9 @@ subroutine recvX(x,Xm,grid,status,ierr)
    include 'mpif.h'             ! MPI variables
    integer status(MPI_STATUS_SIZE),ierr
 
-   integer j,iproc,grid
+   integer j,iproc,grid,nygrid,nygrid_LB
    integer msize
-   real(8) x(Ny(grid,0):Ny(grid,nband)+1)
+   real(8) x(nygrid_LB:nygrid+1)
    real(8) Xm(limPL_incw(grid,1,0):limPL_incw(grid,2,0))
 
    x = 0d0
@@ -458,43 +458,43 @@ subroutine recvX(x,Xm,grid,status,ierr)
 
 end subroutine
 
-subroutine recvXC(xC,XCm,buffC,mx,mz,grid,status,ierr)
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!!!    recvX    !!!!!!!!!!!!!!!!!!!!!!!!
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine recvXC(xC,XCm,buffC,mx,mz,grid,status,ierr)
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!!!    recvX    !!!!!!!!!!!!!!!!!!!!!!!!
+!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-   use declaration
-   implicit none
+!    use declaration
+!    implicit none
 
-   include 'mpif.h'             ! MPI variables
-   integer status(MPI_STATUS_SIZE),ierr
+!    include 'mpif.h'             ! MPI variables
+!    integer status(MPI_STATUS_SIZE),ierr
 
-   integer i,k,j,iproc,grid
-   integer msize,mx,mz
-   real(8) xC   (mx,mz,0:Ny(grid,1)-Ny(grid,0))
-   real(8) buffC(mx,mz,0:Ny(grid,1)-Ny(grid,0))
-   real(8) XCm  (mx,mz,limPL_incw(grid,1,0)-Ny(grid,0):limPL_incw(grid,2,0)-Ny(grid,0))
+!    integer i,k,j,iproc,grid
+!    integer msize,mx,mz
+!    real(8) xC   (mx,mz,0:Ny(grid,1)-Ny(grid,0))
+!    real(8) buffC(mx,mz,0:Ny(grid,1)-Ny(grid,0))
+!    real(8) XCm  (mx,mz,limPL_incw(grid,1,0)-Ny(grid,0):limPL_incw(grid,2,0)-Ny(grid,0))
   
   
-   xC = 0d0
-   buffC = 0d0
-   do j = limPL_incw(grid,1,0)-Ny(grid,0),limPL_incw(grid,2,0)-Ny(grid,0)
-      do k = 1,mz
-         do i = 1,mx
-            xC(i,k,j) = XCm(i,k,j)
-         end do
-      end do
-   end do
+!    xC = 0d0
+!    buffC = 0d0
+!    do j = limPL_incw(grid,1,0)-Ny(grid,0),limPL_incw(grid,2,0)-Ny(grid,0)
+!       do k = 1,mz
+!          do i = 1,mx
+!             xC(i,k,j) = XCm(i,k,j)
+!          end do
+!       end do
+!    end do
  
-   do iproc = 1,min(procs(1)-1,Ny(grid,1)-Ny(grid,0)-1)
-      msize = mx*mz*(limPL_incw(grid,2,iproc)-limPL_incw(grid,1,iproc)+1)
-      call MPI_RECV(xC   (1,1, limPL_incw(grid,1,iproc)-Ny(grid,0)      ),msize,MPI_REAL8,iproc,iproc,MPI_COMM_WORLD,status,ierr)
-   end do
-   do iproc = procs(nband-1),np-1
-      msize = mx*mz*(limPL_incw(grid,2,iproc)-limPL_incw(grid,1,iproc)+1)
-      call MPI_RECV(buffC(1,1,-limPL_incw(grid,2,iproc)+Ny(grid,nband)+1),msize,MPI_REAL8,iproc,iproc,MPI_COMM_WORLD,status,ierr)
-   end do
-   xC = xC+buffC
-   write(10) xC
+!    do iproc = 1,min(procs(1)-1,Ny(grid,1)-Ny(grid,0)-1)
+!       msize = mx*mz*(limPL_incw(grid,2,iproc)-limPL_incw(grid,1,iproc)+1)
+!       call MPI_RECV(xC   (1,1, limPL_incw(grid,1,iproc)-Ny(grid,0)      ),msize,MPI_REAL8,iproc,iproc,MPI_COMM_WORLD,status,ierr)
+!    end do
+!    do iproc = procs(nband-1),np-1
+!       msize = mx*mz*(limPL_incw(grid,2,iproc)-limPL_incw(grid,1,iproc)+1)
+!       call MPI_RECV(buffC(1,1,-limPL_incw(grid,2,iproc)+Ny(grid,nband)+1),msize,MPI_REAL8,iproc,iproc,MPI_COMM_WORLD,status,ierr)
+!    end do
+!    xC = xC+buffC
+!    write(10) xC
 
-end subroutine
+! end subroutine

@@ -124,7 +124,6 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   call modes_to_planes_UVP ( u3PL_itp,u3_itp,vgrid,nyv,nyv_LB,myid,status,ierr)
 
 
-  
   if(myid==0) then
     write(6,*) "=====> Spectra"
   end if
@@ -1903,12 +1902,26 @@ subroutine record_out(u1,myid)
   integer status(MPI_STATUS_SIZE),ierr,myid
 
   type(cfield) u1
-  integer nx,nz
+  integer nx,nz, i 
   integer j,jmax,iproc
   real(8), allocatable:: buffSR(:,:)
   integer, allocatable:: dummint(:)
-  
   real(8) Uslip  
+
+  ! Rebuilding N 
+  allocate(N(4,0:nband+1))
+
+  N= 0 
+  N(1,1:3) = Nspec_x
+  N(1,4) = -2
+  N(2,1:3) = Nspec_z
+  N(3,3) = nyv
+  N(4,3) = nyu
+
+  write(6,*) "N:"
+  do i = 1,4
+    write(6,*) N(i,0:4)
+  end do
 
   if (myid/=0) then
     nx = Nspec_x+2

@@ -95,7 +95,7 @@ subroutine start(myid,status,ierr)
     ! Nspec is the Fourier space 
     ! They contain the same information except that N is 2/3Ngal in the number of x- and z-grid points,
 
-    allocate(Ngal(4,0:nband+1))
+    allocate(Ngal(4,0:4))
     Ngal = 0
     ! grid points in the 'x' direction
     ! read(40,20) Ngal(1,nband)
@@ -107,12 +107,12 @@ subroutine start(myid,status,ierr)
     read(40,20) Ngal_z
     read(40,20)
 
-    Ngal(1,nband) = Ngal_x
-    Ngal(2,nband) = Ngal_z
+    ! Ngal(1,nband) = Ngal_x
+    ! Ngal(2,nband) = Ngal_z
 
-    ! fill cols 1:4 with vals 
-    Ngal(1,1:nband)= Ngal(1,nband)
-    Ngal(2,1:nband)= Ngal(2,nband)
+    ! ! fill cols 1:4 with vals 
+    ! Ngal(1,1:nband)= Ngal(1,nband)
+    ! Ngal(2,1:nband)= Ngal(2,nband)
 
     ! grid points in the 'y' direction from 'y=-1' to 'y=1'
     !read(40,20) Ngal(3,nband)
@@ -139,17 +139,17 @@ subroutine start(myid,status,ierr)
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    Ngal(3,nband) = nyv
-    !Ngal(3,nband) = Ngal(3,nband)-2
-    Ngal(1,nband+1) = -2
+    ! Ngal(3,nband) = nyv
+    ! !Ngal(3,nband) = Ngal(3,nband)-2
+    ! Ngal(1,nband+1) = -2
 
-    allocate(N(4,0:nband+1))
-    allocate(Ny(3,0:nband+1))
+    ! allocate(N(4,0:nband+1))
+    ! allocate(Ny(3,0:nband+1))
 
-    N = Ngal
+    ! N = Ngal
    
-    N(1,1:nband) = 2*(Ngal(1,nband)/3)
-    N(2,1:nband) = 2*(Ngal(2,nband)/3)
+    ! N(1,1:nband) = 2*(Ngal(1,nband)/3)
+    ! N(2,1:nband) = 2*(Ngal(2,nband)/3)
 
     read(40,10) dyq              ! dymax/dymin
     read(40,20) ppp              ! y polinomial exponent
@@ -308,9 +308,9 @@ end if
       call MPI_SEND(inputR  ,                     12,MPI_REAL8  ,iproc,       iproc,MPI_COMM_WORLD,ierr)
       call MPI_SEND(inputInt,                      4,MPI_INTEGER,iproc,  1000+iproc,MPI_COMM_WORLD,ierr)
       call MPI_SEND(dimsInt ,                     10,MPI_INTEGER,iproc,  1500+iproc,MPI_COMM_WORLD,ierr)
-      call MPI_SEND(N       ,4*(nband+2)            ,MPI_INTEGER,iproc,  2000+iproc,MPI_COMM_WORLD,ierr)
-      call MPI_SEND(Ngal    ,4*(nband+2)            ,MPI_INTEGER,iproc,  3000+iproc,MPI_COMM_WORLD,ierr)
-      call MPI_SEND(Ny      ,3*(nband+2)            ,MPI_INTEGER,iproc,  4000+iproc,MPI_COMM_WORLD,ierr)
+      ! call MPI_SEND(N       ,4*(nband+2)            ,MPI_INTEGER,iproc,  2000+iproc,MPI_COMM_WORLD,ierr)
+      ! call MPI_SEND(Ngal    ,4*(nband+2)            ,MPI_INTEGER,iproc,  3000+iproc,MPI_COMM_WORLD,ierr)
+      ! call MPI_SEND(Ny      ,3*(nband+2)            ,MPI_INTEGER,iproc,  4000+iproc,MPI_COMM_WORLD,ierr)
       call MPI_SEND(yu      ,   nyu-nyu_LB+2 ,MPI_REAL8  ,iproc,  7000+iproc,MPI_COMM_WORLD,ierr)
       call MPI_SEND(dthdyu  ,   nyu-nyu_LB+2 ,MPI_REAL8  ,iproc,  8000+iproc,MPI_COMM_WORLD,ierr)
       call MPI_SEND(dyu2i   ,3*(nyu-nyu_LB+2),MPI_REAL8  ,iproc,  9000+iproc,MPI_COMM_WORLD,ierr)
@@ -360,12 +360,12 @@ end if
     nyu_LB  = dimsInt(9)
     nyp_LB  = dimsInt(10)
 
-    allocate(N   (4,0:nband+1))
-    allocate(Ngal(4,0:nband+1))
-    allocate(Ny  (3,0:nband+1))
-    call MPI_RECV(N      ,4*(nband+2)            ,MPI_INTEGER,0, 2000+myid,MPI_COMM_WORLD,status,ierr)
-    call MPI_RECV(Ngal   ,4*(nband+2)            ,MPI_INTEGER,0, 3000+myid,MPI_COMM_WORLD,status,ierr)
-    call MPI_RECV(Ny     ,3*(nband+2)            ,MPI_INTEGER,0, 4000+myid,MPI_COMM_WORLD,status,ierr)
+    ! allocate(N   (4,0:nband+1))
+    ! allocate(Ngal(4,0:nband+1))
+    ! allocate(Ny  (3,0:nband+1))
+    ! call MPI_RECV(N      ,4*(nband+2)            ,MPI_INTEGER,0, 2000+myid,MPI_COMM_WORLD,status,ierr)
+    ! call MPI_RECV(Ngal   ,4*(nband+2)            ,MPI_INTEGER,0, 3000+myid,MPI_COMM_WORLD,status,ierr)
+    ! call MPI_RECV(Ny     ,3*(nband+2)            ,MPI_INTEGER,0, 4000+myid,MPI_COMM_WORLD,status,ierr)
     allocate(yu    (  nyu_LB:nyu+1))
     allocate(dthdyu(  nyu_LB:nyu+1))
     allocate(dyu2i (3,nyu_LB:nyu+1))
@@ -793,34 +793,34 @@ subroutine ygrid
 
   ! N(3,top_domain)=nn
 
-  N(4,nband) = nyv + 1 ! extra poitn for u grid
+  ! N(4,nband) = nyv + 1 ! extra poitn for u grid
 
-  Ngal(3,nband) = nyv
-  Ngal(4,nband) = N(4,nband)
+  ! Ngal(3,3) = nyv
+  ! Ngal(4,3) = N(4,3)
 
-  write(6,*) "N:"
-  do i = 1,4
-    write(6,*) N(i,0:4)
-  end do
+  ! write(6,*) "N:"
+  ! do i = 1,4
+  !   write(6,*) N(i,0:4)
+  ! end do
 
-  write(6,*) "Ngal:"
-  do i = 1,4
-    write(6,*) Ngal(i,0:4)
-  end do
+  ! write(6,*) "Ngal:"
+  ! do i = 1,4
+  !   write(6,*) Ngal(i,0:4)
+  ! end do
   
-  Ny = 0
+  ! Ny = 0
 
-  Ny(ugrid,:  ) = N(4,:)
-  Ny(vgrid,:  ) = N(3,:)
-  Ny(pgrid,0  ) = nyu_LB+1
-  Ny(pgrid,3  ) = N(4,3)-1
+  ! Ny(ugrid,:  ) = N(4,:)
+  ! Ny(vgrid,:  ) = N(3,:)
+  ! Ny(pgrid,0  ) = nyu_LB+1
+  ! Ny(pgrid,3  ) = N(4,3)-1
 
 
 
-  write(6,*) "Ny:"
-  do i = 1,3
-    write(6,*) Ny(i,0:4)
-  end do
+  ! write(6,*) "Ny:"
+  ! do i = 1,3
+  !   write(6,*) Ny(i,0:4)
+  ! end do
 end subroutine 
 
 
@@ -850,10 +850,10 @@ subroutine def_k
   integer i,k
 !  real(8) dzNgal,dzNgali
 
-  allocate(k1F_x  (0:N   (1,nband)/2))
-  allocate(k2F_x  (0:N   (1,nband)/2))
-  allocate(k1F_z  (1:N   (2,nband)  ))
-  allocate(k2F_z  (1:N   (2,nband)  ))
+  allocate(k1F_x  (0:Nspec_x/2))
+  allocate(k2F_x  (0:Nspec_x/2))
+  allocate(k1F_z  (1:Nspec_z  ))
+  allocate(k2F_z  (1:Nspec_z  ))
 
  
   !!!!!!   define differential operator eigenvalues !!!!!!
@@ -880,7 +880,7 @@ subroutine def_k
   end do
 
   
-  ! do i = N(2,nband)/2+1,N(2,nband)
+  ! do i = N(2,3)/2+1,N(2,3)
   !   write(6,*) "k1F_z", k1F_z(i), i 
   ! end do 
   
@@ -1030,18 +1030,18 @@ subroutine proc_lims_columns(myid)
   jlim(1,ugrid) = nyu_LB
   jlim(2,ugrid) = nyu+1 
 
-  ! write(*,*) 'jlim(1, ugrid)=', N(4,0), ' jlim(2, ugrid)=', N(4,nband)+1
+  ! write(*,*) 'jlim(1, ugrid)=', N(4,0), ' jlim(2, ugrid)=', N(4,3)+1
 
   ! v
   jlim(1,vgrid) = nyv_LB
   jlim(2,vgrid) = nyv+1 
 
-  ! write(*,*) 'jlim(1, vgrid)=', N(3,0), ' jlim(2, vgrid)=', N(3,nband)+1
+  ! write(*,*) 'jlim(1, vgrid)=', N(3,0), ' jlim(2, vgrid)=', N(3,3)+1
 
   ! p: Ghost points not included
   jlim(1,pgrid) = nyu_LB+1
   jlim(2,pgrid) = nyu
-  ! write(*,*) 'jlim(1, pgrid)=',N(4,0)+1, ' jlim(2, pgrid)=', N(4,nband)
+  ! write(*,*) 'jlim(1, pgrid)=',N(4,0)+1, ' jlim(2, pgrid)=', N(4,3)
 
   ! Used in FOU3D and stats
   ! It's a shift in z, used to align modes in different bands
@@ -1058,7 +1058,7 @@ subroutine proc_lims_columns(myid)
 
   !   do iproc = 0,np-1
   !       do column = 1,columns_num(iproc)
-  !         if (columns_k(column,iproc) > N(2,nband)/2) then
+  !         if (columns_k(column,iproc) > N(2,3)/2) then
   !           write(6,*)'col_k=',columns_k(column,iproc), 'dk=', dk(column,iproc),"iproc", iproc
   !         end if
   !   end do
@@ -1077,7 +1077,7 @@ subroutine proc_lims_columns(myid)
 
   ! do iproc = 0,np-1
   !   do column = 1,columns_num(iproc)
-  !     if (columns_k(column,iproc) > N(2,nband)/2) then
+  !     if (columns_k(column,iproc) > N(2,3)/2) then
   !       write(6,*)'col_k=',columns_k(column,iproc), 'dk_phys=', dk_phys(column,iproc),"iproc", iproc
   !     end if
   !   end do
@@ -1128,7 +1128,7 @@ subroutine proc_lims_planes(myid)
   ! allocate(bandPL_FFT(0:np-1))
 
   jlow = nyu_LB + 1
-  jupp = nyu ! jupp in get weights was N(4,nband)-1 so weight allocation nneeded to be weight 
+  jupp = nyu ! jupp in get weights was N(4,3)-1 so weight allocation nneeded to be weight 
                     ! (jlow:jupp+1) but here its jsut jlow to j upp b it included the +1 already
 
   proc_load = 0.0d0
@@ -1296,7 +1296,7 @@ subroutine proc_lims_planes(myid)
 
     nplanes(iproc) = planelim(ugrid,2,iproc) - planelim(ugrid,1,iproc) + 1
 
-    bandPL(iproc) = nband ! keeping this for now bc otherwise code will break but setting at a const
+    ! bandPL(iproc) = nband ! keeping this for now bc otherwise code will break but setting at a const
 
   end do
 
@@ -1721,10 +1721,10 @@ subroutine read_in(myid)
       write(*,*) nyu
       write(*,*) ''
       write(*,*) 'N_old='
-      write(*,*) N2(1,0:nband+1)
-      write(*,*) N2(2,0:nband+1)
-      write(*,*) N2(3,0:nband+1)
-      write(*,*) N2(4,0:nband+1)
+      write(*,*) N2(1,0:4)
+      write(*,*) N2(2,0:4)
+      write(*,*) N2(3,0:4)
+      write(*,*) N2(4,0:4)
       stop
     else if (dummI==2) then
       write(*,*) ''
@@ -1736,10 +1736,10 @@ subroutine read_in(myid)
       write(*,*) nyu
       write(*,*) ''
       write(*,*) 'N_old='
-      write(*,*) N2(1,0:nband+1)
-      write(*,*) N2(2,0:nband+1)
-      write(*,*) N2(3,0:nband+1)
-      write(*,*) N2(4,0:nband+1)
+      write(*,*) N2(1,0:4)
+      write(*,*) N2(2,0:4)
+      write(*,*) N2(3,0:4)
+      write(*,*) N2(4,0:4)
       write(*,*) ''
     end if
 
@@ -1999,28 +1999,28 @@ subroutine read_in(myid)
     ! The procs only stores the planes they have to compute
     !  (jgal is the local name of planelim for j)
 
-    allocate(N2(4,0:nband+1))
-    call MPI_RECV(N2,4*(nband+2),MPI_INTEGER,0,121*myid,MPI_COMM_WORLD,status,ierr)
-    allocate(nxxu(N2(4,0):N2(4,nband)+1),nzzu(N2(4,0):N2(4,nband)+1))
-    allocate(nxxv(N2(3,0):N2(3,nband)+1),nzzv(N2(3,0):N2(3,nband)+1))
-    nxxu(N2(4,0))=N2(1,nband)+2
-    nzzu(N2(4,0))=N2(2,nband)
-    nxxv(N2(3,0))=N2(1,nband)+2
-    nzzv(N2(3,0))=N2(2,nband)
+    allocate(N2(4,0:4))
+    call MPI_RECV(N2,4*(3+2),MPI_INTEGER,0,121*myid,MPI_COMM_WORLD,status,ierr)
+    allocate(nxxu(N2(4,0):N2(4,3)+1),nzzu(N2(4,0):N2(4,3)+1))
+    allocate(nxxv(N2(3,0):N2(3,3)+1),nzzv(N2(3,0):N2(3,3)+1))
+    nxxu(N2(4,0))=N2(1,3)+2
+    nzzu(N2(4,0))=N2(2,3)
+    nxxv(N2(3,0))=N2(1,3)+2
+    nzzv(N2(3,0))=N2(2,3)
 
-    do j=N2(4,0)+1,N2(4,nband)
-      nxxu(j)=N2(1,nband)+2
-      nzzu(j)=N2(2,nband)
+    do j=N2(4,0)+1,N2(4,3)
+      nxxu(j)=N2(1,3)+2
+      nzzu(j)=N2(2,3)
     end do
-    do j=N2(3,0)+1,N2(3,nband)
-      nxxv(j)=N2(1,nband)+2
-      nzzv(j)=N2(2,nband)
+    do j=N2(3,0)+1,N2(3,3)
+      nxxv(j)=N2(1,3)+2
+      nzzv(j)=N2(2,3)
     end do
     ! end do
-    nxxu(N2(4,nband)+1)=N2(1,nband)+2
-    nzzu(N2(4,nband)+1)=N2(2,nband)
-    nxxv(N2(3,nband)+1)=N2(1,nband)+2
-    nzzv(N2(3,nband)+1)=N2(2,nband)
+    nxxu(N2(4,3)+1)=N2(1,3)+2
+    nzzu(N2(4,3)+1)=N2(2,3)
+    nxxv(N2(3,3)+1)=N2(1,3)+2
+    nzzv(N2(3,3)+1)=N2(2,3)
    
     ju1=jgal(2,1)
     ju2=jgal(2,2)
@@ -2028,22 +2028,22 @@ subroutine read_in(myid)
       ju2=jgal(2,2)+1
     end if
     ju1=max(ju1,N2(4,0))
-    ju2=min(ju2,N2(4,nband)+1)
+    ju2=min(ju2,N2(4,3)+1)
     jv1=jgal(1,1)
     jv2=jgal(1,2)
     if (jgal(1,2)==nyv.and.myid==np-1) then
       jv2=jgal(1,2)+1
     end if
     jv1=max(jv1,N2(3,0))
-    jv2=min(jv2,N2(3,nband)+1)
-!jv2=min(jv2,N2(3,nband)+1-1)
+    jv2=min(jv2,N2(3,3)+1)
+!jv2=min(jv2,N2(3,3)+1-1)
     jp1=jgal(3,1)
     jp2=jgal(3,2)
     if (jgal(3,2)==nyu-1.and.myid==np-1) then
       jp2=jgal(3,2)+1
     end if
     jp1=max(jp1,N2(4,0)+1)
-    jp2=min(jp2,N2(4,nband)+1-1)
+    jp2=min(jp2,N2(4,3)+1-1)
 !jp2=min(jp2,N2(4,nband)+1-1-1)
     !!!!!!!!!!!!!!    u1    !!!!!!!!!!!!!!
     do j=ju1,ju2
