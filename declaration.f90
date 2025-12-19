@@ -6,14 +6,7 @@ module declaration
   complex, parameter :: im = dcmplx(0d0,1d0)
   
   integer, parameter :: nband = 3
-  ! integer, parameter :: sband = 1
-  ! integer, parameter :: eband = nband
-  ! integer, parameter :: botband = 1           ! 1
-  ! integer, parameter :: midband = (nband+1)/2 ! 2
-  ! integer, parameter :: topband = nband       ! 3
-
-  integer, parameter :: top_domain = 3
-
+  
   integer, parameter :: ugrid = 2 ! centres     including ghost points: u and w
   integer, parameter :: vgrid = 1 ! faces: v
   integer, parameter :: pgrid = 3 ! centres not including ghost points: p

@@ -51,8 +51,8 @@ subroutine stats(myid,status,ierr)
    end do
    !!!!!!!!    wx stats:   !!!!!!!!
    do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
-      do k = 1,N(2,nband)
-         do i = 1,N(1,nband)
+      do k = 1,Nspec_z
+         do i = 1,Nspec_x
             wxm (j) = wxm (j)+wx(i,k,j)
             wx2m(j) = wx2m(j)+wx(i,k,j)**2
          end do

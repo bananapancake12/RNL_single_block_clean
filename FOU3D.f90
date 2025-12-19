@@ -1909,7 +1909,7 @@ subroutine record_out(u1,myid)
   real(8) Uslip  
 
   ! Rebuilding N 
-  allocate(N(4,0:nband+1))
+  allocate(N(4,0:4))
 
   N= 0 
   N(1,1:3) = Nspec_x

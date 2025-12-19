@@ -1532,7 +1532,7 @@ subroutine mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)
   nzzu(nyu_LB)=N(2,1)
   nxxv(nyv_LB)=N(1,1)+2
   nzzv(nyv_LB)=N(2,1)
-  do iband=1,nband
+  do iband=1,3
     do j=N(4,iband-1)+1,N(4,iband)
       nxxu(j)=N(1,iband)+2
       nzzu(j)=N(2,iband)
@@ -1673,7 +1673,7 @@ subroutine read_in(myid)
 
     ! Checks that the size of the variables in the file matches with the setup of actual problem
     ! Checks nband, alp, bet, N
-    if (nband2/=nband) then
+    if (nband2/=3) then
       write(*,*) ''
       write(*,*) 'wrong startfile?'
       write(*,*) 'nband,nband_old=',nband,nband2
@@ -1700,14 +1700,14 @@ subroutine read_in(myid)
 
     dummI=0
 
-    if (Nspec_x/=N2(1,nband)) then
+    if (Nspec_x/=N2(1,3)) then
       dummI=2
     end if
 
 
     if (nyv_LB/=N2(3,0)) then
       dummI=2
-    else if (nyv/=N2(3,nband)) then
+    else if (nyv/=N2(3,3)) then
       dummI=2
     end if
 
@@ -1749,27 +1749,27 @@ subroutine read_in(myid)
     end do
 
     ! nxx(j) and nzz(j) store the number of points at a plane j
-    allocate(nxxu(N2(4,0):N2(4,nband)+1),nzzu(N2(4,0):N2(4,nband)+1))
-    allocate(nxxv(N2(3,0):N2(3,nband)+1),nzzv(N2(3,0):N2(3,nband)+1))
-    allocate(nxxp(N2(4,0)+1:N2(4,nband)+1-1),nzzp(N2(4,0)+1:N2(4,nband)+1-1))
-    nxxu(N2(4,0))=N2(1,nband)+2
-    nzzu(N2(4,0))=N2(2,nband)
-    nxxv(N2(3,0))=N2(1,nband)+2
-    nzzv(N2(3,0))=N2(2,nband)
-    nxxp(N2(4,0)+1)=N2(1,nband)+2
-    nzzp(N2(4,0)+1)=N2(2,nband)
+    allocate(nxxu(N2(4,0):N2(4,3)+1),nzzu(N2(4,0):N2(4,3)+1))
+    allocate(nxxv(N2(3,0):N2(3,3)+1),nzzv(N2(3,0):N2(3,3)+1))
+    allocate(nxxp(N2(4,0)+1:N2(4,3)+1-1),nzzp(N2(4,0)+1:N2(4,3)+1-1))
+    nxxu(N2(4,0))=N2(1,3)+2
+    nzzu(N2(4,0))=N2(2,3)
+    nxxv(N2(3,0))=N2(1,3)+2
+    nzzv(N2(3,0))=N2(2,3)
+    nxxp(N2(4,0)+1)=N2(1,3)+2
+    nzzp(N2(4,0)+1)=N2(2,3)
 
-    do j=N2(4,0)+1,N2(4,nband)
-      nxxu(j)=N2(1,nband)+2
-      nzzu(j)=N2(2,nband)
+    do j=N2(4,0)+1,N2(4,3)
+      nxxu(j)=N2(1,3)+2
+      nzzu(j)=N2(2,3)
     end do
-    do j=N2(3,0)+1,N2(3,nband)
-      nxxv(j)=N2(1,nband)+2
-      nzzv(j)=N2(2,nband)
+    do j=N2(3,0)+1,N2(3,3)
+      nxxv(j)=N2(1,3)+2
+      nzzv(j)=N2(2,3)
     end do
-    do j= N2(4,0)+1,N2(4,nband)-1
-      nxxp(j)=N2(1,nband)+2
-      nzzp(j)=N2(2,nband)
+    do j= N2(4,0)+1,N2(4,3)-1
+      nxxp(j)=N2(1,3)+2
+      nzzp(j)=N2(2,3)
     end do
 
     ! nxxp(N2(4,1))=nxxp(N2(4,1)+1)
@@ -1781,12 +1781,12 @@ subroutine read_in(myid)
     ! end do
 
 
-    nxxu(N2(4,nband)+1)=N2(1,nband)+2
-    nzzu(N2(4,nband)+1)=N2(2,nband)
-    nxxv(N2(3,nband)+1)=N2(1,nband)+2
-    nzzv(N2(3,nband)+1)=N2(2,nband)
-    nxxp(N2(4,nband)+1-1)=N2(1,nband)+2
-    nzzp(N2(4,nband)+1-1)=N2(2,nband)
+    nxxu(N2(4,3)+1)=N2(1,3)+2
+    nzzu(N2(4,3)+1)=N2(2,3)
+    nxxv(N2(3,3)+1)=N2(1,3)+2
+    nzzv(N2(3,3)+1)=N2(2,3)
+    nxxp(N2(4,3)+1-1)=N2(1,3)+2
+    nzzp(N2(4,3)+1-1)=N2(2,3)
     !filout=fnameimb(3:index(fnameimb,' ')-1)
     !filout=fnameimb(10:index(fnameimb,' ')-1) !22 as now in subfolder
 
@@ -1825,7 +1825,7 @@ subroutine read_in(myid)
         ju2=planelim(2,2,iproc)+1
       end if
       ju1=max(ju1,N2(4,0))
-      ju2=min(ju2,N2(4,nband)+1)
+      ju2=min(ju2,N2(4,3)+1)
       do j=ju1,ju2
         nx=nxxu(j)
         nz=nzzu(j)
@@ -1871,7 +1871,7 @@ subroutine read_in(myid)
         jv2=planelim(1,2,iproc)+1
       end if
       jv1=max(jv1,N2(3,0))
-      jv2=min(jv2,N2(3,nband)+1)
+      jv2=min(jv2,N2(3,3)+1)
 !jv2=min(jv2,N2(3,nband))
       do j=jv1,jv2
         nx=nxxv(j)
@@ -1918,7 +1918,7 @@ subroutine read_in(myid)
         ju2=planelim(2,2,iproc)+1
       end if
       ju1=max(ju1,N2(4,0))
-      ju2=min(ju2,N2(4,nband)+1)
+      ju2=min(ju2,N2(4,3)+1)
       do j=ju1,ju2
         nx=nxxu(j)
         nz=nzzu(j)
@@ -1972,7 +1972,7 @@ subroutine read_in(myid)
         jp2=planelim(3,2,iproc)+1
       end if
       jp1=max(jp1,N2(4,0)+1)
-      jp2=min(jp2,N2(4,nband)+1-1)
+      jp2=min(jp2,N2(4,3)+1-1)
 !jp2=min(jp2,N2(4,nband)+1-1-1)
       do j=jp1,jp2
         nx=nxxp(j)
