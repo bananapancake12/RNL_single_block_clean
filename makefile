@@ -46,7 +46,6 @@ CALCDIR = $(INIT)
 OBJECTS = $(OBJ)/declaration.o\
           $(OBJ)/start.o\
           $(OBJ)/stats.o\
-          $(OBJ)/sl_stats2.o\
           $(OBJ)/inst_sl_stats.o\
           $(OBJ)/spectra.o\
           $(OBJ)/tridLU_3D.o\
@@ -54,6 +53,7 @@ OBJECTS = $(OBJ)/declaration.o\
           $(OBJ)/cft_buff.o\
           $(OBJ)/FOU3D.o\
           $(OBJ)/littleharsh.o
+# 		  $(OBJ)/sl_stats2.o\
 
 ########################      build       #########################
 
@@ -79,9 +79,9 @@ $(OBJDIR)/stats.o : $(SRCDIR)/stats.f90 $(SRCDIR)/makefile
 	@echo compiling stats.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/stats.f90
 
-$(OBJDIR)/sl_stats2.o : $(SRCDIR)/sl_stats2.f90 $(SRCDIR)/makefile
-	@echo compiling sl_stats2.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/sl_stats2.f90
+# $(OBJDIR)/sl_stats2.o : $(SRCDIR)/sl_stats2.f90 $(SRCDIR)/makefile
+# 	@echo compiling sl_stats2.f90
+# 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/sl_stats2.f90
 
 $(OBJDIR)/inst_sl_stats.o : $(SRCDIR)/inst_sl_stats.f90 $(SRCDIR)/makefile
 	@echo compiling inst_sl_stats.f90

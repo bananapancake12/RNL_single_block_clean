@@ -50,11 +50,6 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   
   integer flagst,flagwr,flagslinst,flagqwr,j,i,k,column
   real(8) C1
-  ! type(cfield)  u1(sband:eband), u2(sband:eband), u3(sband:eband)
-  ! type(cfield) du1(sband:eband),du2(sband:eband),du3(sband:eband)
-  ! type(cfield) Nu1(sband:eband),Nu2(sband:eband),Nu3(sband:eband)
-  ! type(cfield)  p (sband:eband),div(sband:eband)
-
   type(cfield) u1, u2, u3
   type(cfield) du1, du2, du3
   type(cfield) Nu1, Nu2, Nu3
@@ -139,22 +134,6 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
     call spectra(u1,u2,u2_itp,u3,p,myid)
   end if
   
-  !!!!!!!!! Q criterion  !!!!!!!!!
-  ! if (flagqwr==1) then !Q criterion output every t
-    
-  !   do iband = sband,eband
-  !     call der_yv_h_wx(du1dy_columns(iband)%f,u1(iband)%f,iband,myid)
-  !     call der_yv_h_wx(du2dy_columns(iband)%f,u2_itp(iband)%f,iband,myid)
-  !     call der_yv_h_wx(du3dy_columns(iband)%f,u3(iband)%f,iband,myid)
-  !   end do
-    
-  !   call modes_to_planes_UVP(du1dy_planes2,du1dy_columns,vgrid,myid,status,ierr)
-  !   call modes_to_planes_UVP(du2dy_planes2,du2dy_columns,vgrid,myid,status,ierr)
-  !   call modes_to_planes_UVP(du3dy_planes2,du3dy_columns,vgrid,myid,status,ierr)
-
-  !   call Qcriterion(myid)  
-    
-  ! endif
 
   if(myid==0) then
     write(6,*) "=====> Record Out"
@@ -347,14 +326,14 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
     end do
 
       call stats(myid,status,ierr) 
-      call sl_stats(u1,u3,myid,status,ierr)
+      ! (u1,u3,myid,status,ierr)
       
     end if
     
     if (flagwr==1) then
       call write_spect(myid,status,ierr) 
       call write_stats(myid,status,ierr) 
-      call write_sl_stats(myid,status,ierr) 
+      ! call write_sl_stats(myid,status,ierr) 
     end if    
     
     if (flagslinst==1) then
@@ -2057,32 +2036,6 @@ subroutine record_out(u1,myid)
       deallocate(buffSR)
     end do
     close(10)
-!     !!!!!!!!!!!!!    Qcrit    !!!!!!!!!!!!!
-!     fnameima='output/Qcrit_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
-!     open(10,file=fnameima,form='unformatted')
-!     write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
-!     write(10) N
-!     write(10) yv,dthetavi,dthdyv
-!     nx = Ngal(1,2)+2
-!     nz = Ngal(2,2)
-!     !allocate(buffSR(nx,nz))
-!     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
-!       !call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
-!       write(10) j,2,nx,nz,yv(j),Qcrit(:,:,j)
-!     end do
-!     !deallocate(buffSR)
-!     do iproc = 1,np-1
-!       nx = Ngal(1,2)+2
-!       nz = Ngal(2,2)
-!       allocate(buffSR(nx,nz))
-!       do j = limPL_incw(vgrid,1,iproc),limPL_incw(vgrid,2,iproc)
-!         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,127*iproc,MPI_COMM_WORLD,status,ierr)
-!         write(10) j,2,nx,nz,yv(j),buffSR
-!       end do
-!       deallocate(buffSR)
-!     end do
-!     close(10)
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     deallocate(dummint)
   end if
 

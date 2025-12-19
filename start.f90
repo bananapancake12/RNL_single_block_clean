@@ -1426,8 +1426,8 @@ subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
   call init_stats(myid)
   ! write(6,*) "finished init_stats", myid
   
-  write(6,*) "call init_sl stats", myid
-  call init_sl_stats(myid)
+  ! write(6,*) "call init_sl stats", myid
+  ! call init_sl_stats(myid)
 
   if (myid==0) then
     write(*,*) 'Lx    ',Lx
