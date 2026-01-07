@@ -44,7 +44,9 @@ OBJDIR  = $(OBJ)
 CALCDIR = $(INIT)
 
 OBJECTS = $(OBJ)/declaration.o\
-          $(OBJ)/start.o\
+		  $(OBJ)/init_mod.o\
+		  $(OBJ)/transpose.o\
+		  $(OBJ)/start.o\
           $(OBJ)/stats.o\
           $(OBJ)/inst_sl_stats.o\
           $(OBJ)/spectra.o\
@@ -70,6 +72,15 @@ littleharsh :printmsgA $(OBJECTS)
 $(OBJDIR)/declaration.o : $(SRCDIR)/declaration.f90 $(SRCDIR)/makefile
 	@echo compiling declaration.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/declaration.f90 
+
+$(OBJDIR)/init_mod.o : $(SRCDIR)/init_mod.f90 $(OBJDIR)/declaration.o
+	@echo compiling init_mod.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(OBJDIR) $(SRCDIR)/init_mod.f90
+
+
+$(OBJDIR)/transpose.o : $(SRCDIR)/transpose.f90 $(SRCDIR)/makefile
+	@echo compiling transpose.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/transpose.f90
 
 $(OBJDIR)/start.o : $(SRCDIR)/start.f90 $(SRCDIR)/makefile
 	@echo compiling start.f90

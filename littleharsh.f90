@@ -87,19 +87,24 @@
 program littleharsh
 
   use declaration
+  use init_mod
   implicit none
 
   include 'mpif.h'                         
   integer status(MPI_STATUS_SIZE),ierr,myid 
-  ! type(cfield), allocatable:: u1(:),u2(:),u3(:),p(:),psi(:)
-  ! type(cfield), allocatable:: div(:)
-  ! type(cfield), allocatable:: Nu1(:),Nu2(:),Nu3(:)
-  ! type(cfield), allocatable:: du1(:),du2(:),du3(:)
 
-  type(cfield) :: u1, u2, u3, p, psi
+
+  ! type(cfield) :: u2, u3, p, psi
+  type(cfield) :: psi
   type(cfield) :: div
   type(cfield) :: Nu1, Nu2, Nu3
   type(cfield) :: du1, du2, du3
+
+  complex(8), allocatable :: u1(:,:), u2(:,:), u3(:,:), p(:,:)! , psi(:,:)
+  ! complex(8), allocatable :: div(:,:)
+  ! complex(8), allocatable :: Nu1(:,:), Nu2(:,:), Nu3(:,:)
+  ! complex(8), allocatable :: du1(:,:), du2(:,:), du3(:,:)
+
 
   type(rfield), allocatable :: a(:)
 
@@ -130,12 +135,12 @@ program littleharsh
     write(6,*) "=====> Finished Start"
   end if
 
-itersl=iter0
-nstatsl = nwrite
+! itersl=iter0
+! nstatsl = nwrite
 
-  allocate( u1%f ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
-  allocate( u2%f ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
-  allocate( u3%f ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
+  allocate( u1( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
+  allocate( u2( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
+  allocate( u3( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
 
   allocate( du1%f( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
   allocate( du2%f( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
@@ -145,7 +150,7 @@ nstatsl = nwrite
   allocate( Nu2%f( jlim(1,vgrid) + 1  : jlim(2,vgrid) - 1,  columns_num(myid) ) )
   allocate( Nu3%f( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
 
-  allocate( p%f  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+  allocate( p( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
   allocate( psi%f( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
   allocate( div%f( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
 
@@ -154,16 +159,18 @@ nstatsl = nwrite
   allocate( a(ugrid)%fr(3,jlim(1,ugrid):jlim(2,ugrid)) )
   allocate( a(vgrid)%fr(3,jlim(1,vgrid):jlim(2,vgrid)) )
 
-  u1%f  = 0d0
-  u2%f  = 0d0
-  u3%f  = 0d0
+  ! write(6,*) "u1", jlim(1,ugrid)    , jlim(2,ugrid)
+
+  u1  = 0d0
+  u2  = 0d0
+  u3  = 0d0
   du1%f = 0d0
   du2%f = 0d0
   du3%f = 0d0
   Nu1%f = 0d0
   Nu2%f = 0d0
   Nu3%f = 0d0
-  p%f   = 0d0
+  p   = 0d0
   psi%f = 0d0
   div%f = 0d0
   a(ugrid)%fr = 0d0

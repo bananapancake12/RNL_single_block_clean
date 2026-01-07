@@ -38,11 +38,13 @@
 ! Advective terms now calculated in conservation form
 !	Might not actually be quicker when using immersed boundaries
 
+
 subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!   NONLINEAR TERMS  !!!!!!!!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   use declaration
+  use transpose
   implicit none
 
   include 'mpif.h'             ! MPI variables
@@ -70,12 +72,12 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
     flagwr = 0
   end if
   
-  if (iter-itersl>=nstatsl .and. kRK==1) then
-    flagslinst = 1
-    itersl  = iter
-  else
-    flagslinst = 0
-  end if
+  ! if (iter-itersl>=nstatsl .and. kRK==1) then
+  !   flagslinst = 1
+  !   itersl  = iter
+  ! else
+  !   flagslinst = 0
+  ! end if
 
   if (t>=nextqt) then
     flagqwr = 1
@@ -252,9 +254,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   end if
 
   !C! Calculate y derrivatives
-    call der_yu_h(Nu1_dy%f,uv_f%f,myid)
-    call der_yv_h(Nu2_dy%f,vv_c%f,myid)
-    call der_yu_h(Nu3_dy%f,wv_f%f,myid)
+    call der_yu_h(Nu1_dy%f,uv_f,myid)
+    call der_yv_h(Nu2_dy%f,vv_c,myid)
+    call der_yu_h(Nu3_dy%f,wv_f,myid)
   
   !C! Calculate final advective term
     do column = 1,columns_num(myid)
@@ -1594,125 +1596,129 @@ subroutine phys_to_four_N(duPL)
 end subroutine
 
 
-subroutine planes_to_modes_UVP (x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES  NEW !!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine planes_to_modes_UVP (x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! !!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES  NEW !!!!!!!!!!!!!!!!!!
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Prepare the vectors for the Fourier transform
-! The procs broadcast the data they have of a plane, and receive the data of a pencil,
-!  they also transpose the data for the Fourier transform XZY -> YXZ
+! ! Prepare the vectors for the Fourier transform
+! ! The procs broadcast the data they have of a plane, and receive the data of a pencil,
+! !  they also transpose the data for the Fourier transform XZY -> YXZ
 
-  use declaration
-  implicit none
+!   use declaration
+!   implicit none
 
-  include 'mpif.h'             ! MPI variables
-  integer status(MPI_STATUS_SIZE),ierr,myid
+!   include 'mpif.h'             ! MPI variables
+!   integer status(MPI_STATUS_SIZE),ierr,myid
 
-  real :: t_start, t_end
+!   real :: t_start, t_end
 
-  integer i,k,j,jminS,jmaxS,jminR,jmaxR,grid
-  integer column
-  integer jband
-  integer inode,yourid
-  integer msizeR,msizeS
-  type(cfield) x  
-  real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
-  complex(8), allocatable:: buffS(:,:),buffR(:,:)
-  integer, intent(in) :: nygrid,nygrid_LB
+!   integer i,k,j,jminS,jmaxS,jminR,jmaxR,grid
+!   integer column
+!   integer jband
+!   integer inode,yourid
+!   integer msizeR,msizeS
+!   ! type(cfield) x 
+!   complex(8), intent(inout) :: x(:,:) 
+!   real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
+!   ! real(8), intent(inout) :: xPL(:,:,:)
+!   complex(8), allocatable:: buffS(:,:),buffR(:,:)
+!   integer, intent(in) :: nygrid,nygrid_LB
 
-  ! write(6,*) "starting self transpose"
+!   ! write(6,*) "starting self transpose"
 
-  ! Loop for itself
-  ! Transpose the cube that it already owns
+!   ! Loop for itself
+!   ! Transpose the cube that it already owns
+!   write(*,*) "rank", myid, "x bounds:", size(x,1), "cols:", size(x,2)
 
-  jminR = max(limPL_excw(grid,1,myid),jlim(1,grid)+1)  ! Select the planes to transpose 
-  jmaxR = min(limPL_excw(grid,2,myid),jlim(2,grid)-1)
-  if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then   ! Special cases: walls
-    jminR = jminR-1
-  end if
-  if (jmaxR==nygrid   .and. jmaxR>=jminR) then
-    jmaxR = jmaxR+1
-  end if
 
-  do j = jminR,jmaxR
-    do column = 1,columns_num(myid)
-      i = columns_i(column,myid)
-      k = columns_k(column,myid) - dk(column,myid)
-      x%f(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
-    end do
-  end do
+!   jminR = max(limPL_excw(grid,1,myid),jlim(1,grid)+1)  ! Select the planes to transpose 
+!   jmaxR = min(limPL_excw(grid,2,myid),jlim(2,grid)-1)
+!   if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then   ! Special cases: walls
+!     jminR = jminR-1
+!   end if
+!   if (jmaxR==nygrid   .and. jmaxR>=jminR) then
+!     jmaxR = jmaxR+1
+!   end if
 
-  !end do
+!   do j = jminR,jmaxR
+!     do column = 1,columns_num(myid)
+!       i = columns_i(column,myid)
+!       k = columns_k(column,myid) - dk(column,myid)
+!       x(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
+!     end do
+!   end do
 
-  ! write(6,*) "finished self transpose"
+!   !end do
 
-  do inode = 1,pnodes-1
-    yourid = ieor(myid,inode)   ! XOR. It's used to pair procs 1-to-1
-    if (yourid<np) then
-        jminS = max(limPL_excw(grid,1,  myid),jlim(1,grid)+1)  ! Select the planes to be SENT.
-        jmaxS = min(limPL_excw(grid,2,  myid),jlim(2,grid)-1)  ! max and min because maybe this proc needs less planes that the other proc has
-        jminR = max(limPL_excw(grid,1,yourid),jlim(1,grid)+1)  ! Select the planes to be RECEIVED
-        jmaxR = min(limPL_excw(grid,2,yourid),jlim(2,grid)-1)
+!   ! write(6,*) "finished self transpose"
 
-        ! Adding the walls =
+!   do inode = 1,pnodes-1
+!     yourid = ieor(myid,inode)   ! XOR. It's used to pair procs 1-to-1
+!     if (yourid<np) then
+!         jminS = max(limPL_excw(grid,1,  myid),jlim(1,grid)+1)  ! Select the planes to be SENT.
+!         jmaxS = min(limPL_excw(grid,2,  myid),jlim(2,grid)-1)  ! max and min because maybe this proc needs less planes that the other proc has
+!         jminR = max(limPL_excw(grid,1,yourid),jlim(1,grid)+1)  ! Select the planes to be RECEIVED
+!         jmaxR = min(limPL_excw(grid,2,yourid),jlim(2,grid)-1)
 
-        if (jminS==nygrid_LB+1  ) then
-          jminS=jminS-1
-        end if
-        if (jmaxS==nygrid) then
-          jmaxS=jmaxS+1
-        end if
-        if (jminR==nygrid_LB+1  ) then
-          jminR=jminR-1
-        end if
-        if (jmaxR==nygrid) then
-          jmaxR=jmaxR+1
-        end if
-        allocate(buffS(jminS:jmaxS,columns_num(yourid)))
-        allocate(buffR(jminR:jmaxR,columns_num(  myid)))
+!         ! Adding the walls =
 
-        ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
-        !   write(6,*) "buffs", size(buffS,1), size(buffS,2)
-        ! end if 
+!         if (jminS==nygrid_LB+1  ) then
+!           jminS=jminS-1
+!         end if
+!         if (jmaxS==nygrid) then
+!           jmaxS=jmaxS+1
+!         end if
+!         if (jminR==nygrid_LB+1  ) then
+!           jminR=jminR-1
+!         end if
+!         if (jmaxR==nygrid) then
+!           jmaxR=jmaxR+1
+!         end if
+!         allocate(buffS(jminS:jmaxS,columns_num(yourid)))
+!         allocate(buffR(jminR:jmaxR,columns_num(  myid)))
 
-        msizeS = 2*(columns_num(yourid)*(jmaxS-jminS+1))     ! Size of the data to be SENDER (times 2, because it is complex)
-        msizeR = 2*(columns_num(  myid)*(jmaxR-jminR+1))     ! Size of the data to be RECEIVED
-        msizeS = max(msizeS,0)                                     ! The size has to be 0 or positive. 
-        msizeR = max(msizeR,0)
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        do j=jminS,jmaxS
-          do column = 1,columns_num(yourid)
-            i = columns_i(column,yourid)
-            k = columns_k(column,yourid) - dk(column,yourid)
-            buffS(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j))     ! The data is transposed and stored in a buffer
-          end do
-        end do
+!         ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
+!         !   write(6,*) "buffs", size(buffS,1), size(buffS,2)
+!         ! end if 
 
-        ! call cpu_time(t_start)
+!         msizeS = 2*(columns_num(yourid)*(jmaxS-jminS+1))     ! Size of the data to be SENDER (times 2, because it is complex)
+!         msizeR = 2*(columns_num(  myid)*(jmaxR-jminR+1))     ! Size of the data to be RECEIVED
+!         msizeS = max(msizeS,0)                                     ! The size has to be 0 or positive. 
+!         msizeR = max(msizeR,0)
+!         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!         do j=jminS,jmaxS
+!           do column = 1,columns_num(yourid)
+!             i = columns_i(column,yourid)
+!             k = columns_k(column,yourid) - dk(column,yourid)
+!             buffS(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j))     ! The data is transposed and stored in a buffer
+!           end do
+!         end do
+
+!         ! call cpu_time(t_start)
         
-        call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &   ! SEND_RECV so it can send and receive at the same time
-&                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
-&                         MPI_COMM_WORLD,status,ierr)
+!         call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &   ! SEND_RECV so it can send and receive at the same time
+! &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
+! &                         MPI_COMM_WORLD,status,ierr)
 
-        ! call cpu_time(t_end)
+!         ! call cpu_time(t_end)
 
-        ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
-        !   write(6,*) "cpu time", t_start, t_end
-        ! end if
+!         ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
+!         !   write(6,*) "cpu time", t_start, t_end
+!         ! end if
 
-        do j=jminR,jmaxR
-          do column = 1,columns_num(myid)
-            x%f(j,column) = buffR(j,column)                         ! Store the data received
-          end do
-        end do
-        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        deallocate(buffR,buffS)
-      ! end do
-    end if
-  end do
+!         do j=jminR,jmaxR
+!           do column = 1,columns_num(myid)
+!             x(j,column) = buffR(j,column)                         ! Store the data received
+!           end do
+!         end do
+!         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!         deallocate(buffR,buffS)
+!       ! end do
+!     end if
+!   end do
 
-end subroutine
+! end subroutine
 
 ! subroutine planes_to_modes_phys_lims (x,xPL,nystart,nyend,grid,myid,status,ierr)
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1909,7 +1915,8 @@ subroutine record_out(u1,myid)
   real(8) Uslip  
 
   ! Rebuilding N 
-  allocate(N(4,0:4))
+  if (.not. allocated(N)) allocate(N(4,0:4))
+  
 
   N= 0 
   N(1,1:3) = Nspec_x
@@ -1918,10 +1925,12 @@ subroutine record_out(u1,myid)
   N(3,3) = nyv
   N(4,3) = nyu
 
-  write(6,*) "N:"
-  do i = 1,4
-    write(6,*) N(i,0:4)
-  end do
+  if (myid == 0) then
+    write(6,*) "N:"
+    do i = 1,4
+      write(6,*) N(i,0:4)
+    end do
+  end if 
 
   if (myid/=0) then
     nx = Nspec_x+2

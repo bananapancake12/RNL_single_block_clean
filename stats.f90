@@ -412,20 +412,6 @@ subroutine write_stats(myid,status,ierr)
    wx2m  = 0d0
    istat = 0
 
-   UmC   = 0d0
-   U2mC  = 0d0
-   VmC   = 0d0
-   V2mC  = 0d0
-   WmC   = 0d0
-   W2mC  = 0d0
-   PmC   = 0d0
-   P2mC  = 0d0
-   UVmC  = 0d0
-   UWmC  = 0d0
-   VWmC  = 0d0
-   wxmC  = 0d0
-   wx2mC = 0d0
-
 
 end subroutine
 

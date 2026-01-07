@@ -12,7 +12,7 @@ module declaration
   integer, parameter :: pgrid = 3 ! centres not including ghost points: p
 
 
-  ! NEW AND CHANGED VARIABLES
+  ! NEW AND CHANGED VARIABLES (no more N and Ngal)
   
   integer :: Ngal_x, Ngal_z
   integer :: Nspec_x, Nspec_z
@@ -23,21 +23,14 @@ module declaration
 
   integer bandit(3)
   integer np,pnodes
-  integer,pointer:: procs(:),procs_b(:),procs_c(:)
-  integer,pointer:: N(:,:),Ngal(:,:),Ny(:,:)
-  ! integer,pointer:: jlim(:,:,:) ! Change name ffs
-  integer,pointer:: planelim(:,:,:)
-  integer,pointer:: limPL_incw(:,:,:),limPL_excw(:,:,:)
-  integer,pointer:: limPL_FFT(:,:,:)
-  integer,pointer:: bandPL(:)
-  integer,pointer:: bandPL_FFT(:)
-  integer           jgal(3,2),igal,kgal !TODO get rid of jgal
-  ! integer,pointer:: dk(:,:,:,:)
-  ! integer,pointer:: columns_i(:,:,:)
-  ! integer,pointer:: columns_k(:,:,:)
-  ! integer,pointer:: columns_num(:,:)
-  ! integer,pointer:: dk_phys(:,:,:,:)
-
+  integer,allocatable:: procs(:)
+  integer,allocatable:: N(:,:),Ngal(:,:),Ny(:,:)
+  integer,allocatable:: planelim(:,:,:)
+  integer,allocatable:: limPL_incw(:,:,:),limPL_excw(:,:,:)
+  integer,allocatable:: limPL_FFT(:,:,:)
+  integer,allocatable:: bandPL(:)
+  integer,allocatable:: bandPL_FFT(:)
+  integer            :: jgal(3,2),igal,kgal 
   integer, allocatable :: columns_num(:)
   integer, allocatable :: columns_i(:,:)
   integer, allocatable :: columns_k(:,:)
@@ -46,37 +39,22 @@ module declaration
   integer, allocatable :: dk_phys(:,:)
 
   integer(8), allocatable :: weight(:)
-  
-  
-  integer, pointer:: planeBC(:,:)
+
     
   integer physlim_bot
   integer physlim_top
   
   integer nn
-  integer iter,iter0,nwrite,iwrite,itersl,nstatsl
+  integer iter,iter0,nwrite,iwrite !itersl,nstatsl
   integer nstat,istat
-  integer nstat_sl,istat_sl
   integer flag_init,flag_ctpress
   real(8) nextqt
   integer geometry_type
   integer kRK
   real(8) t,dt,CFL,maxt,dtv,dtc,dti,Re
-
-  ! integer nribs,npeak !TODO remove
-  ! integer dnx,dnz
-  ! integer ntilex,ntilez
-  ! integer npeakx,npeakz
-  ! real(8) Lfracx,Lfracz
-  ! real(8) posth
-  ! real(8) post_spacing
-  real(8) bslpu1,bslpu3
-  
   real(8) gridweighting_bc_u1,gridweighting_bc_u3
-  
   real(8) alp,bet             ! Wavelengths
   real(8) Lx,Ly,Lz            ! Size of the computational box
-  real(8),pointer:: h_ny(:)
   real(8) Kib
 
   ! Grid
@@ -89,24 +67,7 @@ module declaration
   integer ppp
   real(8) dyq
 
-  ! ! Variables in planes
-  ! real(8),pointer::  u1PL(:,:,:), u2PL(:,:,:), u3PL(:,:,:)
-  ! real(8),pointer::  u1PL_itp(:,:,:), u2PL_itp(:,:,:), u3PL_itp(:,:,:)
-  ! real(8), allocatable :: Nu1PL(:,:,:),Nu2PL(:,:,:),Nu3PL(:,:,:)
-  ! real(8),pointer:: du1PL(:,:,:),du2PL(:,:,:),du3PL(:,:,:)
-  ! real(8),pointer::    wx(:,:,:), ppPL(:,:,:)
-  
-  ! real(8),pointer:: Qcrit(:,:,:)
-
-  ! real(8),pointer::  u1PLN(:,:,:), u2PLN(:,:,:), u3PLN(:,:,:), ppPLN(:,:,:)
-  ! real(8),pointer::  u1PL_itpN(:,:,:), u2PL_itpN(:,:,:), u3PL_itpN(:,:,:)
-
-  ! ! Cross products in planes
-  ! real(8),pointer::  uu_cPL (:,:,:), uv_fPL (:,:,:), uw_cPL (:,:,:)
-  ! real(8),pointer::  vu_fPL (:,:,:), vv_cPL (:,:,:), vw_fPL (:,:,:)
-  ! real(8),pointer::  wu_cPL (:,:,:), wv_fPL (:,:,:), ww_cPL (:,:,:)
-  ! real(8),pointer:: Nu1PL_dy(:,:,:),Nu2PL_dy(:,:,:),Nu3PL_dy(:,:,:)
-
+  ! Variables in planes
   real(8), allocatable :: u1PL(:,:,:), u2PL(:,:,:), u3PL(:,:,:)
   real(8), allocatable :: u1PL_itp(:,:,:), u2PL_itp(:,:,:), u3PL_itp(:,:,:)
   real(8), allocatable :: Nu1PL(:,:,:), Nu2PL(:,:,:), Nu3PL(:,:,:)
@@ -128,16 +89,18 @@ module declaration
   real(8),pointer::  spU(:,:), spV(:,:), spW(:,:)
   real(8),pointer:: spUV(:,:), spP(:,:)
 
-  ! Statistics. Mean and conditional statistics
-  real(8),pointer:: Um(:),U2m(:),UmC(:,:,:),U2mC(:,:,:)
-  real(8),pointer:: Vm(:),V2m(:),VmC(:,:,:),V2mC(:,:,:)
-  real(8),pointer:: Wm(:),W2m(:),WmC(:,:,:),W2mC(:,:,:)
-  real(8),pointer:: Pm(:),P2m(:),PmC(:,:,:),P2mC(:,:,:)
-  real(8),pointer:: UVm(:),UVmC(:,:,:)
-  real(8),pointer:: UWm(:),UWmC(:,:,:)
-  real(8),pointer:: VWm(:),VWmC(:,:,:)
-  real(8),pointer:: wxm(:),wx2m(:),wxmC(:,:,:),wx2mC(:,:,:)
-  integer,pointer:: indkor(:),indior(:)
+  ! Statistics. Mean statistics
+  real(8), allocatable :: Um(:), U2m(:)
+  real(8), allocatable :: Vm(:), V2m(:)
+  real(8), allocatable :: Wm(:), W2m(:)
+  real(8), allocatable :: Pm(:), P2m(:)
+
+  real(8), allocatable :: UVm(:)
+  real(8), allocatable :: UWm(:)
+  real(8), allocatable :: VWm(:)
+
+  real(8), allocatable :: wxm(:), wx2m(:)
+
 
   real(8),pointer:: u11(:)
   
@@ -177,12 +140,6 @@ module declaration
     real(8),pointer:: fr(:,:)
   end type rfield
 
-
-  ! type(array), pointer:: buffR_x(:)
-  ! type(array), pointer:: buffRal_x(:)
-  ! type(array), pointer:: buffC_z(:)
-  ! type(array), pointer:: buffCal_z(:)
-
   type(array) :: buffR_x
   type(array) :: buffC_z
   type(array) :: buffRal_x
@@ -198,7 +155,8 @@ module declaration
   type(cfield) :: Nu1_dy,Nu2_dy,Nu3_dy
 
   ! type(cfield), allocatable:: uv_f(:), wv_f(:), vv_c(:)
-  type(cfield) :: uv_f, wv_f, vv_c
+  ! type(cfield) :: uv_f, wv_f, vv_c
+  complex(8), allocatable :: uv_f(:,:), wv_f(:,:), vv_c(:,:)
 
   
   ! Omega x

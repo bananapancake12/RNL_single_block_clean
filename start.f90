@@ -47,6 +47,178 @@
 !
 ! *************************************************************************************************************** !
 
+! module init_mod
+!   use declaration
+!   use transpose
+!   implicit none
+! contains
+
+!   subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   !!!!!!!!!!!!!!!!!!!!!!!     GETINI  NEW   !!!!!!!!!!!!!!!!!!!!
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!   ! Grab the initial condition and initialize some variables
+
+!     use declaration
+
+!     implicit none
+
+!     include 'mpif.h'                                  ! MPI variables
+!     integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
+!     ! type(cfield)  u1,u2,u3
+!     ! type(cfield)  p 
+!     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:), p(:,:)
+!     type(cfield)  div
+
+!     write(*,*) "call shape(u1)=", shape(u1), "lb=", lbound(u1), "ub=", ubound(u1)
+
+
+!     if (myid==0) then
+!       write(*,*) 'Launching...'
+!     end if
+
+!     if (flag_init==1) then       ! Initial conditions borrowed from another 
+!       if (myid==0) then
+!         write(*,*) 'starting from multi-block, flat channel?'
+!         write(*,*) 'start file: ',trim(dirin)//trim(fnameimb)
+!       end if
+!       call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
+!       if (myid==0) then
+!         call flowrateIm(Qx,u1(nyu_LB,1))        !check why flowrate used midband ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+!         !write(6,*) "flowrateIm", Qx
+!         if (flag_ctpress/=1) then
+!           QxT = Qx
+!         end if
+!       end if
+!       iter0 = 0
+!       mpgz  = 0d0
+!       t     = 0d0
+!     else if (flag_init==2) then  ! Continuing simulation
+!       if (myid==0) then
+!         write(*,*) 'continuing simulation'
+!         write(*,*) 'start file:',fnameimb
+!       end if
+!       call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
+!       if (myid==0) then
+!         call flowrateIm(Qx,u1(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+!         ! TODO change this condition for 'flag_ctpress == 0'
+!         if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
+!           QxT = Qx
+!         end if
+!       end if
+!       mpgz = 0d0
+!     else if (flag_init==3) then  ! Parabolic profile
+!       if (myid==0) then
+!         write(*,*) 'parabolic profile'
+!       end if
+!       call mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
+!       if (myid==0) then
+!         call flowrateIm(Qx,u1(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+!         ! TODO change this condition for 'flag_ctpress == 0'
+!         if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
+!           QxT = Qx
+!         end if
+!       end if
+!       iter0 = 0
+!       mpgz  = 0d0
+!       t     = 0d0
+!     else 
+!       write(*,*) 'INITIAL CONDITIONS NOT IMPLEMENTED YET'
+!       call MPI_FINALIZE(ierr)
+!       stop
+!     end if
+
+!     ! write(6,*) "check1 ", myid
+
+!     ! Broadcast the time step and time.
+!     ! If it's initialized from a previous simulation this value is already known, otherwise it's set to 0
+!     call MPI_BCAST(iter0,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
+!     call MPI_BCAST(t    ,1,MPI_REAL8  ,0,MPI_COMM_WORLD,ierr)
+!     iter   = iter0
+!     !  iter0=iter-nstat
+!     iwrite = iter
+
+!     ! 'Probably' this is used to initialize the divergence in the case of a new simulation
+!     ! write(6,*) "call divergence ", myid
+!     call divergence(div%f,u1,u2,u3,myid)
+
+!     ! write(6,*) "call init stats", myid
+!     call init_stats(myid)
+!     ! write(6,*) "finished init_stats", myid
+    
+!     ! write(6,*) "call init_sl stats", myid
+!     ! call init_sl_stats(myid)
+
+!     if (myid==0) then
+!       write(*,*) 'Lx    ',Lx
+!       write(*,*) 'Ly    ',Ly
+!       write(*,*) 'Lz    ',Lz
+!       write(*,*) 'Nx    ',Nspec_x
+!       write(*,*) 'Nz    ',Nspec_z
+!       write(*,*) 'Nyv   ',Nyv
+!       write(*,*) 'Nyu   ',nyu
+!       write(*,*) 'Ngalx ',Ngal_x
+!       write(*,*) 'Ngalz ',Ngal_z
+!       write(*,*) ''
+!       write(*,*) 'dymin ',yu(1)-yu(0)
+!       write(*,*) 'dymax ',yu((nyu+1)/2+1)-yu((nyu+1)/2)
+!       write(*,*) ''
+!       write(*,*) 'Re ',Re
+!       write(*,*) 't  ',t
+!     end if
+
+!   end subroutine
+
+!   subroutine mblock_ini(u1,u2,u3,p,myid,status,ierr)
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   !!!!!!!!!!!!!!!!!!!!!!!!   MBLOCK INI   !!!!!!!!!!!!!!!!!!!!!!!
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!     use declaration
+!     use transpose
+!     implicit none
+
+!     include 'mpif.h'                                  ! MPI variables
+!     integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
+
+!     integer j,i,k,column
+!     ! real(8) sigmaz,z,sigmax,x,fact
+!     complex(8), intent(inout) :: u1(:,:), u2(:,:), u3(:,:), p(:,:)
+
+!     u1PL = 0d0
+!     u2PL = 0d0
+!     u3PL = 0d0
+!     ppPL = 0d0
+
+!     write(*,*) "shape(u1)=", shape(u1), "lb=", lbound(u1), "ub=", ubound(u1)
+
+
+
+!     u1 = 0d0
+!     u2 = 0d0
+!     u3 = 0d0
+!     p = 0d0
+
+!     write(6,*) " Calling read in"
+!     call read_in(myid)
+    
+!     ! write(6,*) " start planes to modes"
+!     call planes_to_modes_UVP(u1,u1PL,2,nyu,nyu_LB,myid,status,ierr)
+!     call planes_to_modes_UVP(u2,u2PL,1,nyv,nyv_LB,myid,status,ierr)
+!     call planes_to_modes_UVP(u3,u3PL,2,nyu,nyu_LB,myid,status,ierr)
+!     call planes_to_modes_UVP(p ,ppPL,3,nyp,nyp_LB,myid,status,ierr)
+!     ! write(6,*) " finished pplanes to modes"
+
+!     ! if(myid ==0) then 
+!     !   do j= 1, 22
+!     !     write(6,*) p%f(j,1)
+!     !   end do
+!     ! end if 
+
+!   end subroutine
+! end module init_mod
+
 
 subroutine start(myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -54,6 +226,7 @@ subroutine start(myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   use declaration
+  use init_mod
   implicit none
 
   include 'mpif.h'            ! MPI variables
@@ -219,8 +392,8 @@ subroutine start(myid,status,ierr)
     read(40,20) !npeakz        ! number of points representing the blade tip
     read(40,10) !Lfracx        ! number of points representing the blade tip
     read(40,10) !Lfracz        ! number of points representing the blade tip
-    read(40,10) bslpu1        ! number of points representing the blade tip
-    read(40,10) bslpu3        ! number of points representing the blade tip
+    read(40,10) !bslpu1        ! number of points representing the blade tip
+    read(40,10) !bslpu3        ! number of points representing the blade tip
     
   
     read(40,10)               ! - Blank
@@ -600,9 +773,9 @@ end if
   allocate( Nu2_dy%f( jlim(1,vgrid)+1:jlim(2,vgrid)-1, columns_num(myid) ) )
   allocate( Nu3_dy%f( jlim(1,ugrid)+1:jlim(2,ugrid)-1, columns_num(myid) ) )
 
-  allocate( uv_f%f ( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
-  allocate( vv_c%f ( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) ) )
-  allocate( wv_f%f ( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
+  allocate( uv_f ( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
+  allocate( vv_c ( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) ) )
+  allocate( wv_f ( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
 
   allocate( DG%f_dg( 3, jlim(1,pgrid):jlim(2,pgrid), columns_num(myid) ) )
 
@@ -619,9 +792,9 @@ end if
   Nu2_dy%f        = 0d0
   Nu3_dy%f        = 0d0
 
-  uv_f%f          = 0d0
-  wv_f%f          = 0d0
-  vv_c%f          = 0d0
+  uv_f          = 0d0
+  wv_f          = 0d0
+  vv_c          = 0d0
 
   DG%f_dg         = 0d0
 
@@ -1337,161 +1510,167 @@ end subroutine
 
 
 
-subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!     GETINI  NEW   !!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! !!!!!!!!!!!!!!!!!!!!!!!     GETINI  NEW   !!!!!!!!!!!!!!!!!!!!
+! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Grab the initial condition and initialize some variables
+! ! Grab the initial condition and initialize some variables
 
-  use declaration
-  implicit none
+!   use declaration
+!   use init_mod
 
-  include 'mpif.h'                                  ! MPI variables
-  integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
-  type(cfield)  u1,u2,u3
-  type(cfield)  p 
-  type(cfield)  div
+!   implicit none
 
-  if (myid==0) then
-    write(*,*) 'Launching...'
-  end if
+!   include 'mpif.h'                                  ! MPI variables
+!   integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
+!   ! type(cfield)  u1,u2,u3
+!   ! type(cfield)  p 
+!   complex(8), intent(inout) :: u1(:,:), u2(:,:), u3(:,:), p(:,:)
+!   type(cfield)  div
 
-  if (flag_init==1) then       ! Initial conditions borrowed from another 
-    if (myid==0) then
-      write(*,*) 'starting from multi-block, flat channel?'
-      write(*,*) 'start file: ',trim(dirin)//trim(fnameimb)
-    end if
-    call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
-    if (myid==0) then
-      call flowrateIm(Qx,u1%f(nyu_LB,1))        !check why flowrate used midband ! Column 1 of proc 0 is mode (0,1) [the meeeean]
-      !write(6,*) "flowrateIm", Qx
-      if (flag_ctpress/=1) then
-        QxT = Qx
-      end if
-    end if
-    iter0 = 0
-    mpgz  = 0d0
-    t     = 0d0
-  else if (flag_init==2) then  ! Continuing simulation
-    if (myid==0) then
-      write(*,*) 'continuing simulation'
-      write(*,*) 'start file:',fnameimb
-    end if
-    call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
-    if (myid==0) then
-      call flowrateIm(Qx,u1%f(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
-      ! TODO change this condition for 'flag_ctpress == 0'
-      if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
-        QxT = Qx
-      end if
-    end if
-    mpgz = 0d0
-  else if (flag_init==3) then  ! Parabolic profile
-    if (myid==0) then
-      write(*,*) 'parabolic profile'
-    end if
-    call mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
-    if (myid==0) then
-      call flowrateIm(Qx,u1%f(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
-      ! TODO change this condition for 'flag_ctpress == 0'
-      if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
-        QxT = Qx
-      end if
-    end if
-    iter0 = 0
-    mpgz  = 0d0
-    t     = 0d0
-  else 
-    write(*,*) 'INITIAL CONDITIONS NOT IMPLEMENTED YET'
-    call MPI_FINALIZE(ierr)
-    stop
-  end if
+!   write(*,*) "call shape(u1)=", shape(u1), "lb=", lbound(u1), "ub=", ubound(u1)
 
-  ! write(6,*) "check1 ", myid
 
-  ! Broadcast the time step and time.
-  ! If it's initialized from a previous simulation this value is already known, otherwise it's set to 0
-  call MPI_BCAST(iter0,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
-  call MPI_BCAST(t    ,1,MPI_REAL8  ,0,MPI_COMM_WORLD,ierr)
-  iter   = iter0
-  !  iter0=iter-nstat
-  iwrite = iter
+!   if (myid==0) then
+!     write(*,*) 'Launching...'
+!   end if
 
-  ! 'Probably' this is used to initialize the divergence in the case of a new simulation
-  ! write(6,*) "call divergence ", myid
-  call divergence(div%f,u1%f,u2%f,u3%f,myid)
+!   if (flag_init==1) then       ! Initial conditions borrowed from another 
+!     if (myid==0) then
+!       write(*,*) 'starting from multi-block, flat channel?'
+!       write(*,*) 'start file: ',trim(dirin)//trim(fnameimb)
+!     end if
+!     call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
+!     if (myid==0) then
+!       call flowrateIm(Qx,u1(nyu_LB,1))        !check why flowrate used midband ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+!       !write(6,*) "flowrateIm", Qx
+!       if (flag_ctpress/=1) then
+!         QxT = Qx
+!       end if
+!     end if
+!     iter0 = 0
+!     mpgz  = 0d0
+!     t     = 0d0
+!   else if (flag_init==2) then  ! Continuing simulation
+!     if (myid==0) then
+!       write(*,*) 'continuing simulation'
+!       write(*,*) 'start file:',fnameimb
+!     end if
+!     call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
+!     if (myid==0) then
+!       call flowrateIm(Qx,u1(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+!       ! TODO change this condition for 'flag_ctpress == 0'
+!       if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
+!         QxT = Qx
+!       end if
+!     end if
+!     mpgz = 0d0
+!   else if (flag_init==3) then  ! Parabolic profile
+!     if (myid==0) then
+!       write(*,*) 'parabolic profile'
+!     end if
+!     call mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
+!     if (myid==0) then
+!       call flowrateIm(Qx,u1(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+!       ! TODO change this condition for 'flag_ctpress == 0'
+!       if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
+!         QxT = Qx
+!       end if
+!     end if
+!     iter0 = 0
+!     mpgz  = 0d0
+!     t     = 0d0
+!   else 
+!     write(*,*) 'INITIAL CONDITIONS NOT IMPLEMENTED YET'
+!     call MPI_FINALIZE(ierr)
+!     stop
+!   end if
 
-  ! write(6,*) "call init stats", myid
-  call init_stats(myid)
-  ! write(6,*) "finished init_stats", myid
+!   ! write(6,*) "check1 ", myid
+
+!   ! Broadcast the time step and time.
+!   ! If it's initialized from a previous simulation this value is already known, otherwise it's set to 0
+!   call MPI_BCAST(iter0,1,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
+!   call MPI_BCAST(t    ,1,MPI_REAL8  ,0,MPI_COMM_WORLD,ierr)
+!   iter   = iter0
+!   !  iter0=iter-nstat
+!   iwrite = iter
+
+!   ! 'Probably' this is used to initialize the divergence in the case of a new simulation
+!   ! write(6,*) "call divergence ", myid
+!   call divergence(div%f,u1,u2,u3,myid)
+
+!   ! write(6,*) "call init stats", myid
+!   call init_stats(myid)
+!   ! write(6,*) "finished init_stats", myid
   
-  ! write(6,*) "call init_sl stats", myid
-  ! call init_sl_stats(myid)
+!   ! write(6,*) "call init_sl stats", myid
+!   ! call init_sl_stats(myid)
 
-  if (myid==0) then
-    write(*,*) 'Lx    ',Lx
-    write(*,*) 'Ly    ',Ly
-    write(*,*) 'Lz    ',Lz
-    write(*,*) 'Nx    ',Nspec_x
-    write(*,*) 'Nz    ',Nspec_z
-    write(*,*) 'Nyv   ',Nyv
-    write(*,*) 'Nyu   ',nyu
-    write(*,*) 'Ngalx ',Ngal_x
-    write(*,*) 'Ngalz ',Ngal_z
-    write(*,*) ''
-    write(*,*) 'dymin ',yu(1)-yu(0)
-    write(*,*) 'dymax ',yu((nyu+1)/2+1)-yu((nyu+1)/2)
-    write(*,*) ''
-    write(*,*) 'Re ',Re
-    write(*,*) 't  ',t
-  end if
+!   if (myid==0) then
+!     write(*,*) 'Lx    ',Lx
+!     write(*,*) 'Ly    ',Ly
+!     write(*,*) 'Lz    ',Lz
+!     write(*,*) 'Nx    ',Nspec_x
+!     write(*,*) 'Nz    ',Nspec_z
+!     write(*,*) 'Nyv   ',Nyv
+!     write(*,*) 'Nyu   ',nyu
+!     write(*,*) 'Ngalx ',Ngal_x
+!     write(*,*) 'Ngalz ',Ngal_z
+!     write(*,*) ''
+!     write(*,*) 'dymin ',yu(1)-yu(0)
+!     write(*,*) 'dymax ',yu((nyu+1)/2+1)-yu((nyu+1)/2)
+!     write(*,*) ''
+!     write(*,*) 'Re ',Re
+!     write(*,*) 't  ',t
+!   end if
 
-end subroutine
+! end subroutine
 
 
-subroutine mblock_ini(u1,u2,u3,p,myid,status,ierr)
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!   MBLOCK INI   !!!!!!!!!!!!!!!!!!!!!!!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   subroutine mblock_ini(u1,u2,u3,p,myid,status,ierr)
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!   !!!!!!!!!!!!!!!!!!!!!!!!   MBLOCK INI   !!!!!!!!!!!!!!!!!!!!!!!
+!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  use declaration
-  implicit none
+!     use declaration
+!     implicit none
 
-  include 'mpif.h'                                  ! MPI variables
-  integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
+!     include 'mpif.h'                                  ! MPI variables
+!     integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
 
-  integer j,i,k,column
-  ! real(8) sigmaz,z,sigmax,x,fact
-  type(cfield) u1,u2,u3,p
+!     integer j,i,k,column
+!     ! real(8) sigmaz,z,sigmax,x,fact
+!     complex(8), intent(inout) :: u1(:,:), u2(:,:), u3(:,:), p(:,:)
 
-  u1PL = 0d0
-  u2PL = 0d0
-  u3PL = 0d0
-  ppPL = 0d0
+!     u1PL = 0d0
+!     u2PL = 0d0
+!     u3PL = 0d0
+!     ! ppPL = 0d0
 
-  u1%f = 0d0
-  u2%f = 0d0
-  u3%f = 0d0
-  p%f = 0d0
+!     u1 = 0d0
+!     u2 = 0d0
+!     u3 = 0d0
+!     p = 0d0
 
-  write(6,*) " Calling read in"
-  call read_in(myid)
-   
-  ! write(6,*) " start planes to modes"
-  call planes_to_modes_UVP(u1,u1PL,2,nyu,nyu_LB,myid,status,ierr)
-  call planes_to_modes_UVP(u2,u2PL,1,nyv,nyv_LB,myid,status,ierr)
-  call planes_to_modes_UVP(u3,u3PL,2,nyu,nyu_LB,myid,status,ierr)
-  call planes_to_modes_UVP(p ,ppPL,3,nyp,nyp_LB,myid,status,ierr)
-  ! write(6,*) " finished pplanes to modes"
+!     write(6,*) " Calling read in"
+!     call read_in(myid)
 
-  ! if(myid ==0) then 
-  !   do j= 1, 22
-  !     write(6,*) p%f(j,1)
-  !   end do
-  ! end if 
+!     ! write(6,*) " start planes to modes"
+!     call planes_to_modes_UVP(u1,u1PL,2,nyu,nyu_LB,myid,status,ierr)
+!     call planes_to_modes_UVP(u2,u2PL,1,nyv,nyv_LB,myid,status,ierr)
+!     call planes_to_modes_UVP(u3,u3PL,2,nyu,nyu_LB,myid,status,ierr)
+!     call planes_to_modes_UVP(p ,ppPL,3,nyp,nyp_LB,myid,status,ierr)
+!     ! write(6,*) " finished pplanes to modes"
 
-end subroutine
+!     ! if(myid ==0) then 
+!     !   do j= 1, 22
+!     !     write(6,*) p%f(j,1)
+!     !   end do
+!     ! end if 
+
+!   end subroutine
 
 
 subroutine mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)
@@ -1502,6 +1681,7 @@ subroutine mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)
 ! TODO Needs to be checked
 
   use declaration
+  ! use transpose
   implicit none
 
   include 'mpif.h'                                  ! MPI variables
@@ -1519,118 +1699,120 @@ subroutine mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)
   u3PL = 0d0
   ppPL = 0d0
 
-  u1%f = 0d0
-  u2%f = 0d0
-  u3%f = 0d0
-  p %f = 0d0
+  ! uncomment, remove
+
+  ! u1%f = 0d0
+  ! u2%f = 0d0
+  ! u3%f = 0d0
+  ! p %f = 0d0
 
 
-  ! Function to create parabolic profile
-  allocate(nxxu(nyu_LB:nyu+1),nzzu(nyu_LB:nyu+1))
-  allocate(nxxv(nyv_LB:nyv+1),nzzv(nyv_LB:nyv+1))
-  nxxu(nyu_LB)=N(1,1)+2
-  nzzu(nyu_LB)=N(2,1)
-  nxxv(nyv_LB)=N(1,1)+2
-  nzzv(nyv_LB)=N(2,1)
-  do iband=1,3
-    do j=N(4,iband-1)+1,N(4,iband)
-      nxxu(j)=N(1,iband)+2
-      nzzu(j)=N(2,iband)
-    end do
-    do j=N(3,iband-1)+1,N(3,iband)
-      nxxv(j)=N(1,iband)+2
-      nzzv(j)=N(2,iband)
-    end do
-  end do
-  nxxv(nyv+1)=Nspec_x+2
-  nzzv(nyv+1)=Nspec_z
-  nxxu(nyu+1)=Nspec_x+2
-  nzzu(nyu+1)=Nspec_z
-  if (myid==0) then
-   ju1=jgal(2,1)-1
-   ju2=jgal(2,2)
-   ju1=max(ju1,nyu_LB)
-  else
-   ju1=jgal(2,1)
-   ju2=jgal(2,2)
-   if (jgal(2,2)==nyu) then
-     ju2=jgal(2,2)+1
-   end if
-   ju1=max(ju1,nyu_LB)
-   ju2=min(ju2,nyu+1)
-  end if
-  if (myid==0) then
-   jv1=jgal(1,1)-1
-   jv2=jgal(1,2)
-   jv1=max(jv1,nyv_LB)
-  else
-   jv1=jgal(1,1)
-   jv2=jgal(1,2)
-   if (jgal(1,2)==nyv) then
-     jv2=jgal(1,2)+1
-   end if
-   jv1=max(jv1,nyv_LB)
-   jv2=min(jv2,nyv+1)
-  end if
-  if (myid==0) then
-   jp1=jgal(3,1)-1
-   jp2=jgal(3,2)
-   jp1=max(jp1,nyu_LB+1)
-  else
-   jp1=jgal(3,1)
-   jp2=jgal(3,2)
-   if (jgal(3,2)==nyu-1) then
-     jp2=jgal(3,2)+1
-   end if
-   jp1=max(jp1,nyu_LB+1)
-   jp2=min(jp2,nyu+1-1)
-  end if
-  !!!!!!!!!!!!!!    u1    !!!!!!!!!!!!!!
-  do j=ju1,ju2
-    nx=nxxu(j)
-    nz=nzzu(j)
-    allocate(buffSR(nx,nz))
-    buffSR     =0d0
-    buffSR(1,1)=(0.5d0)*Re*mpgx*(yu(j)**2-1)                    ! Parabolic profile: 1/2*Re*dp/dx*(y^2-1) (Reynolds bulk)
-    call buff_to_u(u1PL(1,1,j),buffSR,nx,nz,igal,kgal)
-    deallocate(buffSR)
-  end do
-  !!!!!!!!!!!!!!    u2    !!!!!!!!!!!!!!
-  do j=jv1,jv2
-    nx=nxxv(j)
-    nz=nzzv(j)
-    allocate(buffSR(nx,nz))
-    buffSR     =0
-    buffSR(1,1)=1e-6                                          ! Some noise
-    call buff_to_u(u2PL(1,1,j),buffSR,nx,nz,igal,kgal)
-    deallocate(buffSR)
-  end do
-  !!!!!!!!!!!!!!    u3    !!!!!!!!!!!!!!
-  do j=ju1,ju2
-    nx=nxxu(j)
-    nz=nzzu(j)
-    allocate(buffSR(nx,nz))
-    buffSR     =0d0
-    buffSR(1,1)=1e-5                                          ! Some noise 
-    call buff_to_u(u3PL(1,1,j),buffSR,nx,nz,igal,kgal)
-    deallocate(buffSR)
-  end do
-  !!!!!!!!!!!!!!    p     !!!!!!!!!!!!!!
-  do j=jp1,jp2
-    nx=nxxu(j)
-    nz=nzzu(j)
-    allocate(buffSR(nx,nz))
-    buffSR     =0d0
-    buffSR(1,1)=1d0                                           ! Some noise 
-    call buff_to_u(ppPL(1,1,j),buffSR,nx,nz,igal,kgal)
-    deallocate(buffSR)
-  end do
-  deallocate(nxxu,nzzu,nxxv,nzzv)
+  ! ! Function to create parabolic profile
+  ! allocate(nxxu(nyu_LB:nyu+1),nzzu(nyu_LB:nyu+1))
+  ! allocate(nxxv(nyv_LB:nyv+1),nzzv(nyv_LB:nyv+1))
+  ! nxxu(nyu_LB)=N(1,1)+2
+  ! nzzu(nyu_LB)=N(2,1)
+  ! nxxv(nyv_LB)=N(1,1)+2
+  ! nzzv(nyv_LB)=N(2,1)
+  ! do iband=1,3
+  !   do j=N(4,iband-1)+1,N(4,iband)
+  !     nxxu(j)=N(1,iband)+2
+  !     nzzu(j)=N(2,iband)
+  !   end do
+  !   do j=N(3,iband-1)+1,N(3,iband)
+  !     nxxv(j)=N(1,iband)+2
+  !     nzzv(j)=N(2,iband)
+  !   end do
+  ! end do
+  ! nxxv(nyv+1)=Nspec_x+2
+  ! nzzv(nyv+1)=Nspec_z
+  ! nxxu(nyu+1)=Nspec_x+2
+  ! nzzu(nyu+1)=Nspec_z
+  ! if (myid==0) then
+  !  ju1=jgal(2,1)-1
+  !  ju2=jgal(2,2)
+  !  ju1=max(ju1,nyu_LB)
+  ! else
+  !  ju1=jgal(2,1)
+  !  ju2=jgal(2,2)
+  !  if (jgal(2,2)==nyu) then
+  !    ju2=jgal(2,2)+1
+  !  end if
+  !  ju1=max(ju1,nyu_LB)
+  !  ju2=min(ju2,nyu+1)
+  ! end if
+  ! if (myid==0) then
+  !  jv1=jgal(1,1)-1
+  !  jv2=jgal(1,2)
+  !  jv1=max(jv1,nyv_LB)
+  ! else
+  !  jv1=jgal(1,1)
+  !  jv2=jgal(1,2)
+  !  if (jgal(1,2)==nyv) then
+  !    jv2=jgal(1,2)+1
+  !  end if
+  !  jv1=max(jv1,nyv_LB)
+  !  jv2=min(jv2,nyv+1)
+  ! end if
+  ! if (myid==0) then
+  !  jp1=jgal(3,1)-1
+  !  jp2=jgal(3,2)
+  !  jp1=max(jp1,nyu_LB+1)
+  ! else
+  !  jp1=jgal(3,1)
+  !  jp2=jgal(3,2)
+  !  if (jgal(3,2)==nyu-1) then
+  !    jp2=jgal(3,2)+1
+  !  end if
+  !  jp1=max(jp1,nyu_LB+1)
+  !  jp2=min(jp2,nyu+1-1)
+  ! end if
+  ! !!!!!!!!!!!!!!    u1    !!!!!!!!!!!!!!
+  ! do j=ju1,ju2
+  !   nx=nxxu(j)
+  !   nz=nzzu(j)
+  !   allocate(buffSR(nx,nz))
+  !   buffSR     =0d0
+  !   buffSR(1,1)=(0.5d0)*Re*mpgx*(yu(j)**2-1)                    ! Parabolic profile: 1/2*Re*dp/dx*(y^2-1) (Reynolds bulk)
+  !   call buff_to_u(u1PL(1,1,j),buffSR,nx,nz,igal,kgal)
+  !   deallocate(buffSR)
+  ! end do
+  ! !!!!!!!!!!!!!!    u2    !!!!!!!!!!!!!!
+  ! do j=jv1,jv2
+  !   nx=nxxv(j)
+  !   nz=nzzv(j)
+  !   allocate(buffSR(nx,nz))
+  !   buffSR     =0
+  !   buffSR(1,1)=1e-6                                          ! Some noise
+  !   call buff_to_u(u2PL(1,1,j),buffSR,nx,nz,igal,kgal)
+  !   deallocate(buffSR)
+  ! end do
+  ! !!!!!!!!!!!!!!    u3    !!!!!!!!!!!!!!
+  ! do j=ju1,ju2
+  !   nx=nxxu(j)
+  !   nz=nzzu(j)
+  !   allocate(buffSR(nx,nz))
+  !   buffSR     =0d0
+  !   buffSR(1,1)=1e-5                                          ! Some noise 
+  !   call buff_to_u(u3PL(1,1,j),buffSR,nx,nz,igal,kgal)
+  !   deallocate(buffSR)
+  ! end do
+  ! !!!!!!!!!!!!!!    p     !!!!!!!!!!!!!!
+  ! do j=jp1,jp2
+  !   nx=nxxu(j)
+  !   nz=nzzu(j)
+  !   allocate(buffSR(nx,nz))
+  !   buffSR     =0d0
+  !   buffSR(1,1)=1d0                                           ! Some noise 
+  !   call buff_to_u(ppPL(1,1,j),buffSR,nx,nz,igal,kgal)
+  !   deallocate(buffSR)
+  ! end do
+  ! deallocate(nxxu,nzzu,nxxv,nzzv)
 
-  call planes_to_modes_UVP(u1,u1PL,ugrid,nyu,nyu_LB,myid,status,ierr)
-  call planes_to_modes_UVP(u2,u2PL,vgrid,nyv,nyv_LB,myid,status,ierr)
-  call planes_to_modes_UVP(u3,u3PL,ugrid,nyu,nyu_LB,myid,status,ierr)
-  call planes_to_modes_UVP(p ,ppPL,pgrid,nyp,nyp_LB,myid,status,ierr)
+  ! call planes_to_modes_UVP(u1,u1PL,ugrid,nyu,nyu_LB,myid,status,ierr)
+  ! call planes_to_modes_UVP(u2,u2PL,vgrid,nyv,nyv_LB,myid,status,ierr)
+  ! call planes_to_modes_UVP(u3,u3PL,ugrid,nyu,nyu_LB,myid,status,ierr)
+  ! call planes_to_modes_UVP(p ,ppPL,pgrid,nyp,nyp_LB,myid,status,ierr)
 
 end subroutine
 
