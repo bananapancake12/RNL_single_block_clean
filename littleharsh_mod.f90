@@ -53,6 +53,8 @@
 
 module littleharsh_mod
   use declaration
+  use FOU3D_mod
+  use transpose
   implicit none
 
 contains
@@ -240,8 +242,10 @@ contains
 
     integer iproc,j
     real(8) val
-    type(cfield)  u1, u2, u3
-    type(cfield)   p, div
+    !type(cfield)  u1, u2, u3
+    type(cfield)   div
+    complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
+    complex(8), intent(inout) :: p(jlim(1,pgrid):,:)
 
     iwrite = iwrite+nwrite
     call error(div,myid,ierr)
@@ -447,13 +451,16 @@ contains
     implicit none
     integer :: i,k,j,column,myid
 
-    type(cfield) :: u1, u2, u3, p, psi, div
+    ! type(cfield) :: u1, u2, u3, p, psi, div
+    complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
+    complex(8), intent(inout) :: p(:,:)
+    type(cfield) :: psi, div
 
     real(8) :: dtirk
     
     dtirk = dti/(aRK(kRK)+bRK(kRK))
 
-    call divergence(div%f,u1%f,u2%f,u3%f,myid)
+    call divergence(div%f,u1,u2,u3,myid)
         
     do column = 1,columns_num(myid)
         do j = jlim(1,pgrid),jlim(2,pgrid)
@@ -480,7 +487,7 @@ contains
 
     do column = 1,columns_num(myid) 
         do j = jlim(1,pgrid),jlim(2,pgrid)
-        p%f(j,column) = p%f(j,column)+psi%f(j,column)
+        p(j,column) = p(j,column)+psi%f(j,column)
         enddo
     enddo
     
@@ -496,10 +503,12 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    type(cfield)  u1
+    ! type(cfield)  u1
+    complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
     type(cfield) du1
     type(cfield) Nu1
-    type(cfield)   p
+    !type(cfield)   p
+    complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2
     complex(8) C3
 
@@ -510,14 +519,14 @@ contains
     ! write(6,*) "C1", C1, "C2", C2, myid
 
 
-    call laplacian_U(du1%f,u1%f,myid)
+    call laplacian_U(du1%f,u1,myid)
     do column = 1,columns_num(myid)
         i = columns_i(column,myid)
         C3 = -dRK(kRK)*k1F_x(i)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
         du1%f(j,column) = C1*du1%f(j,column) &
     &                              + C2*Nu1%f(j,column) &
-    &                              + C3* p %f(j,column)
+    &                              + C3* p (j,column)
         end do
 
         ! if (column == 1 .and. myid == 0) then
@@ -552,10 +561,12 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    type(cfield)  u2
+    ! type(cfield)  u2
+    complex(8), intent(in) :: u2(jlim(1,vgrid):,:)
     type(cfield) du2
     type(cfield) Nu2
-    type(cfield)   p
+    ! type(cfield)   p
+    complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2,C3
 
     !C1 = (aRK(kRK)+bRK(kRK))/Re !For solving for du
@@ -565,14 +576,14 @@ contains
     ! write(6,*) "C1", C1, "C2", C2, myid
 
     
-    call laplacian_V(du2%f,u2%f,myid)
+    call laplacian_V(du2%f,u2,myid)
     do column = 1,columns_num(myid)
         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
         C3 = -dRK(kRK)*ddthetavi*dthdyv(j)
         du2%f(j,column) = C1* du2%f(j  ,column) &
     &                              + C2* Nu2%f(j  ,column) &
-    &                              + C3*( p %f(j+1,column) & ! centeres to faces --> (j+1)-(j)
-    &                                    -p %f(j,  column))
+    &                              + C3*( p (j+1,column) & ! centeres to faces --> (j+1)-(j)
+    &                                    -p (j,  column))
         end do
 
         ! if (column == 1 .and. myid == 0) then
@@ -606,10 +617,12 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    type(cfield)  u3
+    ! type(cfield)  u3
+    complex(8), intent(in) :: u3(jlim(1,ugrid):,:)
     type(cfield) du3
     type(cfield) Nu3
-    type(cfield)   p
+    ! type(cfield)   p
+    complex(8), intent(in) :: p(jlim(1,pgrid):,:)   
     real(8) C1,C2
     complex(8) C3
 
@@ -617,14 +630,14 @@ contains
     C1 = aRK(kRK)/Re !For solving for u
     C2 = -cRK(kRK)
 
-    call laplacian_U(du3%f,u3%f,myid)
+    call laplacian_U(du3%f,u3,myid)
     do column = 1,columns_num(myid)
         k = columns_k(column,myid)
         C3 = -dRK(kRK)*k1F_z(k)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
         du3%f(j,column) = C1*du3%f(j,column) &
     &                              + C2*Nu3%f(j,column) &
-    &                              + C3* p %f(j,column)
+    &                              + C3* p (j,column)
         end do
 
         ! if (column == 1 .and. myid == 0) then
@@ -666,8 +679,9 @@ contains
     implicit none
 
     integer i,k,j,iband,column,myid
-    type(cfield)  u
-    type(cfield)  w
+    ! type(cfield)  u
+    ! type(cfield)  w
+    complex(8), intent(inout) :: u(jlim(1,ugrid):,:), w(jlim(1,ugrid):,:)
     type(cfield) du
     type(cfield) dw
     type(rfield) a(2)
@@ -679,8 +693,8 @@ contains
             dw%f(jlim(1,ugrid),column) = 0d0
 
             do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-            du%f(j,column) = u%f(j,column)+dt*(du%f(j,column)) !For solving for u
-            dw%f(j,column) = w%f(j,column)+dt*(dw%f(j,column)) !For solving for w
+            du%f(j,column) = u(j,column)+dt*(du%f(j,column)) !For solving for u
+            dw%f(j,column) = w(j,column)+dt*(dw%f(j,column)) !For solving for w
             end do
 
             du%f(jlim(2,ugrid),column) = 0d0
@@ -700,7 +714,8 @@ contains
     use tridLU_3D
     implicit none
     integer i,k,j,iband,column,myid
-    type(cfield)  u
+    ! type(cfield)  u
+    complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
     type(cfield) du
     type(rfield) a(2)
 
@@ -710,7 +725,7 @@ contains
             du%f(jlim(1,vgrid),column) = 0d0
             do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
             !         du%f(j,column) = dt*(du%f(j,column)) !For solving for du
-            du%f(j,column) = u%f(j,column)+dt*(du%f(j,column)) !For solving for u
+            du%f(j,column) = u(j,column)+dt*(du%f(j,column)) !For solving for u
             end do
             du%f(jlim(2,vgrid),column) = 0d0
         end do
@@ -834,7 +849,8 @@ contains
 
     integer i,k,j,column
     complex(8) kx,kz,dtrk,dtrk_u2
-    type(cfield) u1,u2,u3
+    ! type(cfield) u1,u2,u3
+    complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     type(cfield) psi,div
     real (8),pointer :: vcorrPL(:,:,:)
     
@@ -851,20 +867,20 @@ contains
         kx = dtrk*k1F_x(i)
         
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        u1%f(j,column) = u1%f(j,column)-kx*psi%f(j,column)
+        u1(j,column) = u1(j,column)-kx*psi%f(j,column)
         end do
 
     end do
 
 
     do column = 1,columns_num(myid)
-        u1%f(jlim(1,ugrid),column) = gridweighting_bc_u1*u1%f(jlim(1,ugrid)+1,column)
+        u1(jlim(1,ugrid),column) = gridweighting_bc_u1*u1(jlim(1,ugrid)+1,column)
     enddo
 
     
     ! do iband = 2,3
     do column = 1,columns_num(myid)
-        u1%f(jlim(2,ugrid),column) = gridweighting_bc_u1*u1%f(jlim(2,ugrid)-1,column)
+        u1(jlim(2,ugrid),column) = gridweighting_bc_u1*u1(jlim(2,ugrid)-1,column)
     enddo
     ! enddo
     
@@ -874,13 +890,13 @@ contains
     do column = 1,columns_num(myid)
         
         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
-        u2%f(j,column) = u2%f(j,column)-dtrk_u2*dthdyv(j)*(psi%f(j+1,column)-psi%f(j,column))
+        u2(j,column) = u2(j,column)-dtrk_u2*dthdyv(j)*(psi%f(j+1,column)-psi%f(j,column))
         end do
     !       u2(iband)%f(jlim(1,vgrid),column) = 0d0
     !       u2(iband)%f(jlim(2,vgrid),column) = 0d0
 
-        u2%f(jlim(1,vgrid),column) = 0d0
-        u2%f(jlim(2,vgrid),column) = 0d0
+        u2(jlim(1,vgrid),column) = 0d0
+        u2(jlim(2,vgrid),column) = 0d0
 
     end do
 
@@ -891,7 +907,7 @@ contains
         kz = dtrk*k1F_z(k)
         
         do j=jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        u3%f(j,column) = u3%f(j,column)-kz*psi%f(j,column)
+        u3(j,column) = u3(j,column)-kz*psi%f(j,column)
         end do
 
     end do
@@ -899,22 +915,226 @@ contains
 
     ! do iband = 1,2
     do column = 1,columns_num(myid)
-        u3%f(jlim(1,ugrid),column) = gridweighting_bc_u3*u3%f(jlim(1,ugrid)+1,column)
+        u3(jlim(1,ugrid),column) = gridweighting_bc_u3*u3(jlim(1,ugrid)+1,column)
     enddo
     ! enddo
     
     ! do iband = 2,3
     do column = 1,columns_num(myid)
-        u3%f(jlim(2,ugrid),column) = gridweighting_bc_u3*u3%f(jlim(2,ugrid)-1,column)
+        u3(jlim(2,ugrid),column) = gridweighting_bc_u3*u3(jlim(2,ugrid)-1,column)
     enddo
 
     
     
     !!!!!!!!!  divergence:  !!!!!!!!!
 
-    call divergence(div%f,u1%f,u2%f,u3%f,myid)
+    call divergence(div%f,u1,u2,u3,myid)
 
     deallocate(vcorrPL)
     end subroutine
+
+  subroutine record_out(u1,myid)
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !!!!!!!!!!!!!!!!!!!!!!!   RECORD OUT   !!!!!!!!!!!!!!!!!!!!!!!
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    use declaration
+    ! use littleharsh_mod
+    implicit none
+
+    include 'mpif.h'             ! MPI variables
+    integer status(MPI_STATUS_SIZE),ierr,myid
+
+    ! type(cfield) u1
+    complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
+    integer nx,nz, i 
+    integer j,jmax,iproc
+    real(8), allocatable:: buffSR(:,:)
+    integer, allocatable:: dummint(:)
+    real(8) Uslip  
+
+    ! Rebuilding N 
+    if (.not. allocated(N)) allocate(N(4,0:4))
+    
+
+    N= 0 
+    N(1,1:3) = Nspec_x
+    N(1,4) = -2
+    N(2,1:3) = Nspec_z
+    N(3,3) = nyv
+    N(4,3) = nyu
+
+    if (myid == 0) then
+      write(6,*) "N:"
+      do i = 1,4
+        write(6,*) N(i,0:4)
+      end do
+    end if 
+
+    if (myid/=0) then
+      nx = Nspec_x+2
+      nz = Nspec_z
+      allocate(buffSR(nx,nz))
+      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+        call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
+        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,123*myid,MPI_COMM_WORLD,ierr)
+      end do
+      do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
+        call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
+        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,124*myid,MPI_COMM_WORLD,ierr)
+      end do
+      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+        call u_to_buff(buffSR,u3PL(1,1,j),nx,nz,igal,kgal)
+        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,125*myid,MPI_COMM_WORLD,ierr)
+      end do
+      do j = limPL_incw(pgrid,1,myid),limPL_incw(pgrid,2,myid)
+        call u_to_buff(buffSR,ppPL(1,1,j),nx,nz,igal,kgal)
+        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,126*myid,MPI_COMM_WORLD,ierr)
+      end do
+
+      deallocate(buffSR)
+    else
+      write(ext4,'(i5.5)') int(10d0*(t))!int(t)!
+      allocate(dummint(88))
+      dummint = 0
+      !!!!!!!!!!!!!    u1    !!!!!!!!!!!!!
+      fnameima = 'output/u1_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+      open(10,file=fnameima,form='unformatted')
+      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint 
+      write(10) N
+      write(10) yu,dthetavi,dthdyu
+      nx = Nspec_x+2
+      nz = Nspec_z
+      allocate(buffSR(nx,nz))
+      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+        call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
+        write(10) j,1,nx,nz,yu(j),buffSR
+      end do
+      deallocate(buffSR)
+      do iproc = 1,np-1
+        nx = Nspec_x+2
+        nz = Nspec_z
+        allocate(buffSR(nx,nz))
+        do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
+          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,123*iproc,MPI_COMM_WORLD,status,ierr)
+          write(10) j,1,nx,nz,yu(j),buffSR
+        end do
+        deallocate(buffSR)
+      end do
+      close(10)
+      !!!!!!!!!!!!!    u2    !!!!!!!!!!!!!
+      fnameima='output/u2_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+      open(10,file=fnameima,form='unformatted')
+      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
+      write(10) N
+      write(10) yv,dthetavi,dthdyv
+      nx = Nspec_x+2
+      nz = Nspec_z
+      allocate(buffSR(nx,nz))
+      do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
+        call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
+        write(10) j,2,nx,nz,yv(j),buffSR
+      end do
+      deallocate(buffSR)
+      do iproc = 1,np-1
+        nx = Nspec_x+2
+        nz = Nspec_z
+        allocate(buffSR(nx,nz))
+        do j = limPL_incw(vgrid,1,iproc),limPL_incw(vgrid,2,iproc)
+          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,124*iproc,MPI_COMM_WORLD,status,ierr)
+          write(10) j,2,nx,nz,yv(j),buffSR
+        end do
+        deallocate(buffSR)
+      end do
+      close(10)
+      !!!!!!!!!!!!!    u3    !!!!!!!!!!!!!
+      fnameima = 'output/u3_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+      open(10,file=fnameima,form='unformatted')
+      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
+      write(10) N
+      write(10) yu,dthetavi,dthdyu
+      nx = Nspec_x+2
+      nz = Nspec_z
+      allocate(buffSR(nx,nz))
+      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+        call u_to_buff(buffSR,u3PL(1,1,j),nx,nz,igal,kgal)
+        write(10) j,3,nx,nz,yu(j),buffSR
+      end do
+      deallocate(buffSR)
+      do iproc = 1,np-1
+        nx = Nspec_x+2
+        nz = Nspec_z
+        allocate(buffSR(nx,nz))
+        do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
+          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,125*iproc,MPI_COMM_WORLD,status,ierr)
+          write(10) j,3,nx,nz,yu(j),buffSR
+        end do
+        deallocate(buffSR)
+      end do
+      close(10)
+      !!!!!!!!!!!!!    p     !!!!!!!!!!!!!
+      fnameima = 'output/p_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+      open(10,file=fnameima,form='unformatted')
+      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
+      write(10) N
+      write(10) yu,dthetavi,dthdyu
+      nx = Nspec_x+2
+      nz = Nspec_z
+      allocate(buffSR(nx,nz))
+      do j = limPL_incw(pgrid,1,myid),limPL_incw(pgrid,2,myid)
+        call u_to_buff(buffSR,ppPL(1,1,j),nx,nz,igal,kgal)
+        write(10) j,4,nx,nz,yu(j),buffSR
+      end do
+      deallocate(buffSR)
+      do iproc = 1,np-1
+        nx = Nspec_x+2
+        nz = Nspec_z
+        allocate(buffSR(nx,nz))
+        do j = limPL_incw(pgrid,1,iproc),limPL_incw(pgrid,2,iproc)
+          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,126*iproc,MPI_COMM_WORLD,status,ierr)
+          write(10) j,4,nx,nz,yu(j),buffSR
+        end do
+        deallocate(buffSR)
+      end do
+      close(10)
+      deallocate(dummint)
+    end if
+
+    if (myid==0) then
+
+      Uslip = ((u1(1,1))*(-1d0-yu(0))+(u1(0,1))*(yu(1)+1d0))/(yu(1)-yu(0))
+
+      ! call flowrateIm(Qx,u1(nyu_LB,1))
+      call flowrateIm(Qx,u1(:,1))
+      ! call maxvel(u1(nyu_LB,1))
+      call maxvel(u1(:,1))
+      write(*,*) ''
+      write(*,*) 'iter',iter
+      write(*,*) 't   ',t
+      write(*,*) 'dtv ',dtv
+      write(*,*) 'dtc ',dtc
+      write(*,*) 'dt  ',dt
+      write(*,*) 'err ',err
+      write(*,*) 'Qx  ',Qx
+      if (flag_ctpress==0) then
+        write(*,*) 'QxT ',QxT
+        write(*,*) 'mpgx',mpgx
+        write(*,*) 'dpgx',dgx
+      else
+        write(*,*) 'mpgx',mpgx
+      end if
+      write(*,*) 'Umax',Umax
+      write(*,*) 'Uslp',Uslip
+  !    write(*,*) 'utau',utau
+  ! Save to history file
+      if (flag_ctpress==0) then
+        write(30) flag_ctpress,iter,t,dtv,dtc,dt,err,Qx,QxT,mpgx,dgx,Umax,Uslip
+      else
+        write(30) flag_ctpress,iter,t,dtv,dtc,dt,err,Qx,    mpgx,    Umax,Uslip
+      end if
+      flush(30)
+    end if
+
+  end subroutine
 
 end module littleharsh_mod

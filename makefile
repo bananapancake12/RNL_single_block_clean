@@ -44,18 +44,20 @@ OBJDIR  = $(OBJ)
 CALCDIR = $(INIT)
 
 OBJECTS = $(OBJ)/declaration.o\
+		  $(OBJ)/tridLU_3D.o\
+		  $(OBJ)/transpose.o\
+		  $(OBJ)/error_rec_out.o\
 		  $(OBJ)/FOU3D.o\
-		  $(OBJ)/init_mod.o\
 		  $(OBJ)/littleharsh_mod.o\
+		  $(OBJ)/init_mod.o\
 		  $(OBJ)/start.o\
           $(OBJ)/stats.o\
-          $(OBJ)/inst_sl_stats.o\
           $(OBJ)/spectra.o\
-          $(OBJ)/tridLU_3D.o\
           $(OBJ)/rft_buff.o\
           $(OBJ)/cft_buff.o\
           $(OBJ)/littleharsh.o
 # 		  $(OBJ)/sl_stats2.o\
+# 		  $(OBJ)/inst_sl_stats.o\
 
 ########################      build       #########################
 
@@ -73,21 +75,30 @@ $(OBJDIR)/declaration.o : $(SRCDIR)/declaration.f90 $(SRCDIR)/makefile
 	@echo compiling declaration.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/declaration.f90
 
+$(OBJDIR)/tridLU_3D.o : $(SRCDIR)/tridLU_3D.f90 $(SRCDIR)/makefile
+	@echo compiling tridLU_3D.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/tridLU_3D.f90
+
+$(OBJDIR)/transpose.o : $(SRCDIR)/transpose.f90 $(SRCDIR)/makefile
+	@echo compiling transpose.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/transpose.f90
+
+$(OBJDIR)/error_rec_out.o : $(SRCDIR)/error_rec_out.f90 $(SRCDIR)/makefile
+	@echo compiling error_rec_out.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/error_rec_out.f90
+
+
 $(OBJDIR)/FOU3D.o : $(SRCDIR)/FOU3D.f90 $(SRCDIR)/makefile
 	@echo compiling FOU3D.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/FOU3D.f90
 
-$(OBJDIR)/init_mod.o : $(SRCDIR)/init_mod.f90 $(OBJDIR)/declaration.o
-	@echo compiling init_mod.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(OBJDIR) $(SRCDIR)/init_mod.f90
-
-# $(OBJDIR)/transpose.o : $(SRCDIR)/transpose.f90 $(SRCDIR)/makefile
-# 	@echo compiling transpose.f90
-# 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/transpose.f90
-
 $(OBJDIR)/littleharsh_mod.o : $(SRCDIR)/littleharsh_mod.f90 $(OBJDIR)/declaration.o
 	@echo compiling littleharsh_mod.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(OBJDIR) $(SRCDIR)/littleharsh_mod.f90
+
+$(OBJDIR)/init_mod.o : $(SRCDIR)/init_mod.f90 $(OBJDIR)/declaration.o
+	@echo compiling init_mod.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(OBJDIR) $(SRCDIR)/init_mod.f90
 
 $(OBJDIR)/start.o : $(SRCDIR)/start.f90 $(SRCDIR)/makefile
 	@echo compiling start.f90
@@ -101,17 +112,13 @@ $(OBJDIR)/stats.o : $(SRCDIR)/stats.f90 $(SRCDIR)/makefile
 # 	@echo compiling sl_stats2.f90
 # 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/sl_stats2.f90
 
-$(OBJDIR)/inst_sl_stats.o : $(SRCDIR)/inst_sl_stats.f90 $(SRCDIR)/makefile
-	@echo compiling inst_sl_stats.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/inst_sl_stats.f90
+# $(OBJDIR)/inst_sl_stats.o : $(SRCDIR)/inst_sl_stats.f90 $(SRCDIR)/makefile
+# 	@echo compiling inst_sl_stats.f90
+# 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/inst_sl_stats.f90
 
 $(OBJDIR)/spectra.o : $(SRCDIR)/spectra.f90 $(SRCDIR)/makefile
 	@echo compiling spectra.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/spectra.f90
-
-$(OBJDIR)/tridLU_3D.o : $(SRCDIR)/tridLU_3D.f90 $(SRCDIR)/makefile
-	@echo compiling tridLU_3D.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/tridLU_3D.f90
 
 
 $(OBJDIR)/rft_buff.o : $(SRCDIR)/rft_buff.f $(SRCDIR)/makefile
@@ -139,6 +146,6 @@ printmsgA :
 ########################      clean       #########################
 
 clean:
-	@find . \( -name '*.o' \) -exec rm {} \;
+	@find . \( -name '*.o' -o -name '*.mod' -o -name '*.smod' \) -exec rm {} \;
 
 ########################   end of file    #########################

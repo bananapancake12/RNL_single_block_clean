@@ -127,7 +127,7 @@ module declaration
   type cfield
     complex(8),pointer:: f(:,:)
   end type cfield
-  
+
   type rfield_dg
     real(8),pointer:: f_dg(:,:,:)
   end type rfield_dg
@@ -149,7 +149,8 @@ module declaration
   
   
   ! type(cfield), allocatable:: u1_itp(:),u2_itp(:),u3_itp(:)
-  type(cfield) :: u1_itp,u2_itp,u3_itp
+  ! type(cfield) :: u1_itp,u2_itp,u3_itp
+  complex(8), allocatable :: u1_itp(:,:),u2_itp(:,:),u3_itp(:,:)
   
   ! type(cfield), allocatable:: Nu1_dy(:),Nu2_dy(:),Nu3_dy(:)
   type(cfield) :: Nu1_dy,Nu2_dy,Nu3_dy
@@ -170,7 +171,9 @@ module declaration
   
   type(cfield)  :: du1dy_columns
   type(cfield)  :: du2dy_columns
-  type(cfield)  :: du3dy_columns
+  ! type(cfield)  :: du3dy_columns
+
+  complex(8), allocatable :: du3dy_columns(:,:)
   
   type(rfield_dg) :: DG
   

@@ -69,8 +69,9 @@
 
       integer    :: i,k,j,column,grid
       integer    :: iopt,myid
-      type(cfield)  u
-      type(cfield)  w
+      ! type(cfield)  u
+      ! type(cfield)  w
+      complex(8), intent(inout) :: u(jlim(1,grid):,:), w(jlim(1,grid):,:)
       type(cfield)  rhsu
       type(cfield)  rhsw
         
@@ -82,23 +83,23 @@
             call LU_buildU(jlim(1,grid),jlim(2,grid),column,myid,a)
             call LU_dec(jlim(1,grid),jlim(2,grid),myid,a)
 
-            u%f(jlim(1,grid),column)=rhsu%f(jlim(1,grid),column)*a(2,jlim(1,grid))
-            w%f(jlim(1,grid),column)=rhsw%f(jlim(1,grid),column)*a(2,jlim(1,grid))
+            u(jlim(1,grid),column)=rhsu%f(jlim(1,grid),column)*a(2,jlim(1,grid))
+            w(jlim(1,grid),column)=rhsw%f(jlim(1,grid),column)*a(2,jlim(1,grid))
             
             do j = jlim(1,grid)+1,jlim(2,grid)
-              u%f(j,column) = (rhsu%f(j,column)-a(1,j)*u%f(j-1,column))*a(2,j)
+              u(j,column) = (rhsu%f(j,column)-a(1,j)*u(j-1,column))*a(2,j)
             end do
 
             do j = jlim(2,grid)-1,jlim(1,grid),-1
-              u%f(j,column) =  u%f(j,column)-a(3,j)*u%f(j+1,column)
+              u(j,column) =  u(j,column)-a(3,j)*u(j+1,column)
             end do
 
             do j = jlim(1,grid)+1,jlim(2,grid)
-            w%f(j,column) = (rhsw%f(j,column)-a(1,j)*w%f(j-1,column))*a(2,j)
+            w(j,column) = (rhsw%f(j,column)-a(1,j)*w(j-1,column))*a(2,j)
           end do
 
           do j = jlim(2,grid)-1,jlim(1,grid),-1
-            w%f(j,column) =  w%f(j,column)-a(3,j)*w%f(j+1,column)
+            w(j,column) =  w(j,column)-a(3,j)*w(j+1,column)
           end do
           end do
 
@@ -149,7 +150,8 @@
 
       integer    :: i,k,j,column,grid
       integer    :: iopt,myid
-      type(cfield) u
+      ! type(cfield) u
+      complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
       type(cfield) rhsu
         
       real(8)    :: a(3,jlim(1,grid):jlim(2,grid))
@@ -159,14 +161,14 @@
             call LU_buildV(jlim(1,grid),jlim(2,grid),column,myid,a)
             call LU_dec(jlim(1,grid),jlim(2,grid),myid,a)
 
-            u%f(jlim(1,grid),column)=rhsu%f(jlim(1,grid),column)*a(2,jlim(1,grid))
+            u(jlim(1,grid),column)=rhsu%f(jlim(1,grid),column)*a(2,jlim(1,grid))
 
             do j = jlim(1,grid)+1,jlim(2,grid)
-              u%f(j,column) = (rhsu%f(j,column)-a(1,j)*u%f(j-1,column))*a(2,j)
+              u(j,column) = (rhsu%f(j,column)-a(1,j)*u(j-1,column))*a(2,j)
             end do
 
             do j = jlim(2,grid)-1,jlim(1,grid),-1
-              u%f(j,column) =  u%f(j,column)-a(3,j)*u%f(j+1,column)
+              u(j,column) =  u(j,column)-a(3,j)*u(j+1,column)
             end do
           end do
 

@@ -49,7 +49,8 @@ contains
   !!!!!!!!!!!!!!!!!!!!!   NONLINEAR TERMS  !!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     use declaration
-    use littleharsh_mod
+    ! use littleharsh_mod
+    use transpose
     implicit none
 
     include 'mpif.h'             ! MPI variables
@@ -57,10 +58,14 @@ contains
     
     integer flagst,flagwr,flagslinst,flagqwr,j,i,k,column
     real(8) C1
-    type(cfield) u1, u2, u3
+    ! type(cfield) u1, u2, u3
     type(cfield) du1, du2, du3
     type(cfield) Nu1, Nu2, Nu3
-    type(cfield) p, div
+    !type(cfield) p, div
+    type(cfield) div
+
+    complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
+    complex(8), intent(in) :: p(:,:)
 
     
     if (iter-iter0>=nstat .and. kRK==1) then
@@ -318,7 +323,7 @@ contains
 
       end do
     
-      call der_yv_h_wx(du3dy_columns%f,u3%f,myid)
+      call der_yv_h_wx(du3dy_columns,u3,myid)
 
       call modes_to_planes_phys(du3dy_planes,du3dy_columns,vgrid,nyv,nyv_LB,myid,status,ierr)
       
@@ -342,9 +347,9 @@ contains
         ! call write_sl_stats(myid,status,ierr) 
       end if    
       
-      if (flagslinst==1) then
-        call inst_sl_stats(u1,u3,myid,status,ierr)
-      endif
+      ! if (flagslinst==1) then
+      !   call inst_sl_stats(u1,u3,myid,status,ierr)
+      ! endif
           
     end if
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -385,13 +390,15 @@ contains
     implicit none
     
     integer j,column,myid
-    type(cfield)  u
-    type(cfield)  u_itp
+    ! type(cfield)  u
+    complex(8), intent(in) :: u(jlim(1,ugrid):,:)
+    complex(8), intent(out) :: u_itp(jlim(1,ugrid):,:)
+    ! type(cfield)  u_itp
     
     do column = 1,columns_num(myid)
       ! We interpolate everything. vgrid has got one less point than ugrid
       do j = jlim(1,vgrid),jlim(2,vgrid)  
-        u_itp%f(j,column) = ((yv(j)-yu(j))*u%f(j+1,column)+(yu(j+1)-yv(j))*u%f(j,column))/(yu(j+1)-yu(j))
+        u_itp(j,column) = ((yv(j)-yu(j))*u(j+1,column)+(yu(j+1)-yv(j))*u(j,column))/(yu(j+1)-yu(j))
       end do
     end do
 
@@ -406,19 +413,21 @@ contains
     implicit none
     
     integer j,column,myid
-    type(cfield)  u
-    type(cfield)  u_itp
+    !type(cfield)  u
+    complex(8), intent(in) :: u(jlim(1,vgrid):,:)
+    complex(8), intent(out) :: u_itp(jlim(1,vgrid):,:)
+    ! type(cfield)  u_itp
 
     do column = 1,columns_num(myid)
       do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        u_itp%f(j,column) = ((yu(j)-yv(j-1))*u%f(j,column)+(yv(j)-yu(j))*u%f(j-1,column))/(yv(j)-yv(j-1))
+        u_itp(j,column) = ((yu(j)-yv(j-1))*u(j,column)+(yv(j)-yu(j))*u(j-1,column))/(yv(j)-yv(j-1))
       end do
-      u_itp%f(jlim(1,ugrid),column) = &
-  &      gridweighting_interp(1)*(u%f(jlim(1,vgrid),column)-u_itp%f(jlim(1,ugrid)+1,column)) &
-  &      + u_itp%f(jlim(1,ugrid)+1,column)
-      u_itp%f(jlim(2,ugrid),column) = &
-  &      gridweighting_interp(2)*(u%f(jlim(2,vgrid),column)-u_itp%f(jlim(2,ugrid)-1,column)) &
-  &      + u_itp%f(jlim(2,ugrid)-1,column)
+      u_itp(jlim(1,ugrid),column) = &
+  &      gridweighting_interp(1)*(u(jlim(1,vgrid),column)-u_itp(jlim(1,ugrid)+1,column)) &
+  &      + u_itp(jlim(1,ugrid)+1,column)
+      u_itp(jlim(2,ugrid),column) = &
+  &      gridweighting_interp(2)*(u(jlim(2,vgrid),column)-u_itp(jlim(2,ugrid)-1,column)) &
+  &      + u_itp(jlim(2,ugrid)-1,column)
     end do
 
                     
@@ -437,8 +446,8 @@ contains
     integer i,k, ip, kp
     ! complex(8) u   (0:Ngal_x/2,Ngal_z)
     ! complex(8) dudx(0:Ngal_x/2,Ngal_z)
-    real(8) u   (0:Ngal_x,Ngal_z)
-    real(8) dudx(0:Ngal_x,Ngal_z)
+    real(8) u   (0:Ngal_x,Ngal_z) ! -1 as uu_cPL allocated as igal but old routine used 0:ngalx/2
+    real(8) dudx(0:Ngal_x,Ngal_z) ! as if its been shifted, after nspec/2 its all 0's anyway so doesntmatter 
 
     complex(8) kx(0:Nspec_x/2)
 
@@ -524,35 +533,63 @@ contains
     implicit none
 
     integer i,k,dk2,k2
-    complex(8) u   (0:Ngal_x/2,Ngal_z)
-    complex(8) dudz(0:Ngal_x/2,Ngal_z)
+    ! complex(8) u   (0:Ngal_x/2,Ngal_z)
+    ! complex(8) dudz(0:Ngal_x/2,Ngal_z)
+    real(8) u   (0:Ngal_x/2-1,Ngal_z)
+    real(8) dudz(0:Ngal_x/2-1,Ngal_z)
     complex(8) kz(1:Nspec_z)
+
+    ! new variables for conversion
+    complex(8), allocatable :: u_c(:,:), dudz_c(:,:)
+    integer ip, kp
+
+    allocate(u_c(0:Ngal_x/2,Ngal_z))
+    allocate(dudz_c(0:Ngal_x/2,Ngal_z))
+
+    u_c    = 0d0
+    dudz_c = 0d0
+
+    ! converting real to complex
+    do kp = 1, Ngal_z
+      do ip = 0, Ngal_x/2
+        u_c(ip,kp) = cmplx(u(ip*2,kp), u(ip*2+1,kp))
+      end do
+    end do
 
     dk2=Nspec_z-Ngal_z
 
     do k = 1,Nspec_z/2
       do i = 0,Nspec_x/2
-        dudz(i,k) = kz(k)*u(i,k)
+        dudz_c(i,k) = kz(k)*u_c(i,k)
       end do
       do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
-        dudz(i,k) = 0d0
+        dudz_c(i,k) = 0d0
       end do
     end do
     !Zeros includes mode Nz/2+1 mode (zero for advection derrivatives)
     do k = Nspec_z/2+1,Ngal_z-Nspec_z/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
       do i = 0,Ngal_x/2
-        dudz(i,k) = 0d0
+        dudz_c(i,k) = 0d0
       end do
     end do
     do k = Ngal_z-Nspec_z/2+2,Ngal_z
       k2 = k+dk2
       do i = 0,Nspec_x/2
-        dudz(i,k) = kz(k2)*u(i,k)
+        dudz_c(i,k) = kz(k2)*u_c(i,k)
       end do
       do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
-        dudz(i,k) = 0d0
+        dudz_c(i,k) = 0d0
       end do
     end do
+
+    ! converting dudz_c back to real to be compatible with rest of code
+    do kp = 1, Ngal_z
+      do ip = 0, Ngal_x/2
+        dudz(2*ip,     kp) = dble( dudz_c(ip,kp) )
+        dudz(2*ip + 1, kp) = dimag( dudz_c(ip,kp) )
+      end do
+    end do
+
 
   end subroutine
 
@@ -763,103 +800,104 @@ contains
   end subroutine
 
 
-  subroutine modes_to_planes_UVP (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!! MODES TO PLANES !!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! subroutine modes_to_planes_UVP (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!! MODES TO PLANES !!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    use declaration
-    implicit none
+  !   use declaration
+  !   implicit none
 
-    include 'mpif.h'             ! MPI variables
-    integer status(MPI_STATUS_SIZE),ierr,myid
+  !   include 'mpif.h'             ! MPI variables
+  !   integer status(MPI_STATUS_SIZE),ierr,myid
 
-    integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,grid
-    integer column
-    integer inode,yourid
-    integer msizeR,msizeS
-    type(cfield) x
-    real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
-    integer, intent(in) :: nygrid, nygrid_LB
-    complex(8), allocatable :: buffS(:,:),buffR(:,:)
+  !   integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,grid
+  !   integer column
+  !   integer inode,yourid
+  !   integer msizeR,msizeS
+  !   ! type(cfield) x
+  !   complex(8), intent(in) :: x(jlim(1,grid):,:)
+  !   real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
+  !   integer, intent(in) :: nygrid, nygrid_LB
+  !   complex(8), allocatable :: buffS(:,:),buffR(:,:)
 
-    ! Loop for itself
-    ! Transpose the cube that it already owns
+  !   ! Loop for itself
+  !   ! Transpose the cube that it already owns
 
-    yourid = myid
+  !   yourid = myid
 
-    jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
-    jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
+  !   jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
+  !   jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
 
-    if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then
-      jminR = jminR-1
-    end if
-    if (jmaxR==nygrid   .and. jmaxR>=jminR) then
-      jmaxR = jmaxR+1
-    end if
-    do j = jminR,jmaxR
-      do column = 1,columns_num(yourid)
-        i = columns_i(column,yourid)
-        k = columns_k(column,yourid) - dk(column,yourid)
-        xPL(2*i+1,k,j) = dreal(x%f(j,column))
-        xPL(2*i+2,k,j) = dimag(x%f(j,column))
-      end do
-    end do
+  !   if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then
+  !     jminR = jminR-1
+  !   end if
+  !   if (jmaxR==nygrid   .and. jmaxR>=jminR) then
+  !     jmaxR = jmaxR+1
+  !   end if
+  !   do j = jminR,jmaxR
+  !     do column = 1,columns_num(yourid)
+  !       i = columns_i(column,yourid)
+  !       k = columns_k(column,yourid) - dk(column,yourid)
+  !       xPL(2*i+1,k,j) = dreal(x(j,column))
+  !       xPL(2*i+2,k,j) = dimag(x(j,column))
+  !     end do
+  !   end do
 
 
-    do inode = 1,pnodes-1
-      yourid = ieor(myid,inode)
-      if (yourid<np) then
+  !   do inode = 1,pnodes-1
+  !     yourid = ieor(myid,inode)
+  !     if (yourid<np) then
 
-        jminS = max(planelim(grid,1,yourid),jlim(1,grid)+1)
-        jmaxS = min(planelim(grid,2,yourid),jlim(2,grid)-1)
-        jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
-        jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
-        if (jminS==nygrid_LB+1  ) then
-          jminS = jminS-1
-        end if
-        if (jmaxS==nygrid) then
-          jmaxS = jmaxS+1
-        end if
-        if (jminR==nygrid_LB+1  ) then
-          jminR = jminR-1
-        end if
-        if (jmaxR==nygrid) then
-          jmaxR = jmaxR+1
-        end if
-        allocate(buffS(jminS:jmaxS,columns_num(  myid)))
-        allocate(buffR(jminR:jmaxR,columns_num(yourid)))
-        msizeS = 2*(columns_num(  myid)*(jmaxS-jminS+1))  ! 2 times because it's complex
-        msizeR = 2*(columns_num(yourid)*(jmaxR-jminR+1))
-        msizeS = max(msizeS,0)
-        msizeR = max(msizeR,0)
+  !       jminS = max(planelim(grid,1,yourid),jlim(1,grid)+1)
+  !       jmaxS = min(planelim(grid,2,yourid),jlim(2,grid)-1)
+  !       jminR = max(planelim(grid,1,  myid),jlim(1,grid)+1)
+  !       jmaxR = min(planelim(grid,2,  myid),jlim(2,grid)-1)
+  !       if (jminS==nygrid_LB+1  ) then
+  !         jminS = jminS-1
+  !       end if
+  !       if (jmaxS==nygrid) then
+  !         jmaxS = jmaxS+1
+  !       end if
+  !       if (jminR==nygrid_LB+1  ) then
+  !         jminR = jminR-1
+  !       end if
+  !       if (jmaxR==nygrid) then
+  !         jmaxR = jmaxR+1
+  !       end if
+  !       allocate(buffS(jminS:jmaxS,columns_num(  myid)))
+  !       allocate(buffR(jminR:jmaxR,columns_num(yourid)))
+  !       msizeS = 2*(columns_num(  myid)*(jmaxS-jminS+1))  ! 2 times because it's complex
+  !       msizeR = 2*(columns_num(yourid)*(jmaxR-jminR+1))
+  !       msizeS = max(msizeS,0)
+  !       msizeR = max(msizeR,0)
 
-        do j = jminS,jmaxS
-          do column = 1,columns_num(myid)
-            buffS(j,column) = x%f(j,column)
+  !       do j = jminS,jmaxS
+  !         do column = 1,columns_num(myid)
+  !           buffS(j,column) = x(j,column)
 
-          end do
-        end do
+  !         end do
+  !       end do
 
-        call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &
-  &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
-  &                         MPI_COMM_WORLD,status,ierr)
-        do j = jminR,jmaxR
-          do column = 1,columns_num(yourid)
-            i = columns_i(column,yourid)
-            k = columns_k(column,yourid) - dk(column,yourid)
-            xPL(2*i+1,k,j) = dreal(buffR(j,column))
-            xPL(2*i+2,k,j) = dimag(buffR(j,column))
-          end do
-        end do
+  !       call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &
+  ! &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
+  ! &                         MPI_COMM_WORLD,status,ierr)
+  !       do j = jminR,jmaxR
+  !         do column = 1,columns_num(yourid)
+  !           i = columns_i(column,yourid)
+  !           k = columns_k(column,yourid) - dk(column,yourid)
+  !           xPL(2*i+1,k,j) = dreal(buffR(j,column))
+  !           xPL(2*i+2,k,j) = dimag(buffR(j,column))
+  !         end do
+  !       end do
 
-        deallocate(buffR,buffS)
+  !       deallocate(buffR,buffS)
 
-        ! end do
-      end if
-    end do
+  !       ! end do
+  !     end if
+  !   end do
 
-  end subroutine
+  ! end subroutine
 
   subroutine modes_to_planes_phys (xPL,x,grid,nygrid,nygrid_LB,myid,status,ierr)
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -877,7 +915,8 @@ contains
 
     integer inode,yourid
     integer msizeR,msizeS
-    type(cfield) x  
+    ! type(cfield) x  
+    complex(8), intent(in) :: x(jlim(1,grid):,:)
     real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
     complex(8), allocatable :: buffS(:,:),buffR(:,:)
     integer, intent(in) :: nygrid, nygrid_LB
@@ -901,8 +940,8 @@ contains
         ! write(6,*) "k", k, "columns_k",columns_k(column,yourid), "dk_phys", dk_phys(column,yourid), yourid
 
 
-        xPL(2*i+1,k,j) = dreal(x%f(j,column))
-        xPL(2*i+2,k,j) = dimag(x%f(j,column))
+        xPL(2*i+1,k,j) = dreal(x(j,column))
+        xPL(2*i+2,k,j) = dimag(x(j,column))
       end do
     end do
     ! end do
@@ -935,7 +974,7 @@ contains
 
         do j = jminS,jmaxS
           do column = 1,columns_num(myid)
-            buffS(j,column) = x%f(j,column)
+            buffS(j,column) = x(j,column)
 
           end do
         end do
@@ -1080,6 +1119,7 @@ contains
     integer inode,yourid
     integer msizeR,msizeS
     type(cfield) x
+    !complex(8), intent(in) :: x(jlim(1,grid):,:)
     real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
     complex(8), allocatable :: buffS(:,:),buffR(:,:)
     integer, intent(in) :: nygrid,nygrid_LB 
@@ -1647,133 +1687,133 @@ contains
 
   end subroutine
 
-  subroutine planes_to_modes_UVP (x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES  NEW !!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! subroutine planes_to_modes_UVP (x,xPL,grid,nygrid,nygrid_LB,myid,status,ierr)
+  !   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !   !!!!!!!!!!!!!!!!!!!!!! PLANES TO MODES  NEW !!!!!!!!!!!!!!!!!!
+  !   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    ! Prepare the vectors for the Fourier transform
-    ! The procs broadcast the data they have of a plane, and receive the data of a pencil,
-    !  they also transpose the data for the Fourier transform XZY -> YXZ
+  !   ! Prepare the vectors for the Fourier transform
+  !   ! The procs broadcast the data they have of a plane, and receive the data of a pencil,
+  !   !  they also transpose the data for the Fourier transform XZY -> YXZ
 
-      use declaration 
-      implicit none
+  !     use declaration 
+  !     implicit none
 
-      include 'mpif.h'             ! MPI variables
-      integer status(MPI_STATUS_SIZE),ierr,myid
+  !     include 'mpif.h'             ! MPI variables
+  !     integer status(MPI_STATUS_SIZE),ierr,myid
 
-      real :: t_start, t_end
+  !     real :: t_start, t_end
 
-      integer :: i,k,j,jminS,jmaxS,jminR,jmaxR,grid
-      integer :: column
-      integer inode,yourid
-      integer msizeR,msizeS
-      ! type(cfield) x 
-      complex(8), intent(inout) :: x(jlim(1,grid):,:) 
-      real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
-      complex(8), allocatable:: buffS(:,:),buffR(:,:)
-      integer, intent(in) :: nygrid,nygrid_LB
+  !     integer :: i,k,j,jminS,jmaxS,jminR,jmaxR,grid
+  !     integer :: column
+  !     integer inode,yourid
+  !     integer msizeR,msizeS
+  !     ! type(cfield) x 
+  !     complex(8), intent(out) :: x(jlim(1,grid):,:) 
+  !     real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
+  !     complex(8), allocatable:: buffS(:,:),buffR(:,:)
+  !     integer, intent(in) :: nygrid,nygrid_LB
 
-      ! write(6,*) "starting self transpose"
+  !     ! write(6,*) "starting self transpose"
 
-      ! Loop for itself
-      ! Transpose the cube that it already owns
+  !     ! Loop for itself
+  !     ! Transpose the cube that it already owns
 
 
 
-      jminR = max(limPL_excw(grid,1,myid),jlim(1,grid)+1)  ! Select the planes to transpose 
-      jmaxR = min(limPL_excw(grid,2,myid),jlim(2,grid)-1)
+  !     jminR = max(limPL_excw(grid,1,myid),jlim(1,grid)+1)  ! Select the planes to transpose 
+  !     jmaxR = min(limPL_excw(grid,2,myid),jlim(2,grid)-1)
 
-      ! write(*,*) "rank", myid, "x bounds:", lbound(x,1), ubound(x,1), "cols:", lbound(x,2), ubound(x,2)
+  !     ! write(*,*) "rank", myid, "x bounds:", lbound(x,1), ubound(x,1), "cols:", lbound(x,2), ubound(x,2)
       
 
       
-      if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then   ! Special cases: walls
-        jminR = jminR-1
-      end if
-      if (jmaxR==nygrid   .and. jmaxR>=jminR) then
-        jmaxR = jmaxR+1
-      end if
-      ! write(*,*) "rank", myid, "jminR/jmaxR:", jminR, jmaxR, "grid", grid
+  !     if (jminR==nygrid_LB+1 .and. jmaxR>=jminR) then   ! Special cases: walls
+  !       jminR = jminR-1
+  !     end if
+  !     if (jmaxR==nygrid   .and. jmaxR>=jminR) then
+  !       jmaxR = jmaxR+1
+  !     end if
+  !     ! write(*,*) "rank", myid, "jminR/jmaxR:", jminR, jmaxR, "grid", grid
 
-      do j = jminR,jmaxR
-        do column = 1,columns_num(myid)
-          i = columns_i(column,myid)
-          k = columns_k(column,myid) - dk(column,myid)
-          x(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
-        end do
-      end do
+  !     do j = jminR,jmaxR
+  !       do column = 1,columns_num(myid)
+  !         i = columns_i(column,myid)
+  !         k = columns_k(column,myid) - dk(column,myid)
+  !         x(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
+  !       end do
+  !     end do
 
-      !end do
+  !     !end do
 
-      ! write(6,*) "finished self transpose"
+  !     ! write(6,*) "finished self transpose"
 
-      do inode = 1,pnodes-1
-        yourid = ieor(myid,inode)   ! XOR. It's used to pair procs 1-to-1
-        if (yourid<np) then
-            jminS = max(limPL_excw(grid,1,  myid),jlim(1,grid)+1)  ! Select the planes to be SENT.
-            jmaxS = min(limPL_excw(grid,2,  myid),jlim(2,grid)-1)  ! max and min because maybe this proc needs less planes that the other proc has
-            jminR = max(limPL_excw(grid,1,yourid),jlim(1,grid)+1)  ! Select the planes to be RECEIVED
-            jmaxR = min(limPL_excw(grid,2,yourid),jlim(2,grid)-1)
+  !     do inode = 1,pnodes-1
+  !       yourid = ieor(myid,inode)   ! XOR. It's used to pair procs 1-to-1
+  !       if (yourid<np) then
+  !           jminS = max(limPL_excw(grid,1,  myid),jlim(1,grid)+1)  ! Select the planes to be SENT.
+  !           jmaxS = min(limPL_excw(grid,2,  myid),jlim(2,grid)-1)  ! max and min because maybe this proc needs less planes that the other proc has
+  !           jminR = max(limPL_excw(grid,1,yourid),jlim(1,grid)+1)  ! Select the planes to be RECEIVED
+  !           jmaxR = min(limPL_excw(grid,2,yourid),jlim(2,grid)-1)
 
-            ! Adding the walls =
+  !           ! Adding the walls =
 
-            if (jminS==nygrid_LB+1  ) then
-              jminS=jminS-1
-            end if
-            if (jmaxS==nygrid) then
-              jmaxS=jmaxS+1
-            end if
-            if (jminR==nygrid_LB+1  ) then
-              jminR=jminR-1
-            end if
-            if (jmaxR==nygrid) then
-              jmaxR=jmaxR+1
-            end if
-            allocate(buffS(jminS:jmaxS,columns_num(yourid)))
-            allocate(buffR(jminR:jmaxR,columns_num(  myid)))
+  !           if (jminS==nygrid_LB+1  ) then
+  !             jminS=jminS-1
+  !           end if
+  !           if (jmaxS==nygrid) then
+  !             jmaxS=jmaxS+1
+  !           end if
+  !           if (jminR==nygrid_LB+1  ) then
+  !             jminR=jminR-1
+  !           end if
+  !           if (jmaxR==nygrid) then
+  !             jmaxR=jmaxR+1
+  !           end if
+  !           allocate(buffS(jminS:jmaxS,columns_num(yourid)))
+  !           allocate(buffR(jminR:jmaxR,columns_num(  myid)))
 
-            ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
-            !   write(6,*) "buffs", size(buffS,1), size(buffS,2)
-            ! end if 
+  !           ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
+  !           !   write(6,*) "buffs", size(buffS,1), size(buffS,2)
+  !           ! end if 
 
-            msizeS = 2*(columns_num(yourid)*(jmaxS-jminS+1))     ! Size of the data to be SENDER (times 2, because it is complex)
-            msizeR = 2*(columns_num(  myid)*(jmaxR-jminR+1))     ! Size of the data to be RECEIVED
-            msizeS = max(msizeS,0)                                     ! The size has to be 0 or positive. 
-            msizeR = max(msizeR,0)
-            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            do j=jminS,jmaxS
-              do column = 1,columns_num(yourid)
-                i = columns_i(column,yourid)
-                k = columns_k(column,yourid) - dk(column,yourid)
-                buffS(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j))     ! The data is transposed and stored in a buffer
-              end do
-            end do
+  !           msizeS = 2*(columns_num(yourid)*(jmaxS-jminS+1))     ! Size of the data to be SENDER (times 2, because it is complex)
+  !           msizeR = 2*(columns_num(  myid)*(jmaxR-jminR+1))     ! Size of the data to be RECEIVED
+  !           msizeS = max(msizeS,0)                                     ! The size has to be 0 or positive. 
+  !           msizeR = max(msizeR,0)
+  !           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !           do j=jminS,jmaxS
+  !             do column = 1,columns_num(yourid)
+  !               i = columns_i(column,yourid)
+  !               k = columns_k(column,yourid) - dk(column,yourid)
+  !               buffS(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j))     ! The data is transposed and stored in a buffer
+  !             end do
+  !           end do
 
-            ! call cpu_time(t_start)
+  !           ! call cpu_time(t_start)
             
-            call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &   ! SEND_RECV so it can send and receive at the same time
-    &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
-    &                         MPI_COMM_WORLD,status,ierr)
+  !           call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &   ! SEND_RECV so it can send and receive at the same time
+  !   &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
+  !   &                         MPI_COMM_WORLD,status,ierr)
 
-            ! call cpu_time(t_end)
+  !           ! call cpu_time(t_end)
 
-            ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
-            !   write(6,*) "cpu time", t_start, t_end
-            ! end if
+  !           ! if (myid ==0 .and. yourid == 4 .and. jband == 2) then
+  !           !   write(6,*) "cpu time", t_start, t_end
+  !           ! end if
 
-            do j=jminR,jmaxR
-              do column = 1,columns_num(myid)
-                x(j,column) = buffR(j,column)                         ! Store the data received
-              end do
-            end do
-            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            deallocate(buffR,buffS)
-          ! end do
-        end if
-      end do
+  !           do j=jminR,jmaxR
+  !             do column = 1,columns_num(myid)
+  !               x(j,column) = buffR(j,column)                         ! Store the data received
+  !             end do
+  !           end do
+  !           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  !           deallocate(buffR,buffS)
+  !         ! end do
+  !       end if
+  !     end do
 
-  end subroutine
+  ! end subroutine
 
   ! subroutine planes_to_modes_phys_lims (x,xPL,nystart,nyend,grid,myid,status,ierr)
   ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1951,208 +1991,209 @@ contains
 
   end subroutine
 
-  subroutine record_out(u1,myid)
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!   RECORD OUT   !!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! subroutine record_out(u1,myid)
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!   RECORD OUT   !!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    use declaration
-    use littleharsh_mod
-    implicit none
+  !   use declaration
+  !   ! use littleharsh_mod
+  !   implicit none
 
-    include 'mpif.h'             ! MPI variables
-    integer status(MPI_STATUS_SIZE),ierr,myid
+  !   include 'mpif.h'             ! MPI variables
+  !   integer status(MPI_STATUS_SIZE),ierr,myid
 
-    type(cfield) u1
-    integer nx,nz, i 
-    integer j,jmax,iproc
-    real(8), allocatable:: buffSR(:,:)
-    integer, allocatable:: dummint(:)
-    real(8) Uslip  
+  !   ! type(cfield) u1
+  !   complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
+  !   integer nx,nz, i 
+  !   integer j,jmax,iproc
+  !   real(8), allocatable:: buffSR(:,:)
+  !   integer, allocatable:: dummint(:)
+  !   real(8) Uslip  
 
-    ! Rebuilding N 
-    if (.not. allocated(N)) allocate(N(4,0:4))
+  !   ! Rebuilding N 
+  !   if (.not. allocated(N)) allocate(N(4,0:4))
     
 
-    N= 0 
-    N(1,1:3) = Nspec_x
-    N(1,4) = -2
-    N(2,1:3) = Nspec_z
-    N(3,3) = nyv
-    N(4,3) = nyu
+  !   N= 0 
+  !   N(1,1:3) = Nspec_x
+  !   N(1,4) = -2
+  !   N(2,1:3) = Nspec_z
+  !   N(3,3) = nyv
+  !   N(4,3) = nyu
 
-    if (myid == 0) then
-      write(6,*) "N:"
-      do i = 1,4
-        write(6,*) N(i,0:4)
-      end do
-    end if 
+  !   if (myid == 0) then
+  !     write(6,*) "N:"
+  !     do i = 1,4
+  !       write(6,*) N(i,0:4)
+  !     end do
+  !   end if 
 
-    if (myid/=0) then
-      nx = Nspec_x+2
-      nz = Nspec_z
-      allocate(buffSR(nx,nz))
-      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
-        call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
-        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,123*myid,MPI_COMM_WORLD,ierr)
-      end do
-      do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
-        call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
-        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,124*myid,MPI_COMM_WORLD,ierr)
-      end do
-      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
-        call u_to_buff(buffSR,u3PL(1,1,j),nx,nz,igal,kgal)
-        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,125*myid,MPI_COMM_WORLD,ierr)
-      end do
-      do j = limPL_incw(pgrid,1,myid),limPL_incw(pgrid,2,myid)
-        call u_to_buff(buffSR,ppPL(1,1,j),nx,nz,igal,kgal)
-        call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,126*myid,MPI_COMM_WORLD,ierr)
-      end do
+  !   if (myid/=0) then
+  !     nx = Nspec_x+2
+  !     nz = Nspec_z
+  !     allocate(buffSR(nx,nz))
+  !     do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+  !       call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
+  !       call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,123*myid,MPI_COMM_WORLD,ierr)
+  !     end do
+  !     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
+  !       call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
+  !       call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,124*myid,MPI_COMM_WORLD,ierr)
+  !     end do
+  !     do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+  !       call u_to_buff(buffSR,u3PL(1,1,j),nx,nz,igal,kgal)
+  !       call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,125*myid,MPI_COMM_WORLD,ierr)
+  !     end do
+  !     do j = limPL_incw(pgrid,1,myid),limPL_incw(pgrid,2,myid)
+  !       call u_to_buff(buffSR,ppPL(1,1,j),nx,nz,igal,kgal)
+  !       call MPI_SEND(buffSR,nx*nz,MPI_REAL8,0,126*myid,MPI_COMM_WORLD,ierr)
+  !     end do
 
-      deallocate(buffSR)
-    else
-      write(ext4,'(i5.5)') int(10d0*(t))!int(t)!
-      allocate(dummint(88))
-      dummint = 0
-      !!!!!!!!!!!!!    u1    !!!!!!!!!!!!!
-      fnameima = 'output/u1_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
-      open(10,file=fnameima,form='unformatted')
-      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint 
-      write(10) N
-      write(10) yu,dthetavi,dthdyu
-      nx = Nspec_x+2
-      nz = Nspec_z
-      allocate(buffSR(nx,nz))
-      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
-        call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
-        write(10) j,1,nx,nz,yu(j),buffSR
-      end do
-      deallocate(buffSR)
-      do iproc = 1,np-1
-        nx = Nspec_x+2
-        nz = Nspec_z
-        allocate(buffSR(nx,nz))
-        do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
-          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,123*iproc,MPI_COMM_WORLD,status,ierr)
-          write(10) j,1,nx,nz,yu(j),buffSR
-        end do
-        deallocate(buffSR)
-      end do
-      close(10)
-      !!!!!!!!!!!!!    u2    !!!!!!!!!!!!!
-      fnameima='output/u2_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
-      open(10,file=fnameima,form='unformatted')
-      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
-      write(10) N
-      write(10) yv,dthetavi,dthdyv
-      nx = Nspec_x+2
-      nz = Nspec_z
-      allocate(buffSR(nx,nz))
-      do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
-        call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
-        write(10) j,2,nx,nz,yv(j),buffSR
-      end do
-      deallocate(buffSR)
-      do iproc = 1,np-1
-        nx = Nspec_x+2
-        nz = Nspec_z
-        allocate(buffSR(nx,nz))
-        do j = limPL_incw(vgrid,1,iproc),limPL_incw(vgrid,2,iproc)
-          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,124*iproc,MPI_COMM_WORLD,status,ierr)
-          write(10) j,2,nx,nz,yv(j),buffSR
-        end do
-        deallocate(buffSR)
-      end do
-      close(10)
-      !!!!!!!!!!!!!    u3    !!!!!!!!!!!!!
-      fnameima = 'output/u3_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
-      open(10,file=fnameima,form='unformatted')
-      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
-      write(10) N
-      write(10) yu,dthetavi,dthdyu
-      nx = Nspec_x+2
-      nz = Nspec_z
-      allocate(buffSR(nx,nz))
-      do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
-        call u_to_buff(buffSR,u3PL(1,1,j),nx,nz,igal,kgal)
-        write(10) j,3,nx,nz,yu(j),buffSR
-      end do
-      deallocate(buffSR)
-      do iproc = 1,np-1
-        nx = Nspec_x+2
-        nz = Nspec_z
-        allocate(buffSR(nx,nz))
-        do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
-          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,125*iproc,MPI_COMM_WORLD,status,ierr)
-          write(10) j,3,nx,nz,yu(j),buffSR
-        end do
-        deallocate(buffSR)
-      end do
-      close(10)
-      !!!!!!!!!!!!!    p     !!!!!!!!!!!!!
-      fnameima = 'output/p_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
-      open(10,file=fnameima,form='unformatted')
-      write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
-      write(10) N
-      write(10) yu,dthetavi,dthdyu
-      nx = Nspec_x+2
-      nz = Nspec_z
-      allocate(buffSR(nx,nz))
-      do j = limPL_incw(pgrid,1,myid),limPL_incw(pgrid,2,myid)
-        call u_to_buff(buffSR,ppPL(1,1,j),nx,nz,igal,kgal)
-        write(10) j,4,nx,nz,yu(j),buffSR
-      end do
-      deallocate(buffSR)
-      do iproc = 1,np-1
-        nx = Nspec_x+2
-        nz = Nspec_z
-        allocate(buffSR(nx,nz))
-        do j = limPL_incw(pgrid,1,iproc),limPL_incw(pgrid,2,iproc)
-          call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,126*iproc,MPI_COMM_WORLD,status,ierr)
-          write(10) j,4,nx,nz,yu(j),buffSR
-        end do
-        deallocate(buffSR)
-      end do
-      close(10)
-      deallocate(dummint)
-    end if
+  !     deallocate(buffSR)
+  !   else
+  !     write(ext4,'(i5.5)') int(10d0*(t))!int(t)!
+  !     allocate(dummint(88))
+  !     dummint = 0
+  !     !!!!!!!!!!!!!    u1    !!!!!!!!!!!!!
+  !     fnameima = 'output/u1_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+  !     open(10,file=fnameima,form='unformatted')
+  !     write(10) t,Re,alp,bet,mpgx,nband,iter,dummint 
+  !     write(10) N
+  !     write(10) yu,dthetavi,dthdyu
+  !     nx = Nspec_x+2
+  !     nz = Nspec_z
+  !     allocate(buffSR(nx,nz))
+  !     do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+  !       call u_to_buff(buffSR,u1PL(1,1,j),nx,nz,igal,kgal)
+  !       write(10) j,1,nx,nz,yu(j),buffSR
+  !     end do
+  !     deallocate(buffSR)
+  !     do iproc = 1,np-1
+  !       nx = Nspec_x+2
+  !       nz = Nspec_z
+  !       allocate(buffSR(nx,nz))
+  !       do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
+  !         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,123*iproc,MPI_COMM_WORLD,status,ierr)
+  !         write(10) j,1,nx,nz,yu(j),buffSR
+  !       end do
+  !       deallocate(buffSR)
+  !     end do
+  !     close(10)
+  !     !!!!!!!!!!!!!    u2    !!!!!!!!!!!!!
+  !     fnameima='output/u2_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+  !     open(10,file=fnameima,form='unformatted')
+  !     write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
+  !     write(10) N
+  !     write(10) yv,dthetavi,dthdyv
+  !     nx = Nspec_x+2
+  !     nz = Nspec_z
+  !     allocate(buffSR(nx,nz))
+  !     do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
+  !       call u_to_buff(buffSR,u2PL(1,1,j),nx,nz,igal,kgal)
+  !       write(10) j,2,nx,nz,yv(j),buffSR
+  !     end do
+  !     deallocate(buffSR)
+  !     do iproc = 1,np-1
+  !       nx = Nspec_x+2
+  !       nz = Nspec_z
+  !       allocate(buffSR(nx,nz))
+  !       do j = limPL_incw(vgrid,1,iproc),limPL_incw(vgrid,2,iproc)
+  !         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,124*iproc,MPI_COMM_WORLD,status,ierr)
+  !         write(10) j,2,nx,nz,yv(j),buffSR
+  !       end do
+  !       deallocate(buffSR)
+  !     end do
+  !     close(10)
+  !     !!!!!!!!!!!!!    u3    !!!!!!!!!!!!!
+  !     fnameima = 'output/u3_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+  !     open(10,file=fnameima,form='unformatted')
+  !     write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
+  !     write(10) N
+  !     write(10) yu,dthetavi,dthdyu
+  !     nx = Nspec_x+2
+  !     nz = Nspec_z
+  !     allocate(buffSR(nx,nz))
+  !     do j = limPL_incw(ugrid,1,myid),limPL_incw(ugrid,2,myid)
+  !       call u_to_buff(buffSR,u3PL(1,1,j),nx,nz,igal,kgal)
+  !       write(10) j,3,nx,nz,yu(j),buffSR
+  !     end do
+  !     deallocate(buffSR)
+  !     do iproc = 1,np-1
+  !       nx = Nspec_x+2
+  !       nz = Nspec_z
+  !       allocate(buffSR(nx,nz))
+  !       do j = limPL_incw(ugrid,1,iproc),limPL_incw(ugrid,2,iproc)
+  !         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,125*iproc,MPI_COMM_WORLD,status,ierr)
+  !         write(10) j,3,nx,nz,yu(j),buffSR
+  !       end do
+  !       deallocate(buffSR)
+  !     end do
+  !     close(10)
+  !     !!!!!!!!!!!!!    p     !!!!!!!!!!!!!
+  !     fnameima = 'output/p_'//ext1//'x'//ext2//'x'//ext3//'_t'//ext4//'.dat'
+  !     open(10,file=fnameima,form='unformatted')
+  !     write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
+  !     write(10) N
+  !     write(10) yu,dthetavi,dthdyu
+  !     nx = Nspec_x+2
+  !     nz = Nspec_z
+  !     allocate(buffSR(nx,nz))
+  !     do j = limPL_incw(pgrid,1,myid),limPL_incw(pgrid,2,myid)
+  !       call u_to_buff(buffSR,ppPL(1,1,j),nx,nz,igal,kgal)
+  !       write(10) j,4,nx,nz,yu(j),buffSR
+  !     end do
+  !     deallocate(buffSR)
+  !     do iproc = 1,np-1
+  !       nx = Nspec_x+2
+  !       nz = Nspec_z
+  !       allocate(buffSR(nx,nz))
+  !       do j = limPL_incw(pgrid,1,iproc),limPL_incw(pgrid,2,iproc)
+  !         call MPI_RECV(buffSR,nx*nz,MPI_REAL8,iproc,126*iproc,MPI_COMM_WORLD,status,ierr)
+  !         write(10) j,4,nx,nz,yu(j),buffSR
+  !       end do
+  !       deallocate(buffSR)
+  !     end do
+  !     close(10)
+  !     deallocate(dummint)
+  !   end if
 
-    if (myid==0) then
+  !   if (myid==0) then
 
-      Uslip = ((u1%f(1,1))*(-1d0-yu(0))+(u1%f(0,1))*(yu(1)+1d0))/(yu(1)-yu(0))
+  !     Uslip = ((u1(1,1))*(-1d0-yu(0))+(u1(0,1))*(yu(1)+1d0))/(yu(1)-yu(0))
 
-      ! call flowrateIm(Qx,u1(nyu_LB,1))
-      call flowrateIm(Qx,u1(:,1))
-      ! call maxvel(u1(nyu_LB,1))
-      call maxvel(u1(:,1))
-      write(*,*) ''
-      write(*,*) 'iter',iter
-      write(*,*) 't   ',t
-      write(*,*) 'dtv ',dtv
-      write(*,*) 'dtc ',dtc
-      write(*,*) 'dt  ',dt
-      write(*,*) 'err ',err
-      write(*,*) 'Qx  ',Qx
-      if (flag_ctpress==0) then
-        write(*,*) 'QxT ',QxT
-        write(*,*) 'mpgx',mpgx
-        write(*,*) 'dpgx',dgx
-      else
-        write(*,*) 'mpgx',mpgx
-      end if
-      write(*,*) 'Umax',Umax
-      write(*,*) 'Uslp',Uslip
-  !    write(*,*) 'utau',utau
-  ! Save to history file
-      if (flag_ctpress==0) then
-        write(30) flag_ctpress,iter,t,dtv,dtc,dt,err,Qx,QxT,mpgx,dgx,Umax,Uslip
-      else
-        write(30) flag_ctpress,iter,t,dtv,dtc,dt,err,Qx,    mpgx,    Umax,Uslip
-      end if
-      flush(30)
-    end if
+  !     ! call flowrateIm(Qx,u1(nyu_LB,1))
+  !     call flowrateIm(Qx,u1(:,1))
+  !     ! call maxvel(u1(nyu_LB,1))
+  !     call maxvel(u1(:,1))
+  !     write(*,*) ''
+  !     write(*,*) 'iter',iter
+  !     write(*,*) 't   ',t
+  !     write(*,*) 'dtv ',dtv
+  !     write(*,*) 'dtc ',dtc
+  !     write(*,*) 'dt  ',dt
+  !     write(*,*) 'err ',err
+  !     write(*,*) 'Qx  ',Qx
+  !     if (flag_ctpress==0) then
+  !       write(*,*) 'QxT ',QxT
+  !       write(*,*) 'mpgx',mpgx
+  !       write(*,*) 'dpgx',dgx
+  !     else
+  !       write(*,*) 'mpgx',mpgx
+  !     end if
+  !     write(*,*) 'Umax',Umax
+  !     write(*,*) 'Uslp',Uslip
+  ! !    write(*,*) 'utau',utau
+  ! ! Save to history file
+  !     if (flag_ctpress==0) then
+  !       write(30) flag_ctpress,iter,t,dtv,dtc,dt,err,Qx,QxT,mpgx,dgx,Umax,Uslip
+  !     else
+  !       write(30) flag_ctpress,iter,t,dtv,dtc,dt,err,Qx,    mpgx,    Umax,Uslip
+  !     end if
+  !     flush(30)
+  !   end if
 
-  end subroutine
+  ! end subroutine
 
 
   subroutine write_Qcrit(myid)

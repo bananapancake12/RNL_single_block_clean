@@ -227,6 +227,7 @@ subroutine start(myid,status,ierr)
 
   use declaration
   use init_mod
+  use tridLU_3D
   use littleharsh_mod
   implicit none
 
@@ -766,9 +767,9 @@ end if
   
   ! One field per proc (not per band)
 
-  allocate( u1_itp%f( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
-  allocate( u2_itp%f( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) ) )
-  allocate( u3_itp%f( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
+  allocate( u1_itp( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
+  allocate( u2_itp( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) ) )
+  allocate( u3_itp( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
 
   allocate( Nu1_dy%f( jlim(1,ugrid)+1:jlim(2,ugrid)-1, columns_num(myid) ) )
   allocate( Nu2_dy%f( jlim(1,vgrid)+1:jlim(2,vgrid)-1, columns_num(myid) ) )
@@ -782,12 +783,12 @@ end if
 
   allocate( du1dy_columns%f( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
   allocate( du2dy_columns%f( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
-  allocate( du3dy_columns%f( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
+  allocate( du3dy_columns( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
 
 
-  u1_itp%f        = 0d0
-  u2_itp%f        = 0d0
-  u3_itp%f        = 0d0
+  u1_itp        = 0d0
+  u2_itp        = 0d0
+  u3_itp        = 0d0
 
   Nu1_dy%f        = 0d0
   Nu2_dy%f        = 0d0
@@ -801,7 +802,7 @@ end if
 
   du1dy_columns%f = 0d0
   du2dy_columns%f = 0d0
-  du3dy_columns%f = 0d0
+  du3dy_columns = 0d0
 
 
 
@@ -1216,6 +1217,7 @@ subroutine proc_lims_columns(myid)
   jlim(1,pgrid) = nyu_LB+1
   jlim(2,pgrid) = nyu
   ! write(*,*) 'jlim(1, pgrid)=',N(4,0)+1, ' jlim(2, pgrid)=', N(4,3)
+  ! write(*,*) jlim(1,ugrid), jlim(1,vgrid), 
 
   ! Used in FOU3D and stats
   ! It's a shift in z, used to align modes in different bands
@@ -1830,6 +1832,7 @@ subroutine read_in(myid)
 !  (jgal is the local name of planelim for j)
 
   use declaration
+  use FOU3D_mod
   implicit none
 
   include 'mpif.h'             ! MPI variables
