@@ -227,6 +227,7 @@ subroutine start(myid,status,ierr)
 
   use declaration
   use init_mod
+  use littleharsh_mod
   implicit none
 
   include 'mpif.h'            ! MPI variables
@@ -1508,7 +1509,7 @@ subroutine proc_lims_planes(myid)
 
 end subroutine
 
-
+!!!! moved these to ini_mod 
 
 ! subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
 ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
