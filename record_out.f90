@@ -1,51 +1,86 @@
-module error_rec_out
+module rec_out
   use declaration
-  use transpose
   implicit none
 
-  contains
+contains
 
-    subroutine error(A,myid,ierr)
+    
+    subroutine u_to_buff(buffSR,u,nx,nz,igal,kgal)
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!     ERROR      !!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!    U to BUFF   !!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    ! Rearrange z-modes before writing and after reading
+
+        implicit none
+
+        integer nx,nz,igal,kgal
+        real(8) u(igal,kgal)
+        real(8) buffSR(nx,nz)
+        integer i,k,dkk
+
+        do k = 1,nz/2
+        do i = 1,nx
+            buffSR(i,k) = u(i,k    )
+        end do
+        end do
+        do i = 1,nx
+        !buffSR(i,nz/2+1) = 0d0
+        end do
+        do k = nz/2+1,nz
+        dkk = kgal-nz
+        do i = 1,nx
+            buffSR(i,k) = u(i,k+dkk)
+        end do
+        end do
+
+    end subroutine
+
+  
+    subroutine flowrateIm(Qu,u)
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!         FLOW RATE          !!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    ! Flow rate: integrating 1st Fourier mode over the whole channel
+
+    use declaration
+    implicit none
+    integer j
+    real(8) Qu
+    complex(8) u(nyu_LB:nyu+1)
+
+    Qu = 0d0
+    do j = 1,nn+1
+        !Qu = Qu + .5d0*(yu(j+1) - yu(j-1))*dreal(u(j) !Old collocated version
+        Qu = Qu + (yv(j) - yv(j-1))*dreal(u(j)) !Mixed ugrid vgrid
+    end do
+
+    end subroutine
+    
+    subroutine maxvel(u)
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!          MAX VEL           !!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     use declaration
     implicit none
 
-    include 'mpif.h'             ! MPI variables
-    integer ierr
+    complex(8) u(nyu_LB:nyu+1)
+    integer j
 
-    integer j,column,myid
-    type(cfield) A
-    real(8) erri,errband
-
-    erri = 0d0
-    errband = 0d0
-    do column = 1,columns_num(myid)
-        do j = jlim(1,pgrid),jlim(2,pgrid)
-        err     = abs(A%f(j,column))
-        errband = max(errband,err)
-
-        ! write(6,*) "errband", errband
-        end do
+    Umax = 0d0
+    do j = 0,nn+2
+        Umax = max(Umax,dreal(u(j)))
     end do
-    erri = max(erri,errband)
 
-
-    !if (myid == 0) then
-    ! write(6,*) 'error(): size(A%f,1:2)=', size(A%f,1), size(A%f,2)
-    ! write(6,*) 'error(): jlim(1:2,pgrid)=', jlim(1,pgrid), jlim(2,pgrid)
-    ! write(6,*) 'error(): columns_num(myid)=', columns_num(myid), ' myid=', myid
-    !end if
-
-
-    call MPI_ALLREDUCE(erri,err,1,MPI_REAL8,MPI_MAX,MPI_COMM_WORLD,ierr)
-
-
+    ! do j= 1, 152
+    !   write(6,*) " Umax", Umax, dreal(u(j)), "j", j
+    ! end do 
 
     end subroutine
 
+  
     subroutine record_out(u1,myid)
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!   RECORD OUT   !!!!!!!!!!!!!!!!!!!!!!!
@@ -249,5 +284,4 @@ module error_rec_out
     end if
 
     end subroutine
-
-end module error_rec_out
+end module rec_out

@@ -40,6 +40,9 @@
 
 module FOU3D_mod
   use declaration
+  use rec_out
+  use transpose
+  use error_mod
   implicit none
 contains
 
@@ -49,8 +52,6 @@ contains
   !!!!!!!!!!!!!!!!!!!!!   NONLINEAR TERMS  !!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     use declaration
-    ! use littleharsh_mod
-    use transpose
     implicit none
 
     include 'mpif.h'             ! MPI variables
@@ -446,8 +447,8 @@ contains
     integer i,k, ip, kp
     ! complex(8) u   (0:Ngal_x/2,Ngal_z)
     ! complex(8) dudx(0:Ngal_x/2,Ngal_z)
-    real(8) u   (0:Ngal_x,Ngal_z) ! -1 as uu_cPL allocated as igal but old routine used 0:ngalx/2
-    real(8) dudx(0:Ngal_x,Ngal_z) ! as if its been shifted, after nspec/2 its all 0's anyway so doesntmatter 
+    real(8) u   (Ngal_x,Ngal_z) 
+    real(8) dudx(Ngal_x,Ngal_z) 
 
     complex(8) kx(0:Nspec_x/2)
 
@@ -460,9 +461,13 @@ contains
     dudx_c = 0d0
 
     ! converting real to complex
+    ! the original code packed reals indexed 1:ngal, tino complex 0:ngal/2
+    ! it seems they added an extra index at the end, but this i guess is filled with 0's so it doesnt matter... 
+    ! to pack it manually we correct the complex indexes to be 0:ngel/2-1
+    ! also shifting the indexes by 1 
     do kp = 1,Ngal_z
-      do ip = 0,Ngal_x/2
-        u_c(ip,kp) = cmplx(u(ip*2,kp), u(ip*2+1,kp))
+      do ip = 0,Ngal_x/2 -1
+        u_c(ip,kp) = cmplx(u((ip*2)+1,kp), u(ip*2+2,kp))
       end do
     end do 
 
@@ -471,6 +476,9 @@ contains
     do k = 1,Nspec_z/2
       do i = 0,Nspec_x/2
         dudx_c(i,k) = kx(i)*u_c(i,k)
+        if (k ==1) then 
+          write(6,*) "i", i, "dudx", dudx_c(i,k)
+        end if
       end do
       do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
         dudx_c(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
@@ -494,9 +502,9 @@ contains
 
     ! converting dudz_c back to real to be compatible with rest of code
     do kp = 1, Ngal_z
-      do ip = 0, Ngal_x/2
-        dudx(2*ip,     kp) = dble( dudx_c(ip,kp) )
-        dudx(2*ip + 1, kp) = dimag( dudx_c(ip,kp) )
+      do ip = 0, Ngal_x/2 -1
+        dudx(2*ip+1,     kp) = dble( dudx_c(ip,kp) )
+        dudx(2*ip + 2, kp) = dimag( dudx_c(ip,kp) )
       end do
     end do
 
@@ -535,8 +543,8 @@ contains
     integer i,k,dk2,k2
     ! complex(8) u   (0:Ngal_x/2,Ngal_z)
     ! complex(8) dudz(0:Ngal_x/2,Ngal_z)
-    real(8) u   (0:Ngal_x/2-1,Ngal_z)
-    real(8) dudz(0:Ngal_x/2-1,Ngal_z)
+    real(8) u   (Ngal_x,Ngal_z)
+    real(8) dudz(Ngal_x,Ngal_z)
     complex(8) kz(1:Nspec_z)
 
     ! new variables for conversion
@@ -551,8 +559,8 @@ contains
 
     ! converting real to complex
     do kp = 1, Ngal_z
-      do ip = 0, Ngal_x/2
-        u_c(ip,kp) = cmplx(u(ip*2,kp), u(ip*2+1,kp))
+      do ip = 0, Ngal_x/2-1
+        u_c(ip,kp) = cmplx(u(ip*2+1,kp), u(ip*2+2,kp))
       end do
     end do
 
@@ -584,9 +592,9 @@ contains
 
     ! converting dudz_c back to real to be compatible with rest of code
     do kp = 1, Ngal_z
-      do ip = 0, Ngal_x/2
-        dudz(2*ip,     kp) = dble( dudz_c(ip,kp) )
-        dudz(2*ip + 1, kp) = dimag( dudz_c(ip,kp) )
+      do ip = 0, Ngal_x/2 -1
+        dudz(2*ip+1,     kp) = dble( dudz_c(ip,kp) )
+        dudz(2*ip + 2, kp) = dimag( dudz_c(ip,kp) )
       end do
     end do
 
@@ -2254,36 +2262,36 @@ contains
 
   end subroutine
 
-  subroutine u_to_buff(buffSR,u,nx,nz,igal,kgal)
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!    U to BUFF   !!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! subroutine u_to_buff(buffSR,u,nx,nz,igal,kgal)
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!    U to BUFF   !!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  ! Rearrange z-modes before writing and after reading
+  ! ! Rearrange z-modes before writing and after reading
 
-    implicit none
+  !   implicit none
 
-    integer nx,nz,igal,kgal
-    real(8) u(igal,kgal)
-    real(8) buffSR(nx,nz)
-    integer i,k,dkk
+  !   integer nx,nz,igal,kgal
+  !   real(8) u(igal,kgal)
+  !   real(8) buffSR(nx,nz)
+  !   integer i,k,dkk
 
-    do k = 1,nz/2
-      do i = 1,nx
-        buffSR(i,k) = u(i,k    )
-      end do
-    end do
-    do i = 1,nx
-      !buffSR(i,nz/2+1) = 0d0
-    end do
-    do k = nz/2+1,nz
-      dkk = kgal-nz
-      do i = 1,nx
-        buffSR(i,k) = u(i,k+dkk)
-      end do
-    end do
+  !   do k = 1,nz/2
+  !     do i = 1,nx
+  !       buffSR(i,k) = u(i,k    )
+  !     end do
+  !   end do
+  !   do i = 1,nx
+  !     !buffSR(i,nz/2+1) = 0d0
+  !   end do
+  !   do k = nz/2+1,nz
+  !     dkk = kgal-nz
+  !     do i = 1,nx
+  !       buffSR(i,k) = u(i,k+dkk)
+  !     end do
+  !   end do
 
-  end subroutine
+  ! end subroutine
 
   subroutine buff_to_u(u,buffSR,nx,nz,igal,kgal)
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

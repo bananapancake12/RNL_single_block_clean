@@ -46,7 +46,8 @@ CALCDIR = $(INIT)
 OBJECTS = $(OBJ)/declaration.o\
 		  $(OBJ)/tridLU_3D.o\
 		  $(OBJ)/transpose.o\
-		  $(OBJ)/error_rec_out.o\
+		  $(OBJ)/error.o\
+		  $(OBJ)/record_out.o\
 		  $(OBJ)/FOU3D.o\
 		  $(OBJ)/littleharsh_mod.o\
 		  $(OBJ)/init_mod.o\
@@ -83,10 +84,9 @@ $(OBJDIR)/transpose.o : $(SRCDIR)/transpose.f90 $(SRCDIR)/makefile
 	@echo compiling transpose.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/transpose.f90
 
-$(OBJDIR)/error_rec_out.o : $(SRCDIR)/error_rec_out.f90 $(SRCDIR)/makefile
-	@echo compiling error_rec_out.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/error_rec_out.f90
-
+$(OBJDIR)/error.o : $(SRCDIR)/error.f90 $(SRCDIR)/makefile
+	@echo compiling error.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/error.f90
 
 $(OBJDIR)/FOU3D.o : $(SRCDIR)/FOU3D.f90 $(SRCDIR)/makefile
 	@echo compiling FOU3D.f90
@@ -128,6 +128,10 @@ $(OBJDIR)/rft_buff.o : $(SRCDIR)/rft_buff.f $(SRCDIR)/makefile
 $(OBJDIR)/cft_buff.o : $(SRCDIR)/cft_buff.f $(SRCDIR)/makefile
 	@echo compiling cft_buff.f
 	@cd $(OBJDIR); $(PREP) $(F77) $(FFT_F77FLAGS) -I$(SRCDIR) $(SRCDIR)/cft_buff.f -o cft_buff.o
+
+$(OBJDIR)/record_out.o : $(SRCDIR)/record_out.f90 $(SRCDIR)/makefile
+	@echo compiling record_out.f90
+	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/record_out.f90
 
 $(OBJDIR)/littleharsh.o : $(SRCDIR)/littleharsh.f90  $(SRCDIR)/makefile
 	@echo compiling littleharsh.f90
