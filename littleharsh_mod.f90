@@ -245,9 +245,10 @@ contains
     integer iproc,j
     real(8) val
     !type(cfield)  u1, u2, u3
-    type(cfield)   div
+    ! type(cfield)   div
     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     complex(8), intent(inout) :: p(jlim(1,pgrid):,:)
+    complex(8), intent(in) :: div(:,:)
 
     iwrite = iwrite+nwrite
     call error(div,myid,ierr)
@@ -455,24 +456,25 @@ contains
 
     ! type(cfield) :: u1, u2, u3, p, psi, div
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: p(:,:)
-    type(cfield) :: psi, div
+    complex(8), intent(inout) :: p(:,:), psi(:,:)
+    ! type(cfield) :: div
+    complex(8), intent(in) :: div(:,:)
 
     real(8) :: dtirk
     
     dtirk = dti/(aRK(kRK)+bRK(kRK))
 
-    call divergence(div%f,u1,u2,u3,myid)
+    call divergence(div,u1,u2,u3,myid)
         
     do column = 1,columns_num(myid)
         do j = jlim(1,pgrid),jlim(2,pgrid)
-        psi%f(j,column) = dtirk*div%f(j,column) 
+        psi(j,column) = dtirk*div(j,column) 
         end do
     end do 
     
     !Boundary condition for pressure
     if (myid==0) then
-        psi%f(jlim(1,pgrid),1) = 0d0 !C! Psi (mean) at bottom of channel = 0
+        psi(jlim(1,pgrid),1) = 0d0 !C! Psi (mean) at bottom of channel = 0
     end if
 
     ! For modified wavenumbers, need BC on last pressure mode (as k2x=k2z=0)
@@ -485,11 +487,11 @@ contains
     ! enddo
         
 
-    call LUsolP(psi%f,myid,jlim(1,pgrid),jlim(2,pgrid))
+    call LUsolP(psi,myid,jlim(1,pgrid),jlim(2,pgrid))
 
     do column = 1,columns_num(myid) 
         do j = jlim(1,pgrid),jlim(2,pgrid)
-        p(j,column) = p(j,column)+psi%f(j,column)
+        p(j,column) = p(j,column)+psi(j,column)
         enddo
     enddo
     
@@ -508,7 +510,8 @@ contains
     ! type(cfield)  u1
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
     type(cfield) du1
-    type(cfield) Nu1
+    complex(8), intent(inout) :: Nu1(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
+    ! type(cfield) Nu1
     !type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2
@@ -527,7 +530,7 @@ contains
         C3 = -dRK(kRK)*k1F_x(i)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
         du1%f(j,column) = C1*du1%f(j,column) &
-    &                              + C2*Nu1%f(j,column) &
+    &                              + C2*Nu1(j,column) &
     &                              + C3* p (j,column)
         end do
 
@@ -566,7 +569,8 @@ contains
     ! type(cfield)  u2
     complex(8), intent(in) :: u2(jlim(1,vgrid):,:)
     type(cfield) du2
-    type(cfield) Nu2
+    ! type(cfield) Nu2
+    complex(8), intent(in) :: Nu2(jlim(1,vgrid) :jlim(2,vgrid)-1,columns_num(myid))
     ! type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2,C3
@@ -583,7 +587,7 @@ contains
         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
         C3 = -dRK(kRK)*ddthetavi*dthdyv(j)
         du2%f(j,column) = C1* du2%f(j  ,column) &
-    &                              + C2* Nu2%f(j  ,column) &
+    &                              + C2* Nu2(j  ,column) &
     &                              + C3*( p (j+1,column) & ! centeres to faces --> (j+1)-(j)
     &                                    -p (j,  column))
         end do
@@ -622,7 +626,8 @@ contains
     ! type(cfield)  u3
     complex(8), intent(in) :: u3(jlim(1,ugrid):,:)
     type(cfield) du3
-    type(cfield) Nu3
+    ! type(cfield) Nu3
+    complex(8), intent(in) :: Nu3(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
     ! type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)   
     real(8) C1,C2
@@ -638,7 +643,7 @@ contains
         C3 = -dRK(kRK)*k1F_z(k)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
         du3%f(j,column) = C1*du3%f(j,column) &
-    &                              + C2*Nu3%f(j,column) &
+    &                              + C2*Nu3(j,column) &
     &                              + C3* p (j,column)
         end do
 
@@ -853,7 +858,9 @@ contains
     complex(8) kx,kz,dtrk,dtrk_u2
     ! type(cfield) u1,u2,u3
     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
-    type(cfield) psi,div
+    complex(8), intent(inout) :: psi(:,:)
+    ! type(cfield) div
+    complex(8), intent(in) :: div(:,:)
     real (8),pointer :: vcorrPL(:,:,:)
     
     real(8) weighting
@@ -869,7 +876,7 @@ contains
         kx = dtrk*k1F_x(i)
         
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        u1(j,column) = u1(j,column)-kx*psi%f(j,column)
+        u1(j,column) = u1(j,column)-kx*psi(j,column)
         end do
 
     end do
@@ -892,7 +899,7 @@ contains
     do column = 1,columns_num(myid)
         
         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
-        u2(j,column) = u2(j,column)-dtrk_u2*dthdyv(j)*(psi%f(j+1,column)-psi%f(j,column))
+        u2(j,column) = u2(j,column)-dtrk_u2*dthdyv(j)*(psi(j+1,column)-psi(j,column))
         end do
     !       u2(iband)%f(jlim(1,vgrid),column) = 0d0
     !       u2(iband)%f(jlim(2,vgrid),column) = 0d0
@@ -909,7 +916,7 @@ contains
         kz = dtrk*k1F_z(k)
         
         do j=jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        u3(j,column) = u3(j,column)-kz*psi%f(j,column)
+        u3(j,column) = u3(j,column)-kz*psi(j,column)
         end do
 
     end do
@@ -930,7 +937,7 @@ contains
     
     !!!!!!!!!  divergence:  !!!!!!!!!
 
-    call divergence(div%f,u1,u2,u3,myid)
+    call divergence(div,u1,u2,u3,myid)
 
     deallocate(vcorrPL)
     end subroutine

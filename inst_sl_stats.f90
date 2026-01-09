@@ -25,7 +25,7 @@ subroutine inst_sl_stats(u1,u3,myid,status,ierr)
     do column = 1,columns_num(myid)
       j = jlim(1,vgrid)
       du1dy_columns%f(j,column)=(u1%f(j+1,column)-u1%f(j,column))*dthdyv(j)*ddthetavi
-      du3dy_columns%f(j,column)=(u3%f(j+1,column)-u3%f(j,column))*dthdyv(j)*ddthetavi
+      du3dy_columns(j,column)=(u3%f(j+1,column)-u3%f(j,column))*dthdyv(j)*ddthetavi
     enddo
   !enddo
   
@@ -33,7 +33,7 @@ subroutine inst_sl_stats(u1,u3,myid,status,ierr)
     do column = 1,columns_num(myid)
       j = jlim(2,vgrid)
       du1dy_columns%f(j,column)=-(u1%f(j+1,column)-u1%f(j,column))*dthdyv(j)*ddthetavi
-      du3dy_columns%f(j,column)=-(u3%f(j+1,column)-u3%f(j,column))*dthdyv(j)*ddthetavi
+      du3dy_columns(j,column)=-(u3%f(j+1,column)-u3%f(j,column))*dthdyv(j)*ddthetavi
     enddo
   !enddo
 

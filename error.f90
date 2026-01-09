@@ -16,14 +16,15 @@ module error_mod
     integer ierr
 
     integer j,column,myid
-    type(cfield) A
+    ! type(cfield) A
+    complex(8), intent(in) :: A(:,:)
     real(8) erri,errband
 
     erri = 0d0
     errband = 0d0
     do column = 1,columns_num(myid)
         do j = jlim(1,pgrid),jlim(2,pgrid)
-        err     = abs(A%f(j,column))
+        err     = abs(A(j,column))
         errband = max(errband,err)
 
         ! write(6,*) "errband", errband

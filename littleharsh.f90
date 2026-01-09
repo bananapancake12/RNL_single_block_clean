@@ -55,14 +55,14 @@ program littleharsh
 
 
   ! type(cfield) :: u2, u3, p, psi
-  type(cfield) :: psi
-  type(cfield) :: div
-  type(cfield) :: Nu1, Nu2, Nu3
+  ! type(cfield) :: psi
+  ! type(cfield) :: div
+  ! type(cfield) :: Nu1, Nu2, Nu3
   type(cfield) :: du1, du2, du3
 
-  complex(8), allocatable :: u1(:,:), u2(:,:), u3(:,:), p(:,:)! , psi(:,:)
-  ! complex(8), allocatable :: div(:,:)
-  ! complex(8), allocatable :: Nu1(:,:), Nu2(:,:), Nu3(:,:)
+  complex(8), allocatable :: u1(:,:), u2(:,:), u3(:,:), p(:,:), psi(:,:)
+  complex(8), allocatable :: div(:,:)
+  complex(8), allocatable :: Nu1(:,:), Nu2(:,:), Nu3(:,:)
   ! complex(8), allocatable :: du1(:,:), du2(:,:), du3(:,:)
 
 
@@ -106,13 +106,13 @@ program littleharsh
   allocate( du2%f( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) )
   allocate( du3%f( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) )
 
-  allocate( Nu1%f( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
-  allocate( Nu2%f( jlim(1,vgrid) + 1  : jlim(2,vgrid) - 1,  columns_num(myid) ) )
-  allocate( Nu3%f( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
+  allocate( Nu1( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
+  allocate( Nu2( jlim(1,vgrid) + 1  : jlim(2,vgrid) - 1,  columns_num(myid) ) )
+  allocate( Nu3( jlim(1,ugrid) + 1  : jlim(2,ugrid) - 1,  columns_num(myid) ) )
 
-  allocate( p( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
-  allocate( psi%f( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
-  allocate( div%f( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+  allocate( p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+  allocate( psi( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
+  allocate( div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
 
   allocate( a  (2))
 
@@ -127,12 +127,12 @@ program littleharsh
   du1%f = 0d0
   du2%f = 0d0
   du3%f = 0d0
-  Nu1%f = 0d0
-  Nu2%f = 0d0
-  Nu3%f = 0d0
+  Nu1 = 0d0
+  Nu2 = 0d0
+  Nu3 = 0d0
   p   = 0d0
-  psi%f = 0d0
-  div%f = 0d0
+  psi = 0d0
+  div = 0d0
   a(ugrid)%fr = 0d0
   a(vgrid)%fr = 0d0
 

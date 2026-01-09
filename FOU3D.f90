@@ -61,12 +61,17 @@ contains
     real(8) C1
     ! type(cfield) u1, u2, u3
     type(cfield) du1, du2, du3
-    type(cfield) Nu1, Nu2, Nu3
+    !type(cfield) Nu1, Nu2, Nu3
     !type(cfield) p, div
-    type(cfield) div
+    ! type(cfield) div
 
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     complex(8), intent(in) :: p(:,:)
+    complex(8), intent(in) :: div(:,:)
+    complex(8), intent(inout) :: Nu1(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
+    complex(8), intent(inout) :: Nu2(jlim(1,vgrid):jlim(2,ugrid)-1,columns_num(myid))
+    complex(8), intent(inout) :: Nu3(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
+    
 
     
     if (iter-iter0>=nstat .and. kRK==1) then
@@ -272,11 +277,11 @@ contains
     !C! Calculate final advective term
       do column = 1,columns_num(myid)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-          Nu1%f(j,column) = Nu1%f(j,column)+Nu1_dy%f(j,column)
-          Nu3%f(j,column) = Nu3%f(j,column)+Nu3_dy%f(j,column)
+          Nu1(j,column) = Nu1(j,column)+Nu1_dy%f(j,column)
+          Nu3(j,column) = Nu3(j,column)+Nu3_dy%f(j,column)
         end do
         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
-          Nu2%f(j,column) = Nu2%f(j,column)+Nu2_dy%f(j,column)
+          Nu2(j,column) = Nu2(j,column)+Nu2_dy%f(j,column)
         enddo
       enddo
     ! enddo   
@@ -315,7 +320,7 @@ contains
       call modes_to_planes_phys (u2PLN,u2,vgrid,nyv,nyv_LB,myid,status,ierr)    
       
       do j = limPL_incw(vgrid,1,myid),limPL_incw(vgrid,2,myid)
-        call der_z_N(u2PLN(1,1,j),wx(:,:,j),k1F_z) !C! u2PL in Fourier space
+        call der_z_N(u2PLN(:,:,j),wx(:,:,j),k1F_z) !C! u2PL in Fourier space
         ! call der_z_N(u2PLN(:,:,j),wx(:,:,j),k1F_z) !C! u2PL in Fourier space
         if(j == 10 ) then
           write(6,*) "wx", wx(:,10,j)
@@ -359,11 +364,11 @@ contains
     C1 = -gRK(kRK)
     do column = 1,columns_num(myid)
       do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        du1%f(j,column) = du1%f(j,column)+C1*Nu1%f(j,column)
-        du3%f(j,column) = du3%f(j,column)+C1*Nu3%f(j,column)
+        du1%f(j,column) = du1%f(j,column)+C1*Nu1(j,column)
+        du3%f(j,column) = du3%f(j,column)+C1*Nu3(j,column)
       enddo
       do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
-        du2%f(j,column) = du2%f(j,column)+C1*Nu2%f(j,column)
+        du2%f(j,column) = du2%f(j,column)+C1*Nu2(j,column)
       enddo
     enddo
     ! enddo
@@ -447,8 +452,8 @@ contains
     integer i,k, ip, kp
     ! complex(8) u   (0:Ngal_x/2,Ngal_z)
     ! complex(8) dudx(0:Ngal_x/2,Ngal_z)
-    real(8) u   (Ngal_x,Ngal_z) 
-    real(8) dudx(Ngal_x,Ngal_z) 
+    real(8) u   (igal,kgal)
+    real(8) dudx(igal,kgal)
 
     complex(8) kx(0:Nspec_x/2)
 
@@ -456,29 +461,41 @@ contains
     complex(8), allocatable :: u_c(:,:), dudx_c(:,:)
     allocate(u_c(0:Ngal_x/2,Ngal_z))   
     allocate(dudx_c(0:Ngal_x/2,Ngal_z))
+    
+    ! do k = 1,1
+    !   do i = 1,Ngal_x
+    !     write(6,*) "i", i, "u", u(i,1)
+    !   end do 
+    ! end do 
 
     u_c = 0d0
     dudx_c = 0d0
 
     ! converting real to complex
-    ! the original code packed reals indexed 1:ngal, tino complex 0:ngal/2
+    ! the original code packed reals indexed 1:ngal, itno complex 0:ngal/2
     ! it seems they added an extra index at the end, but this i guess is filled with 0's so it doesnt matter... 
-    ! to pack it manually we correct the complex indexes to be 0:ngel/2-1
+    ! to pack it manually gotta correct the complex indexes to be 0:ngel/2-1
     ! also shifting the indexes by 1 
     do kp = 1,Ngal_z
       do ip = 0,Ngal_x/2 -1
-        u_c(ip,kp) = cmplx(u((ip*2)+1,kp), u(ip*2+2,kp))
+        u_c(ip,kp) = cmplx(u((ip*2)+1,kp), u(ip*2+2,kp), kind = 8)
       end do
     end do 
+
+    ! do k = 1,1
+    !   do i = 0,Ngal_x/2
+    !     write(6,*) "i", i, "u_c", u_c(i,1)
+    !   end do 
+    ! end do 
 
     ! the acc calculation in complex space
 
     do k = 1,Nspec_z/2
       do i = 0,Nspec_x/2
         dudx_c(i,k) = kx(i)*u_c(i,k)
-        if (k ==1) then 
-          write(6,*) "i", i, "dudx", dudx_c(i,k)
-        end if
+        ! if (k ==1) then 
+        !   write(6,*) "i", i, "dudx", dudx_c(i,k)
+        ! end if
       end do
       do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
         dudx_c(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
@@ -503,8 +520,8 @@ contains
     ! converting dudz_c back to real to be compatible with rest of code
     do kp = 1, Ngal_z
       do ip = 0, Ngal_x/2 -1
-        dudx(2*ip+1,     kp) = dble( dudx_c(ip,kp) )
-        dudx(2*ip + 2, kp) = dimag( dudx_c(ip,kp) )
+        dudx(2*ip+1,     kp) = real( dudx_c(ip,kp), kind = 8)
+        dudx(2*ip + 2, kp) = aimag( dudx_c(ip,kp))
       end do
     end do
 
@@ -543,8 +560,10 @@ contains
     integer i,k,dk2,k2
     ! complex(8) u   (0:Ngal_x/2,Ngal_z)
     ! complex(8) dudz(0:Ngal_x/2,Ngal_z)
-    real(8) u   (Ngal_x,Ngal_z)
-    real(8) dudz(Ngal_x,Ngal_z)
+
+    real(8) u   (igal,kgal)
+    real(8) dudz(igal,kgal)
+
     complex(8) kz(1:Nspec_z)
 
     ! new variables for conversion
@@ -554,29 +573,51 @@ contains
     allocate(u_c(0:Ngal_x/2,Ngal_z))
     allocate(dudz_c(0:Ngal_x/2,Ngal_z))
 
+    ! do k = 1,1
+    !   do i = 1,Ngal_x
+    !     write(6,*) "i", i, "u", u(i,1)
+    !   end do 
+    ! end do 
+
     u_c    = 0d0
     dudz_c = 0d0
 
+    ! write(6,*) "lbound(u)=", lbound(u,1), lbound(u,2), " ubound(u)=", ubound(u,1), ubound(u,2)
+
+
     ! converting real to complex
     do kp = 1, Ngal_z
-      do ip = 0, Ngal_x/2-1
-        u_c(ip,kp) = cmplx(u(ip*2+1,kp), u(ip*2+2,kp))
+      do ip = 0, Ngal_x/2 -1
+        u_c(ip,kp) = cmplx(u(ip*2+1,kp), u(ip*2+2,kp), kind =8)
       end do
     end do
 
+    ! do k = 10,10
+    !   do i = 0,Ngal_x/2 
+    !     write(6,*) "i", i, "u_c, k=10", u_c(i,1)
+    !   end do 
+    ! end do 
+
     dk2=Nspec_z-Ngal_z
+
+    ! do k = 1,Nspec_z/2
+    !   write(6,*) "kz", kz(k)
+    ! end do 
 
     do k = 1,Nspec_z/2
       do i = 0,Nspec_x/2
         dudz_c(i,k) = kz(k)*u_c(i,k)
+        ! if (k ==10) then 
+        !   write(6,*) "i", i, "dudz", dudz_c(i,k)
+        ! end if
       end do
-      do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
+      do i = Nspec_x/2+1,Ngal_x/2       !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
         dudz_c(i,k) = 0d0
       end do
     end do
     !Zeros includes mode Nz/2+1 mode (zero for advection derrivatives)
     do k = Nspec_z/2+1,Ngal_z-Nspec_z/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
-      do i = 0,Ngal_x/2
+      do i = 0,Ngal_x/2 
         dudz_c(i,k) = 0d0
       end do
     end do
@@ -593,8 +634,8 @@ contains
     ! converting dudz_c back to real to be compatible with rest of code
     do kp = 1, Ngal_z
       do ip = 0, Ngal_x/2 -1
-        dudz(2*ip+1,     kp) = dble( dudz_c(ip,kp) )
-        dudz(2*ip + 2, kp) = dimag( dudz_c(ip,kp) )
+        dudz(2*ip+1,     kp) = real( dudz_c(ip,kp), kind = 8 )
+        dudz(2*ip + 2, kp) = aimag( dudz_c(ip,kp) )
       end do
     end do
 
@@ -1271,6 +1312,13 @@ contains
       ! vv_cPL correct since 0th mode computed earlier
       buff(:,:) = 2*(u1PL(1,1,j)*u1PL(:,:,j))
       uu_cPL(:,:,j) = uu_cPL(:,:,j) + buff(:,:)
+      
+      ! do k = 1,1
+      !   do i = 1, igal
+      !     write(6,*) "i", i, "uu_cPL", uu_cPL(i,k,1)
+      !   end do 
+      ! end do 
+  
 
       buff(:,:) = 2*(u3PL(1,1,j)*u3PL(:,:,j))
       ww_cPL(:,:,j) = ww_cPL(:,:,j) + buff(:,:)
@@ -1324,6 +1372,12 @@ contains
       call nonlinInter(nonlin(jidx, 7), wu_cPL(1,1,j), u1PL(1,1,j), u3PL(1,1,j))
       call nonlinInter(nonlin(jidx, 9), ww_cPL(1,1,j), u3PL(1,1,j), u3PL(1,1,j))
 
+      ! do k = 1,1
+      !   do i = 1, igal
+      !     write(6,*) "i", i, "uu_cPL", uu_cPL(i,k,1)
+      !   end do 
+      ! end do 
+
       if(j==10) then
         write(6,*) "=====> Finished Nonlin Inter U", myid
       end if 
@@ -1342,11 +1396,14 @@ contains
       ! end if  
       ! write(6,*) "k1F_x", k1F_x, "k1F_z", k1F_z
 
+      ! write(6,*) "uw_cPL size   =", size(uw_cPL,1), size(uw_cPL,2), size(uw_cPL,3)
+      ! write(6,*) "igal", igal, "kgal", kgal
+
       ! differentiate in x and z
-      call der_x(uu_cPL(1,1,j),du1dx,k1F_x)
-      call der_z(uw_cPL(1,1,j),du1dz,k1F_z)
-      call der_x(wu_cPL(1,1,j),du3dx,k1F_x)
-      call der_z(ww_cPL(1,1,j),du3dz,k1F_z)
+      call der_x(uu_cPL(:,:,j),du1dx,k1F_x)
+      call der_z(uw_cPL(:,:,j),du1dz,k1F_z)
+      call der_x(wu_cPL(:,:,j),du3dx,k1F_x)
+      call der_z(ww_cPL(:,:,j),du3dz,k1F_z)
     
       ! if (j == 28) then
       !   write(ext4,'(i5.5)') int(1000d0*(t-700)+kRK)
@@ -1447,7 +1504,7 @@ contains
   
 
       call der_x(vu_fPL(1,1,j),du2dx,k1F_x)
-      call der_z(vw_fPL(1,1,j),du2dz,k1F_z)
+      call der_z(vw_fPL(:,:,j),du2dz,k1F_z)
 
         if(j==10) then
         write(6,*) "=====> Finished Derivatives", myid
@@ -1580,9 +1637,9 @@ contains
       ! end if  
     
       call der_x(uu_cPL(1,1,j),du1dx,k1F_x)
-      call der_z(uw_cPL(1,1,j),du1dz,k1F_z)
+      call der_z(uw_cPL(:,:,j),du1dz,k1F_z)
       call der_x(uw_cPL(1,1,j),du3dx,k1F_x)
-      call der_z(ww_cPL(1,1,j),du3dz,k1F_z)
+      call der_z(ww_cPL(:,:,j),du3dz,k1F_z)
     
       do k = 1,Ngal_z
         do i = 1,Ngal_x
@@ -1640,7 +1697,7 @@ contains
       ! end if    
       
       call der_x(uv_fPL(1,1,j),du2dx,k1F_x)
-      call der_z(wv_fPL(1,1,j),du2dz,k1F_z)
+      call der_z(wv_fPL(:,:,j),du2dz,k1F_z)
 
       do k = 1,Ngal_z
         do i = 1,Ngal_x
@@ -1927,7 +1984,8 @@ contains
     integer column
     integer inode,yourid
     integer msizeR,msizeS
-    type(cfield) x
+    ! type(cfield) x
+    complex(8), intent(inout) :: x(jlim(1,grid):jlim(2,grid)-1,columns_num(myid))
     real(8)      xPL(igal,kgal,jgal(grid,1):jgal(grid,2))
     complex(8), allocatable:: buffS(:,:),buffR(:,:)
     integer, intent(in) :: nygrid, nygrid_LB
@@ -1947,9 +2005,9 @@ contains
         k = columns_k(column,myid) - dk(column,myid)
         ! write(6,*) "j=", j, "mpi", myid
         ! write(6,*) 'myid=', myid, ' j=', j, ' l3=', lbound(XPL,3), ' u3=', ubound(XPL,3)
-        call flush(6)
+       !call flush(6)
 
-        x%f(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
+        x(j,column) = dcmplx(xPL(2*i+1,k,j),xPL(2*i+2,k,j)) ! Transposition: Reordering from XZY to YC
         ! write(6,*) "j=", j, "mpi", myid
       end do
     end do
@@ -1988,7 +2046,7 @@ contains
 
         do j=jminR,jmaxR
           do column = 1,columns_num(myid)
-            x%f(j,column) = buffR(j,column)                         ! Store the data received
+            x(j,column) = buffR(j,column)                         ! Store the data received
           end do
         end do
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
