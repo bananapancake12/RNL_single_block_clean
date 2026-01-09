@@ -510,8 +510,8 @@ contains
     ! type(cfield)  u1
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
     type(cfield) du1
-    complex(8), intent(inout) :: Nu1(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
-    ! type(cfield) Nu1
+    complex(8), intent(inout) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
+    ! type(cfield) Nu1n
     !type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2
@@ -570,7 +570,7 @@ contains
     complex(8), intent(in) :: u2(jlim(1,vgrid):,:)
     type(cfield) du2
     ! type(cfield) Nu2
-    complex(8), intent(in) :: Nu2(jlim(1,vgrid) :jlim(2,vgrid)-1,columns_num(myid))
+    complex(8), intent(inout) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
     ! type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2,C3
@@ -627,7 +627,7 @@ contains
     complex(8), intent(in) :: u3(jlim(1,ugrid):,:)
     type(cfield) du3
     ! type(cfield) Nu3
-    complex(8), intent(in) :: Nu3(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
+    complex(8), intent(inout) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
     ! type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)   
     real(8) C1,C2

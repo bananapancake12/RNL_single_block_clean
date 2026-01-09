@@ -68,9 +68,9 @@ contains
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     complex(8), intent(in) :: p(:,:)
     complex(8), intent(in) :: div(:,:)
-    complex(8), intent(inout) :: Nu1(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
-    complex(8), intent(inout) :: Nu2(jlim(1,vgrid):jlim(2,ugrid)-1,columns_num(myid))
-    complex(8), intent(inout) :: Nu3(jlim(1,ugrid):jlim(2,ugrid)-1,columns_num(myid))
+    complex(8), intent(out) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid)) 
+    complex(8), intent(out) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
+    complex(8), intent(out) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
     
 
     
@@ -1985,7 +1985,7 @@ contains
     integer inode,yourid
     integer msizeR,msizeS
     ! type(cfield) x
-    complex(8), intent(inout) :: x(jlim(1,grid):jlim(2,grid)-1,columns_num(myid))
+    complex(8), intent(inout) :: x(jlim(1,grid)+1:jlim(2,grid)-1,columns_num(myid))
     real(8)      xPL(igal,kgal,jgal(grid,1):jgal(grid,2))
     complex(8), allocatable:: buffS(:,:),buffR(:,:)
     integer, intent(in) :: nygrid, nygrid_LB
