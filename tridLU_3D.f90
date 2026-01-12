@@ -330,7 +330,6 @@
 
       use declaration
       implicit none
-      ! type(rfield_dg)  a
       real(8),allocatable:: a(:,:,:)
       integer column,i,k,j,myid
       integer nystart,nyend
