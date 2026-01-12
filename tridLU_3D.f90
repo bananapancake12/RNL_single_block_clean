@@ -72,8 +72,9 @@
       ! type(cfield)  u
       ! type(cfield)  w
       complex(8), intent(inout) :: u(jlim(1,grid):,:), w(jlim(1,grid):,:)
-      type(cfield)  rhsu
-      type(cfield)  rhsw
+      !type(cfield)  rhsu
+      !type(cfield)  rhsw
+      complex(8), intent(inout) :: rhsu(jlim(1,grid):,:), rhsw(jlim(1,grid):,:)
         
       real(8)    :: a(3,jlim(1,grid):jlim(2,grid))
 
@@ -83,11 +84,11 @@
             call LU_buildU(jlim(1,grid),jlim(2,grid),column,myid,a)
             call LU_dec(jlim(1,grid),jlim(2,grid),myid,a)
 
-            u(jlim(1,grid),column)=rhsu%f(jlim(1,grid),column)*a(2,jlim(1,grid))
-            w(jlim(1,grid),column)=rhsw%f(jlim(1,grid),column)*a(2,jlim(1,grid))
+            u(jlim(1,grid),column)=rhsu(jlim(1,grid),column)*a(2,jlim(1,grid))
+            w(jlim(1,grid),column)=rhsw(jlim(1,grid),column)*a(2,jlim(1,grid))
             
             do j = jlim(1,grid)+1,jlim(2,grid)
-              u(j,column) = (rhsu%f(j,column)-a(1,j)*u(j-1,column))*a(2,j)
+              u(j,column) = (rhsu(j,column)-a(1,j)*u(j-1,column))*a(2,j)
             end do
 
             do j = jlim(2,grid)-1,jlim(1,grid),-1
@@ -95,7 +96,7 @@
             end do
 
             do j = jlim(1,grid)+1,jlim(2,grid)
-            w(j,column) = (rhsw%f(j,column)-a(1,j)*w(j-1,column))*a(2,j)
+            w(j,column) = (rhsw(j,column)-a(1,j)*w(j-1,column))*a(2,j)
           end do
 
           do j = jlim(2,grid)-1,jlim(1,grid),-1
@@ -152,7 +153,8 @@
       integer    :: iopt,myid
       ! type(cfield) u
       complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
-      type(cfield) rhsu
+      ! type(cfield) rhsu
+      complex(8), intent(inout) :: rhsu(jlim(1,vgrid):,:)
         
       real(8)    :: a(3,jlim(1,grid):jlim(2,grid))
 
@@ -161,10 +163,10 @@
             call LU_buildV(jlim(1,grid),jlim(2,grid),column,myid,a)
             call LU_dec(jlim(1,grid),jlim(2,grid),myid,a)
 
-            u(jlim(1,grid),column)=rhsu%f(jlim(1,grid),column)*a(2,jlim(1,grid))
+            u(jlim(1,grid),column)=rhsu(jlim(1,grid),column)*a(2,jlim(1,grid))
 
             do j = jlim(1,grid)+1,jlim(2,grid)
-              u(j,column) = (rhsu%f(j,column)-a(1,j)*u(j-1,column))*a(2,j)
+              u(j,column) = (rhsu(j,column)-a(1,j)*u(j-1,column))*a(2,j)
             end do
 
             do j = jlim(2,grid)-1,jlim(1,grid),-1

@@ -60,7 +60,7 @@ contains
     integer flagst,flagwr,flagslinst,flagqwr,j,i,k,column
     real(8) C1
     ! type(cfield) u1, u2, u3
-    type(cfield) du1, du2, du3
+    ! type(cfield) du1, du2, du3
     !type(cfield) Nu1, Nu2, Nu3
     !type(cfield) p, div
     ! type(cfield) div
@@ -71,7 +71,7 @@ contains
     complex(8), intent(out) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid)) 
     complex(8), intent(out) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
     complex(8), intent(out) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
-    
+    complex(8), intent(inout) :: du1(jlim(1,ugrid):,:), du2(jlim(1,vgrid):,:), du3(jlim(1,ugrid):,:)
 
     
     if (iter-iter0>=nstat .and. kRK==1) then
@@ -364,11 +364,11 @@ contains
     C1 = -gRK(kRK)
     do column = 1,columns_num(myid)
       do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        du1%f(j,column) = du1%f(j,column)+C1*Nu1(j,column)
-        du3%f(j,column) = du3%f(j,column)+C1*Nu3(j,column)
+        du1(j,column) = du1(j,column)+C1*Nu1(j,column)
+        du3(j,column) = du3(j,column)+C1*Nu3(j,column)
       enddo
       do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
-        du2%f(j,column) = du2%f(j,column)+C1*Nu2(j,column)
+        du2(j,column) = du2(j,column)+C1*Nu2(j,column)
       enddo
     enddo
     ! enddo

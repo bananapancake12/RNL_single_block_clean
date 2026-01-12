@@ -509,7 +509,8 @@ contains
     integer i,k,j,column,myid
     ! type(cfield)  u1
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
-    type(cfield) du1
+    ! type(cfield) du1
+    complex(8), intent(inout) :: du1(jlim(1,ugrid):,:)
     complex(8), intent(inout) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
     ! type(cfield) Nu1n
     !type(cfield)   p
@@ -524,12 +525,12 @@ contains
     ! write(6,*) "C1", C1, "C2", C2, myid
 
 
-    call laplacian_U(du1%f,u1,myid)
+    call laplacian_U(du1,u1,myid)
     do column = 1,columns_num(myid)
         i = columns_i(column,myid)
         C3 = -dRK(kRK)*k1F_x(i)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        du1%f(j,column) = C1*du1%f(j,column) &
+        du1(j,column) = C1*du1(j,column) &
     &                              + C2*Nu1(j,column) &
     &                              + C3* p (j,column)
         end do
@@ -551,7 +552,7 @@ contains
         C1 = -dRK(kRK)*mpgx
         do j=nyu_LB+1,nyu
         !do j=1,nn+1              !       In case you want not to apply pressure gradient in the immersed boundary
-        du1%f(j,1) = du1%f(j,1) + C1        ! check why they had midband here 
+        du1(j,1) = du1(j,1) + C1        ! check why they had midband here 
         end do
     end if
 
@@ -568,7 +569,8 @@ contains
     integer i,k,j,column,myid
     ! type(cfield)  u2
     complex(8), intent(in) :: u2(jlim(1,vgrid):,:)
-    type(cfield) du2
+    ! type(cfield) du2
+    complex(8), intent(inout) :: du2(jlim(1,vgrid):,:)
     ! type(cfield) Nu2
     complex(8), intent(inout) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
     ! type(cfield)   p
@@ -582,11 +584,11 @@ contains
     ! write(6,*) "C1", C1, "C2", C2, myid
 
     
-    call laplacian_V(du2%f,u2,myid)
+    call laplacian_V(du2,u2,myid)
     do column = 1,columns_num(myid)
         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
         C3 = -dRK(kRK)*ddthetavi*dthdyv(j)
-        du2%f(j,column) = C1* du2%f(j  ,column) &
+        du2(j,column) = C1* du2(j  ,column) &
     &                              + C2* Nu2(j  ,column) &
     &                              + C3*( p (j+1,column) & ! centeres to faces --> (j+1)-(j)
     &                                    -p (j,  column))
@@ -625,7 +627,8 @@ contains
     integer i,k,j,column,myid
     ! type(cfield)  u3
     complex(8), intent(in) :: u3(jlim(1,ugrid):,:)
-    type(cfield) du3
+    ! type(cfield) du3
+    complex(8), intent(inout) :: du3(jlim(1,ugrid):,:)
     ! type(cfield) Nu3
     complex(8), intent(inout) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
     ! type(cfield)   p
@@ -637,12 +640,12 @@ contains
     C1 = aRK(kRK)/Re !For solving for u
     C2 = -cRK(kRK)
 
-    call laplacian_U(du3%f,u3,myid)
+    call laplacian_U(du3,u3,myid)
     do column = 1,columns_num(myid)
         k = columns_k(column,myid)
         C3 = -dRK(kRK)*k1F_z(k)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-        du3%f(j,column) = C1*du3%f(j,column) &
+        du3(j,column) = C1*du3(j,column) &
     &                              + C2*Nu3(j,column) &
     &                              + C3* p (j,column)
         end do
@@ -689,23 +692,24 @@ contains
     ! type(cfield)  u
     ! type(cfield)  w
     complex(8), intent(inout) :: u(jlim(1,ugrid):,:), w(jlim(1,ugrid):,:)
-    type(cfield) du
-    type(cfield) dw
+    !type(cfield) du
+    !ype(cfield) dw
+    complex(8), intent(inout) :: du(jlim(1,ugrid):,:), dw(jlim(1,ugrid):,:)
     type(rfield) a(2)
 
         do column = 1,columns_num(myid)
             i = columns_i(column,myid)
             k = columns_k(column,myid)
-            du%f(jlim(1,ugrid),column) = 0d0
-            dw%f(jlim(1,ugrid),column) = 0d0
+            du(jlim(1,ugrid),column) = 0d0
+            dw(jlim(1,ugrid),column) = 0d0
 
             do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-            du%f(j,column) = u(j,column)+dt*(du%f(j,column)) !For solving for u
-            dw%f(j,column) = w(j,column)+dt*(dw%f(j,column)) !For solving for w
+            du(j,column) = u(j,column)+dt*(du(j,column)) !For solving for u
+            dw(j,column) = w(j,column)+dt*(dw(j,column)) !For solving for w
             end do
 
-            du%f(jlim(2,ugrid),column) = 0d0
-            dw%f(jlim(2,ugrid),column) = 0d0
+            du(jlim(2,ugrid),column) = 0d0
+            dw(jlim(2,ugrid),column) = 0d0
         end do
 
         call LUsolU_W(u,du,w,dw,a(ugrid)%fr(1:3,jlim(1,ugrid):jlim(2,ugrid)),ugrid,myid)
@@ -723,18 +727,19 @@ contains
     integer i,k,j,iband,column,myid
     ! type(cfield)  u
     complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
-    type(cfield) du
+    ! type(cfield) du
+    complex(8), intent(inout) :: du(jlim(1,vgrid):,:)
     type(rfield) a(2)
 
         do column = 1,columns_num(myid)
             i = columns_i(column,myid)
             k = columns_k(column,myid)
-            du%f(jlim(1,vgrid),column) = 0d0
+            du(jlim(1,vgrid),column) = 0d0
             do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
             !         du%f(j,column) = dt*(du%f(j,column)) !For solving for du
-            du%f(j,column) = u(j,column)+dt*(du%f(j,column)) !For solving for u
+            du(j,column) = u(j,column)+dt*(du(j,column)) !For solving for u
             end do
-            du%f(jlim(2,vgrid),column) = 0d0
+            du(jlim(2,vgrid),column) = 0d0
         end do
 
         call LUsolV(u,du,a(vgrid)%fr(1:3,jlim(1,vgrid):jlim(2,vgrid)),vgrid,myid)

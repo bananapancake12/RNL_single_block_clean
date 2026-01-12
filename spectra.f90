@@ -4,14 +4,18 @@ subroutine spectra(u1,u2,u2_itp2,u3,p,myid)
   implicit none
 
   integer myid
-  type(cfield)  u1, u2, u2_itp2, u3
-  type(cfield)  p 
+  !type(cfield)  u1, u2, u2_itp2, u3
+  !type(cfield)  p 
 
-  call buildsp  (spU ,u1%f,                   ugrid,myid)
-  call buildsp  (spV ,u2%f,                   vgrid,myid)
-  call buildsp  (spW ,u3%f,                   ugrid,myid)
-  call buildspUV(spUV,u1%f,u2_itp2%f,               myid)
-  call buildsp  (spP ,p %f,                   pgrid,myid)
+  complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
+  complex(8), intent(in) :: p(:,:)
+  complex(8), intent(in) :: u2_itp2(jlim(1,vgrid):,:)
+
+  call buildsp  (spU ,u1,                   ugrid,myid)
+  call buildsp  (spV ,u2,                   vgrid,myid)
+  call buildsp  (spW ,u3,                   ugrid,myid)
+  call buildspUV(spUV,u1,u2_itp2,               myid)
+  call buildsp  (spP ,p ,                   pgrid,myid)
 
 end subroutine
 
