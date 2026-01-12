@@ -28,8 +28,8 @@ module declaration
   integer,allocatable:: planelim(:,:,:)
   integer,allocatable:: limPL_incw(:,:,:),limPL_excw(:,:,:)
   integer,allocatable:: limPL_FFT(:,:,:)
-  integer,allocatable:: bandPL(:)
-  integer,allocatable:: bandPL_FFT(:)
+  ! integer,allocatable:: bandPL(:)
+  ! integer,allocatable:: bandPL_FFT(:)
   integer            :: jgal(3,2),igal,kgal 
   integer, allocatable :: columns_num(:)
   integer, allocatable :: columns_i(:,:)
