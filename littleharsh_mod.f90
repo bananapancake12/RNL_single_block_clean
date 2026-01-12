@@ -678,7 +678,7 @@ contains
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-    subroutine solveU_W(u,du,w,dw,a,myid) !pass (u,du,w,dw)
+    subroutine solveU_W(u,du,w,dw,a_ugrid,myid) !pass (u,du,w,dw)
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!!    SOLVE U1    !!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -695,7 +695,8 @@ contains
     !type(cfield) du
     !ype(cfield) dw
     complex(8), intent(inout) :: du(jlim(1,ugrid):,:), dw(jlim(1,ugrid):,:)
-    type(rfield) a(2)
+    ! type(rfield) a(2)
+    real(8), intent(in) :: a_ugrid(:,:)
 
         do column = 1,columns_num(myid)
             i = columns_i(column,myid)
@@ -712,11 +713,11 @@ contains
             dw(jlim(2,ugrid),column) = 0d0
         end do
 
-        call LUsolU_W(u,du,w,dw,a(ugrid)%fr(1:3,jlim(1,ugrid):jlim(2,ugrid)),ugrid,myid)
+        call LUsolU_W(u,du,w,dw,a_ugrid(1:3,jlim(1,ugrid):jlim(2,ugrid)),ugrid,myid)
 
     end subroutine
 
-    subroutine solveV(u,du,a,myid)
+    subroutine solveV(u,du,a_vgrid,myid)
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!!    SOLVE U1    !!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -729,7 +730,8 @@ contains
     complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
     ! type(cfield) du
     complex(8), intent(inout) :: du(jlim(1,vgrid):,:)
-    type(rfield) a(2)
+    ! type(rfield) a(2)
+    real(8), intent(in) :: a_vgrid(:,:)
 
         do column = 1,columns_num(myid)
             i = columns_i(column,myid)
@@ -742,7 +744,7 @@ contains
             du(jlim(2,vgrid),column) = 0d0
         end do
 
-        call LUsolV(u,du,a(vgrid)%fr(1:3,jlim(1,vgrid):jlim(2,vgrid)),vgrid,myid)
+        call LUsolV(u,du,a_vgrid(1:3,jlim(1,vgrid):jlim(2,vgrid)),vgrid,myid)
 
     end subroutine
 

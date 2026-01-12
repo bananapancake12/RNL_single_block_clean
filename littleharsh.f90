@@ -66,7 +66,10 @@ program littleharsh
   complex(8), allocatable :: du1(:,:), du2(:,:), du3(:,:)
 
 
-  type(rfield), allocatable :: a(:)
+  ! type(rfield), allocatable :: a(:)
+
+  real(8), allocatable :: a_ugrid(:,:)
+  real(8), allocatable :: a_vgrid(:,:)
 
   
   real(8):: z,sigmaz
@@ -114,10 +117,10 @@ program littleharsh
   allocate( psi( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
   allocate( div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) ) )
 
-  allocate( a  (2))
+  ! allocate( a  (2))
 
-  allocate( a(ugrid)%fr(3,jlim(1,ugrid):jlim(2,ugrid)) )
-  allocate( a(vgrid)%fr(3,jlim(1,vgrid):jlim(2,vgrid)) )
+  allocate( a_ugrid(3,jlim(1,ugrid):jlim(2,ugrid)) )
+  allocate( a_vgrid(3,jlim(1,vgrid):jlim(2,vgrid)) )
 
   ! write(6,*) "u1", jlim(1,ugrid)    , jlim(2,ugrid)
 
@@ -133,8 +136,8 @@ program littleharsh
   p   = 0d0
   psi = 0d0
   div = 0d0
-  a(ugrid)%fr = 0d0
-  a(vgrid)%fr = 0d0
+  a_ugrid = 0d0
+  a_vgrid = 0d0
 
 
 
@@ -184,8 +187,8 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       ! call solveU(u3,du3,3,myid)
 
       ! Resolve the matricial system (NO FFT BANDS)
-      call solveU_W(u1,du1,u3,du3,a,myid)
-      call solveV(u2,du2,a,myid)
+      call solveU_W(u1,du1,u3,du3,a_ugrid,myid)
+      call solveV(u2,du2,a_vgrid,myid)
 
       if(myid==0) then
         write(6,*) "Finished Solving Velocities =====> Solving Pressure "

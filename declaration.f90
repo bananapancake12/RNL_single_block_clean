@@ -136,9 +136,9 @@ module declaration
   !   real(8),pointer:: b(:)
   ! end type array
 
-  type rfield
-    real(8),pointer:: fr(:,:)
-  end type rfield
+  ! type rfield
+  !   real(8),pointer:: fr(:,:)
+  ! end type rfield
 
   real(8), allocatable :: buffR_x(:), buffC_z(:), buffRal_x(:), buffCal_z(:)
   ! type(array) :: buffC_z
@@ -182,41 +182,41 @@ module declaration
   
   
   !Weird stats
-  complex(8),pointer :: bslip_u1_f_bot_x(:,:)
-  complex(8),pointer :: bslip_u3_f_bot_x(:,:)
-  complex(8),pointer :: bslip_u1_f_top_x(:,:)
-  complex(8),pointer :: bslip_u3_f_top_x(:,:)
+  ! complex(8),pointer :: bslip_u1_f_bot_x(:,:)
+  ! complex(8),pointer :: bslip_u3_f_bot_x(:,:)
+  ! complex(8),pointer :: bslip_u1_f_top_x(:,:)
+  ! complex(8),pointer :: bslip_u3_f_top_x(:,:)
   
   
-  real(8),pointer    :: bslip_u1_bot(:,:)
-  real(8),pointer    :: bslip_u1_top(:,:)
-  real(8),pointer    :: bslip_u3_bot(:,:)
-  real(8),pointer    :: bslip_u3_top(:,:)
+  ! real(8),pointer    :: bslip_u1_bot(:,:)
+  ! real(8),pointer    :: bslip_u1_top(:,:)
+  ! real(8),pointer    :: bslip_u3_bot(:,:)
+  ! real(8),pointer    :: bslip_u3_top(:,:)
   
-  real(8),pointer    :: bslip_u1_rho_M(:,:)
-  real(8),pointer    :: bslip_u1_rho_2M(:,:)
-  real(8),pointer    :: bslip_u1_theta_M(:,:)
-  real(8),pointer    :: bslip_u1_theta_2M(:,:)
-  complex(8),pointer :: bslip_u1_x_M(:,:)
-  complex(8),pointer :: bslip_u1_x_2M(:,:)
+  ! real(8),pointer    :: bslip_u1_rho_M(:,:)
+  ! real(8),pointer    :: bslip_u1_rho_2M(:,:)
+  ! real(8),pointer    :: bslip_u1_theta_M(:,:)
+  ! real(8),pointer    :: bslip_u1_theta_2M(:,:)
+  ! complex(8),pointer :: bslip_u1_x_M(:,:)
+  ! complex(8),pointer :: bslip_u1_x_2M(:,:)
   
-  real(8),pointer    :: bslip_u3_rho_M(:,:)
-  real(8),pointer    :: bslip_u3_rho_2M(:,:)
-  real(8),pointer    :: bslip_u3_theta_M(:,:)
-  real(8),pointer    :: bslip_u3_theta_2M(:,:)
-  complex(8),pointer :: bslip_u3_x_M(:,:)
-  complex(8),pointer :: bslip_u3_x_2M(:,:)
+  ! real(8),pointer    :: bslip_u3_rho_M(:,:)
+  ! real(8),pointer    :: bslip_u3_rho_2M(:,:)
+  ! real(8),pointer    :: bslip_u3_theta_M(:,:)
+  ! real(8),pointer    :: bslip_u3_theta_2M(:,:)
+  ! complex(8),pointer :: bslip_u3_x_M(:,:)
+  ! complex(8),pointer :: bslip_u3_x_2M(:,:)
   
-  real(8),pointer    :: du1dy_PL(:,:,:)
-  real(8),pointer    :: du3dy_PL(:,:,:)
+  ! real(8),pointer    :: du1dy_PL(:,:,:)
+  ! real(8),pointer    :: du3dy_PL(:,:,:)
   
-  real(8),pointer    :: u1_f_PL(:,:,:)
-  real(8),pointer    :: u3_f_PL(:,:,:)
+  ! real(8),pointer    :: u1_f_PL(:,:,:)
+  ! real(8),pointer    :: u3_f_PL(:,:,:)
   
-  real(8),pointer    :: bslip_u1_M(:,:)
-  real(8),pointer    :: bslip_du1dy_M(:,:)
-  real(8),pointer    :: bslip_u3_M(:,:)
-  real(8),pointer    :: bslip_du3dy_M(:,:)
+  ! real(8),pointer    :: bslip_u1_M(:,:)
+  ! real(8),pointer    :: bslip_du1dy_M(:,:)
+  ! real(8),pointer    :: bslip_u3_M(:,:)
+  ! real(8),pointer    :: bslip_du3dy_M(:,:)
 
   ! for nonlinear interaction list (added by JC)
   integer, parameter :: int1 = selected_int_kind(2)  ! at least 2 decimal digits → 1 byte
