@@ -69,11 +69,7 @@
 
       integer    :: i,k,j,column,grid
       integer    :: iopt,myid
-      ! type(cfield)  u
-      ! type(cfield)  w
       complex(8), intent(inout) :: u(jlim(1,grid):,:), w(jlim(1,grid):,:)
-      !type(cfield)  rhsu
-      !type(cfield)  rhsw
       complex(8), intent(inout) :: rhsu(jlim(1,grid):,:), rhsw(jlim(1,grid):,:)
         
       real(8)    :: a(3,jlim(1,grid):jlim(2,grid))
@@ -151,9 +147,7 @@
 
       integer    :: i,k,j,column,grid
       integer    :: iopt,myid
-      ! type(cfield) u
       complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
-      ! type(cfield) rhsu
       complex(8), intent(inout) :: rhsu(jlim(1,vgrid):,:)
         
       real(8)    :: a(3,jlim(1,grid):jlim(2,grid))

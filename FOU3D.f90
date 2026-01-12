@@ -59,11 +59,6 @@ contains
     
     integer flagst,flagwr,flagslinst,flagqwr,j,i,k,column
     real(8) C1
-    ! type(cfield) u1, u2, u3
-    ! type(cfield) du1, du2, du3
-    !type(cfield) Nu1, Nu2, Nu3
-    !type(cfield) p, div
-    ! type(cfield) div
 
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     complex(8), intent(in) :: p(:,:)
@@ -87,13 +82,6 @@ contains
     else
       flagwr = 0
     end if
-    
-    ! if (iter-itersl>=nstatsl .and. kRK==1) then
-    !   flagslinst = 1
-    !   itersl  = iter
-    ! else
-    !   flagslinst = 0
-    ! end if
 
     if (t>=nextqt) then
       flagqwr = 1
@@ -123,10 +111,6 @@ contains
     Nu1PL = 0d0
     Nu2PL = 0d0
     Nu3PL = 0d0
-    ! du1PL = 0d0
-    ! du2PL = 0d0
-    ! du3PL = 0d0
-
 
     if(myid==0) then
       write(6,*) "=====> Modes to planes"
@@ -373,19 +357,6 @@ contains
     enddo
     ! enddo
 
-    !C! Calculate immersed boundaries
-  !   call modes_to_planes_dU(du1PL,du1,myid,status,ierr)
-  !   call modes_to_planes_dV(du2PL,du2,myid,status,ierr)
-  !   call modes_to_planes_dU(du3PL,du3,myid,status,ierr)
-  !   
-  !   call imm_bounds_u(du1PL,u1PL,Nu1PL,myid,status,ierr)
-  !   call imm_bounds_v(du2PL,u2PL,Nu2PL,myid,status,ierr)
-  !   call imm_bounds_u(du3PL,u3PL,Nu3PL,myid,status,ierr)
-  ! 
-  !   call planes_to_modes_dU(du1,du1PL,myid,status,ierr)
-  !   call planes_to_modes_dV(du2,du2PL,myid,status,ierr)
-  !   call planes_to_modes_dU(du3,du3PL,myid,status,ierr)
-
   end subroutine
 
   subroutine interp_u(u_itp,u,myid)
@@ -396,10 +367,8 @@ contains
     implicit none
     
     integer j,column,myid
-    ! type(cfield)  u
     complex(8), intent(in) :: u(jlim(1,ugrid):,:)
     complex(8), intent(out) :: u_itp(jlim(1,ugrid):,:)
-    ! type(cfield)  u_itp
     
     do column = 1,columns_num(myid)
       ! We interpolate everything. vgrid has got one less point than ugrid
@@ -419,10 +388,8 @@ contains
     implicit none
     
     integer j,column,myid
-    !type(cfield)  u
     complex(8), intent(in) :: u(jlim(1,vgrid):,:)
     complex(8), intent(out) :: u_itp(jlim(1,vgrid):,:)
-    ! type(cfield)  u_itp
 
     do column = 1,columns_num(myid)
       do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
@@ -450,8 +417,6 @@ contains
     implicit none
 
     integer i,k, ip, kp
-    ! complex(8) u   (0:Ngal_x/2,Ngal_z)
-    ! complex(8) dudx(0:Ngal_x/2,Ngal_z)
     real(8) u   (igal,kgal)
     real(8) dudx(igal,kgal)
 
@@ -964,7 +929,6 @@ contains
 
     integer inode,yourid
     integer msizeR,msizeS
-    ! type(cfield) x  
     complex(8), intent(in) :: x(jlim(1,grid):,:)
     real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
     complex(8), allocatable :: buffS(:,:),buffR(:,:)
@@ -1987,7 +1951,6 @@ contains
     integer column
     integer inode,yourid
     integer msizeR,msizeS
-    ! type(cfield) x
     complex(8), intent(inout) :: x(jlim(1,grid)+1:jlim(2,grid)-1,columns_num(myid))
     real(8)      xPL(igal,kgal,jgal(grid,1):jgal(grid,2))
     complex(8), allocatable:: buffS(:,:),buffR(:,:)

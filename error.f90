@@ -16,7 +16,6 @@ module error_mod
     integer ierr
 
     integer j,column,myid
-    ! type(cfield) A
     complex(8), intent(in) :: A(:,:)
     real(8) erri,errband
 

@@ -53,20 +53,10 @@ program littleharsh
   include 'mpif.h'                         
   integer status(MPI_STATUS_SIZE),ierr,myid 
 
-
-  ! type(cfield) :: u2, u3, p, psi
-  ! type(cfield) :: psi
-  ! type(cfield) :: div
-  ! type(cfield) :: Nu1, Nu2, Nu3
-  ! type(cfield) :: du1, du2, du3
-
   complex(8), allocatable :: u1(:,:), u2(:,:), u3(:,:), p(:,:), psi(:,:)
   complex(8), allocatable :: div(:,:)
   complex(8), allocatable :: Nu1(:,:), Nu2(:,:), Nu3(:,:)
   complex(8), allocatable :: du1(:,:), du2(:,:), du3(:,:)
-
-
-  ! type(rfield), allocatable :: a(:)
 
   real(8), allocatable :: a_ugrid(:,:)
   real(8), allocatable :: a_vgrid(:,:)

@@ -4,9 +4,6 @@ subroutine spectra(u1,u2,u2_itp2,u3,p,myid)
   implicit none
 
   integer myid
-  !type(cfield)  u1, u2, u2_itp2, u3
-  !type(cfield)  p 
-
   complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
   complex(8), intent(in) :: p(:,:)
   complex(8), intent(in) :: u2_itp2(jlim(1,vgrid):,:)

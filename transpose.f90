@@ -21,7 +21,6 @@ contains
     integer column
     integer inode,yourid
     integer msizeR,msizeS
-    ! type(cfield) x
     complex(8), intent(in) :: x(jlim(1,grid):,:)
     real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
     integer, intent(in) :: nygrid, nygrid_LB
@@ -126,7 +125,6 @@ contains
     integer :: column
     integer inode,yourid
     integer msizeR,msizeS
-    ! type(cfield) x 
     complex(8), intent(inout) :: x(jlim(1,grid):,:) 
     real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
     complex(8), allocatable:: buffS(:,:),buffR(:,:)

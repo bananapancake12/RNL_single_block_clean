@@ -814,13 +814,6 @@ end if
   call LU_buildP(jlim(1,pgrid),jlim(2,pgrid),myid,DG)
 
   ! write(6,*) "finished LU_buildP"
-  
-  
-  ! allocate(du1PL(igal,kgal,nyuIB1(myid):nyuIB2(myid)))
-  ! allocate(du2PL(igal,kgal,nyvIB1(myid):nyvIB2(myid)))
-  ! allocate(du3PL(igal,kgal,nyuIB1(myid):nyuIB2(myid)))
-
-  !allocate(   wx(igal,kgal,jgal(vgrid,1)-1  :jgal(vgrid,2)+1  ))
   allocate(   wx(Nspec_x+2,Nspec_z,jgal(vgrid,1)-1  :jgal(vgrid,2)+1  ))
 
   allocate(spU (jlim(1,ugrid):jlim(2,ugrid),columns_num(myid)))

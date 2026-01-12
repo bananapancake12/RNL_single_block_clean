@@ -244,8 +244,6 @@ contains
 
     integer iproc,j
     real(8) val
-    !type(cfield)  u1, u2, u3
-    ! type(cfield)   div
     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     complex(8), intent(inout) :: p(jlim(1,pgrid):,:)
     complex(8), intent(in) :: div(:,:)
@@ -397,7 +395,6 @@ contains
     implicit none
 
     integer      :: myid
-    ! type(cfield) :: u1
     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:)
 
     ! Mean (mode 0,1) is in proc 0 column 1
@@ -416,7 +413,6 @@ contains
     use declaration
     implicit none
     integer i,k,myid
-    ! type(cfield) u1
     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:)
 
     ! Mean (mode 0,1) is in proc 0 column 1
@@ -454,10 +450,8 @@ contains
     implicit none
     integer :: i,k,j,column,myid
 
-    ! type(cfield) :: u1, u2, u3, p, psi, div
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     complex(8), intent(inout) :: p(:,:), psi(:,:)
-    ! type(cfield) :: div
     complex(8), intent(in) :: div(:,:)
 
     real(8) :: dtirk
@@ -507,13 +501,9 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    ! type(cfield)  u1
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
-    ! type(cfield) du1
     complex(8), intent(inout) :: du1(jlim(1,ugrid):,:)
     complex(8), intent(inout) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
-    ! type(cfield) Nu1n
-    !type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2
     complex(8) C3
@@ -567,13 +557,9 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    ! type(cfield)  u2
     complex(8), intent(in) :: u2(jlim(1,vgrid):,:)
-    ! type(cfield) du2
     complex(8), intent(inout) :: du2(jlim(1,vgrid):,:)
-    ! type(cfield) Nu2
     complex(8), intent(inout) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
-    ! type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)
     real(8) C1,C2,C3
 
@@ -625,13 +611,9 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    ! type(cfield)  u3
     complex(8), intent(in) :: u3(jlim(1,ugrid):,:)
-    ! type(cfield) du3
     complex(8), intent(inout) :: du3(jlim(1,ugrid):,:)
-    ! type(cfield) Nu3
     complex(8), intent(inout) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
-    ! type(cfield)   p
     complex(8), intent(in) :: p(jlim(1,pgrid):,:)   
     real(8) C1,C2
     complex(8) C3
@@ -689,13 +671,8 @@ contains
     implicit none
 
     integer i,k,j,iband,column,myid
-    ! type(cfield)  u
-    ! type(cfield)  w
     complex(8), intent(inout) :: u(jlim(1,ugrid):,:), w(jlim(1,ugrid):,:)
-    !type(cfield) du
-    !ype(cfield) dw
     complex(8), intent(inout) :: du(jlim(1,ugrid):,:), dw(jlim(1,ugrid):,:)
-    ! type(rfield) a(2)
     real(8), intent(in) :: a_ugrid(:,:)
 
         do column = 1,columns_num(myid)
@@ -726,11 +703,8 @@ contains
     use tridLU_3D
     implicit none
     integer i,k,j,iband,column,myid
-    ! type(cfield)  u
     complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
-    ! type(cfield) du
     complex(8), intent(inout) :: du(jlim(1,vgrid):,:)
-    ! type(rfield) a(2)
     real(8), intent(in) :: a_vgrid(:,:)
 
         do column = 1,columns_num(myid)
@@ -863,10 +837,8 @@ contains
 
     integer i,k,j,column
     complex(8) kx,kz,dtrk,dtrk_u2
-    ! type(cfield) u1,u2,u3
     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
     complex(8), intent(inout) :: psi(:,:)
-    ! type(cfield) div
     complex(8), intent(in) :: div(:,:)
     real (8),pointer :: vcorrPL(:,:,:)
     

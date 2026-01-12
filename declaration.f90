@@ -71,7 +71,7 @@ module declaration
   real(8), allocatable :: u1PL(:,:,:), u2PL(:,:,:), u3PL(:,:,:)
   real(8), allocatable :: u1PL_itp(:,:,:), u2PL_itp(:,:,:), u3PL_itp(:,:,:)
   real(8), allocatable :: Nu1PL(:,:,:), Nu2PL(:,:,:), Nu3PL(:,:,:)
-  real(8), allocatable :: du1PL(:,:,:), du2PL(:,:,:), du3PL(:,:,:)
+  ! real(8), allocatable :: du1PL(:,:,:), du2PL(:,:,:), du3PL(:,:,:)
   real(8), allocatable :: wx(:,:,:), ppPL(:,:,:)
   real(8), allocatable :: Qcrit(:,:,:)
   real(8), allocatable :: u1PLN(:,:,:), u2PLN(:,:,:), u3PLN(:,:,:), ppPLN(:,:,:)
@@ -118,46 +118,11 @@ module declaration
   character*4 ext1,ext2,ext3
   character*5 ext4
 
-  integer, pointer :: nlist_ib(:)
-  integer, pointer :: list_ib(:,:,:)!,nyIB1(:),nyIB2(:)
-  integer, pointer :: nyuIB1(:),nyuIB2(:),nyvIB1(:),nyvIB2(:)
-  integer          :: nyu11,nyu21,nyu12,nyu22,nyv11,nyv21,nyv12,nyv22
-  real(8), pointer :: A_ib(:,:,:)
-
-  ! type cfield
-  !   complex(8),pointer:: f(:,:)
-  ! end type cfield
-
-  ! type rfield_dg
-  !   real(8),pointer:: f_dg(:,:,:)
-  ! end type rfield_dg
-
-  ! type array
-  !   real(8),pointer:: b(:)
-  ! end type array
-
-  ! type rfield
-  !   real(8),pointer:: fr(:,:)
-  ! end type rfield
 
   real(8), allocatable :: buffR_x(:), buffC_z(:), buffRal_x(:), buffCal_z(:)
-  ! type(array) :: buffC_z
-  ! type(array) :: buffRal_x
-  ! type(array) :: buffCal_z
 
-
-  
-  
-  ! type(cfield), allocatable:: u1_itp(:),u2_itp(:),u3_itp(:)
-  ! type(cfield) :: u1_itp,u2_itp,u3_itp
   complex(8), allocatable :: u1_itp(:,:),u2_itp(:,:),u3_itp(:,:)
-  
-  ! type(cfield), allocatable:: Nu1_dy(:),Nu2_dy(:),Nu3_dy(:)
-  ! type(cfield) :: Nu1_dy,Nu2_dy,Nu3_dy
   complex(8), allocatable :: Nu1_dy(:,:),Nu2_dy(:,:),Nu3_dy(:,:)
-
-  ! type(cfield), allocatable:: uv_f(:), wv_f(:), vv_c(:)
-  ! type(cfield) :: uv_f, wv_f, vv_c
   complex(8), allocatable :: uv_f(:,:), wv_f(:,:), vv_c(:,:)
 
   
@@ -170,54 +135,12 @@ module declaration
   real(8),      allocatable :: du2dy_planes2(:,:,:)
   real(8),      allocatable :: du3dy_planes2(:,:,:)
   
-  !type(cfield)  :: du1dy_columns
-  !type(cfield)  :: du2dy_columns
-  ! type(cfield)  :: du3dy_columns
-
   complex(8), allocatable :: du1dy_columns(:,:), du2dy_columns(:,:), du3dy_columns(:,:)
   
   real(8), allocatable :: DG(:,:,:)
   
-  real(8) bslip
+  !real(8) bslip
   
-  
-  !Weird stats
-  ! complex(8),pointer :: bslip_u1_f_bot_x(:,:)
-  ! complex(8),pointer :: bslip_u3_f_bot_x(:,:)
-  ! complex(8),pointer :: bslip_u1_f_top_x(:,:)
-  ! complex(8),pointer :: bslip_u3_f_top_x(:,:)
-  
-  
-  ! real(8),pointer    :: bslip_u1_bot(:,:)
-  ! real(8),pointer    :: bslip_u1_top(:,:)
-  ! real(8),pointer    :: bslip_u3_bot(:,:)
-  ! real(8),pointer    :: bslip_u3_top(:,:)
-  
-  ! real(8),pointer    :: bslip_u1_rho_M(:,:)
-  ! real(8),pointer    :: bslip_u1_rho_2M(:,:)
-  ! real(8),pointer    :: bslip_u1_theta_M(:,:)
-  ! real(8),pointer    :: bslip_u1_theta_2M(:,:)
-  ! complex(8),pointer :: bslip_u1_x_M(:,:)
-  ! complex(8),pointer :: bslip_u1_x_2M(:,:)
-  
-  ! real(8),pointer    :: bslip_u3_rho_M(:,:)
-  ! real(8),pointer    :: bslip_u3_rho_2M(:,:)
-  ! real(8),pointer    :: bslip_u3_theta_M(:,:)
-  ! real(8),pointer    :: bslip_u3_theta_2M(:,:)
-  ! complex(8),pointer :: bslip_u3_x_M(:,:)
-  ! complex(8),pointer :: bslip_u3_x_2M(:,:)
-  
-  ! real(8),pointer    :: du1dy_PL(:,:,:)
-  ! real(8),pointer    :: du3dy_PL(:,:,:)
-  
-  ! real(8),pointer    :: u1_f_PL(:,:,:)
-  ! real(8),pointer    :: u3_f_PL(:,:,:)
-  
-  ! real(8),pointer    :: bslip_u1_M(:,:)
-  ! real(8),pointer    :: bslip_du1dy_M(:,:)
-  ! real(8),pointer    :: bslip_u3_M(:,:)
-  ! real(8),pointer    :: bslip_du3dy_M(:,:)
-
   ! for nonlinear interaction list (added by JC)
   integer, parameter :: int1 = selected_int_kind(2)  ! at least 2 decimal digits → 1 byte
   type :: nonlinList

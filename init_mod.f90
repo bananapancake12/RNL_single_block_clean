@@ -19,10 +19,7 @@ contains
 
     include 'mpif.h'                                  ! MPI variables
     integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
-    ! type(cfield)  u1,u2,u3
-    ! type(cfield)  p 
     complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:), p(:,:)
-    ! type(cfield)  div
     complex(8), intent(in) :: div(:,:)
 
     ! write(*,*) "call shape(u1)=", shape(u1), "lb=", lbound(u1), "ub=", ubound(u1)

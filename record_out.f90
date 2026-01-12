@@ -93,7 +93,6 @@ contains
     include 'mpif.h'             ! MPI variables
     integer status(MPI_STATUS_SIZE),ierr,myid
 
-    ! type(cfield) u1
     complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
     integer nx,nz, i 
     integer j,jmax,iproc
