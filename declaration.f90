@@ -124,9 +124,9 @@ module declaration
   integer          :: nyu11,nyu21,nyu12,nyu22,nyv11,nyv21,nyv12,nyv22
   real(8), pointer :: A_ib(:,:,:)
 
-  type cfield
-    complex(8),pointer:: f(:,:)
-  end type cfield
+  ! type cfield
+  !   complex(8),pointer:: f(:,:)
+  ! end type cfield
 
   type rfield_dg
     real(8),pointer:: f_dg(:,:,:)
@@ -153,7 +153,8 @@ module declaration
   complex(8), allocatable :: u1_itp(:,:),u2_itp(:,:),u3_itp(:,:)
   
   ! type(cfield), allocatable:: Nu1_dy(:),Nu2_dy(:),Nu3_dy(:)
-  type(cfield) :: Nu1_dy,Nu2_dy,Nu3_dy
+  ! type(cfield) :: Nu1_dy,Nu2_dy,Nu3_dy
+  complex(8), allocatable :: Nu1_dy(:,:),Nu2_dy(:,:),Nu3_dy(:,:)
 
   ! type(cfield), allocatable:: uv_f(:), wv_f(:), vv_c(:)
   ! type(cfield) :: uv_f, wv_f, vv_c
@@ -169,11 +170,11 @@ module declaration
   real(8),      allocatable :: du2dy_planes2(:,:,:)
   real(8),      allocatable :: du3dy_planes2(:,:,:)
   
-  type(cfield)  :: du1dy_columns
-  type(cfield)  :: du2dy_columns
+  !type(cfield)  :: du1dy_columns
+  !type(cfield)  :: du2dy_columns
   ! type(cfield)  :: du3dy_columns
 
-  complex(8), allocatable :: du3dy_columns(:,:)
+  complex(8), allocatable :: du1dy_columns(:,:), du2dy_columns(:,:), du3dy_columns(:,:)
   
   type(rfield_dg) :: DG
   

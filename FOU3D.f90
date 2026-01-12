@@ -270,18 +270,18 @@ contains
     end if
 
     !C! Calculate y derrivatives
-      call der_yu_h(Nu1_dy%f,uv_f,myid)
-      call der_yv_h(Nu2_dy%f,vv_c,myid)
-      call der_yu_h(Nu3_dy%f,wv_f,myid)
+      call der_yu_h(Nu1_dy,uv_f,myid)
+      call der_yv_h(Nu2_dy,vv_c,myid)
+      call der_yu_h(Nu3_dy,wv_f,myid)
     
     !C! Calculate final advective term
       do column = 1,columns_num(myid)
         do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-          Nu1(j,column) = Nu1(j,column)+Nu1_dy%f(j,column)
-          Nu3(j,column) = Nu3(j,column)+Nu3_dy%f(j,column)
+          Nu1(j,column) = Nu1(j,column)+Nu1_dy(j,column)
+          Nu3(j,column) = Nu3(j,column)+Nu3_dy(j,column)
         end do
         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
-          Nu2(j,column) = Nu2(j,column)+Nu2_dy%f(j,column)
+          Nu2(j,column) = Nu2(j,column)+Nu2_dy(j,column)
         enddo
       enddo
     ! enddo   
@@ -1152,100 +1152,103 @@ contains
 
   ! end subroutine
 
-  subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,nygrid,nygrid_LB,myid,status,ierr)
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!! MODES TO PLANES !!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! subroutine modes_to_planes_phys_lims_2 (xPL,x,nystart,nyend,grid,nygrid,nygrid_LB,myid,status,ierr)
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!! MODES TO PLANES !!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    use declaration
-    implicit none
+  ! ! used in slip stats so not really needed
 
-    include 'mpif.h'             ! MPI variables
-    integer status(MPI_STATUS_SIZE),ierr,myid
 
-    integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,grid
-    integer column,nystart,nyend
-    integer inode,yourid
-    integer msizeR,msizeS
-    type(cfield) x
-    !complex(8), intent(in) :: x(jlim(1,grid):,:)
-    real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
-    complex(8), allocatable :: buffS(:,:),buffR(:,:)
-    integer, intent(in) :: nygrid,nygrid_LB 
+  !   use declaration
+  !   implicit none
+
+  !   include 'mpif.h'             ! MPI variables
+  !   integer status(MPI_STATUS_SIZE),ierr,myid
+
+  !   integer i,k,j,jminS,jmaxS,jminR,jmaxR,dki,grid
+  !   integer column,nystart,nyend
+  !   integer inode,yourid
+  !   integer msizeR,msizeS
+  !   type(cfield) x
+  !   !complex(8), intent(in) :: x(jlim(1,grid):,:)
+  !   real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
+  !   complex(8), allocatable :: buffS(:,:),buffR(:,:)
+  !   integer, intent(in) :: nygrid,nygrid_LB 
     
-    yourid = myid
+  !   yourid = myid
 
-      jminR = max(max(limPL_incw(grid,1,  myid),jlim(1,grid)+1),nystart)
-      jmaxR = min(min(limPL_incw(grid,2,  myid),jlim(2,grid)-1),nyend)
-      if (jminR==nygrid_LB+1  ) then
-            jminR = jminR-1
-          end if
-          if (jmaxR==nygrid) then
-            jmaxR = jmaxR+1
-          end if
+  !     jminR = max(max(limPL_incw(grid,1,  myid),jlim(1,grid)+1),nystart)
+  !     jmaxR = min(min(limPL_incw(grid,2,  myid),jlim(2,grid)-1),nyend)
+  !     if (jminR==nygrid_LB+1  ) then
+  !           jminR = jminR-1
+  !         end if
+  !         if (jmaxR==nygrid) then
+  !           jmaxR = jmaxR+1
+  !         end if
           
-      do j = jminR,jmaxR
-        do column = 1,columns_num(yourid)
-          i = columns_i(column,yourid)
-          k = columns_k(column,yourid) - dk_phys(column,yourid)
-          xPL(2*i+1,k,j) = dreal(x%f(j,column))
-          xPL(2*i+2,k,j) = dimag(x%f(j,column))
-        end do
-      end do
+  !     do j = jminR,jmaxR
+  !       do column = 1,columns_num(yourid)
+  !         i = columns_i(column,yourid)
+  !         k = columns_k(column,yourid) - dk_phys(column,yourid)
+  !         xPL(2*i+1,k,j) = dreal(x%f(j,column))
+  !         xPL(2*i+2,k,j) = dimag(x%f(j,column))
+  !       end do
+  !     end do
 
-    do inode = 1,pnodes-1
-      yourid = ieor(myid,inode)
-      if (yourid<np) then
-          jminS = max(max(limPL_incw(grid,1,yourid),jlim(1,grid)+1),nystart)
-          jmaxS = min(min(limPL_incw(grid,2,yourid),jlim(2,grid)-1),nyend)
-          jminR = max(max(limPL_incw(grid,1,  myid),jlim(1,grid)+1),nystart)
-          jmaxR = min(min(limPL_incw(grid,2,  myid),jlim(2,grid)-1),nyend)
-          if (jminS==nygrid_LB+1  ) then
-            jminS = jminS-1
-          end if
-          if (jmaxS==nygrid) then
-            jmaxS = jmaxS+1
-          end if
-          if (jminR==nygrid_LB+1  ) then
-            jminR = jminR-1
-          end if
-          if (jmaxR==nygrid) then
-            jmaxR = jmaxR+1
-          end if
+  !   do inode = 1,pnodes-1
+  !     yourid = ieor(myid,inode)
+  !     if (yourid<np) then
+  !         jminS = max(max(limPL_incw(grid,1,yourid),jlim(1,grid)+1),nystart)
+  !         jmaxS = min(min(limPL_incw(grid,2,yourid),jlim(2,grid)-1),nyend)
+  !         jminR = max(max(limPL_incw(grid,1,  myid),jlim(1,grid)+1),nystart)
+  !         jmaxR = min(min(limPL_incw(grid,2,  myid),jlim(2,grid)-1),nyend)
+  !         if (jminS==nygrid_LB+1  ) then
+  !           jminS = jminS-1
+  !         end if
+  !         if (jmaxS==nygrid) then
+  !           jmaxS = jmaxS+1
+  !         end if
+  !         if (jminR==nygrid_LB+1  ) then
+  !           jminR = jminR-1
+  !         end if
+  !         if (jmaxR==nygrid) then
+  !           jmaxR = jmaxR+1
+  !         end if
                   
-          allocate(buffS(jminS:jmaxS,columns_num(  myid)))
-          allocate(buffR(jminR:jmaxR,columns_num(yourid)))
-          msizeS = 2*(columns_num(  myid)*(jmaxS-jminS+1))  ! 2 times because it's complex
-          msizeR = 2*(columns_num(yourid)*(jmaxR-jminR+1))
-          msizeS = max(msizeS,0)
-          msizeR = max(msizeR,0)
+  !         allocate(buffS(jminS:jmaxS,columns_num(  myid)))
+  !         allocate(buffR(jminR:jmaxR,columns_num(yourid)))
+  !         msizeS = 2*(columns_num(  myid)*(jmaxS-jminS+1))  ! 2 times because it's complex
+  !         msizeR = 2*(columns_num(yourid)*(jmaxR-jminR+1))
+  !         msizeS = max(msizeS,0)
+  !         msizeR = max(msizeR,0)
 
-          do j = jminS,jmaxS
-            do column = 1,columns_num(myid)
-              buffS(j,column) = x%f(j,column)
-            end do
-          end do
+  !         do j = jminS,jmaxS
+  !           do column = 1,columns_num(myid)
+  !             buffS(j,column) = x%f(j,column)
+  !           end do
+  !         end do
 
-          call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &
-  &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
-  &                         MPI_COMM_WORLD,status,ierr)
+  !         call MPI_SENDRECV(buffS,msizeS,MPI_REAL8,yourid,77*yourid+53*myid, &
+  ! &                         buffR,msizeR,MPI_REAL8,yourid,53*yourid+77*myid, &
+  ! &                         MPI_COMM_WORLD,status,ierr)
 
-          do j = jminR,jmaxR
-            do column = 1,columns_num(yourid)
-              i = columns_i(column,yourid)
-              k = columns_k(column,yourid) - dk_phys(column,yourid)
-              xPL(2*i+1,k,j) = dreal(buffR(j,column))
-              xPL(2*i+2,k,j) = dimag(buffR(j,column))
-            end do
-          end do
+  !         do j = jminR,jmaxR
+  !           do column = 1,columns_num(yourid)
+  !             i = columns_i(column,yourid)
+  !             k = columns_k(column,yourid) - dk_phys(column,yourid)
+  !             xPL(2*i+1,k,j) = dreal(buffR(j,column))
+  !             xPL(2*i+2,k,j) = dimag(buffR(j,column))
+  !           end do
+  !         end do
 
-          deallocate(buffR,buffS)
+  !         deallocate(buffR,buffS)
 
-        ! end do
-      end if
-    end do
+  !       ! end do
+  !     end if
+  !   end do
 
-  end subroutine
+  ! end subroutine
 
   subroutine ops_in_planes(myid,flagst)
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

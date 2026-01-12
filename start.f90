@@ -771,9 +771,9 @@ end if
   allocate( u2_itp( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) ) )
   allocate( u3_itp( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
 
-  allocate( Nu1_dy%f( jlim(1,ugrid)+1:jlim(2,ugrid)-1, columns_num(myid) ) )
-  allocate( Nu2_dy%f( jlim(1,vgrid)+1:jlim(2,vgrid)-1, columns_num(myid) ) )
-  allocate( Nu3_dy%f( jlim(1,ugrid)+1:jlim(2,ugrid)-1, columns_num(myid) ) )
+  allocate( Nu1_dy( jlim(1,ugrid)+1:jlim(2,ugrid)-1, columns_num(myid) ) )
+  allocate( Nu2_dy( jlim(1,vgrid)+1:jlim(2,vgrid)-1, columns_num(myid) ) )
+  allocate( Nu3_dy( jlim(1,ugrid)+1:jlim(2,ugrid)-1, columns_num(myid) ) )
 
   allocate( uv_f ( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
   allocate( vv_c ( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) ) )
@@ -781,8 +781,8 @@ end if
 
   allocate( DG%f_dg( 3, jlim(1,pgrid):jlim(2,pgrid), columns_num(myid) ) )
 
-  allocate( du1dy_columns%f( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
-  allocate( du2dy_columns%f( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
+  allocate( du1dy_columns( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
+  allocate( du2dy_columns( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
   allocate( du3dy_columns( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
 
 
@@ -790,9 +790,9 @@ end if
   u2_itp        = 0d0
   u3_itp        = 0d0
 
-  Nu1_dy%f        = 0d0
-  Nu2_dy%f        = 0d0
-  Nu3_dy%f        = 0d0
+  Nu1_dy        = 0d0
+  Nu2_dy        = 0d0
+  Nu3_dy        = 0d0
 
   uv_f          = 0d0
   wv_f          = 0d0
@@ -800,8 +800,8 @@ end if
 
   DG%f_dg         = 0d0
 
-  du1dy_columns%f = 0d0
-  du2dy_columns%f = 0d0
+  du1dy_columns = 0d0
+  du2dy_columns = 0d0
   du3dy_columns = 0d0
 
 
