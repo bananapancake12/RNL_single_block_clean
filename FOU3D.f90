@@ -803,12 +803,12 @@ contains
     u2(:,Ngal_z/2+1)=0d0
     u3(:,Ngal_z/2+1)=0d0
     
-    call cft(u1,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-    call rft(u1,Ngal_x+2,Ngal_z,1,buffRal_x%b)
-    call cft(u2,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-    call rft(u2,Ngal_x+2,Ngal_z,1,buffRal_x%b)
-    call cft(u3,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-    call rft(u3,Ngal_x+2,Ngal_z,1,buffRal_x%b)
+    call cft(u1,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z)
+    call rft(u1,Ngal_x+2,Ngal_z,1,buffRal_x)
+    call cft(u2,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z)
+    call rft(u2,Ngal_x+2,Ngal_z,1,buffRal_x)
+    call cft(u3,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z)
+    call rft(u3,Ngal_x+2,Ngal_z,1,buffRal_x)
     
   end subroutine
 
@@ -826,8 +826,8 @@ contains
 
     du(:,Ngal_z/2+1)=0d0
     
-    call cft(du   ,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z%b)
-    call rft(du   ,Ngal_x+2,Ngal_z,1,buffRal_x%b)
+    call cft(du   ,Ngal_x+2,2,(Nspec_x+2)/2,1,buffCal_z)
+    call rft(du   ,Ngal_x+2,Ngal_z,1,buffRal_x)
 
   end subroutine
 
@@ -843,8 +843,8 @@ contains
     implicit none
 
     real(8) du  (Nspec_x+2,Nspec_z)
-    call cft(du   ,Nspec_x+2,2,(Nspec_x+2)/2,1,buffC_z%b)
-    call rft(du   ,Nspec_x+2,Nspec_z,1,buffR_x%b)
+    call cft(du   ,Nspec_x+2,2,(Nspec_x+2)/2,1,buffC_z)
+    call rft(du   ,Nspec_x+2,Nspec_z,1,buffR_x)
 
   end subroutine
 
@@ -1727,8 +1727,8 @@ contains
 
     real(8) duPL(Ngal_x+2,Ngal_z)
 
-    call rft(duPL,Ngal_x+2,Ngal_z,-1,buffRal_x%b)
-    call cft(duPL,Ngal_x+2,2,(Nspec_x+2)/2,-1,buffCal_z%b)
+    call rft(duPL,Ngal_x+2,Ngal_z,-1,buffRal_x)
+    call cft(duPL,Ngal_x+2,2,(Nspec_x+2)/2,-1,buffCal_z)
     
     duPL(:,Ngal_z/2+1)=0d0 !oddball advective term = 0
 
@@ -1748,8 +1748,8 @@ contains
 
     real(8) duPL(Nspec_x+2,Nspec_z)
 
-    call rft(duPL,Nspec_x+2,Nspec_z,-1,buffR_x%b)
-    call cft(duPL,Nspec_x+2,2,(Nspec_x+2)/2,-1,buffC_z%b)
+    call rft(duPL,Nspec_x+2,Nspec_z,-1,buffR_x)
+    call cft(duPL,Nspec_x+2,2,(Nspec_x+2)/2,-1,buffC_z)
     
     !duPL(:,N(2,iband)/2+1)=0d0
 

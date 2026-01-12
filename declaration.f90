@@ -128,22 +128,22 @@ module declaration
   !   complex(8),pointer:: f(:,:)
   ! end type cfield
 
-  type rfield_dg
-    real(8),pointer:: f_dg(:,:,:)
-  end type rfield_dg
+  ! type rfield_dg
+  !   real(8),pointer:: f_dg(:,:,:)
+  ! end type rfield_dg
 
-  type array
-    real(8),pointer:: b(:)
-  end type array
+  ! type array
+  !   real(8),pointer:: b(:)
+  ! end type array
 
   type rfield
     real(8),pointer:: fr(:,:)
   end type rfield
 
-  type(array) :: buffR_x
-  type(array) :: buffC_z
-  type(array) :: buffRal_x
-  type(array) :: buffCal_z
+  real(8), allocatable :: buffR_x(:), buffC_z(:), buffRal_x(:), buffCal_z(:)
+  ! type(array) :: buffC_z
+  ! type(array) :: buffRal_x
+  ! type(array) :: buffCal_z
 
 
   
@@ -176,7 +176,7 @@ module declaration
 
   complex(8), allocatable :: du1dy_columns(:,:), du2dy_columns(:,:), du3dy_columns(:,:)
   
-  type(rfield_dg) :: DG
+  real(8), allocatable :: DG(:,:,:)
   
   real(8) bslip
   

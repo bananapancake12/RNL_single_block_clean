@@ -211,12 +211,12 @@
       do column = 1,columns_num(myid)
           i = columns_i(column,myid)
           k = columns_k(column,myid)
-          x(nystart,column) = x(nystart,column)*DG%f_dg(2,nystart,column)
+          x(nystart,column) = x(nystart,column)*DG(2,nystart,column)
           do j = nystart+1,nyend
-            x(j,column) = (x(j,column)-DG%f_dg(1,j,column)*x(j-1,column))*DG%f_dg(2,j,column)
+            x(j,column) = (x(j,column)-DG(1,j,column)*x(j-1,column))*DG(2,j,column)
           end do
           do j = nyend-1,nystart,-1
-            x(j,column) =  x(j,column)-DG%f_dg(3,j,column)*x(j+1,column)
+            x(j,column) =  x(j,column)-DG(3,j,column)*x(j+1,column)
           end do
 
       end do
@@ -336,7 +336,8 @@
 
       use declaration
       implicit none
-      type(rfield_dg)  a
+      ! type(rfield_dg)  a
+      real(8),allocatable:: a(:,:,:)
       integer column,i,k,j,myid
       integer nystart,nyend
       real(8) k2x,k2z
@@ -368,22 +369,22 @@
           !    k2x = k1F_x(i)*k1F_x(i)
           !    k2z = k1F_z(k)*k1F_z(k)
       
-          a%f_dg(2,nystart,column) = (D_vec_t(nystart)*G_vec_b(nystart  )) + k2x + k2z
-          a%f_dg(3,nystart,column) = (D_vec_t(nystart)*G_vec_t(nystart+1))
-          a%f_dg(2,nyend,  column) = (D_vec_b(nyend-1)*G_vec_t(nyend    )) + k2x + k2z
-          a%f_dg(1,nyend,  column) = (D_vec_b(nyend-1)*G_vec_b(nyend-1  ))
+          a(2,nystart,column) = (D_vec_t(nystart)*G_vec_b(nystart  )) + k2x + k2z
+          a(3,nystart,column) = (D_vec_t(nystart)*G_vec_t(nystart+1))
+          a(2,nyend,  column) = (D_vec_b(nyend-1)*G_vec_t(nyend    )) + k2x + k2z
+          a(1,nyend,  column) = (D_vec_b(nyend-1)*G_vec_b(nyend-1  ))
           do j = nystart+1,nyend-1
-            a%f_dg(2,j,column) = (D_vec_b(j-1)*G_vec_t(j  )) + (D_vec_t(j)*G_vec_b(j)) + k2x + k2z
-            a%f_dg(1,j,column) = (D_vec_b(j-1)*G_vec_b(j-1))
-            a%f_dg(3,j,column) = (D_vec_t(j  )*G_vec_t(j+1))
+            a(2,j,column) = (D_vec_b(j-1)*G_vec_t(j  )) + (D_vec_t(j)*G_vec_b(j)) + k2x + k2z
+            a(1,j,column) = (D_vec_b(j-1)*G_vec_b(j-1))
+            a(3,j,column) = (D_vec_t(j  )*G_vec_t(j+1))
           end do
 
       end do
       
       if(myid==0)then
-          a%f_dg(1,nystart,1) = 0d0
-          a%f_dg(2,nystart,1) = 1d0/((yu(1+1)-yu(1)))**2 !C!
-          a%f_dg(3,nystart,1) = 0d0
+          a(1,nystart,1) = 0d0
+          a(2,nystart,1) = 1d0/((yu(1+1)-yu(1)))**2 !C!
+          a(3,nystart,1) = 0d0
       end if
 
       ! For modified wavenumbers, need BC on last pressure mode (as k2x=k2z=0)
@@ -398,7 +399,7 @@
       !  enddo
       
 
-      call LU_decP(nystart,nyend,columns_num(myid),a%f_dg(:,nystart:nyend,1:columns_num(myid)),myid)
+      call LU_decP(nystart,nyend,columns_num(myid),a(:,nystart:nyend,1:columns_num(myid)),myid)
 
       
     end subroutine

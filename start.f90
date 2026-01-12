@@ -565,15 +565,15 @@ end if
   ! allocate(buffR_x(nband),buffC_z(nband))
   ! allocate(buffRal_x(nband),buffCal_z(nband))
 
-    allocate(buffR_x%b( 2*Nspec_x+18), &
-&            buffC_z%b(10*Nspec_z+19), &
-&            buffRal_x%b( 2*Ngal_x+18), &
-&            buffCal_z%b(10*Ngal_z+19))
+    allocate(buffR_x( 2*Nspec_x+18), &
+&            buffC_z(10*Nspec_z+19), &
+&            buffRal_x( 2*Ngal_x+18), &
+&            buffCal_z(10*Ngal_z+19))
 
-    buffR_x%b   = 0.0d0
-    buffC_z%b   = 0.0d0
-    buffRal_x%b = 0.0d0
-    buffCal_z%b = 0.0d0
+    buffR_x   = 0.0d0
+    buffC_z   = 0.0d0
+    buffRal_x = 0.0d0
+    buffCal_z = 0.0d0
 
     ! write(*,*) '  size(buffR_x(iband)%b)   = ', size(buffR_x  %b)
     ! write(*,*) '  size(buffC_z(iband)%b)   = ', size(buffC_z  %b)
@@ -591,10 +591,10 @@ end if
 
   
   !do iband = 1,nband
-    call rfti(Nspec_x,buffR_x  %b)
-    call cfti(Nspec_z,buffC_z  %b)
-    call rfti(Ngal_x,buffRal_x%b)
-    call cfti(Ngal_z,buffCal_z%b)
+    call rfti(Nspec_x,buffR_x )
+    call cfti(Nspec_z,buffC_z )
+    call rfti(Ngal_x,buffRal_x)
+    call cfti(Ngal_z,buffCal_z)
   !end do
 
   ! write(6,*) "buffCal_z after"
@@ -779,7 +779,7 @@ end if
   allocate( vv_c ( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) ) )
   allocate( wv_f ( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
 
-  allocate( DG%f_dg( 3, jlim(1,pgrid):jlim(2,pgrid), columns_num(myid) ) )
+  allocate( DG( 3, jlim(1,pgrid):jlim(2,pgrid), columns_num(myid) ) )
 
   allocate( du1dy_columns( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
   allocate( du2dy_columns( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) ) )
@@ -798,7 +798,7 @@ end if
   wv_f          = 0d0
   vv_c          = 0d0
 
-  DG%f_dg         = 0d0
+  DG            = 0d0
 
   du1dy_columns = 0d0
   du2dy_columns = 0d0
@@ -1689,7 +1689,9 @@ subroutine mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)
 
   include 'mpif.h'                                  ! MPI variables
   integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
-  type(cfield) u1,u2,u3,p
+  ! type(cfield) u1,u2,u3,p
+  complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
+  complex(8), intent(in) :: p(:,:)
   integer nx,nz
   integer j,ju1,ju2,jv1,jv2,jp1,jp2, iband
   integer, allocatable:: nxxu(:),nzzu(:),nxxv(:),nzzv(:)
