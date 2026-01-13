@@ -40,6 +40,8 @@ module declaration
 
   integer(8), allocatable :: weight(:)
 
+  real(8) :: t1
+
     
   integer physlim_bot
   integer physlim_top

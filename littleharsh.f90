@@ -60,12 +60,14 @@ program littleharsh
 
   real(8), allocatable :: a_ugrid(:,:)
   real(8), allocatable :: a_vgrid(:,:)
-
   
   real(8):: z,sigmaz
   integer column,i,k,j
 
   real(8):: flagslstat
+
+  
+
 
   call MPI_INIT(ierr)
   if (ierr.ne.MPI_SUCCESS) pause 'ierr'
@@ -81,11 +83,13 @@ program littleharsh
     write(*,*) ''
   end if
 
+  t1 = MPI_Wtime()
+
   ! Initialise
   call start(myid,status,ierr)
 
   if(myid==0) then
-    write(6,*) "=====> Finished Start"
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Start"
   end if
 
 ! itersl=iter0
@@ -132,7 +136,7 @@ program littleharsh
 
 
   if(myid==0) then
-    write(6,*) "=====> Calling getini "
+    write(6,*) "t=", MPI_Wtime() - t1,"=====> Calling getini "
   end if
 
 
@@ -151,24 +155,26 @@ nextqt = floor(t*10d0)/10d0+0.1d0
   call MPI_BARRIER(MPI_COMM_WORLD,ierr)
 
   ! MAIN LOOP 
-  do while (t<maxt) ! This is the original condition
-  ! do while (t<maxt .AND. iter <2)
+  !do while (t<maxt) ! This is the original condition
+  do while (t<maxt .AND. iter <2)
     ! Runge-Kutta substeps
     do kRK = 1,3
+    
+
       ! Build     linear terms of right-hand-side of Navier-Stokes equation
       call RHS0_u1(du1,u1,Nu1,p,myid)
       call RHS0_u2(du2,u2,Nu2,p,myid)
       call RHS0_u3(du3,u3,Nu3,p,myid)
 
       if(myid==0) then
-        write(6,*) "finished RHS =====> Building Nonlinear"
+        write(6,*) "t=", MPI_Wtime() - t1,"finished RHS =====> Building Nonlinear"
       end if 
 
       ! Build non-linear terms of right-hand-side of Navier-Stokes equation
       call nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
       
       if(myid==0) then
-        write(6,*) "Finished Nonlinear =====> Solving"
+        write(6,*) "t=", MPI_Wtime() - t1,"Finished Nonlinear =====> Solving"
       end if 
 
       ! Resolve the matricial system (FFT BANDS IMPLEMENTED)
@@ -181,7 +187,7 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       call solveV(u2,du2,a_vgrid,myid)
 
       if(myid==0) then
-        write(6,*) "Finished Solving Velocities =====> Solving Pressure "
+        write(6,*) "t=", MPI_Wtime() - t1,"Finished Solving Velocities =====> Solving Pressure "
       end if 
       
      ! Compute the pressure gradient if constant mass flow condition is set

@@ -1,0 +1,854 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_singlle_block_clean.
+
+JobID: 20503569
+======
+Time: Tue Jan 13 10:12:42 GMT 2026
+Running on master node: cpu-r-75
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_singlle_block_clean
+
+Nodes allocated:
+================
+cpu-r-75
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          39
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =           8
+ iproc           0 nplanes           4 proc_load   4.00000000000000     
+ iproc           1 nplanes           4 proc_load   4.00000000000000     
+ iproc           2 nplanes           4 proc_load   4.00000000000000     
+ iproc           3 nplanes           4 proc_load   4.00000000000000     
+ iproc           4 nplanes           4 proc_load   4.00000000000000     
+ iproc           5 nplanes           4 proc_load   4.00000000000000     
+ iproc           6 nplanes           4 proc_load   4.00000000000000     
+ iproc           7 nplanes           4 proc_load   4.00000000000000     
+ iproc           8 nplanes           4 proc_load   4.00000000000000     
+ iproc           9 nplanes           4 proc_load   4.00000000000000     
+ iproc          10 nplanes           4 proc_load   4.00000000000000     
+ iproc          11 nplanes           4 proc_load   4.00000000000000     
+ iproc          12 nplanes           4 proc_load   4.00000000000000     
+ iproc          13 nplanes           4 proc_load   4.00000000000000     
+ iproc          14 nplanes           4 proc_load   4.00000000000000     
+ iproc          15 nplanes           4 proc_load   4.00000000000000     
+ iproc          16 nplanes           4 proc_load   4.00000000000000     
+ iproc          17 nplanes           4 proc_load   4.00000000000000     
+ iproc          18 nplanes           4 proc_load   4.00000000000000     
+ iproc          19 nplanes           4 proc_load   4.00000000000000     
+ iproc          20 nplanes           4 proc_load   4.00000000000000     
+ iproc          21 nplanes           4 proc_load   4.00000000000000     
+ iproc          22 nplanes           4 proc_load   4.00000000000000     
+ iproc          23 nplanes           4 proc_load   4.00000000000000     
+ iproc          24 nplanes           4 proc_load   4.00000000000000     
+ iproc          25 nplanes           4 proc_load   4.00000000000000     
+ iproc          26 nplanes           4 proc_load   4.00000000000000     
+ iproc          27 nplanes           4 proc_load   4.00000000000000     
+ iproc          28 nplanes           4 proc_load   4.00000000000000     
+ iproc          29 nplanes           4 proc_load   4.00000000000000     
+ iproc          30 nplanes           4 proc_load   4.00000000000000     
+ iproc          31 nplanes           4 proc_load   4.00000000000000     
+ iproc          32 nplanes           3 proc_load   3.00000000000000     
+ iproc          33 nplanes           3 proc_load   3.00000000000000     
+ iproc          34 nplanes           3 proc_load   3.00000000000000     
+ iproc          35 nplanes           3 proc_load   3.00000000000000     
+ iproc          36 nplanes           3 proc_load   3.00000000000000     
+ iproc          37 nplanes           3 proc_load   3.00000000000000     
+ iproc          38 nplanes           3 proc_load   3.00000000000000     
+ iproc          39 nplanes           3 proc_load   3.00000000000000     
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ =====> Finished Start
+ =====> Calling getini 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+ u2 from file ./input//u2_0128x0128x0153_t09455.dat,
+ u3 from file ./input//u3_0128x0128x0153_t09455.dat,
+ and p from file ./input//p_0128x0128x0153_t09455.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx             128
+ Nz             128
+ Nyv            151
+ Nyu            152
+ Ngalx          192
+ Ngalz          192
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ 
+ Initialised
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   6.736447455048117E-017
+ Qx     1.75230615942311     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423825947899     
+ Uslp -1.058242342586234E-015
+ =====> Ops in Planes
+ vv_cPL  1.125350715618262E-007  9.994015418871055E-015         150
+  Finished 0th mode nonlin =====> Linear advection           2
+ vv_cPL  9.328547394522505E-005  7.634594671079273E-013          10
+ =====> nonlinear interaction into 0th mode - U           2
+ =====> nonlinear interaction into 0th mode - V           0
+ =====> Finished Nonlin Inter U           2
+ =====> Planes to modes
+ =====> Finished Nonlin Inter v           2
+ =====> Finished Derivatives           2
+ =====> Finished Ops in planes           2
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ vv_cPL  1.124647188998972E-007  9.638879292312219E-015         150
+  Finished 0th mode nonlin =====> Linear advection           2
+ vv_cPL  9.328763537866729E-005  7.226538453504941E-013          10
+ =====> nonlinear interaction into 0th mode - U           2
+ =====> nonlinear interaction into 0th mode - V           0
+ =====> Finished Nonlin Inter U           2
+ =====> Planes to modes
+ =====> Finished Nonlin Inter v           2
+ =====> Finished Derivatives           2
+ =====> Finished Ops in planes           2
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ vv_cPL  1.124241503354664E-007  9.558346872501858E-015         150
+  Finished 0th mode nonlin =====> Linear advection           2
+ vv_cPL  9.328277960305351E-005  7.127680102147876E-013          10
+ =====> nonlinear interaction into 0th mode - U           2
+ =====> nonlinear interaction into 0th mode - V           0
+ =====> Finished Nonlin Inter U           2
+ =====> Planes to modes
+ =====> Finished Nonlin Inter v           2
+ =====> Finished Derivatives           2
+ =====> Finished Ops in planes           2
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ vv_cPL  1.123734776594230E-007  9.361979547870655E-015         150
+  Finished 0th mode nonlin =====> Linear advection           2
+ vv_cPL  9.328148183928823E-005  6.886194387488376E-013          10
+ =====> nonlinear interaction into 0th mode - U           2
+ =====> nonlinear interaction into 0th mode - V           0
+ =====> Finished Nonlin Inter U           2
+ =====> Planes to modes
+ =====> Finished Nonlin Inter v           2
+ =====> Finished Derivatives           2
+ =====> Finished Ops in planes           2
+ =====> Derivatives
+ =====> CFL and Stats
+ Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ Finished Solving Velocities =====> Solving Pressure 
+ finished RHS =====> Building Nonlinear
+ =====> Interpolating
+ =====> Modes to planes
+ =====> Spectra
+ =====> Record Out
+ =====> Ops in Planes
+ vv_cPL  1.123058115822834E-007  9.061056624315350E-015         150
+  Finished 0th mode nonlin =====> Linear advection           2
+ vv_cPL  9.328369966416373E-005  6.515699463736271E-013          10
+ =====> nonlinear interaction into 0th mode - U           2
+ =====> nonlinear interaction into 0th mode - V           0
+ =====> Finished Nonlin Inter U           2
+ =====> Planes to modes
+slurmstepd: error: *** JOB 20503569 ON cpu-r-75 CANCELLED AT 2026-01-13T10:23:02 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 20503569.0 ON cpu-r-75 CANCELLED AT 2026-01-13T10:23:02 DUE TO TIME LIMIT ***
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014D4E4342990  Unknown               Unknown  Unknown
+littleharsh        00000000004E8446  fou3d_mod_mp_nonl        1522  FOU3D.f90
+littleharsh        00000000004E0B3B  fou3d_mod_mp_ops_        1457  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014D4E3A0D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015513BEDE990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7906  fou3d_mod_mp_nonl        1521  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000015513B5A97E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B503102990  Unknown               Unknown  Unknown
+littleharsh        00000000004EB576  fou3d_mod_mp_nonl        1529  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014B5027CD7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000153956077990  Unknown               Unknown  Unknown
+littleharsh        00000000004E8CA8  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004C449F  fou3d_mod_mp_ops_        1341  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001539557427E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150E33D0A990  Unknown               Unknown  Unknown
+littleharsh        00000000004EB6A4  fou3d_mod_mp_nonl        1529  FOU3D.f90
+littleharsh        00000000004C1BB3  fou3d_mod_mp_ops_        1339  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000150E333D57E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014A930A83990  Unknown               Unknown  Unknown
+littleharsh        00000000004E8289  fou3d_mod_mp_nonl        1522  FOU3D.f90
+littleharsh        00000000004C1BB3  fou3d_mod_mp_ops_        1339  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014A93014E7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014966BB42990  Unknown               Unknown  Unknown
+littleharsh        00000000004E8D33  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004C1BB3  fou3d_mod_mp_ops_        1339  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014966B20D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014631527A990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7CFE  fou3d_mod_mp_nonl        1521  FOU3D.f90
+littleharsh        00000000004C1BB3  fou3d_mod_mp_ops_        1339  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001463149457E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000147E2BFAA990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7237  fou3d_mod_mp_nonl        1519  FOU3D.f90
+littleharsh        00000000004C1BB3  fou3d_mod_mp_ops_        1339  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000147E2B6757E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000151959E4F990  Unknown               Unknown  Unknown
+littleharsh        00000000004EA2BE  fou3d_mod_mp_nonl        1528  FOU3D.f90
+littleharsh        00000000004C3029  fou3d_mod_mp_ops_        1340  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000015195951A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000154ECA7FB990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7331  fou3d_mod_mp_nonl        1519  FOU3D.f90
+littleharsh        00000000004C449F  fou3d_mod_mp_ops_        1341  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000154EC9EC67E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000154E9CE95990  Unknown               Unknown  Unknown
+littleharsh        00000000004EA698  fou3d_mod_mp_nonl        1529  FOU3D.f90
+littleharsh        00000000004BF2C7  fou3d_mod_mp_ops_        1337  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000154E9C5607E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000147691710990  Unknown               Unknown  Unknown
+littleharsh        00000000004E923F  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000147690DDB7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B2457BB990  Unknown               Unknown  Unknown
+littleharsh        00000000004E8F97  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004C1BB3  fou3d_mod_mp_ops_        1339  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014B244E867E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001481EBEDD990  Unknown               Unknown  Unknown
+littleharsh        00000000004EB6EA  fou3d_mod_mp_nonl        1529  FOU3D.f90
+littleharsh        00000000004C449F  fou3d_mod_mp_ops_        1341  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001481EB5A87E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000151210A12990  Unknown               Unknown  Unknown
+littleharsh        00000000004E78ED  fou3d_mod_mp_nonl        1521  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001512100DD7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150F537DC990  Unknown               Unknown  Unknown
+littleharsh        00000000004E866E  fou3d_mod_mp_nonl        1522  FOU3D.f90
+littleharsh        00000000004C3029  fou3d_mod_mp_ops_        1340  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000150F52EA77E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014DF397EE990  Unknown               Unknown  Unknown
+littleharsh        00000000004EB601  fou3d_mod_mp_nonl        1529  FOU3D.f90
+littleharsh        00000000004DF6C5  fou3d_mod_mp_ops_        1456  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014DF38EB97E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015131C179990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7D21  fou3d_mod_mp_nonl        1521  FOU3D.f90
+littleharsh        00000000004DF6C5  fou3d_mod_mp_ops_        1456  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000015131B8447E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000154E404A9990  Unknown               Unknown  Unknown
+littleharsh        00000000004E6FD5  fou3d_mod_mp_nonl        1519  FOU3D.f90
+littleharsh        00000000004E1FB1  fou3d_mod_mp_ops_        1458  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000154E3FB747E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000149F3CA40990  Unknown               Unknown  Unknown
+littleharsh        00000000004E9295  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004DE24F  fou3d_mod_mp_ops_        1455  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000149F3C10B7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001508EF226990  Unknown               Unknown  Unknown
+littleharsh        00000000004E92B1  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004C1BB3  fou3d_mod_mp_ops_        1339  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001508EE8F17E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014ED907AF990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7162  fou3d_mod_mp_nonl        1519  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014ED8FE7A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014D12AD56990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7345  fou3d_mod_mp_nonl        1519  FOU3D.f90
+littleharsh        00000000004BF2C7  fou3d_mod_mp_ops_        1337  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014D12A4217E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000154C302D1990  Unknown               Unknown  Unknown
+littleharsh        00000000004E6AD8  fou3d_mod_mp_nonl        1516  FOU3D.f90
+littleharsh        00000000004C3029  fou3d_mod_mp_ops_        1340  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000154C2F99C7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014E9942BA990  Unknown               Unknown  Unknown
+littleharsh        00000000004E77AD  fou3d_mod_mp_nonl        1521  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014E9939857E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000145DA3CFD990  Unknown               Unknown  Unknown
+littleharsh        00000000004E91AB  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000145DA33C87E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014F2C9EDF990  Unknown               Unknown  Unknown
+littleharsh        00000000004E89CD  fou3d_mod_mp_nonl        1523  FOU3D.f90
+littleharsh        00000000004BF2C7  fou3d_mod_mp_ops_        1337  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014F2C95AA7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014BA3C20C990  Unknown               Unknown  Unknown
+littleharsh        00000000004E7902  fou3d_mod_mp_nonl        1521  FOU3D.f90
+littleharsh        00000000004C449F  fou3d_mod_mp_ops_        1341  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014BA3B8D77E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014CA5A2C1990  Unknown               Unknown  Unknown
+littleharsh        00000000004E73B0  fou3d_mod_mp_nonl        1519  FOU3D.f90
+littleharsh        00000000004C449F  fou3d_mod_mp_ops_        1341  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014CA5998C7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001462D4B45990  Unknown               Unknown  Unknown
+littleharsh        00000000004E99FF  fou3d_mod_mp_nonl        1528  FOU3D.f90
+littleharsh        00000000004C449F  fou3d_mod_mp_ops_        1341  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001462D42107E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000149651574990  Unknown               Unknown  Unknown
+littleharsh        00000000004E62CF  fou3d_mod_mp_nonl        1513  FOU3D.f90
+littleharsh        00000000004C449F  fou3d_mod_mp_ops_        1341  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000149650C3F7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001533AB0FC990  Unknown               Unknown  Unknown
+littleharsh        00000000004E866E  fou3d_mod_mp_nonl        1522  FOU3D.f90
+littleharsh        00000000004BF2C7  fou3d_mod_mp_ops_        1337  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001533AA7C77E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014CB64039990  Unknown               Unknown  Unknown
+littleharsh        00000000004E8638  fou3d_mod_mp_nonl        1522  FOU3D.f90
+littleharsh        00000000004C073D  fou3d_mod_mp_ops_        1338  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014CB637047E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000148A9BA75990  Unknown               Unknown  Unknown
+littleharsh        00000000004E73C9  fou3d_mod_mp_nonl        1519  FOU3D.f90
+littleharsh        00000000004C3029  fou3d_mod_mp_ops_        1340  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000148A9B1407E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000151BF6C77990  Unknown               Unknown  Unknown
+littleharsh        00000000004E6780  fou3d_mod_mp_nonl        1514  FOU3D.f90
+littleharsh        00000000004DE24F  fou3d_mod_mp_ops_        1455  FOU3D.f90
+littleharsh        0000000000477950  fou3d_mod_mp_nonl         236  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000151BF63427E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152D52FE7990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000152C0120FAE5  Unknown               Unknown  Unknown
+libmlx-fi.so       0000152C0120FA97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152D53A283FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152D535F77A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152D53B0278F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000152D54D37515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        000000000043E14D  transpose_mp_plan         211  transpose.f90
+littleharsh        0000000000477B3F  fou3d_mod_mp_nonl         243  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000152D526B27E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001539EA114990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001539EAFF714C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001539EA724941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001539EAC2F78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001539EBE64515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        000000000043E14D  transpose_mp_plan         211  transpose.f90
+littleharsh        0000000000477B3F  fou3d_mod_mp_nonl         243  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       00001539E97DF7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014A004A65990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000149EB2C8DA44  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A0054A63FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A0050757A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A00558078F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014A0067B5515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        000000000043E14D  transpose_mp_plan         211  transpose.f90
+littleharsh        0000000000477B3F  fou3d_mod_mp_nonl         243  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       000014A0041307E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000632C4B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000145A277ED990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  00001458D4BE72D6  Unknown               Unknown  Unknown
+libucp.so.0.0.0    00001458D575BA0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       00001458D59FD7A1  Unknown               Unknown  Unknown
+libmlx-fi.so       00001458D5A15B0D  Unknown               Unknown  Unknown
+libmlx-fi.so       00001458D5A15A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000145A2822E3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000145A27DFD7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000145A2830878F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000145A2953D515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        000000000043E14D  transpose_mp_plan         211  transpose.f90
+littleharsh        0000000000477B3F  fou3d_mod_mp_nonl         243  FOU3D.f90
+littleharsh        0000000000627005  MAIN__                    168  littleharsh.f90
+littleharsh        0000000000403922  Unknown               Unknown  Unknown
+libc-2.28.so       0000145A26EB87E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040382E  Unknown               Unknown  Unknown

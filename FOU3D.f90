@@ -43,6 +43,7 @@ module FOU3D_mod
   use rec_out
   use transpose
   use error_mod
+  use spectra_mod
   implicit none
 contains
 
@@ -95,7 +96,7 @@ contains
     u3PL_itp = 0d0
 
     if(myid==0) then
-      write(6,*) "=====> Interpolating"
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Interpolating"
     end if
 
     !C! Interpolate the grid velocities to the other grid points
@@ -113,7 +114,7 @@ contains
     Nu3PL = 0d0
 
     if(myid==0) then
-      write(6,*) "=====> Modes to planes"
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Modes to planes"
     end if
 
     !C! Shift 6 velocity fields into planes
@@ -127,7 +128,7 @@ contains
 
 
     if(myid==0) then
-      write(6,*) "=====> Spectra"
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Spectra"
     end if
 
     !!!!!!!!!!!!!   spectra:  !!!!!!!!!!!!!
@@ -137,7 +138,7 @@ contains
     
 
     if(myid==0) then
-      write(6,*) "=====> Record Out"
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Record Out"
     end if
 
     !!!!!!!!!!!!! record out: !!!!!!!!!!!!!
@@ -228,20 +229,27 @@ contains
     ! u3PL_itp(iLkup(64):iLkup(64)+1,:,:) = 0
 
     if(myid==0) then
-      write(6,*) "=====> Ops in Planes"
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Ops in Planes"
     end if
 
     !!!!!!!!! four to ops: !!!!!!!!!
     call ops_in_planes(myid,flagst) !C! ops in planes to compute velocity products and x/z derriatives
 
-    if(myid==0) then
-      write(6,*) "=====> Planes to modes"
-    end if
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    !if(myid==0) then
+    write(6,*) "t=", MPI_Wtime() - t1, "=====> Planes to modes UVP"
+    !end if
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
 
     !C! Shift y derrivative products to modes
     call planes_to_modes_UVP(uv_f,uv_fPL,vgrid,nyv,nyv_LB,myid,status,ierr)
     call planes_to_modes_UVP(vv_c,vv_cPL,ugrid,nyu,nyu_LB,myid,status,ierr)
     call planes_to_modes_UVP(wv_f,wv_fPL,vgrid,nyv,nyv_LB,myid,status,ierr)
+    
+    
+    if(myid==0) then
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Planes to modes NUVP"
+    end if
 
 
     !C! Shift x/z derrivatives to modes
@@ -250,7 +258,7 @@ contains
     call planes_to_modes_NUVP(Nu3,Nu3PL,ugrid,nyu,nyu_LB,myid,status,ierr)
 
     if(myid==0) then
-      write(6,*) "=====> Derivatives"
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> Derivatives"
     end if
 
     !C! Calculate y derrivatives
@@ -271,7 +279,7 @@ contains
     ! enddo   
 
     if(myid==0) then
-      write(6,*) "=====> CFL and Stats"
+      write(6,*) "t=", MPI_Wtime() - t1,"=====> CFL and Stats"
     end if
 
 
@@ -295,9 +303,9 @@ contains
       ! Calculating and writing stats and spectra
       if (flagst==1) then
 
-      if(myid==0) then
-        write(6,*) " CFL and Stats =====> calc omega"
-      end if
+      ! if(myid==0) then
+      !   write(6,*) "t=", MPI_Wtime() - t1," CFL and Stats =====> calc omega"
+      ! end if
       
       !C! Calculate Omega_x
       u2PLN=0d0
@@ -307,7 +315,7 @@ contains
         call der_z_N(u2PLN(:,:,j),wx(:,:,j),k1F_z) !C! u2PL in Fourier space
         ! call der_z_N(u2PLN(:,:,j),wx(:,:,j),k1F_z) !C! u2PL in Fourier space
         if(j == 10 ) then
-          write(6,*) "wx", wx(:,10,j)
+          !write(6,*) "wx", wx(:,10,j)
         end if 
 
 
@@ -737,6 +745,9 @@ contains
     end do
 
     u3mloc = maxval(abs(u3))
+
+    ! write(6,*) "u2max", u2mloc
+    ! write(6,*) "dthetavi", dthetavi
     
     dt = min(1d0/(alp*(Nspec_x/2)*u1mloc),1d0/(bet*(Nspec_z/2)*u3mloc),1d0/(u2mloc*dthetavi))
 
@@ -744,7 +755,7 @@ contains
     ! write(6,*) "u2max", u2mloc
     ! write(6,*) "u3max", u3mloc
 
-    write(6,*) "cfl u1", 1d0/(alp*(Nspec_x/2)*u1mloc), myid
+    ! write(6,*) "cfl u1", 1d0/(alp*(Nspec_x/2)*u1mloc), myid
     ! write(6,*) "=====> finished DTC calc"
 
   end subroutine
@@ -1221,16 +1232,22 @@ contains
 
     use declaration
     implicit none
+    include 'mpif.h'
     
-    integer i,k,j,l,myid,flagst,temp,jidx
+    integer, intent(inout) :: myid,flagst
+    integer i,k,j,l,temp,jidx
     integer ia, ip, ka, kp, la, lp
     real(8) ddyi
     real(8), allocatable:: du1dx(:,:),du1dz(:,:),du2dx(:,:),du2dz(:,:),du3dx(:,:),du3dz(:,:), buff(:,:)
+    integer :: rank_true, nprocs_true, ierr_local
+    real(8) :: t0
 
     allocate(du1dx(igal,kgal),du1dz(igal,kgal))
     allocate(du2dx(igal,kgal),du2dz(igal,kgal))
     allocate(du3dx(igal,kgal),du3dz(igal,kgal))
     allocate(buff(igal,kgal))
+
+    t0 = MPI_Wtime()
     
     du1dx = 0d0
     du1dz = 0d0
@@ -1244,7 +1261,6 @@ contains
     vv_cPL = 0d0
     wu_cPL = 0d0
     ww_cPL = 0d0
-
 
     do j = limPL_excw(ugrid,1,myid),limPL_excw(ugrid,2,myid)
       ! nonlinear interaction into 0th mode (bad, much easier to do if multiply by 4 and do one quadrant but need to think about k = 0 terms carefully)
@@ -1264,14 +1280,20 @@ contains
         end do
       end do
 
-      if(j==10) then
-        write(6,*) " Finished 0th mode nonlin =====> Linear advection", myid
-        write(6,*) "vv_cPL", vv_cPL(1,1,j), vv_cPL(2,1,j), j 
+      ! if(j==10) then
+      !   write(6,*) " Finished 0th mode nonlin =====> Linear advection", myid
+      !   write(6,*) "vv_cPL", vv_cPL(1,1,j), vv_cPL(2,1,j), j 
+      ! end if 
+
+      
+      if(j==limPL_excw(ugrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
       end if 
 
-      if(j==150) then
-        write(6,*) "vv_cPL", vv_cPL(1,1,j), vv_cPL(2,1,j), j 
-      end if 
+
+      ! if(j==150) then
+      !   write(6,*) "vv_cPL", vv_cPL(1,1,j), vv_cPL(2,1,j), j 
+      ! end if 
       
       
       ! linear advection
@@ -1329,9 +1351,15 @@ contains
         jidx = j
       end if
 
-      if(j==10) then
-        write(6,*) "=====> nonlinear interaction into 0th mode - U", myid
+      ! if(j==10) then
+      !   write(6,*) "=====> nonlinear interaction into 0th mode - U", myid
+      ! end if 
+
+      if(j==limPL_excw(ugrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1,"=====> nonlinear interaction into 0th mode - U", myid
       end if 
+
+      
 
       call nonlinInter(nonlin(jidx, 1), uu_cPL(1,1,j), u1PL(1,1,j), u1PL(1,1,j))
       call nonlinInter(nonlin(jidx, 3), uw_cPL(1,1,j), u3PL(1,1,j), u1PL(1,1,j))
@@ -1345,8 +1373,12 @@ contains
       !   end do 
       ! end do 
 
-      if(j==10) then
-        write(6,*) "=====> Finished Nonlin Inter U", myid
+      ! if(j==10) then
+      !   write(6,*) "=====> Finished Nonlin Inter U", myid
+      ! end if 
+
+      if(j==limPL_excw(ugrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Nonlin Inter U", myid
       end if 
 
       ! if (j == 28) then
@@ -1371,6 +1403,10 @@ contains
       call der_z(uw_cPL(:,:,j),du1dz,k1F_z)
       call der_x(wu_cPL(:,:,j),du3dx,k1F_x)
       call der_z(ww_cPL(:,:,j),du3dz,k1F_z)
+
+      if(j==limPL_excw(ugrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -U", myid
+      end if 
     
       ! if (j == 28) then
       !   write(ext4,'(i5.5)') int(1000d0*(t-700)+kRK)
@@ -1400,6 +1436,11 @@ contains
       !   write(11) Nu3PL(:,:,j)
       ! end if
       call four_to_phys_u(u1PL(1,1,j),u2PL_itp(1,1,j),u3PL(1,1,j))
+
+      if(j==limPL_excw(ugrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished U", myid
+      end if 
+
     end do
       
     uv_fPL = 0d0
@@ -1407,8 +1448,12 @@ contains
     vw_fPL = 0d0
     wv_fPL = 0d0
 
-    if(myid==0) then
-      write(6,*) "=====> nonlinear interaction into 0th mode - V", myid
+    ! if(myid==0) then
+    !   write(6,*) "=====> nonlinear interaction into 0th mode - V", myid
+    ! end if 
+
+    if(j==limPL_excw(ugrid,2,myid)) then
+      write(6,*) "t=", MPI_Wtime() - t1, "=====> Begining V", myid
     end if 
 
     do j = limPL_excw(vgrid,1,myid),limPL_excw(vgrid,2,myid)
@@ -1436,6 +1481,10 @@ contains
                 & iNeg(i)*u3PL_itp(ia+1,ka,j)*u2PL(ip,kp,j)
         end do 
       end do
+
+      if(j==limPL_excw(vgrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
+      end if 
       
       ! linear advection
       buff(:,:) = u1PL_itp(1,1,j)*u2PL(:,:,j) + u2PL(1,1,j)*u1PL_itp(:,:,j)
@@ -1449,6 +1498,10 @@ contains
       buff(1:2,1) = 0;
       wv_fPL(:,:,j) = wv_fPL(:,:,j) + buff(:,:)
 
+      if(j==limPL_excw(vgrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Linear Advection - V", myid
+      end if 
+
       ! nonlinear advection: go through a list
       ! fields = {'uu', 'uv', 'uw', 'vu', 'vv', 'vw', 'wu', 'wv', 'ww'}; in the order of 1 to 9, where the first is the passive
       call nonlinInter(nonlin(j, 2), uv_fPL(1,1,j), u2PL(1,1,j), u1PL_itp(1,1,j))
@@ -1456,8 +1509,12 @@ contains
       call nonlinInter(nonlin(j, 6), vw_fPL(1,1,j), u3PL_itp(1,1,j), u2PL(1,1,j))
       call nonlinInter(nonlin(j, 8), wv_fPL(1,1,j), u2PL(1,1,j), u3PL_itp(1,1,j))
 
-      if(j==10) then
-        write(6,*) "=====> Finished Nonlin Inter v", myid
+      ! if(j==10) then
+      !   write(6,*) "=====> Finished Nonlin Inter v", myid
+      ! end if 
+
+      if(j==limPL_excw(vgrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Nonlin Inter v", myid
       end if 
 
 
@@ -1473,8 +1530,12 @@ contains
       call der_x(vu_fPL(1,1,j),du2dx,k1F_x)
       call der_z(vw_fPL(:,:,j),du2dz,k1F_z)
 
-        if(j==10) then
-        write(6,*) "=====> Finished Derivatives", myid
+      ! if(j==10) then
+      !   write(6,*) "=====> Finished Derivatives", myid
+      ! end if 
+
+      if(j==limPL_excw(vgrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -V", myid
       end if 
 
       do k = 1,Ngal_z
@@ -1485,11 +1546,22 @@ contains
       
       call four_to_phys_u(u1PL_itp(1,1,j),u2PL(1,1,j),u3PL_itp(1,1,j))
 
-      if(j==10) then
-        write(6,*) "=====> Finished Ops in planes", myid
+      if(j==limPL_excw(vgrid,2,myid)) then
+        write(6,*) "t=", MPI_Wtime() - t1, "Finished V =====> Finished Ops in planes", myid
       end if 
     
     end do
+    
+    ! do myid= 0,np-1
+    !   write(6,*) "ops in planes done, myid =", myid
+    ! end do 
+
+    ! call MPI_Comm_rank(MPI_COMM_WORLD, rank_true, ierr_local)
+    ! call MPI_Comm_size(MPI_COMM_WORLD, nprocs_true, ierr_local)
+
+    ! write(6,*) "MYID CHECK:", "passed myid=", myid, &
+    !           "true rank=", rank_true, &
+    !           "nprocs=", nprocs_true
     
 
     deallocate(du1dx,du1dz,du2dx,du2dz,du3dx,du3dz,buff)
@@ -1963,7 +2035,7 @@ contains
     jminR = max(limPL_excw(grid,1,myid),jlim(1,grid)+1)  ! Select the planes to transpose 
     jmaxR = min(limPL_excw(grid,2,myid),jlim(2,grid)-1)
 
-    write(6,*) "jminR", jminR, "jmaxR", jmaxR, "myid", myid
+    ! write(6,*) "jminR", jminR, "jmaxR", jmaxR, "myid", myid
 
     do j = jminR,jmaxR
       do column = 1,columns_num(myid)

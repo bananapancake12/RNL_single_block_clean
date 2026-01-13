@@ -122,7 +122,7 @@ contains
     real :: t_start, t_end
 
     integer :: i,k,j,jminS,jmaxS,jminR,jmaxR,grid
-    integer :: column
+    integer :: column, nprocs
     integer inode,yourid
     integer msizeR,msizeS
     complex(8), intent(inout) :: x(jlim(1,grid):,:) 
@@ -134,6 +134,11 @@ contains
 
     ! Loop for itself
     ! Transpose the cube that it already owns
+
+
+    ! call MPI_Comm_size(MPI_COMM_WORLD, nprocs, ierr)
+    ! write(6,*) "DEBUG myid=", myid, "MPI nprocs=", nprocs, "np var=", np
+    ! call flush(6)
 
 
 
