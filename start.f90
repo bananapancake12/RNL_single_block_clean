@@ -83,7 +83,7 @@ subroutine start(myid,status,ierr)
 !  - initialise the y-grid
 !  and send this data to the other procs.
   if (myid==0) then
-    open(40,file='input_2.in',form='formatted')
+    open(40,file='input.in',form='formatted')
     do i = 1,9
       read(40,10)             ! Input file header
     end do
@@ -259,6 +259,7 @@ subroutine start(myid,status,ierr)
     !open(30,file=fnameima,form='unformatted')
     !write(30) t,Re,alp,bet,mpgx,nband
     !write(30) N
+
 
 inquire(file=fnameima, exist=exist_file_hist)
 if (exist_file_hist) then

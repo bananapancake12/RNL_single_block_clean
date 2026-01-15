@@ -147,7 +147,7 @@
 
       integer    :: i,k,j,column,grid
       integer    :: iopt,myid
-      complex(8) :: u( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+      complex(8) :: u( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
       complex(8), intent(inout) :: rhsu(jlim(1,vgrid):,:)
         
       real(8)    :: a(3,jlim(1,grid):jlim(2,grid))

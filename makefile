@@ -7,12 +7,12 @@
 ########################     compiler     #########################
 
 #CSD3
-F90 = mpif90
-F77 = mpif90
+# F90 = mpif90
+# F77 = mpif90
 
 #WSL
-# F90 = mpiifx
-# F77 = mpiifx
+F90 = mpiifx
+F77 = mpiifx
 #F90 = $(BGP_SYS)/bin/mpixlf90
 #F77 = $(BGP_SYS)/bin/mpixlf77
 
@@ -23,7 +23,7 @@ F77 = mpif90
 #F90FLAGS= -c
 #F90FLAGS = -c -warn -CB -debug extended
 # Debug flags (default for most files)
-DEBUG_F90FLAGS = -c -O0 -g -check bounds -traceback  -check uninit #-fpe0  #-check pointers#-fpe0  -warn all
+DEBUG_F90FLAGS = -c -O0 -g -check bounds -traceback  #-check uninit #-fpe0  #-check pointers#-fpe0  -warn all
 DEBUG_F77FLAGS = -c
 # FFT / performance-critical flags (used for FFT sources)
 FFT_F90FLAGS   = -c
