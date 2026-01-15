@@ -155,8 +155,8 @@ nextqt = floor(t*10d0)/10d0+0.1d0
   call MPI_BARRIER(MPI_COMM_WORLD,ierr)
 
   ! MAIN LOOP 
-  !do while (t<maxt) ! This is the original condition
-  do while (t<maxt .AND. iter <2)
+  do while (t<maxt) ! This is the original condition
+  ! do while (t<maxt .AND. iter <2)
     ! Runge-Kutta substeps
     do kRK = 1,3
     

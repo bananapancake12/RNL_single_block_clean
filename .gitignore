@@ -8,7 +8,5 @@
 *.so
 littleharsh
 output/
-slurm-*.out
 fort.*
 scorep_*/
-makefile

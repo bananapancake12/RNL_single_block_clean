@@ -235,11 +235,10 @@ contains
     !!!!!!!!! four to ops: !!!!!!!!!
     call ops_in_planes(myid,flagst) !C! ops in planes to compute velocity products and x/z derriatives
 
-    call MPI_Barrier(MPI_COMM_WORLD, ierr)
-    !if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1, "=====> Planes to modes UVP"
-    !end if
-    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+    if(myid==0) then
+      write(6,*) "t=", MPI_Wtime() - t1, "=====> Planes to modes UVP"
+    end if
+
 
     !C! Shift y derrivative products to modes
     call planes_to_modes_UVP(uv_f,uv_fPL,vgrid,nyv,nyv_LB,myid,status,ierr)
@@ -1286,7 +1285,8 @@ contains
       ! end if 
 
       
-      if(j==limPL_excw(ugrid,2,myid)) then
+      ! if(j==limPL_excw(ugrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
       end if 
 
@@ -1355,7 +1355,8 @@ contains
       !   write(6,*) "=====> nonlinear interaction into 0th mode - U", myid
       ! end if 
 
-      if(j==limPL_excw(ugrid,2,myid)) then
+      !if(j==limPL_excw(ugrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1,"=====> nonlinear interaction into 0th mode - U", myid
       end if 
 
@@ -1377,7 +1378,8 @@ contains
       !   write(6,*) "=====> Finished Nonlin Inter U", myid
       ! end if 
 
-      if(j==limPL_excw(ugrid,2,myid)) then
+      ! if(j==limPL_excw(ugrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Nonlin Inter U", myid
       end if 
 
@@ -1404,7 +1406,8 @@ contains
       call der_x(wu_cPL(:,:,j),du3dx,k1F_x)
       call der_z(ww_cPL(:,:,j),du3dz,k1F_z)
 
-      if(j==limPL_excw(ugrid,2,myid)) then
+      ! if(j==limPL_excw(ugrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -U", myid
       end if 
     
@@ -1437,7 +1440,8 @@ contains
       ! end if
       call four_to_phys_u(u1PL(1,1,j),u2PL_itp(1,1,j),u3PL(1,1,j))
 
-      if(j==limPL_excw(ugrid,2,myid)) then
+      ! if(j==limPL_excw(ugrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished U", myid
       end if 
 
@@ -1452,7 +1456,8 @@ contains
     !   write(6,*) "=====> nonlinear interaction into 0th mode - V", myid
     ! end if 
 
-    if(j==limPL_excw(ugrid,2,myid)) then
+    ! if(j==limPL_excw(ugrid,2,myid)) then
+    if(j==10) then
       write(6,*) "t=", MPI_Wtime() - t1, "=====> Begining V", myid
     end if 
 
@@ -1482,7 +1487,8 @@ contains
         end do 
       end do
 
-      if(j==limPL_excw(vgrid,2,myid)) then
+      ! if(j==limPL_excw(vgrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
       end if 
       
@@ -1498,7 +1504,8 @@ contains
       buff(1:2,1) = 0;
       wv_fPL(:,:,j) = wv_fPL(:,:,j) + buff(:,:)
 
-      if(j==limPL_excw(vgrid,2,myid)) then
+      ! if(j==limPL_excw(vgrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Linear Advection - V", myid
       end if 
 
@@ -1513,7 +1520,8 @@ contains
       !   write(6,*) "=====> Finished Nonlin Inter v", myid
       ! end if 
 
-      if(j==limPL_excw(vgrid,2,myid)) then
+      ! if(j==limPL_excw(vgrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Nonlin Inter v", myid
       end if 
 
@@ -1534,7 +1542,8 @@ contains
       !   write(6,*) "=====> Finished Derivatives", myid
       ! end if 
 
-      if(j==limPL_excw(vgrid,2,myid)) then
+      ! if(j==limPL_excw(vgrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -V", myid
       end if 
 
@@ -1546,7 +1555,8 @@ contains
       
       call four_to_phys_u(u1PL_itp(1,1,j),u2PL(1,1,j),u3PL_itp(1,1,j))
 
-      if(j==limPL_excw(vgrid,2,myid)) then
+      ! if(j==limPL_excw(vgrid,2,myid)) then
+      if(j==10) then
         write(6,*) "t=", MPI_Wtime() - t1, "Finished V =====> Finished Ops in planes", myid
       end if 
     
