@@ -11,9 +11,12 @@ contains
     implicit none
 
     integer myid
-    complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
-    complex(8), intent(in) :: p(:,:)
-    complex(8), intent(in) :: u2_itp2(jlim(1,vgrid):,:)
+    ! complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
+    complex(8) :: u1( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: u2( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) 
+    complex(8) :: u3( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) 
+    complex(8) :: p ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    complex(8) :: u2_itp2( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) )
 
     call buildsp  (spU ,u1,                   ugrid,myid)
     call buildsp  (spV ,u2,                   vgrid,myid)

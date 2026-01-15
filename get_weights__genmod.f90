@@ -1,10 +1,9 @@
         !COMPILER-GENERATED INTERFACE MODULE: Thu Jan 15 17:25:35 2026
         ! This source file is for reference only and may not completely
         ! represent the generated interface used by the compiler.
-        MODULE INIT_STATS__genmod
+        MODULE GET_WEIGHTS__genmod
           INTERFACE 
-            SUBROUTINE INIT_STATS(MYID)
-              INTEGER(KIND=4) :: MYID
-            END SUBROUTINE INIT_STATS
+            SUBROUTINE GET_WEIGHTS
+            END SUBROUTINE GET_WEIGHTS
           END INTERFACE 
-        END MODULE INIT_STATS__genmod
+        END MODULE GET_WEIGHTS__genmod

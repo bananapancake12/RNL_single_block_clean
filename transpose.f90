@@ -21,9 +21,9 @@ contains
     integer column
     integer inode,yourid
     integer msizeR,msizeS
-    complex(8), intent(in) :: x(jlim(1,grid):,:)
+    complex(8) :: x(jlim(1,grid):jlim(2,grid),columns_num(myid))
     real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
-    integer, intent(in) :: nygrid, nygrid_LB
+    integer :: nygrid, nygrid_LB
     complex(8), allocatable :: buffS(:,:),buffR(:,:)
 
     ! Loop for itself

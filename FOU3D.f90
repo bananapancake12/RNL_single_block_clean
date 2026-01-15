@@ -61,13 +61,17 @@ contains
     integer flagst,flagwr,flagslinst,flagqwr,j,i,k,column
     real(8) C1
 
-    complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
-    complex(8), intent(in) :: p(:,:)
-    complex(8), intent(in) :: div(:,:)
-    complex(8), intent(out) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid)) 
-    complex(8), intent(out) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
-    complex(8), intent(out) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
-    complex(8), intent(inout) :: du1(jlim(1,ugrid):,:), du2(jlim(1,vgrid):,:), du3(jlim(1,ugrid):,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    complex(8) :: div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    complex(8) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid)) 
+    complex(8) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
+    complex(8) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
+    complex(8) :: du1( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: du2( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) 
+    complex(8) :: du3( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) 
 
     
     if (iter-iter0>=nstat .and. kRK==1) then

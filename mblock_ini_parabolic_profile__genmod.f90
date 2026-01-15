@@ -1,15 +1,14 @@
-        !COMPILER-GENERATED INTERFACE MODULE: Mon Dec  8 16:28:21 2025
+        !COMPILER-GENERATED INTERFACE MODULE: Thu Jan 15 17:25:35 2026
         ! This source file is for reference only and may not completely
         ! represent the generated interface used by the compiler.
         MODULE MBLOCK_INI_PARABOLIC_PROFILE__genmod
           INTERFACE 
             SUBROUTINE MBLOCK_INI_PARABOLIC_PROFILE(U1,U2,U3,P,MYID,    &
      &STATUS,IERR)
-              USE DECLARATION
-              TYPE (CFIELD) :: U1
-              TYPE (CFIELD) :: U2
-              TYPE (CFIELD) :: U3
-              TYPE (CFIELD) :: P
+              COMPLEX(KIND=8), INTENT(IN) :: U1(JLIM((1,2)):,:)
+              COMPLEX(KIND=8), INTENT(IN) :: U2(JLIM((1,1)):,:)
+              COMPLEX(KIND=8), INTENT(IN) :: U3(JLIM((1,2)):,:)
+              COMPLEX(KIND=8), INTENT(IN) :: P(:,:)
               INTEGER(KIND=4) :: MYID
               INTEGER(KIND=4) :: STATUS(5)
               INTEGER(KIND=4) :: IERR
