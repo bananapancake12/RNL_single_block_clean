@@ -1,8 +1,8 @@
 
-module spectra_mod
-  use declaration
-  implicit none
-contains  
+! module spectra_mod
+!   use declaration
+!   implicit none
+! contains  
   
   
   subroutine spectra(u1,u2,u2_itp2,u3,p,myid)
@@ -196,4 +196,4 @@ contains
   end subroutine
 
 
-end module spectra_mod
+! end module spectra_mod

@@ -23,7 +23,7 @@ F77 = mpiifx
 #F90FLAGS= -c
 #F90FLAGS = -c -warn -CB -debug extended
 # Debug flags (default for most files)
-DEBUG_F90FLAGS = -c -O0 -g -check bounds -traceback  -warn interfaces #-check uninit #-fpe0  #-check pointers#-fpe0  -warn all
+DEBUG_F90FLAGS = -c -O0 -g -check bounds -traceback  #-warn interfaces #-check uninit #-fpe0  #-check pointers#-fpe0  -warn all
 DEBUG_F77FLAGS = -c
 # FFT / performance-critical flags (used for FFT sources)
 FFT_F90FLAGS   = -c
@@ -45,13 +45,8 @@ CALCDIR = $(INIT)
 
 OBJECTS = $(OBJ)/declaration.o\
 		  $(OBJ)/tridLU_3D.o\
-		  $(OBJ)/transpose.o\
-		  $(OBJ)/error.o\
-		  $(OBJ)/record_out.o\
 		  $(OBJ)/spectra.o\
 		  $(OBJ)/FOU3D.o\
-		  $(OBJ)/littleharsh_mod.o\
-		  $(OBJ)/init_mod.o\
 		  $(OBJ)/start.o\
           $(OBJ)/stats.o\
           $(OBJ)/rft_buff.o\
@@ -80,25 +75,9 @@ $(OBJDIR)/tridLU_3D.o : $(SRCDIR)/tridLU_3D.f90 $(SRCDIR)/makefile
 	@echo compiling tridLU_3D.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/tridLU_3D.f90
 
-$(OBJDIR)/transpose.o : $(SRCDIR)/transpose.f90 $(SRCDIR)/makefile
-	@echo compiling transpose.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/transpose.f90
-
-$(OBJDIR)/error.o : $(SRCDIR)/error.f90 $(SRCDIR)/makefile
-	@echo compiling error.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/error.f90
-
 $(OBJDIR)/FOU3D.o : $(SRCDIR)/FOU3D.f90 $(SRCDIR)/makefile
 	@echo compiling FOU3D.f90
 	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/FOU3D.f90
-
-$(OBJDIR)/littleharsh_mod.o : $(SRCDIR)/littleharsh_mod.f90 $(OBJDIR)/declaration.o
-	@echo compiling littleharsh_mod.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(OBJDIR) $(SRCDIR)/littleharsh_mod.f90
-
-$(OBJDIR)/init_mod.o : $(SRCDIR)/init_mod.f90 $(OBJDIR)/declaration.o
-	@echo compiling init_mod.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(OBJDIR) $(SRCDIR)/init_mod.f90
 
 $(OBJDIR)/start.o : $(SRCDIR)/start.f90 $(SRCDIR)/makefile
 	@echo compiling start.f90
@@ -128,10 +107,6 @@ $(OBJDIR)/rft_buff.o : $(SRCDIR)/rft_buff.f $(SRCDIR)/makefile
 $(OBJDIR)/cft_buff.o : $(SRCDIR)/cft_buff.f $(SRCDIR)/makefile
 	@echo compiling cft_buff.f
 	@cd $(OBJDIR); $(PREP) $(F77) $(FFT_F77FLAGS) -I$(SRCDIR) $(SRCDIR)/cft_buff.f -o cft_buff.o
-
-$(OBJDIR)/record_out.o : $(SRCDIR)/record_out.f90 $(SRCDIR)/makefile
-	@echo compiling record_out.f90
-	@cd $(OBJDIR); $(PREP) $(F90) $(F90FLAGS) -I$(SRCDIR) $(SRCDIR)/record_out.f90
 
 $(OBJDIR)/littleharsh.o : $(SRCDIR)/littleharsh.f90  $(SRCDIR)/makefile
 	@echo compiling littleharsh.f90
