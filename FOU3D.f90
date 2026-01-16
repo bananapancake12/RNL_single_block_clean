@@ -752,7 +752,7 @@ subroutine dtc_calc(u1,u2,u3,myid)
   ! write(6,*) "u2max", u2mloc
   ! write(6,*) "dthetavi", dthetavi
   
-  dt = min(1d0/(alp*(Nspec_x/2)*u1mloc),1d0/(bet*(Nspec_z/2)*u3mloc),1d0/(u2mloc*dthetavi))
+  dt = min(1d0/(alp*(Nspec_x/2)*u1mloc),1d0/(bet*(Nspec_z/2)*u3mloc),1d0/(u2mloc*ddthetavi))
 
   ! write(6,*) "u1max", u1mloc
   ! write(6,*) "u2max", u2mloc
@@ -2181,7 +2181,7 @@ subroutine record_out(u1,myid)
       open(10,file=fnameima,form='unformatted')
       write(10) t,Re,alp,bet,mpgx,nband,iter,dummint 
       write(10) N
-      write(10) yu,dthetavi,dthdyu
+      write(10) yu,ddthetavi,dthdyu
       nx = Nspec_x+2
       nz = Nspec_z
       allocate(buffSR(nx,nz))
@@ -2206,7 +2206,7 @@ subroutine record_out(u1,myid)
       open(10,file=fnameima,form='unformatted')
       write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
       write(10) N
-      write(10) yv,dthetavi,dthdyv
+      write(10) yv,ddthetavi,dthdyv
       nx = Nspec_x+2
       nz = Nspec_z
       allocate(buffSR(nx,nz))
@@ -2231,7 +2231,7 @@ subroutine record_out(u1,myid)
       open(10,file=fnameima,form='unformatted')
       write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
       write(10) N
-      write(10) yu,dthetavi,dthdyu
+      write(10) yu,ddthetavi,dthdyu
       nx = Nspec_x+2
       nz = Nspec_z
       allocate(buffSR(nx,nz))
@@ -2256,7 +2256,7 @@ subroutine record_out(u1,myid)
       open(10,file=fnameima,form='unformatted')
       write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
       write(10) N
-      write(10) yu,dthetavi,dthdyu
+      write(10) yu,ddthetavi,dthdyu
       nx = Nspec_x+2
       nz = Nspec_z
       allocate(buffSR(nx,nz))
@@ -2350,7 +2350,7 @@ subroutine write_Qcrit(myid)
     open(10,file=fnameima,form='unformatted')
     write(10) t,Re,alp,bet,mpgx,nband,iter,dummint
     write(10) N
-    write(10) yv,dthetavi,dthdyv
+    write(10) yv,ddthetavi,dthdyv
     nx = Ngal_x+2
     nz = Ngal_z
     !allocate(buffSR(nx,nz))
