@@ -190,6 +190,7 @@ contains
 
     end subroutine
 
+
     ! subroutine error(A,myid,ierr)
     ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     ! !!!!!!!!!!!!!!!!!!!!!!!     ERROR      !!!!!!!!!!!!!!!!!!!!!!!
@@ -202,14 +203,14 @@ contains
     ! integer ierr
 
     ! integer j,column,myid
-    ! type(cfield) A
+    ! complex(8), intent(in) :: A( jlim(1,pgrid): jlim(2,pgrid), columns_num(myid) )
     ! real(8) erri,errband
 
     ! erri = 0d0
     ! errband = 0d0
     ! do column = 1,columns_num(myid)
     !     do j = jlim(1,pgrid),jlim(2,pgrid)
-    !     err     = abs(A%f(j,column))
+    !     err     = abs(A(j,column))
     !     errband = max(errband,err)
 
     !     ! write(6,*) "errband", errband
@@ -231,6 +232,7 @@ contains
 
     ! end subroutine
 
+
     subroutine finalize(u1,u2,u3,p,div,myid,status,ierr)
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     !!!!!!!!!!!!!!!!!!!!!!!    FINALIZE    !!!!!!!!!!!!!!!!!!!!!!!
@@ -244,9 +246,13 @@ contains
 
     integer iproc,j
     real(8) val
-    complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: p(jlim(1,pgrid):,:)
-    complex(8), intent(in) :: div(:,:)
+    ! complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    complex(8) :: div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+
 
     iwrite = iwrite+nwrite
     call error(div,myid,ierr)
@@ -395,7 +401,7 @@ contains
     implicit none
 
     integer      :: myid
-    complex(8), intent(inout) :: u1(jlim(1,ugrid):,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
 
     ! Mean (mode 0,1) is in proc 0 column 1
     if (myid == 0) then 
@@ -413,7 +419,7 @@ contains
     use declaration
     implicit none
     integer i,k,myid
-    complex(8), intent(inout) :: u1(jlim(1,ugrid):,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
 
     ! Mean (mode 0,1) is in proc 0 column 1
     if (myid == 0) then 
@@ -450,9 +456,12 @@ contains
     implicit none
     integer :: i,k,j,column,myid
 
-    complex(8), intent(in) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: p(:,:), psi(:,:)
-    complex(8), intent(in) :: div(:,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    complex(8) :: psi( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    complex(8) :: div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
 
     real(8) :: dtirk
     
@@ -501,10 +510,10 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: du1(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
-    complex(8), intent(in) :: p(jlim(1,pgrid):,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: du1( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: Nu1(jlim(1,ugrid)+1     :jlim(2,ugrid)-1,     columns_num(myid) )
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
     real(8) C1,C2
     complex(8) C3
 
@@ -557,10 +566,10 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    complex(8), intent(in) :: u2(jlim(1,vgrid):,:)
-    complex(8), intent(inout) :: du2(jlim(1,vgrid):,:)
-    complex(8), intent(inout) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
-    complex(8), intent(in) :: p(jlim(1,pgrid):,:)
+    complex(8) :: u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: du2( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
     real(8) C1,C2,C3
 
     !C1 = (aRK(kRK)+bRK(kRK))/Re !For solving for du
@@ -611,10 +620,10 @@ contains
     use declaration
     implicit none
     integer i,k,j,column,myid
-    complex(8), intent(in) :: u3(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: du3(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
-    complex(8), intent(in) :: p(jlim(1,pgrid):,:)   
+    complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: du3( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: Nu3(jlim(1,ugrid)+1     : jlim(2,ugrid)-1,    columns_num(myid) )
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
     real(8) C1,C2
     complex(8) C3
 
@@ -671,9 +680,11 @@ contains
     implicit none
 
     integer i,k,j,iband,column,myid
-    complex(8), intent(inout) :: u(jlim(1,ugrid):,:), w(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: du(jlim(1,ugrid):,:), dw(jlim(1,ugrid):,:)
-    real(8), intent(in) :: a_ugrid(:,:)
+    complex(8) :: u ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: w ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: du( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: dw( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    real(8)    :: a_ugrid(:,:)
 
         do column = 1,columns_num(myid)
             i = columns_i(column,myid)
@@ -703,8 +714,8 @@ contains
     use tridLU_3D
     implicit none
     integer i,k,j,iband,column,myid
-    complex(8), intent(inout) :: u(jlim(1,vgrid):,:)
-    complex(8), intent(inout) :: du(jlim(1,vgrid):,:)
+    complex(8) :: u ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: du( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
     real(8), intent(in) :: a_vgrid(:,:)
 
         do column = 1,columns_num(myid)
@@ -837,9 +848,11 @@ contains
 
     integer i,k,j,column
     complex(8) kx,kz,dtrk,dtrk_u2
-    complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:)
-    complex(8), intent(inout) :: psi(:,:)
-    complex(8), intent(in) :: div(:,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    complex(8) :: psi( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
     real (8),pointer :: vcorrPL(:,:,:)
     
     real(8) weighting

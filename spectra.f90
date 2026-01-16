@@ -35,7 +35,7 @@ contains
     implicit none
     integer j,column,grid,myid
     real(8)    sp(jlim(1,grid):jlim(2,grid),columns_num(myid))
-    complex(8), intent(in) :: u (jlim(1,grid):jlim(2,grid),columns_num(myid))
+    complex(8) :: u (jlim(1,grid):jlim(2,grid),columns_num(myid))
 
     ! write(6,*) "meow check"
 

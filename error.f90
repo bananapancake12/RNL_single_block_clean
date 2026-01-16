@@ -16,7 +16,7 @@ module error_mod
     integer ierr
 
     integer j,column,myid
-    complex(8), intent(in) :: A(:,:)
+    complex(8), intent(in) :: A( jlim(1,pgrid): jlim(2,pgrid), columns_num(myid) )
     real(8) erri,errband
 
     erri = 0d0

@@ -1,9 +1,9 @@
 
-module init_mod
-  use declaration
-  use transpose
-  implicit none
-contains
+! module init_mod
+!   use declaration
+!   use transpose
+!   implicit none
+! contains
 
   subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -14,13 +14,19 @@ contains
 
     use declaration
     use littleharsh_mod
+    use transpose
 
     implicit none
 
     include 'mpif.h'                                  ! MPI variables
     integer status(MPI_STATUS_SIZE),ierr,myid         ! MPI variables
-    complex(8), intent(inout) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:), p(:,:)
-    complex(8), intent(in) :: div(:,:)
+    !complex(8) :: u1(jlim(1,ugrid):,:), u2(jlim(1,vgrid):,:), u3(jlim(1,ugrid):,:), p(:,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
+    ! complex(8) :: div(:,:)
+    complex(8) :: div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
 
     ! write(*,*) "call shape(u1)=", shape(u1), "lb=", lbound(u1), "ub=", ubound(u1)
 
@@ -65,7 +71,7 @@ contains
       if (myid==0) then
         write(*,*) 'parabolic profile'
       end if
-      call mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
+      !call mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
       if (myid==0) then
         call flowrateIm(Qx,u1(:,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
         ! TODO change this condition for 'flag_ctpress == 0'
@@ -129,6 +135,7 @@ contains
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     use declaration
+    use transpose
     implicit none
 
     include 'mpif.h'                                  ! MPI variables
@@ -136,7 +143,11 @@ contains
 
     integer j,i,k,column
     ! real(8) sigmaz,z,sigmax,x,fact
-    complex(8), intent(inout) :: u1(:,:), u2(:,:), u3(:,:), p(:,:)
+    ! complex(8), intent(inout) :: u1(:,:), u2(:,:), u3(:,:), p(:,:)
+    complex(8) :: u1 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: u2 ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
+    complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
 
     u1PL = 0d0
     u2PL = 0d0
@@ -169,4 +180,4 @@ contains
     ! end if 
 
   end subroutine
-end module init_mod
+! end module init_mod

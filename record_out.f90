@@ -93,7 +93,7 @@ contains
     include 'mpif.h'             ! MPI variables
     integer status(MPI_STATUS_SIZE),ierr,myid
 
-    complex(8), intent(in) :: u1(jlim(1,ugrid):,:)
+    complex(8)   u1( jlim(1,ugrid) : jlim(2,ugrid), columns_num(myid) )
     integer nx,nz, i 
     integer j,jmax,iproc
     real(8), allocatable:: buffSR(:,:)

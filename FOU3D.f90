@@ -66,9 +66,9 @@ contains
     complex(8) :: u3 ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
     complex(8) :: p  ( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
     complex(8) :: div( jlim(1,pgrid)      : jlim(2,pgrid),      columns_num(myid) )
-    complex(8) :: Nu1(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid)) 
-    complex(8) :: Nu2(jlim(1,vgrid)+1:jlim(2,vgrid)-1,columns_num(myid))
-    complex(8) :: Nu3(jlim(1,ugrid)+1:jlim(2,ugrid)-1,columns_num(myid))
+    complex(8) :: Nu1(jlim(1,ugrid)+1     : jlim(2,ugrid)-1,    columns_num(myid) ) 
+    complex(8) :: Nu2(jlim(1,vgrid)+1     : jlim(2,vgrid)-1,    columns_num(myid) )
+    complex(8) :: Nu3(jlim(1,ugrid)+1     : jlim(2,ugrid)-1,    columns_num(myid) )
     complex(8) :: du1( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
     complex(8) :: du2( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) ) 
     complex(8) :: du3( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) 
@@ -378,8 +378,8 @@ contains
     implicit none
     
     integer j,column,myid
-    complex(8), intent(in) :: u(jlim(1,ugrid):,:)
-    complex(8), intent(out) :: u_itp(jlim(1,ugrid):,:)
+    complex(8)  u( jlim(1,ugrid) : jlim(2,ugrid), columns_num(myid) )
+    complex(8)  u_itp( jlim(1,vgrid):jlim(2,vgrid), columns_num(myid) )
     
     do column = 1,columns_num(myid)
       ! We interpolate everything. vgrid has got one less point than ugrid
@@ -399,8 +399,8 @@ contains
     implicit none
     
     integer j,column,myid
-    complex(8), intent(in) :: u(jlim(1,vgrid):,:)
-    complex(8), intent(out) :: u_itp(jlim(1,vgrid):,:)
+    complex(8)   u  ( jlim(1,vgrid) : jlim(2,vgrid), columns_num(myid) )
+    complex(8)   u_itp( jlim(1,ugrid):jlim(2,ugrid), columns_num(myid) )
 
     do column = 1,columns_num(myid)
       do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
@@ -943,7 +943,8 @@ contains
 
     integer inode,yourid
     integer msizeR,msizeS
-    complex(8), intent(in) :: x(jlim(1,grid):,:)
+    ! complex(8), intent(in) :: x(jlim(1,grid):,:)
+    complex(8)   x( jlim(1,grid) : jlim(2,grid), columns_num(myid) )
     real(8)      xPL(Nspec_x+2,Nspec_z,jgal(grid,1)-1:jgal(grid,2)+1)
     complex(8), allocatable :: buffS(:,:),buffR(:,:)
     integer, intent(in) :: nygrid, nygrid_LB
@@ -2037,10 +2038,10 @@ contains
     integer column
     integer inode,yourid
     integer msizeR,msizeS
-    complex(8), intent(inout) :: x(jlim(1,grid)+1:jlim(2,grid)-1,columns_num(myid))
-    real(8)      xPL(igal,kgal,jgal(grid,1):jgal(grid,2))
+    complex(8)  x(jlim(1,grid)+1:jlim(2,grid)-1,columns_num(myid))
+    real(8)     xPL(igal,kgal,jgal(grid,1):jgal(grid,2))
     complex(8), allocatable:: buffS(:,:),buffR(:,:)
-    integer, intent(in) :: nygrid, nygrid_LB
+    integer     nygrid, nygrid_LB
 
     ! Loop for itself
     ! Transpose the cube that it already owns

@@ -21,7 +21,7 @@ contains
     integer column
     integer inode,yourid
     integer msizeR,msizeS
-    complex(8) :: x(jlim(1,grid):jlim(2,grid),columns_num(myid))
+    complex(8)   x(jlim(1,grid):jlim(2,grid),columns_num(myid))
     real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
     integer :: nygrid, nygrid_LB
     complex(8), allocatable :: buffS(:,:),buffR(:,:)
@@ -125,7 +125,7 @@ contains
     integer :: column, nprocs
     integer inode,yourid
     integer msizeR,msizeS
-    complex(8), intent(inout) :: x(jlim(1,grid):,:) 
+    complex(8)   x( jlim(1,grid) : jlim(2,grid), columns_num(myid) )
     real(8)      xPL(igal,kgal,jgal(grid,1)-1:jgal(grid,2)+1)
     complex(8), allocatable:: buffS(:,:),buffR(:,:)
     integer, intent(in) :: nygrid,nygrid_LB

@@ -56,7 +56,7 @@ subroutine start(myid,status,ierr)
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   use declaration
-  use init_mod
+  ! use init_mod
   use tridLU_3D
   use littleharsh_mod
   implicit none
