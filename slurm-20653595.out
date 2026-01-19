@@ -1,0 +1,913 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_singlle_block_clean.
+
+JobID: 20653595
+======
+Time: Sat Jan 17 07:18:08 GMT 2026
+Running on master node: cpu-r-105
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_singlle_block_clean
+
+Nodes allocated:
+================
+cpu-r-105
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =          39
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          31
+ iproc           0 nplanes           4 proc_load   4.00000000000000     
+ iproc           1 nplanes           4 proc_load   4.00000000000000     
+ iproc           2 nplanes           4 proc_load   4.00000000000000     
+ iproc           3 nplanes           4 proc_load   4.00000000000000     
+ iproc           4 nplanes           4 proc_load   4.00000000000000     
+ iproc           5 nplanes           4 proc_load   4.00000000000000     
+ iproc           6 nplanes           4 proc_load   4.00000000000000     
+ iproc           7 nplanes           4 proc_load   4.00000000000000     
+ iproc           8 nplanes           4 proc_load   4.00000000000000     
+ iproc           9 nplanes           4 proc_load   4.00000000000000     
+ iproc          10 nplanes           4 proc_load   4.00000000000000     
+ iproc          11 nplanes           4 proc_load   4.00000000000000     
+ iproc          12 nplanes           4 proc_load   4.00000000000000     
+ iproc          13 nplanes           4 proc_load   4.00000000000000     
+ iproc          14 nplanes           4 proc_load   4.00000000000000     
+ iproc          15 nplanes           4 proc_load   4.00000000000000     
+ iproc          16 nplanes           4 proc_load   4.00000000000000     
+ iproc          17 nplanes           4 proc_load   4.00000000000000     
+ iproc          18 nplanes           4 proc_load   4.00000000000000     
+ iproc          19 nplanes           4 proc_load   4.00000000000000     
+ iproc          20 nplanes           4 proc_load   4.00000000000000     
+ iproc          21 nplanes           4 proc_load   4.00000000000000     
+ iproc          22 nplanes           4 proc_load   4.00000000000000     
+ iproc          23 nplanes           4 proc_load   4.00000000000000     
+ iproc          24 nplanes           4 proc_load   4.00000000000000     
+ iproc          25 nplanes           4 proc_load   4.00000000000000     
+ iproc          26 nplanes           4 proc_load   4.00000000000000     
+ iproc          27 nplanes           4 proc_load   4.00000000000000     
+ iproc          28 nplanes           4 proc_load   4.00000000000000     
+ iproc          29 nplanes           4 proc_load   4.00000000000000     
+ iproc          30 nplanes           4 proc_load   4.00000000000000     
+ iproc          31 nplanes           4 proc_load   4.00000000000000     
+ iproc          32 nplanes           3 proc_load   3.00000000000000     
+ iproc          33 nplanes           3 proc_load   3.00000000000000     
+ iproc          34 nplanes           3 proc_load   3.00000000000000     
+ iproc          35 nplanes           3 proc_load   3.00000000000000     
+ iproc          36 nplanes           3 proc_load   3.00000000000000     
+ iproc          37 nplanes           3 proc_load   3.00000000000000     
+ iproc          38 nplanes           3 proc_load   3.00000000000000     
+ iproc          39 nplanes           3 proc_load   3.00000000000000     
+ >>> entered proc_lims_columns, myid =          15
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ t=   5.85398938576691      =====> Finished Start
+ t=   5.85798472713213      =====> Calling getini 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+ u2 from file ./input//u2_0128x0128x0153_t09455.dat,
+ u3 from file ./input//u3_0128x0128x0153_t09455.dat,
+ and p from file ./input//p_0128x0128x0153_t09455.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx             128
+ Nz             128
+ Nyv            151
+ Nyu            152
+ Ngalx          192
+ Ngalz          192
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ finished getini           0
+ finished getini           1
+ finished getini           2
+ finished getini           3
+ finished getini           4
+ finished getini           5
+ finished getini           6
+ finished getini           7
+ finished getini           8
+ finished getini           9
+ finished getini          10
+ finished getini          11
+ finished getini          12
+ finished getini          13
+ finished getini          14
+ finished getini          15
+ finished getini          16
+ finished getini          17
+ finished getini          18
+ finished getini          19
+ finished getini          20
+ finished getini          21
+ finished getini          22
+ finished getini          23
+ 
+ Initialised
+ finished getini          24
+ finished getini          25
+ finished getini          26
+ finished getini          27
+ finished getini          28
+ finished getini          29
+ finished getini          30
+ finished getini          31
+ finished getini          32
+ finished getini          33
+ finished getini          34
+ finished getini          35
+ finished getini          36
+ finished getini          37
+ finished getini          38
+ finished getini          39
+ t=   6.42816496035084      finished RHS =====> Building Nonlinear
+ t=   6.43208771990612      =====> Interpolating
+ t=   6.43930140696466      =====> Modes to planes
+ t=   6.47922206879593      =====> Spectra
+ t=   6.47923227178399      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   6.736447455048117E-017
+ Qx     1.75230615942311     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423825947899     
+ Uslp -1.058242342586234E-015
+ t=   7.45191320800222      =====> Ops in Planes
+ t=   13.9357777721016       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   13.9391132803867      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   21.3595023904927      =====> Finished Nonlin Inter U           2
+ t=   21.3624162460910      =====> Finished Derivatives -U           2
+ t=   21.3642728470732      =====> Finished U           2
+ t=   30.0164219058352      =====> Planes to modes UVP
+ t=   43.9304917212576       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   43.9329846582841      =====> Finished Linear Advection - V           2
+ t=   49.2264860062860      =====> Finished Nonlin Inter v           2
+ t=   49.2281062868424      =====> Finished Derivatives -V           2
+ t=   49.2293951059692      Finished V =====> Finished Ops in planes           2
+slurmstepd: error: *** JOB 20653595 ON cpu-r-105 CANCELLED AT 2026-01-17T07:20:11 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 20653595.0 ON cpu-r-105 CANCELLED AT 2026-01-17T07:20:11 DUE TO TIME LIMIT ***
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001516C43E9990  Unknown               Unknown  Unknown
+littleharsh        00000000004C7F44  nonlininter_             1607  FOU3D.f90
+littleharsh        00000000004C2018  ops_in_planes_           1521  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001516C3AB47E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001490AE92D990  Unknown               Unknown  Unknown
+littleharsh        00000000004C75C5  nonlininter_             1604  FOU3D.f90
+littleharsh        00000000004C2018  ops_in_planes_           1521  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001490ADFF87E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000151BF45D6990  Unknown               Unknown  Unknown
+littleharsh        00000000004C844F  nonlininter_             1607  FOU3D.f90
+littleharsh        00000000004C2018  ops_in_planes_           1521  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000151BF3CA17E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014926F3C6990  Unknown               Unknown  Unknown
+littleharsh        00000000004C844F  nonlininter_             1607  FOU3D.f90
+littleharsh        00000000004BE2A7  ops_in_planes_           1518  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014926EA917E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152BFF8BF990  Unknown               Unknown  Unknown
+littleharsh        00000000004CB91B  nonlininter_             1603  FOU3D.f90
+littleharsh        00000000004C0B9D  ops_in_planes_           1520  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000152BFEF8A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150BFA34B990  Unknown               Unknown  Unknown
+littleharsh        00000000004C886A  nonlininter_             1607  FOU3D.f90
+littleharsh        00000000004C2018  ops_in_planes_           1521  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000150BF9A167E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014BEBAE42990  Unknown               Unknown  Unknown
+littleharsh        00000000004C948A  nonlininter_             1608  FOU3D.f90
+littleharsh        00000000004C0B9D  ops_in_planes_           1520  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014BEBA50D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014751B2BE990  Unknown               Unknown  Unknown
+libmlx-fi.so       00001473C94CB260  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152D81945990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152D82386330  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152D81F557A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152D8246078F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000152D83695515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000152D810107E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000154F6D5F5990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154F6DFDA46D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154F6DC05996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154F6E11078F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000154F6F345515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000154F6CCC07E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014D8E639C990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D8E6ED4E34  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D8E69AC941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D8E6EB778F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014D8E80EC515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014D8E5A677E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014F37CC59990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F37D63E46D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F37D269996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F37D77478F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014F37E9A9515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014F37C3247E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000147D7AAEB990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000147D7B623E34  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000147D7B0FB941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000147D7B60678F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000147D7C83B515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000147D7A1B67E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014E89890A990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E8992EF46D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E898F1A996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E89942578F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014E89A65A515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014E897FD57E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001463A2DFE990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001463A3CE25AB  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001463A3CE15B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001463A340E941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001463A391978F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001463A4B4E515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001463A24C97E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014FB0CE68990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FB0DD4D8AF  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FB0DD4B5B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FB0D478941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FB0D98378F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014FB0EBB8515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014FB0C5337E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150535452990  Unknown               Unknown  Unknown
+libmlx-fi.so       00001503E367AAC0  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150535E933FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150535A627A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150535F6D78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001505371A2515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000150534B1D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B836897990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B83777A163  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B836EA7941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B8373B278F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014B8385E7515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014B835F627E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014955B91E990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014955C18B7B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014955C8015F6  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014955BF2E941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014955C43978F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014955D66E515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014955AFE97E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000147AB743E990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000147AB83215FC  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000147AB7A4E941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000147AB7F5978F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000147AB918E515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000147AB6B097E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014663D839990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014663E71D583  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014663E71C5B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014663DE49941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014663E35478F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014663F589515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014663CF047E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014C8275E2990  Unknown               Unknown  Unknown
+libmlx-fi.so       000014C6D580AA84  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C8280233FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C827BF27A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C8280FD78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014C829332515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014C826CAD7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014858EC3F990  Unknown               Unknown  Unknown
+libmlx-fi.so       000014843CE67915  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014858F6803FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014858F24F7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014858F75A78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014859098F515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014858E30A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014DBB362A990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014DBB400F400  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014DBB3C3A996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014DBB414578F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014DBB537A515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014DBB2CF57E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014A210BB7990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A211A9B58E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A211A9A5B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A2111C7941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A2116D278F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014A212907515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014A2102827E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000151E69E6F990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151E6A85446D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151E6A47F996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151E6A98A78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000151E6BBBF515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000151E6953A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014A6C8846990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A6C922B496  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A6C8E56996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A6C936178F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014A6CA596515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014A6C7F117E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000148F7CA69990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000148E2AC91907  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148F7D4AA3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148F7D0797A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148F7D58478F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000148F7E7B9515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000148F7C1347E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014AF0698E990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF078725AB  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF078715B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF06F9E941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF074A978F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014AF086DE515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014AF060597E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014FF968FB990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FF977DE14C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FF96F0B941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FF9741678F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014FF9864B515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014FF95FC67E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014964E7A2990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014964F00F5F0  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014964F6855F6  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014964EDB2941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014964F2BD78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001496504F2515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014964DE6D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001531E29DF990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001531E38C2116  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001531E2FEF941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001531E34FA78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001531E472F515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001531E20AA7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000149369D42990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000149217F52826  Unknown               Unknown  Unknown
+libmlx-fi.so       0000149217F6AB0D  Unknown               Unknown  Unknown
+libmlx-fi.so       0000149217F6AA97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014936A7833FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014936A3527A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014936A85D78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014936BA92515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014936940D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014D544B49990  Unknown               Unknown  Unknown
+libmlx-fi.so       000014D3F2D71820  Unknown               Unknown  Unknown
+libmlx-fi.so       000014D3F2D71A9E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D54558A3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D5451597A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D54566478F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014D546899515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014D5442147E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001479F67E7990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479F76CB571  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479F76CA5B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479F6DF7941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479F730278F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001479F8537515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001479F5EB27E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014F3A3398990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F3A3C057AF  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F3A427B5F6  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F3A39A8941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F3A3EB378F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014F3A50E8515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014F3A2A637E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015130E71D990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015130F6028AF  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015130F6005B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015130ED2D941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015130F23878F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000015131046D515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000015130DDE87E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000154C8598E990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  0000154B32D882F9  Unknown               Unknown  Unknown
+libucp.so.0.0.0    0000154B338FCA0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       0000154B33B9E7A1  Unknown               Unknown  Unknown
+libmlx-fi.so       0000154B33BB6B0D  Unknown               Unknown  Unknown
+libmlx-fi.so       0000154B33BB6A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154C863CF3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154C85F9E7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154C864A978F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000154C876DE515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000154C850597E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014C4DBCC1990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  000014C3890BB2EA  Unknown               Unknown  Unknown
+libucp.so.0.0.0    000014C389C2FA0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       000014C389ED17A1  Unknown               Unknown  Unknown
+libmlx-fi.so       000014C389EE9B0D  Unknown               Unknown  Unknown
+libmlx-fi.so       000014C389EE9A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C4DC7023FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C4DC2D17A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C4DC7DC78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014C4DDA11515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014C4DB38C7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014EEF534A990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  000014EDA2744585  Unknown               Unknown  Unknown
+libucp.so.0.0.0    000014EDA32B8A0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       000014EDA355A7A1  Unknown               Unknown  Unknown
+libmlx-fi.so       000014EDA3572B0D  Unknown               Unknown  Unknown
+libmlx-fi.so       000014EDA3572A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EEF5D8B3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EEF595A7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EEF5E6578F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014EEF709A515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014EEF4A157E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown

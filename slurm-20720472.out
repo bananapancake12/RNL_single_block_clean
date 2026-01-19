@@ -1,0 +1,1937 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_singlle_block_clean.
+
+JobID: 20720472
+======
+Time: Mon Jan 19 09:24:12 GMT 2026
+Running on master node: cpu-r-94
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_singlle_block_clean
+
+Nodes allocated:
+================
+cpu-r-94
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          39
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          14
+ iproc           0 nplanes           4 proc_load   4.00000000000000     
+ iproc           1 nplanes           4 proc_load   4.00000000000000     
+ iproc           2 nplanes           4 proc_load   4.00000000000000     
+ iproc           3 nplanes           4 proc_load   4.00000000000000     
+ iproc           4 nplanes           4 proc_load   4.00000000000000     
+ iproc           5 nplanes           4 proc_load   4.00000000000000     
+ iproc           6 nplanes           4 proc_load   4.00000000000000     
+ iproc           7 nplanes           4 proc_load   4.00000000000000     
+ iproc           8 nplanes           4 proc_load   4.00000000000000     
+ iproc           9 nplanes           4 proc_load   4.00000000000000     
+ iproc          10 nplanes           4 proc_load   4.00000000000000     
+ iproc          11 nplanes           4 proc_load   4.00000000000000     
+ iproc          12 nplanes           4 proc_load   4.00000000000000     
+ iproc          13 nplanes           4 proc_load   4.00000000000000     
+ iproc          14 nplanes           4 proc_load   4.00000000000000     
+ iproc          15 nplanes           4 proc_load   4.00000000000000     
+ iproc          16 nplanes           4 proc_load   4.00000000000000     
+ iproc          17 nplanes           4 proc_load   4.00000000000000     
+ iproc          18 nplanes           4 proc_load   4.00000000000000     
+ iproc          19 nplanes           4 proc_load   4.00000000000000     
+ iproc          20 nplanes           4 proc_load   4.00000000000000     
+ iproc          21 nplanes           4 proc_load   4.00000000000000     
+ iproc          22 nplanes           4 proc_load   4.00000000000000     
+ iproc          23 nplanes           4 proc_load   4.00000000000000     
+ iproc          24 nplanes           4 proc_load   4.00000000000000     
+ iproc          25 nplanes           4 proc_load   4.00000000000000     
+ iproc          26 nplanes           4 proc_load   4.00000000000000     
+ iproc          27 nplanes           4 proc_load   4.00000000000000     
+ iproc          28 nplanes           4 proc_load   4.00000000000000     
+ iproc          29 nplanes           4 proc_load   4.00000000000000     
+ iproc          30 nplanes           4 proc_load   4.00000000000000     
+ iproc          31 nplanes           4 proc_load   4.00000000000000     
+ iproc          32 nplanes           3 proc_load   3.00000000000000     
+ iproc          33 nplanes           3 proc_load   3.00000000000000     
+ iproc          34 nplanes           3 proc_load   3.00000000000000     
+ iproc          35 nplanes           3 proc_load   3.00000000000000     
+ iproc          36 nplanes           3 proc_load   3.00000000000000     
+ iproc          37 nplanes           3 proc_load   3.00000000000000     
+ iproc          38 nplanes           3 proc_load   3.00000000000000     
+ iproc          39 nplanes           3 proc_load   3.00000000000000     
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ t=   6.67499016004149      =====> Finished Start
+ t=   6.67883597745094      =====> Calling getini 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+ u2 from file ./input//u2_0128x0128x0153_t09455.dat,
+ u3 from file ./input//u3_0128x0128x0153_t09455.dat,
+ and p from file ./input//p_0128x0128x0153_t09455.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx             128
+ Nz             128
+ Nyv            151
+ Nyu            152
+ Ngalx          192
+ Ngalz          192
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ finished getini           0
+ finished getini           1
+ finished getini           2
+ finished getini           3
+ finished getini           4
+ finished getini           5
+ finished getini           6
+ finished getini           7
+ finished getini           8
+ finished getini           9
+ finished getini          10
+ finished getini          11
+ finished getini          12
+ finished getini          13
+ finished getini          14
+ finished getini          15
+ finished getini          16
+ finished getini          17
+ finished getini          18
+ finished getini          19
+ finished getini          20
+ finished getini          21
+ finished getini          22
+ finished getini          23
+ finished getini          24
+ finished getini          25
+ finished getini          26
+ finished getini          27
+ finished getini          28
+ finished getini          29
+ finished getini          30
+ finished getini          31
+ finished getini          32
+ finished getini          33
+ finished getini          34
+ finished getini          35
+ finished getini          36
+ finished getini          37
+ finished getini          38
+ finished getini          39
+ 
+ Initialised
+ t=   7.07251318567432      finished RHS =====> Building Nonlinear
+ t=   7.07645562954713      =====> Interpolating
+ t=   7.08385176653974      =====> Modes to planes
+ t=   7.12188316183165      =====> Spectra
+ t=   7.12189000181388      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   6.736447455048117E-017
+ Qx     1.75230615942311     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423825947899     
+ Uslp -1.058242342586234E-015
+ t=   7.56714193266816      =====> Ops in Planes
+ t=   14.5693427105434       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   14.5728933205828      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   22.5317246365594      =====> Finished Nonlin Inter U           2
+ t=   22.5348435061751      =====> Finished Derivatives -U           2
+ t=   22.5368696018122      =====> Finished U           2
+ t=   31.6043162433198      =====> Planes to modes UVP
+ t=   47.2089001049753       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   47.2116478809621      =====> Finished Linear Advection - V           2
+ t=   52.9336236463860      =====> Finished Nonlin Inter v           2
+ t=   52.9353345941054      =====> Finished Derivatives -V           2
+ t=   52.9367128150770      Finished V =====> Finished Ops in planes           2
+ t=   146.428479545284      =====> Planes to modes NUVP
+ t=   146.440824322868      =====> Derivatives
+ t=   146.442796111340      =====> CFL and Stats
+ t=   148.387760760728      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   148.392817247775      Finished Solving Velocities =====> Solving Pressure 
+ t=   148.400855510030      finished RHS =====> Building Nonlinear
+ t=   148.403064086451      =====> Interpolating
+ t=   148.408794018673      =====> Modes to planes
+ t=   148.430536799482      =====> Spectra
+ t=   148.430543793482      =====> Record Out
+ t=   148.430545140407      =====> Ops in Planes
+ t=   155.303860616521       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   155.307084498694      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   162.977097952040      =====> Finished Nonlin Inter U           2
+ t=   162.979667214677      =====> Finished Derivatives -U           2
+ t=   162.981533360900      =====> Finished U           2
+ t=   171.639546257444      =====> Planes to modes UVP
+ t=   187.202787577175       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   187.205625021830      =====> Finished Linear Advection - V           2
+ t=   192.866004260839      =====> Finished Nonlin Inter v           2
+ t=   192.867369733867      =====> Finished Derivatives -V           2
+ t=   192.868859940441      Finished V =====> Finished Ops in planes           2
+ t=   287.273622009205      =====> Planes to modes NUVP
+ t=   287.284531242913      =====> Derivatives
+ t=   287.286682632635      =====> CFL and Stats
+ t=   287.287483777152      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   287.292386535904      Finished Solving Velocities =====> Solving Pressure 
+ t=   287.300444334047      finished RHS =====> Building Nonlinear
+ t=   287.302855608636      =====> Interpolating
+ t=   287.309002544964      =====> Modes to planes
+ t=   287.329827043810      =====> Spectra
+ t=   287.329833038733      =====> Record Out
+ t=   287.329834419768      =====> Ops in Planes
+ t=   294.010027236422       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   294.013418355025      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   301.565279797302      =====> Finished Nonlin Inter U           2
+ t=   301.567834474961      =====> Finished Derivatives -U           2
+ t=   301.569708468160      =====> Finished U           2
+ t=   310.166607126710      =====> Planes to modes UVP
+ t=   325.190693600802       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   325.193375022034      =====> Finished Linear Advection - V           2
+ t=   330.646574159735      =====> Finished Nonlin Inter v           2
+ t=   330.647932472755      =====> Finished Derivatives -V           2
+ t=   330.649442255264      Finished V =====> Finished Ops in planes           2
+ t=   423.398269630037      =====> Planes to modes NUVP
+ t=   423.407205737312      =====> Derivatives
+ t=   423.409194425796      =====> CFL and Stats
+ t=   423.410062570940      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   423.415018728469      Finished Solving Velocities =====> Solving Pressure 
+ t=   423.423164671287      finished RHS =====> Building Nonlinear
+ t=   423.425475487253      =====> Interpolating
+ t=   423.431346534868      =====> Modes to planes
+ t=   423.450844707433      =====> Spectra
+ t=   423.452947366284      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           1
+ t     5.223896763530959E-003
+ dtv   2.089558705412383E-003
+ dtc   1.367143306326886E-002
+ dt    5.223896763530959E-003
+ err   9.381951662078253E-017
+ Qx     1.75230591487433     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423708171791     
+ Uslp -1.057896737640909E-015
+ t=   423.763621084858      =====> Ops in Planes
+ t=   430.429082644056       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   430.432445032755      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   437.971553175477      =====> Finished Nonlin Inter U           2
+ t=   437.974062218331      =====> Finished Derivatives -U           2
+ t=   437.975923524587      =====> Finished U           2
+ t=   446.635671299067      =====> Planes to modes UVP
+ t=   461.210420216899       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   461.213080597227      =====> Finished Linear Advection - V           2
+ t=   466.607962186565      =====> Finished Nonlin Inter v           2
+ t=   466.609273647773      =====> Finished Derivatives -V           2
+ t=   466.610565818031      Finished V =====> Finished Ops in planes           2
+ t=   557.941571941832      =====> Planes to modes NUVP
+ t=   557.951002976042      =====> Derivatives
+ t=   557.953037873260      =====> CFL and Stats
+ t=   558.500818165019      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   558.505963404779      Finished Solving Velocities =====> Solving Pressure 
+ t=   558.514559546602      finished RHS =====> Building Nonlinear
+ t=   558.516986904084      =====> Interpolating
+ t=   558.523501289892      =====> Modes to planes
+ t=   558.540620429674      =====> Spectra
+ t=   558.540625929716      =====> Record Out
+ t=   558.540627330658      =====> Ops in Planes
+ t=   565.374220909434       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   565.377574128215      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   572.892963645514      =====> Finished Nonlin Inter U           2
+ t=   572.895475914353      =====> Finished Derivatives -U           2
+ t=   572.897330093547      =====> Finished U           2
+ t=   581.298709543422      =====> Planes to modes UVP
+ t=   595.843444459722       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   595.846088679973      =====> Finished Linear Advection - V           2
+ t=   601.242942204233      =====> Finished Nonlin Inter v           2
+ t=   601.244327742141      =====> Finished Derivatives -V           2
+ t=   601.245621894370      Finished V =====> Finished Ops in planes           2
+ t=   691.244494112092      =====> Planes to modes NUVP
+ t=   691.252791049192      =====> Derivatives
+ t=   691.254727942753      =====> CFL and Stats
+ t=   691.255484929541      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   691.260276982794      Finished Solving Velocities =====> Solving Pressure 
+ t=   691.267945382511      finished RHS =====> Building Nonlinear
+ t=   691.270131929079      =====> Interpolating
+ t=   691.275827887468      =====> Modes to planes
+ t=   691.295044965227      =====> Spectra
+ t=   691.295050849207      =====> Record Out
+ t=   691.295052197180      =====> Ops in Planes
+ t=   697.910392545047       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   697.913707793923      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   705.434620376094      =====> Finished Nonlin Inter U           2
+ t=   705.437133090920      =====> Finished Derivatives -U           2
+ t=   705.438996041077      =====> Finished U           2
+ t=   714.063113163691      =====> Planes to modes UVP
+ t=   728.311743873754       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   728.314402334159      =====> Finished Linear Advection - V           2
+ t=   733.693363777478      =====> Finished Nonlin Inter v           2
+ t=   733.694596160087      =====> Finished Derivatives -V           2
+ t=   733.695998033974      Finished V =====> Finished Ops in planes           2
+ t=   821.678895971389      =====> Planes to modes NUVP
+ t=   821.687813957804      =====> Derivatives
+ t=   821.689802746172      =====> CFL and Stats
+ t=   821.690691198339      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   821.695396600990      Finished Solving Velocities =====> Solving Pressure 
+ t=   821.703269436839      finished RHS =====> Building Nonlinear
+ t=   821.705540109077      =====> Interpolating
+ t=   821.711100994959      =====> Modes to planes
+ t=   821.730149142444      =====> Spectra
+ t=   821.732211414492      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           2
+ t     1.044779352706192E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367348720063223E-002
+ dt    5.223896763530959E-003
+ err   1.145048905048327E-016
+ Qx     1.75230567026825     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423594132769     
+ Uslp -1.057896737640909E-015
+ t=   821.870328825433      =====> Ops in Planes
+ t=   828.403370807646       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   828.406552164117      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   835.844183938927      =====> Finished Nonlin Inter U           2
+ t=   835.846701552742      =====> Finished Derivatives -U           2
+ t=   835.848566332948      =====> Finished U           2
+ t=   844.396175018861      =====> Planes to modes UVP
+ t=   858.556597315473       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   858.559175896109      =====> Finished Linear Advection - V           2
+ t=   863.905938806944      =====> Finished Nonlin Inter v           2
+ t=   863.907244302216      =====> Finished Derivatives -V           2
+ t=   863.908661940019      Finished V =====> Finished Ops in planes           2
+ t=   953.817659412045      =====> Planes to modes NUVP
+ t=   953.825927020283      =====> Derivatives
+ t=   953.828003610251      =====> CFL and Stats
+ t=   954.470091155730      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   954.475076800096      Finished Solving Velocities =====> Solving Pressure 
+ t=   954.483022297733      finished RHS =====> Building Nonlinear
+ t=   954.485191053362      =====> Interpolating
+ t=   954.490893334616      =====> Modes to planes
+ t=   954.506316638784      =====> Spectra
+ t=   954.506323056761      =====> Record Out
+ t=   954.506324534770      =====> Ops in Planes
+ t=   961.306154636201       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   961.309479444986      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   968.786524312105      =====> Finished Nonlin Inter U           2
+ t=   968.789061815944      =====> Finished Derivatives -U           2
+ t=   968.790922966087      =====> Finished U           2
+ t=   977.434077790705      =====> Planes to modes UVP
+ t=   991.664442486013       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   991.667107813293      =====> Finished Linear Advection - V           2
+ t=   997.046037440770      =====> Finished Nonlin Inter v           2
+ t=   997.047457460663      =====> Finished Derivatives -V           2
+ t=   997.048759763944      Finished V =====> Finished Ops in planes           2
+ t=   1085.52110737271      =====> Planes to modes NUVP
+ t=   1085.52879496349      =====> Derivatives
+ t=   1085.53074883402      =====> CFL and Stats
+ t=   1085.53150798369      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1085.53628047102      Finished Solving Velocities =====> Solving Pressure 
+ t=   1085.54393944284      finished RHS =====> Building Nonlinear
+ t=   1085.54615826125      =====> Interpolating
+ t=   1085.55189885537      =====> Modes to planes
+ t=   1085.56724133703      =====> Spectra
+ t=   1085.56732184067      =====> Record Out
+ t=   1085.56732384057      =====> Ops in Planes
+ t=   1092.17656324629       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1092.17990002211      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1099.63214903162      =====> Finished Nonlin Inter U           2
+ t=   1099.63466025447      =====> Finished Derivatives -U           2
+ t=   1099.63651720667      =====> Finished U           2
+ t=   1108.04602503218      =====> Planes to modes UVP
+ t=   1122.85049275286       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1122.85313943122      =====> Finished Linear Advection - V           2
+ t=   1128.17716886895      =====> Finished Nonlin Inter v           2
+ t=   1128.17856424791      =====> Finished Derivatives -V           2
+ t=   1128.17987177311      Finished V =====> Finished Ops in planes           2
+ t=   1215.44045062456      =====> Planes to modes NUVP
+ t=   1215.44831295847      =====> Derivatives
+ t=   1215.45024259109      =====> CFL and Stats
+ t=   1215.45099059783      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1215.45576726715      Finished Solving Velocities =====> Solving Pressure 
+ t=   1215.46336480032      finished RHS =====> Building Nonlinear
+ t=   1215.46561522258      =====> Interpolating
+ t=   1215.47147437616      =====> Modes to planes
+ t=   1215.48763184319      =====> Spectra
+ t=   1215.48953292100      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           3
+ t     1.567169029059287E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367452954762080E-002
+ dt    5.223896763530959E-003
+ err   9.547285119299735E-017
+ Qx     1.75230542560849     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423483753025     
+ Uslp -1.058242342586234E-015
+ t=   1215.59882837266      =====> Ops in Planes
+ t=   1221.98641899147       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1221.98977155425      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1229.26697943721      =====> Finished Nonlin Inter U           2
+ t=   1229.26951232797      =====> Finished Derivatives -U           2
+ t=   1229.27137668722      =====> Finished U           2
+ t=   1237.49840202415      =====> Planes to modes UVP
+ t=   1251.83315905405       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1251.83577370353      =====> Finished Linear Advection - V           2
+ t=   1257.06442748313      =====> Finished Nonlin Inter v           2
+ t=   1257.06573801243      =====> Finished Derivatives -V           2
+ t=   1257.06696854788      Finished V =====> Finished Ops in planes           2
+ t=   1343.38159803580      =====> Planes to modes NUVP
+ t=   1343.38941695087      =====> Derivatives
+ t=   1343.39123817405      =====> CFL and Stats
+ t=   1343.73370148498      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1343.73862321174      Finished Solving Velocities =====> Solving Pressure 
+ t=   1343.74633872625      finished RHS =====> Building Nonlinear
+ t=   1343.74867765512      =====> Interpolating
+ t=   1343.75410365162      =====> Modes to planes
+ t=   1343.76855823607      =====> Spectra
+ t=   1343.76856376801      =====> Record Out
+ t=   1343.76856502006      =====> Ops in Planes
+ t=   1350.21709111938       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1350.22034214856      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1357.33271707676      =====> Finished Nonlin Inter U           2
+ t=   1357.33511395904      =====> Finished Derivatives -U           2
+ t=   1357.33688892948      =====> Finished U           2
+ t=   1365.35679327883      =====> Planes to modes UVP
+ t=   1379.34609925980       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1379.34862371453      =====> Finished Linear Advection - V           2
+ t=   1384.45838316984      =====> Finished Nonlin Inter v           2
+ t=   1384.45969738008      =====> Finished Derivatives -V           2
+ t=   1384.46092410455      Finished V =====> Finished Ops in planes           2
+ t=   1472.35442769341      =====> Planes to modes NUVP
+ t=   1472.36228413740      =====> Derivatives
+ t=   1472.36409975844      =====> CFL and Stats
+ t=   1472.36481942143      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1472.36929674796      Finished Solving Velocities =====> Solving Pressure 
+ t=   1472.37651045073      finished RHS =====> Building Nonlinear
+ t=   1472.37871662516      =====> Interpolating
+ t=   1472.38411655487      =====> Modes to planes
+ t=   1472.40090777806      =====> Spectra
+ t=   1472.40091408510      =====> Record Out
+ t=   1472.40091563610      =====> Ops in Planes
+ t=   1478.78571103478       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1478.78884156432      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1485.87711702543      =====> Finished Nonlin Inter U           2
+ t=   1485.87948068185      =====> Finished Derivatives -U           2
+ t=   1485.88123783842      =====> Finished U           2
+ t=   1493.92325317918      =====> Planes to modes UVP
+ t=   1507.92762739002       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1507.93014933588      =====> Finished Linear Advection - V           2
+ t=   1513.01439243020      =====> Finished Nonlin Inter v           2
+ t=   1513.01568252349      =====> Finished Derivatives -V           2
+ t=   1513.01690990000      Finished V =====> Finished Ops in planes           2
+ t=   1599.25690220459      =====> Planes to modes NUVP
+ t=   1599.26462301018      =====> Derivatives
+ t=   1599.26645371527      =====> CFL and Stats
+ t=   1599.26716465817      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1599.27168812056      Finished Solving Velocities =====> Solving Pressure 
+ t=   1599.27883787965      finished RHS =====> Building Nonlinear
+ t=   1599.28103371314      =====> Interpolating
+ t=   1599.28644894168      =====> Modes to planes
+ t=   1599.30300758290      =====> Spectra
+ t=   1599.30490550271      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           4
+ t     2.089558705412383E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367302976576538E-002
+ dt    5.223896763530959E-003
+ err   1.006289150081800E-016
+ Qx     1.75230518089866     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423376955990     
+ Uslp -1.058242342586234E-015
+ t=   1599.39640429744      =====> Ops in Planes
+ t=   1605.79337680538       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1605.79650723189      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1612.87172525562      =====> Finished Nonlin Inter U           2
+ t=   1612.87409681594      =====> Finished Derivatives -U           2
+ t=   1612.87586350949      =====> Finished U           2
+ t=   1620.87964475690      =====> Planes to modes UVP
+ t=   1634.78877763799       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1634.79130012286      =====> Finished Linear Advection - V           2
+ t=   1639.87173388212      =====> Finished Nonlin Inter v           2
+ t=   1639.87292306277      =====> Finished Derivatives -V           2
+ t=   1639.87418617518      Finished V =====> Finished Ops in planes           2
+ t=   1727.32576556085      =====> Planes to modes NUVP
+ t=   1727.33354686713      =====> Derivatives
+ t=   1727.33540651610      =====> CFL and Stats
+ t=   1727.66004190128      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1727.66468948114      Finished Solving Velocities =====> Solving Pressure 
+ t=   1727.67187668500      finished RHS =====> Building Nonlinear
+ t=   1727.67383088754      =====> Interpolating
+ t=   1727.67892332049      =====> Modes to planes
+ t=   1727.69299146358      =====> Spectra
+ t=   1727.69299694756      =====> Record Out
+ t=   1727.69299811346      =====> Ops in Planes
+ t=   1733.70105067838       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1733.70401413657      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1740.48538161698      =====> Finished Nonlin Inter U           2
+ t=   1740.48759906297      =====> Finished Derivatives -U           2
+ t=   1740.48923609499      =====> Finished U           2
+ t=   1748.21093827707      =====> Planes to modes UVP
+ t=   1761.26873106230       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1761.27124736621      =====> Finished Linear Advection - V           2
+ t=   1766.12786857167      =====> Finished Nonlin Inter v           2
+ t=   1766.12903769745      =====> Finished Derivatives -V           2
+ t=   1766.13030278683      Finished V =====> Finished Ops in planes           2
+ t=   1856.21557299595      =====> Planes to modes NUVP
+ t=   1856.22338444216      =====> Derivatives
+ t=   1856.22510329064      =====> CFL and Stats
+ t=   1856.22576925973      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1856.23004318227      Finished Solving Velocities =====> Solving Pressure 
+ t=   1856.23674236727      finished RHS =====> Building Nonlinear
+ t=   1856.23884054017      =====> Interpolating
+ t=   1856.24401823478      =====> Modes to planes
+ t=   1856.26321434963      =====> Spectra
+ t=   1856.26321930462      =====> Record Out
+ t=   1856.26322040765      =====> Ops in Planes
+ t=   1862.19305149221       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1862.19602436735      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1868.90941829875      =====> Finished Nonlin Inter U           2
+ t=   1868.91165830952      =====> Finished Derivatives -U           2
+ t=   1868.91329753457      =====> Finished U           2
+ t=   1876.56600691890      =====> Planes to modes UVP
+ t=   1889.57017681818       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1889.57257877139      =====> Finished Linear Advection - V           2
+ t=   1894.41773797269      =====> Finished Nonlin Inter v           2
+ t=   1894.41888154659      =====> Finished Derivatives -V           2
+ t=   1894.42013728200      Finished V =====> Finished Ops in planes           2
+ t=   1984.44548853766      =====> Planes to modes NUVP
+ t=   1984.45318031439      =====> Derivatives
+ t=   1984.45490241493      =====> CFL and Stats
+ t=   1984.45558064606      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1984.45984086755      Finished Solving Velocities =====> Solving Pressure 
+ t=   1984.46650383167      finished RHS =====> Building Nonlinear
+ t=   1984.46861621551      =====> Interpolating
+ t=   1984.47377817519      =====> Modes to planes
+ t=   1984.49094335991      =====> Spectra
+ t=   1984.49273180810      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           5
+ t     2.611948381765479E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367080271200762E-002
+ dt    5.223896763530959E-003
+ err   9.107298248878237E-017
+ Qx     1.75230493614246     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423273666335     
+ Uslp -1.057896737640909E-015
+ t=   1984.58198859065      =====> Ops in Planes
+ t=   1990.51387359225       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   1990.51685181342      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   1997.23382813379      =====> Finished Nonlin Inter U           2
+ t=   1997.23605238763      =====> Finished Derivatives -U           2
+ t=   1997.23768848763      =====> Finished U           2
+ t=   2004.88448086823      =====> Planes to modes UVP
+ t=   2017.81875137379       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2017.82113303407      =====> Finished Linear Advection - V           2
+ t=   2022.67205504840      =====> Finished Nonlin Inter v           2
+ t=   2022.67324153008      =====> Finished Derivatives -V           2
+ t=   2022.67450401746      Finished V =====> Finished Ops in planes           2
+ t=   2113.79103723029      =====> Planes to modes NUVP
+ t=   2113.79849649093      =====> Derivatives
+ t=   2113.80023728637      =====> CFL and Stats
+ t=   2114.19861783925      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2114.20305519807      Finished Solving Velocities =====> Solving Pressure 
+ t=   2114.21017471817      finished RHS =====> Building Nonlinear
+ t=   2114.21214207669      =====> Interpolating
+ t=   2114.21724095056      =====> Modes to planes
+ t=   2114.23116645031      =====> Spectra
+ t=   2114.23117114522      =====> Record Out
+ t=   2114.23117233429      =====> Ops in Planes
+ t=   2120.14271643478       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2120.14568511792      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   2126.85602990340      =====> Finished Nonlin Inter U           2
+ t=   2126.85827480222      =====> Finished Derivatives -U           2
+ t=   2126.85991777817      =====> Finished U           2
+ t=   2134.47828489868      =====> Planes to modes UVP
+ t=   2147.36308607343       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2147.36548601068      =====> Finished Linear Advection - V           2
+ t=   2152.18583885452      =====> Finished Nonlin Inter v           2
+ t=   2152.18698644033      =====> Finished Derivatives -V           2
+ t=   2152.18825303973      Finished V =====> Finished Ops in planes           2
+ t=   2242.80252871441      =====> Planes to modes NUVP
+ t=   2242.80985907675      =====> Derivatives
+ t=   2242.81160456617      =====> CFL and Stats
+ t=   2242.81228397018      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2242.81651999382      Finished Solving Velocities =====> Solving Pressure 
+ t=   2242.82314151223      finished RHS =====> Building Nonlinear
+ t=   2242.82523856312      =====> Interpolating
+ t=   2242.83040768967      =====> Modes to planes
+ t=   2242.84749064175      =====> Spectra
+ t=   2242.84749688173      =====> Record Out
+ t=   2242.84749805869      =====> Ops in Planes
+ t=   2248.75138245500       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2248.75436593010      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   2255.45416658709      =====> Finished Nonlin Inter U           2
+ t=   2255.45619408076      =====> Finished Derivatives -U           2
+ t=   2255.45783807465      =====> Finished U           2
+ t=   2263.05892509769      =====> Planes to modes UVP
+ t=   2275.94325838366       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2275.94564129692      =====> Finished Linear Advection - V           2
+ t=   2280.76034128945      =====> Finished Nonlin Inter v           2
+ t=   2280.76148770028      =====> Finished Derivatives -V           2
+ t=   2280.76274521463      Finished V =====> Finished Ops in planes           2
+ t=   2371.61941678938      =====> Planes to modes NUVP
+ t=   2371.62697538664      =====> Derivatives
+ t=   2371.62871995906      =====> CFL and Stats
+ t=   2371.62940358208      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2371.63367264159      Finished Solving Velocities =====> Solving Pressure 
+ t=   2371.64036386961      finished RHS =====> Building Nonlinear
+ t=   2371.64245173859      =====> Interpolating
+ t=   2371.64761903917      =====> Modes to planes
+ t=   2371.66497092007      =====> Spectra
+ t=   2371.66673210345      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           6
+ t     3.134338058118575E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366992932642279E-002
+ dt    5.223896763530959E-003
+ err   9.999730118710640E-017
+ Qx     1.75230469134362     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423173809979     
+ Uslp -1.057896737640909E-015
+ t=   2371.94608164870      =====> Ops in Planes
+ t=   2377.84209756413       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2377.84507588425      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   2384.55423062516      =====> Finished Nonlin Inter U           2
+ t=   2384.55645268399      =====> Finished Derivatives -U           2
+ t=   2384.55809144699      =====> Finished U           2
+ t=   2392.20410912484      =====> Planes to modes UVP
+ t=   2405.04061905958       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2405.04301747284      =====> Finished Linear Advection - V           2
+ t=   2409.85515039356      =====> Finished Nonlin Inter v           2
+ t=   2409.85631020239      =====> Finished Derivatives -V           2
+ t=   2409.85756172880      Finished V =====> Finished Ops in planes           2
+ t=   2499.78131616861      =====> Planes to modes NUVP
+ t=   2499.78884719708      =====> Derivatives
+ t=   2499.79057102557      =====> CFL and Stats
+ t=   2500.10859589139      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2500.11312378373      Finished Solving Velocities =====> Solving Pressure 
+ t=   2500.12026618386      finished RHS =====> Building Nonlinear
+ t=   2500.12223518628      =====> Interpolating
+ t=   2500.12735359615      =====> Modes to planes
+ t=   2500.14144381508      =====> Spectra
+ t=   2500.14144884516      =====> Record Out
+ t=   2500.14145000314      =====> Ops in Planes
+ t=   2506.05093035277       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2506.05389626790      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   2512.76302327588      =====> Finished Nonlin Inter U           2
+ t=   2512.76522535481      =====> Finished Derivatives -U           2
+ t=   2512.76685705490      =====> Finished U           2
+ t=   2520.34113603586      =====> Planes to modes UVP
+ t=   2533.26087910042       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2533.26327745768      =====> Finished Linear Advection - V           2
+ t=   2538.07697768381      =====> Finished Nonlin Inter v           2
+ t=   2538.07812822168      =====> Finished Derivatives -V           2
+ t=   2538.07938106603      Finished V =====> Finished Ops in planes           2
+ t=   2627.85264506913      =====> Planes to modes NUVP
+ t=   2627.86020171444      =====> Derivatives
+ t=   2627.86193423998      =====> CFL and Stats
+ t=   2627.86259838706      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2627.86687189061      Finished Solving Velocities =====> Solving Pressure 
+ t=   2627.87360139447      finished RHS =====> Building Nonlinear
+ t=   2627.87566837552      =====> Interpolating
+ t=   2627.88079743122      =====> Modes to planes
+ t=   2627.89942375664      =====> Spectra
+ t=   2627.89942852163      =====> Record Out
+ t=   2627.89942974562      =====> Ops in Planes
+ t=   2633.80580233003       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2633.80878736824      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   2640.51177663147      =====> Finished Nonlin Inter U           2
+ t=   2640.51401345630      =====> Finished Derivatives -U           2
+ t=   2640.51563940942      =====> Finished U           2
+ t=   2648.09363840811      =====> Planes to modes UVP
+ t=   2661.01670623734       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2661.01909323665      =====> Finished Linear Advection - V           2
+ t=   2665.83159801201      =====> Finished Nonlin Inter v           2
+ t=   2665.83273134893      =====> Finished Derivatives -V           2
+ t=   2665.83398745931      Finished V =====> Finished Ops in planes           2
+ t=   2755.25979656691      =====> Planes to modes NUVP
+ t=   2755.26728885341      =====> Derivatives
+ t=   2755.26902217895      =====> CFL and Stats
+ t=   2755.26969521504      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2755.27394827863      Finished Solving Velocities =====> Solving Pressure 
+ t=   2755.28055545699      finished RHS =====> Building Nonlinear
+ t=   2755.28253872844      =====> Interpolating
+ t=   2755.28778209968      =====> Modes to planes
+ t=   2755.30558496667      =====> Spectra
+ t=   2755.30735115602      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           7
+ t     3.656727734471671E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367042541001979E-002
+ dt    5.223896763530959E-003
+ err   7.980199367819594E-017
+ Qx     1.75230444650597     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423077314094     
+ Uslp -1.058587947531559E-015
+ t=   2755.39236790081      =====> Ops in Planes
+ t=   2761.29480177816       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2761.29777038330      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   2767.99048298912      =====> Finished Nonlin Inter U           2
+ t=   2767.99268249201      =====> Finished Derivatives -U           2
+ t=   2767.99432592501      =====> Finished U           2
+ t=   2775.59441893734      =====> Planes to modes UVP
+ t=   2788.50494641112       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2788.50734149432      =====> Finished Linear Advection - V           2
+ t=   2793.32150278380      =====> Finished Nonlin Inter v           2
+ t=   2793.32266072452      =====> Finished Derivatives -V           2
+ t=   2793.32391682302      Finished V =====> Finished Ops in planes           2
+ t=   2885.08920870710      =====> Planes to modes NUVP
+ t=   2885.09661157802      =====> Derivatives
+ t=   2885.09833659756      =====> CFL and Stats
+ t=   2885.41313943127      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2885.41748207354      Finished Solving Velocities =====> Solving Pressure 
+ t=   2885.42430009996      finished RHS =====> Building Nonlinear
+ t=   2885.42627135641      =====> Interpolating
+ t=   2885.43136017141      =====> Modes to planes
+ t=   2885.44529657008      =====> Spectra
+ t=   2885.44530146709      =====> Record Out
+ t=   2885.44530285301      =====> Ops in Planes
+ t=   2891.36940712470       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2891.37237961183      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   2898.07661302364      =====> Finished Nonlin Inter U           2
+ t=   2898.07883885957      =====> Finished Derivatives -U           2
+ t=   2898.08047248260      =====> Finished U           2
+ t=   2905.65927233896      =====> Planes to modes UVP
+ t=   2918.55823661550       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   2918.56064789463      =====> Finished Linear Advection - V           2
+ t=   2923.38361338293      =====> Finished Nonlin Inter v           2
+ t=   2923.38476988371      =====> Finished Derivatives -V           2
+ t=   2923.38590650063      Finished V =====> Finished Ops in planes           2
+ t=   3014.08539321460      =====> Planes to modes NUVP
+ t=   3014.09263173526      =====> Derivatives
+ t=   3014.09436166077      =====> CFL and Stats
+ t=   3014.09503954882      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   3014.09929166839      Finished Solving Velocities =====> Solving Pressure 
+ t=   3014.10596078844      finished RHS =====> Building Nonlinear
+ t=   3014.10805912444      =====> Interpolating
+ t=   3014.11317271530      =====> Modes to planes
+ t=   3014.13066147652      =====> Spectra
+ t=   3014.13066680252      =====> Record Out
+ t=   3014.13066808751      =====> Ops in Planes
+ t=   3020.04381876416       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3020.04669168475      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   3026.75214341003      =====> Finished Nonlin Inter U           2
+ t=   3026.75427704328      =====> Finished Derivatives -U           2
+ t=   3026.75590665336      =====> Finished U           2
+ t=   3034.32363634440      =====> Planes to modes UVP
+ t=   3047.23971562122       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3047.24190046021      =====> Finished Linear Advection - V           2
+ t=   3052.04799206206      =====> Finished Nonlin Inter v           2
+ t=   3052.04913537484      =====> Finished Derivatives -V           2
+ t=   3052.05027620273      Finished V =====> Finished Ops in planes           2
+ t=   3148.79937325523      =====> Planes to modes NUVP
+ t=   3148.80756861879      =====> Derivatives
+ t=   3148.80992454255      =====> CFL and Stats
+ t=   3148.81095639907      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   3148.81661295658      Finished Solving Velocities =====> Solving Pressure 
+ t=   3148.82581627870      finished RHS =====> Building Nonlinear
+ t=   3148.82845633535      =====> Interpolating
+ t=   3148.83533081459      =====> Modes to planes
+ t=   3148.85157503618      =====> Spectra
+ t=   3148.85383266141      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           8
+ t     4.179117410824767E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367229767625634E-002
+ dt    5.223896763530959E-003
+ err   8.500483838713031E-017
+ Qx     1.75230420163336     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422984107111     
+ Uslp -1.058242342586234E-015
+ t=   3149.00679172203      =====> Ops in Planes
+ t=   3156.94578458357       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3156.94969275128      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   3165.97537417104      =====> Finished Nonlin Inter U           2
+ t=   3165.97835174727      =====> Finished Derivatives -U           2
+ t=   3165.98052908026      =====> Finished U           2
+ t=   3176.21611192985      =====> Planes to modes UVP
+ t=   3193.43188547250       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3193.43490006856      =====> Finished Linear Advection - V           2
+ t=   3199.86263061478      =====> Finished Nonlin Inter v           2
+ t=   3199.86412663339      =====> Finished Derivatives -V           2
+ t=   3199.86576842633      Finished V =====> Finished Ops in planes           2
+ t=   3303.02474596142      =====> Planes to modes NUVP
+ t=   3303.03320864774      =====> Derivatives
+ t=   3303.03575505968      =====> CFL and Stats
+ t=   3303.52340171300      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   3303.52876741579      Finished Solving Velocities =====> Solving Pressure 
+ t=   3303.53749970091      finished RHS =====> Building Nonlinear
+ t=   3303.53996954928      =====> Interpolating
+ t=   3303.54647283710      =====> Modes to planes
+ t=   3303.56273639167      =====> Spectra
+ t=   3303.56274234259      =====> Record Out
+ t=   3303.56274377659      =====> Ops in Planes
+ t=   3311.41808676289       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3311.42196838174      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   3320.31775248435      =====> Finished Nonlin Inter U           2
+ t=   3320.32069334458      =====> Finished Derivatives -U           2
+ t=   3320.32279633998      =====> Finished U           2
+ t=   3330.50765587843      =====> Planes to modes UVP
+ t=   3347.57308665756       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3347.57615582331      =====> Finished Linear Advection - V           2
+ t=   3353.93555308483      =====> Finished Nonlin Inter v           2
+ t=   3353.93706776237      =====> Finished Derivatives -V           2
+ t=   3353.93870513933      Finished V =====> Finished Ops in planes           2
+ t=   3456.79119299795      =====> Planes to modes NUVP
+ t=   3456.79957671056      =====> Derivatives
+ t=   3456.80200524908      =====> CFL and Stats
+ t=   3456.80306350545      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   3456.80892235017      Finished Solving Velocities =====> Solving Pressure 
+ t=   3456.81861713110      finished RHS =====> Building Nonlinear
+ t=   3456.82139732607      =====> Interpolating
+ t=   3456.82887601573      =====> Modes to planes
+ t=   3456.84623602952      =====> Spectra
+ t=   3456.84624325647      =====> Record Out
+ t=   3456.84624509350      =====> Ops in Planes
+ t=   3464.71530320321       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3464.71914454014      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   3473.61361992150      =====> Finished Nonlin Inter U           2
+ t=   3473.61647130316      =====> Finished Derivatives -U           2
+ t=   3473.61857874750      =====> Finished U           2
+ t=   3483.68275133974      =====> Planes to modes UVP
+ t=   3500.81685844273       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3500.81998452835      =====> Finished Linear Advection - V           2
+ t=   3507.21325387934      =====> Finished Nonlin Inter v           2
+ t=   3507.21487735037      =====> Finished Derivatives -V           2
+ t=   3507.21639136784      Finished V =====> Finished Ops in planes           2
+ t=   3609.99648457742      =====> Planes to modes NUVP
+ t=   3610.00467747194      =====> Derivatives
+ t=   3610.00686815847      =====> CFL and Stats
+ t=   3610.00783668726      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   3610.01334910840      Finished Solving Velocities =====> Solving Pressure 
+ t=   3610.02217258024      finished RHS =====> Building Nonlinear
+ t=   3610.02465221146      =====> Interpolating
+ t=   3610.03119526920      =====> Modes to planes
+ t=   3610.04810851091      =====> Spectra
+ t=   3610.05030851834      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           9
+ t     4.701507087177863E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367018608653264E-002
+ dt    5.223896763530959E-003
+ err   1.058749929371489E-016
+ Qx     1.75230395672973     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422894118725     
+ Uslp -1.058242342586234E-015
+ t=   3610.42381315993      =====> Ops in Planes
+ t=   3618.22825986659       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3618.23224064300      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   3627.09657869639      =====> Finished Nonlin Inter U           2
+ t=   3627.09942576999      =====> Finished Derivatives -U           2
+ t=   3627.10154134221      =====> Finished U           2
+ t=   3637.21525933628      =====> Planes to modes UVP
+ t=   3654.22002589656       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3654.22322275885      =====> Finished Linear Advection - V           2
+ t=   3660.61690296035      =====> Finished Nonlin Inter v           2
+ t=   3660.61835421307      =====> Finished Derivatives -V           2
+ t=   3660.62000004004      Finished V =====> Finished Ops in planes           2
+ t=   3763.60100779415      =====> Planes to modes NUVP
+ t=   3763.60925883346      =====> Derivatives
+ t=   3763.61145668593      =====> CFL and Stats
+ t=   3764.08945887501      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   3764.09480164584      Finished Solving Velocities =====> Solving Pressure 
+ t=   3764.10368638730      finished RHS =====> Building Nonlinear
+ t=   3764.10618990951      =====> Interpolating
+ t=   3764.11290548544      =====> Modes to planes
+ t=   3764.12956667424      =====> Spectra
+ t=   3764.12957390025      =====> Record Out
+ t=   3764.12957560620      =====> Ops in Planes
+ t=   3771.99737954070       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3772.00112259202      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   3780.89905455674      =====> Finished Nonlin Inter U           2
+ t=   3780.90198764810      =====> Finished Derivatives -U           2
+ t=   3780.90409565938      =====> Finished U           2
+ t=   3791.10740729445      =====> Planes to modes UVP
+ t=   3808.09051590995       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3808.09370097029      =====> Finished Linear Advection - V           2
+ t=   3814.48371237714      =====> Finished Nonlin Inter v           2
+ t=   3814.48517788178      =====> Finished Derivatives -V           2
+ t=   3814.48676967295      Finished V =====> Finished Ops in planes           2
+ t=   3917.69298487098      =====> Planes to modes NUVP
+ t=   3917.70132947189      =====> Derivatives
+ t=   3917.70393777255      =====> CFL and Stats
+ t=   3917.70503695484      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   3917.71167797304      Finished Solving Velocities =====> Solving Pressure 
+ t=   3917.72125658160      finished RHS =====> Building Nonlinear
+ t=   3917.72396896279      =====> Interpolating
+ t=   3917.73119854752      =====> Modes to planes
+ t=   3917.74762941629      =====> Spectra
+ t=   3917.74763503531      =====> Record Out
+ t=   3917.74763685535      =====> Ops in Planes
+ t=   3925.58111412695       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3925.58488958911      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   3934.49283366941      =====> Finished Nonlin Inter U           2
+ t=   3934.49576608965      =====> Finished Derivatives -U           2
+ t=   3934.49787445995      =====> Finished U           2
+ t=   3944.68807613349      =====> Planes to modes UVP
+ t=   3961.75438137096       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   3961.75757698726      =====> Finished Linear Advection - V           2
+ t=   3968.15864837472      =====> Finished Nonlin Inter v           2
+ t=   3968.16011188645      =====> Finished Derivatives -V           2
+ t=   3968.16169706162      Finished V =====> Finished Ops in planes           2
+ t=   4071.24711382797      =====> Planes to modes NUVP
+ t=   4071.25531829940      =====> Derivatives
+ t=   4071.25788645330      =====> CFL and Stats
+ t=   4071.25904161832      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   4071.26561599481      Finished Solving Velocities =====> Solving Pressure 
+ t=   4071.27537255851      finished RHS =====> Building Nonlinear
+ t=   4071.27830253786      =====> Interpolating
+ t=   4071.28565311607      =====> Modes to planes
+ t=   4071.30215763953      =====> Spectra
+ t=   4071.30471535248      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          10
+ t     5.223896763530959E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366911493369749E-002
+ dt    5.223896763530959E-003
+ err   9.889445383256551E-017
+ Qx     1.75230371179904     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422807279896     
+ Uslp -1.058242342586234E-015
+ t=   4071.67538950732      =====> Ops in Planes
+ t=   4079.48215121892       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   4079.48604497162      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   4088.37834969698      =====> Finished Nonlin Inter U           2
+ t=   4088.38119930855      =====> Finished Derivatives -U           2
+ t=   4088.38332234882      =====> Finished U           2
+ t=   4098.56098321499      =====> Planes to modes UVP
+ t=   4115.57474685309       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   4115.57795353036      =====> Finished Linear Advection - V           2
+ t=   4121.96455240075      =====> Finished Nonlin Inter v           2
+ t=   4121.96613272198      =====> Finished Derivatives -V           2
+ t=   4121.96759585058      Finished V =====> Finished Ops in planes           2
+slurmstepd: error: *** JOB 20720472 ON cpu-r-94 CANCELLED AT 2026-01-19T10:34:35 ***
+slurmstepd: error: *** STEP 20720472.0 ON cpu-r-94 CANCELLED AT 2026-01-19T10:34:35 ***
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014BE0FF26990  Unknown               Unknown  Unknown
+littleharsh        00000000004C886A  nonlininter_             1607  FOU3D.f90
+littleharsh        00000000004C0B9D  ops_in_planes_           1520  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014BE0F5F17E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000145A01429990  Unknown               Unknown  Unknown
+littleharsh        00000000004C8FAB  nonlininter_             1608  FOU3D.f90
+littleharsh        00000000004C2018  ops_in_planes_           1521  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000145A00AF47E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001534DF01B990  Unknown               Unknown  Unknown
+littleharsh        00000000004C883B  nonlininter_             1607  FOU3D.f90
+littleharsh        00000000004C0B9D  ops_in_planes_           1520  FOU3D.f90
+littleharsh        000000000044E8F4  nonlinear_                240  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001534DE6E67E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014EC9E081990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EC9EA6646D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EC9E691996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EC9EB9C78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014EC9FDD1515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014EC9D74C7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001462DACF1990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001462DB3018BF  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001462DB80C78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001462DCA41515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001462DA3BC7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001484AB5F6990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001484ABFDB472  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001484ABC06996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001484AC11178F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001484AD346515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001484AACC17E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015413E2E5990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015413ECCA46D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015413E8F5996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015413EE0078F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000154140035515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000015413D9B07E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001527C4000990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001527C4A41454  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001527C46107A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001527C4B1B78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001527C5D50515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001527C36CB7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001461DAD2E990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001461DBC11611  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001461DB33E941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001461DB84978F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001461DCA7E515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001461DA3F97E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014DA9D2B6990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014DA9DC9B46D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014DA9D8C6996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014DA9DDD178F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014DA9F006515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014DA9C9817E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001466C183B990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001466C1E4B75F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001466C235678F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001466C358B515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001466C0F067E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014FE25765990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FE2614A46D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FE25D75996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014FE2628078F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014FE274B5515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014FE24E307E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001523C07ED990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001523C11D246D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001523C0DFD996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001523C130878F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001523C253D515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001523BFEB87E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015026C972990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015026D35746D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015026CF82996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015026D48D78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000015026E6C2515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000015026C03D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015119A107990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015119AAEC46D  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015119A717996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015119AC2278F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000015119BE57515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001511997D27E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152E349DA990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152E358BD14C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152E34FEA941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152E354F578F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000152E3672A515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000152E340A57E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015463781D990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015463825E344  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154637E2D7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015463833878F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000015463956D515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000154636EE87E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001544B4714990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001544B55F85AB  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001544B55F75B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001544B4D24941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001544B522F78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001544B6464515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001544B3DDF7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001489F2685990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001489F306A496  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001489F2C95996  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001489F31A078F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001489F43D5515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001489F1D507E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014F2D7FCC990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F2D8A0D454  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F2D85DC7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F2D8AE778F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014F2D9D1C515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014F2D76977E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B880FCB990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B881EAE116  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B8815DB941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B881AE678F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014B882D1B515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014B8806967E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014C612960990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C6131CD602  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C6138435F6  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C612F70941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C61347B78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014C6146B0515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014C61202B7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000153E34B1F990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E35657E10  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E3512F941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E3563A78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000153E3686F515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000153E341EA7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001463F0AA8990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001463F198B11C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001463F10B8941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001463F15C378F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001463F27F8515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001463F01737E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B29DFE3990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B29EEC75A3  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B29EEC65B1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B29E5F3941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B29EAFE78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014B29FD33515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014B29D6AE7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000149C04B61990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000149C051718CA  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000149C0567C78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000149C068B1515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000149C0422C7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014E0ABF1B990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E0AC7885F0  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E0ACDFE5F6  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E0AC52B941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E0ACA3678F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014E0ADC6B515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014E0AB5E67E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014ED86C6B990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014ED87B4E5FC  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014ED8727B941  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014ED8778678F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014ED889BB515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014ED863367E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152AB2D8C990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000152960FB490A  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152AB37CD3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152AB339C7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152AB38A778F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000152AB4ADC515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000152AB24577E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150CCDF4B990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000150B7C173830  Unknown               Unknown  Unknown
+libmlx-fi.so       0000150B7C173A8E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150CCE98C3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150CCE55B7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150CCEA6678F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000150CCFC9B515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000150CCD6167E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015062721C990  Unknown               Unknown  Unknown
+libmlx-fi.so       00001504D5444AC0  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150627C5D3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015062782C7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150627D3778F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000150628F6C515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001506268E77E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015514AC7E990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000154FF8EA6830  Unknown               Unknown  Unknown
+libmlx-fi.so       0000154FF8EA6A35  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015514B6BF3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015514B28E7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015514B79978F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000015514C9CE515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000015514A3497E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014F95A86D990  Unknown               Unknown  Unknown
+libmlx-fi.so       000014F808A95AE5  Unknown               Unknown  Unknown
+libmlx-fi.so       000014F808A95A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F95B2AE3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F95AE7D7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F95B38878F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  000014F95C5BD515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014F959F387E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000151F57110990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000151E05338830  Unknown               Unknown  Unknown
+libmlx-fi.so       0000151E05338A35  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151F57B513FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151F577207A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151F57C2B78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000151F58E60515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000151F567DB7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150FAD93D990  Unknown               Unknown  Unknown
+libmlx-fi.so       0000150E5BB4D826  Unknown               Unknown  Unknown
+libmlx-fi.so       0000150E5BB65B0D  Unknown               Unknown  Unknown
+libmlx-fi.so       0000150E5BB65A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150FAE37E3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150FADF4D7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150FAE45878F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000150FAF68D515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000150FAD0087E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152A42A83990  Unknown               Unknown  Unknown
+libmlx-fi.so       00001528F0C93780  Unknown               Unknown  Unknown
+libmlx-fi.so       00001528F0CABB0D  Unknown               Unknown  Unknown
+libmlx-fi.so       00001528F0CABA97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152A434C43FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152A430937A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152A4359E78F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000152A447D3515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000152A4214E7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000154A5B227990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  0000154908621459  Unknown               Unknown  Unknown
+libucp.so.0.0.0    0000154909195A0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       00001549094377A1  Unknown               Unknown  Unknown
+libmlx-fi.so       000015490944FB0D  Unknown               Unknown  Unknown
+libmlx-fi.so       000015490944FA97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154A5BC683FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154A5B8377A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154A5BD4278F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000154A5CF77515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000154A5A8F27E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000146BA062C990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  0000146A4DA26583  Unknown               Unknown  Unknown
+libucp.so.0.0.0    0000146A4E59AA0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       0000146A4E83C7A1  Unknown               Unknown  Unknown
+libmlx-fi.so       0000146A4E854B0D  Unknown               Unknown  Unknown
+libmlx-fi.so       0000146A4E854A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146BA106D3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146BA0C3C7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146BA114778F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000146BA237C515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000146B9FCF77E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000148073C9C990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  0000147F21096628  Unknown               Unknown  Unknown
+libucp.so.0.0.0    0000147F21C0AA0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       0000147F21EAC7A1  Unknown               Unknown  Unknown
+libmlx-fi.so       0000147F21EC4B0D  Unknown               Unknown  Unknown
+libmlx-fi.so       0000147F21EC4A97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001480746DD3FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001480742AC7A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001480747B778F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  00001480759EC515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001480733677E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000063846B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001536750D6990  Unknown               Unknown  Unknown
+libuct_ib.so.0.0.  00001535224D02C1  Unknown               Unknown  Unknown
+libucp.so.0.0.0    0000153523044A0A  ucp_worker_progre     Unknown  Unknown
+libmlx-fi.so       00001535232E67A1  Unknown               Unknown  Unknown
+libmlx-fi.so       00001535232FEB0D  Unknown               Unknown  Unknown
+libmlx-fi.so       00001535232FEA97  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153675B173FE  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001536756E67A1  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153675BF178F  MPI_Sendrecv          Unknown  Unknown
+libmpifort.so.12.  0000153676E26515  pmpi_sendrecv         Unknown  Unknown
+littleharsh        00000000004E8CB1  planes_to_modes_u        1916  FOU3D.f90
+littleharsh        000000000044EA61  nonlinear_                248  FOU3D.f90
+littleharsh        00000000005ED985  MAIN__                    174  littleharsh.f90
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001536747A17E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
