@@ -1237,7 +1237,7 @@ subroutine ops_in_planes(myid,flagst)
   implicit none
   include 'mpif.h'
   
-  integer, intent(inout) :: myid,flagst
+  integer :: myid,flagst
   integer i,k,j,l,temp,jidx
   integer ia, ip, ka, kp, la, lp
   real(8) ddyi

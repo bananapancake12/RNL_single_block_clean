@@ -502,13 +502,13 @@ end if
   gridweighting(1) =-(yv(nyv_LB  )-yu(nyu_LB  ))/(yv(nyv_LB  )-yu(nyu_LB+1)) 
   gridweighting(2) = (yu(nyu+1)-yv(nyv+1))/(yv(nyv+1)-yu(nyu  )) 
 
-  !write(6,*) "gridweighting", gridweighting(1), gridweighting(2)
+  write(6,*) "gridweighting 1 and 2", gridweighting(1), gridweighting(2)
 
   gridweighting_bc_u1 = (yu(0) - yv(0)) / (yu(1) - yv(0))
   gridweighting_bc_u3 = (yu(0) - yv(0)) / (yu(1) - yv(0))
 
-  ! write(6,*) 'gridweighting_bc_u1 after = ', gridweighting_bc_u1
-  ! write(6,*) 'gridweighting_bc_u3 after = ', gridweighting_bc_u3
+  write(6,*) 'gridweighting_bc_u1 after = ', gridweighting_bc_u1
+  write(6,*) 'gridweighting_bc_u3 after = ', gridweighting_bc_u3
 
 
 

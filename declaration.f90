@@ -106,8 +106,8 @@ module declaration
 
   real(8),pointer:: u11(:)
   
-  complex(8),pointer:: k1F_x(:),k1F_z(:)
-  real(8)   ,pointer:: k2F_x(:),k2F_z(:)
+  complex(8),allocatable:: k1F_x(:),k1F_z(:)
+  real(8)   ,allocatable:: k2F_x(:),k2F_z(:)
 
   ! Runge-Kutta coefficients
   real(8) aRK(3),bRK(3),gRK(3),cRK(3),dRK(3)

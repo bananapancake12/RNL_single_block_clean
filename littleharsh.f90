@@ -170,9 +170,9 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       call RHS0_u2(du2,u2,Nu2,p,myid)
       call RHS0_u3(du3,u3,Nu3,p,myid)
 
-        if(myid==0) then
-            write(6,*) "du1", du1(0,:)
-        end if 
+        ! if(myid==0) then
+        !     write(6,*) "du1", du1(0,:)
+        ! end if 
 
       if(myid==0) then
         write(6,*) "t=", MPI_Wtime() - t1,"finished RHS =====> Building Nonlinear"
@@ -181,9 +181,9 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       ! Build non-linear terms of right-hand-side of Navier-Stokes equation
       call nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
 
-      if(myid==0) then
-        write(6,*) "du1 after nonlin", du1(0,:)
-      end if 
+      ! if(myid==0) then
+      !   write(6,*) "du1 after nonlin", du1(0,:)
+      ! end if 
       
       if(myid==0) then
         write(6,*) "t=", MPI_Wtime() - t1,"Finished Nonlinear =====> Solving"
@@ -198,9 +198,9 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       call solveU_W(u1,du1,u3,du3,a_ugrid,myid)
       call solveV(u2,du2,a_vgrid,myid)
 
-      if(myid==0) then
-        write(6,*) "du1 after solve", du1(0,:)
-      end if 
+      ! if(myid==0) then
+      !   write(6,*) "du1 after solve", du1(0,:)
+      ! end if 
 
       if(myid==0) then
         write(6,*) "t=", MPI_Wtime() - t1,"Finished Solving Velocities =====> Solving Pressure "
