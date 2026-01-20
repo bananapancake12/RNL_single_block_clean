@@ -97,11 +97,11 @@
 
           do j = jlim(1,grid)+1,jlim(2,grid)
           w(j,column) = (rhsw(j,column)-a(1,j)*w(j-1,column))*a(2,j)
-        end do
+          end do
 
-        do j = jlim(2,grid)-1,jlim(1,grid),-1
-          w(j,column) =  w(j,column)-a(3,j)*w(j+1,column)
-        end do
+          do j = jlim(2,grid)-1,jlim(1,grid),-1
+            w(j,column) =  w(j,column)-a(3,j)*w(j+1,column)
+          end do
         end do
 
         if(myid==0) then 
@@ -151,9 +151,9 @@
 
     integer    :: i,k,j,column,grid
     integer    :: iopt,myid
-    complex(8) :: u   ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: u   ( jlim(1,grid)      : jlim(2,grid),      columns_num(myid) )
     ! complex(8), intent(inout) :: rhsu(jlim(1,vgrid):,:)
-    complex(8) :: rhsu( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+    complex(8) :: rhsu( jlim(1,grid)      : jlim(2,grid),      columns_num(myid) )
       
     real(8)    :: a(3,jlim(1,grid):jlim(2,grid))
 
