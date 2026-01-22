@@ -83,7 +83,7 @@ subroutine start(myid,status,ierr)
 !  - initialise the y-grid
 !  and send this data to the other procs.
   if (myid==0) then
-    open(40,file='input.in',form='formatted')
+    open(40,file='input_2.in',form='formatted')
     do i = 1,9
       read(40,10)             ! Input file header
     end do
@@ -141,6 +141,23 @@ subroutine start(myid,status,ierr)
     write(*,*) 'Nspec_x =', Nspec_x, ' Ngal_x =', Ngal_x
     write(*,*) 'Nspec_z =', Nspec_z, ' Ngal_z =', Ngal_z
 
+    !!!!!!!!!!!!!!!!!!!!!! Creating N for Hist write out !!!!!!!!!!!!!!!!!!!!
+    allocate(N(4,0:4))
+
+
+    N= 0 
+    N(1,1:3) = Nspec_x
+    N(1,4) = -2
+    N(2,1:3) = Nspec_z
+    N(3,3) = nyv
+    N(4,3) = nyu
+
+    if (myid == 0) then
+    write(6,*) "N:"
+    do i = 1,4
+    write(6,*) N(i,0:4)
+    end do
+    end if 
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -260,7 +277,7 @@ subroutine start(myid,status,ierr)
     !write(30) t,Re,alp,bet,mpgx,nband
     !write(30) N
 
-
+    write(6,*) "writing hist file"
 inquire(file=fnameima, exist=exist_file_hist)
 if (exist_file_hist) then
 open (30,file=fnameima,form='unformatted',status="old", position="append", action="write")

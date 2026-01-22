@@ -2173,7 +2173,7 @@ subroutine record_out(u1,myid)
 
       deallocate(buffSR)
   else
-      write(ext4,'(i5.5)') int(10d0*(t))!int(t)!
+      write(ext4,'(i5.5)') int(100d0*(t))!int(t)!
       allocate(dummint(88))
       dummint = 0
       !!!!!!!!!!!!!    u1    !!!!!!!!!!!!!
@@ -2433,5 +2433,3 @@ subroutine buff_to_u(u,buffSR,nx,nz,igal,kgal)
   end do
 
 end subroutine
-
-! end module FOU3D_mod

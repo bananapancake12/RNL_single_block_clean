@@ -1,0 +1,9 @@
+filelist =unify_spectra_list.input
+firstgood=         0 ! first file to accumulate conditional statistics
+fildir   =../output/ !
+nx       =       128 !
+nz       =       128 !
+ny       =       153 !
+ptstilex =       128 ! points per tile in x (in N) - not needed?
+ptstilez =       128 ! points per tile in z (in N) - not needed?
+       10|      I10|                                              A60|
