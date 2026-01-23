@@ -1229,7 +1229,6 @@ subroutine proc_lims_planes(myid)
       end if 
 
     end do
-    write(6,*) "endproc" , endproc, "jmax_plane(endproc)", jmax_plane(endproc)
 
     !!!!!!!!!!!!!!!!!!!!  redistributing planes w nothing.. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -1237,19 +1236,14 @@ subroutine proc_lims_planes(myid)
     ! this frees up n planes where one plane will be given to the remaining unloaded procs 
     if (endproc < np-1) then 
       startproc = endproc - (np-1 - endproc) +1
-      write(6,*) "startproc", startproc
       proc_load(startproc) = proc_load(startproc)-weight(jmax_plane(startproc))
       jmax_plane(startproc) = jmax_plane(startproc) -1
-      write(6,*) "jmax_plane(startproc)", jmax_plane(startproc)
       
       do i = startproc+1, endproc
-      write(6,*) "i", i 
         proc_load(i) = 0 
         nplanes(i) = nplanes(i)-1   
-        write(6,*) "nplanes(i)", nplanes(i)
         jmin_plane(i) = jmax_plane(i-1)+1
         jmax_plane(i) = jmin_plane(i)+ nplanes(i) -1 !this minus 1 bc if start j = 110, then 3 planes is acc 110,111,112
-        write(6,*) "jmin_plane", jmin_plane(i), "jmax_plane(i)", jmax_plane(i)
         do j =  jmin_plane(i), jmax_plane(i)
           proc_load(i) = proc_load(i) + weight(j)
         end do 
@@ -1261,7 +1255,6 @@ subroutine proc_lims_planes(myid)
         jmin_plane(i) = jmax_plane(i-1) +1
         jmax_plane(i) = jmin_plane(i)
         proc_load(i) = weight(jmax_plane(i))
-        write(6,*) "i", i,  "jmin_plane", jmin_plane(i), "jmax_plane(i)", jmax_plane(i)
       end do 
 
     end if 
