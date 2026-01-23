@@ -700,12 +700,12 @@ subroutine divergence(div,u1,u2,u3,myid)
 
   ! write(6,*) "C1", C1, "C2", C2, myid
 
-  if (myid == 0) then
-    write(6,*) 'du1, j=1..10, col=2'
-    do j = 0, 10
-        write(6,*) du1(j,2)
-    end do
-  end if
+!   if (myid == 0) then
+!     write(6,*) 'du1, j=1..10, col=2'
+!     do j = 0, 10
+!         write(6,*) du1(j,2)
+!     end do
+!   end if
 
 
   call laplacian_U(du1,u1,myid)

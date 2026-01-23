@@ -1,0 +1,1068 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane.
+
+JobID: 21029063
+======
+Time: Fri Jan 23 08:05:16 GMT 2026
+Running on master node: cpu-r-6
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane
+
+Nodes allocated:
+================
+cpu-r-6
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          39
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =          31
+ Getting Weights
+ ./3e-9/                                                                        
+                                          
+ 
+ j=           1 weight              30027508
+ j=           2 weight              30027508
+ j=           3 weight              30027508
+ j=           4 weight              30027508
+ j=           5 weight              30027508
+ j=           6 weight              33283485
+ j=           7 weight              38215811
+ j=           8 weight              48275597
+ j=           9 weight              59266016
+ j=          10 weight              68919502
+ j=          11 weight              78741805
+ j=          12 weight              89272046
+ j=          13 weight             100956150
+ j=          14 weight             113548155
+ j=          15 weight             117568706
+ j=          16 weight             124053085
+ j=          17 weight             133197378
+ j=          18 weight             142395584
+ j=          19 weight             151342045
+ j=          20 weight             152025435
+ j=          21 weight             152229628
+ j=          22 weight             155351183
+ j=          23 weight             160174549
+ j=          24 weight             165243294
+ j=          25 weight             171343826
+ j=          26 weight             176197244
+ j=          27 weight             173036014
+ j=          28 weight             169611377
+ j=          29 weight             167628535
+ j=          30 weight             166306314
+ j=          31 weight             167371874
+ j=          32 weight             169246398
+ j=          33 weight             172684218
+ j=          34 weight             173652670
+ j=          35 weight             170129689
+ j=          36 weight             166317096
+ j=          37 weight             162221478
+ j=          38 weight             158128240
+ j=          39 weight             154617130
+ j=          40 weight             151207619
+ j=          41 weight             147425554
+ j=          42 weight             144756990
+ j=          43 weight             142315480
+ j=          44 weight             141144288
+ j=          45 weight             138722926
+ j=          46 weight             136172282
+ j=          47 weight             133233682
+ j=          48 weight             130218613
+ j=          49 weight             126682591
+ j=          50 weight             123278423
+ j=          51 weight             119643404
+ j=          52 weight             115909707
+ j=          53 weight             112868256
+ j=          54 weight             109328347
+ j=          55 weight             106222136
+ j=          56 weight             103470368
+ j=          57 weight             100986254
+ j=          58 weight              98067245
+ j=          59 weight              95900779
+ j=          60 weight              94052637
+ j=          61 weight              92053163
+ j=          62 weight              89499724
+ j=          63 weight              87199904
+ j=          64 weight              84770808
+ j=          65 weight              82218449
+ j=          66 weight              79959173
+ j=          67 weight              77372170
+ j=          68 weight              75036688
+ j=          69 weight              72657871
+ j=          70 weight              70277945
+ j=          71 weight              67676075
+ j=          72 weight              64404138
+ j=          73 weight              61715158
+ j=          74 weight              60675098
+ j=          75 weight              60675098
+ j=          76 weight              60675098
+ j=          77 weight              60675098
+ j=          78 weight              60675098
+ j=          79 weight              61715158
+ j=          80 weight              64404138
+ j=          81 weight              67676075
+ j=          82 weight              70277945
+ j=          83 weight              72657871
+ j=          84 weight              75036688
+ j=          85 weight              77372170
+ j=          86 weight              79959173
+ j=          87 weight              82218449
+ j=          88 weight              84770808
+ j=          89 weight              87199904
+ j=          90 weight              89499724
+ j=          91 weight              92053163
+ j=          92 weight              94052637
+ j=          93 weight              95900779
+ j=          94 weight              98067245
+ j=          95 weight             100986254
+ j=          96 weight             103470368
+ j=          97 weight             106222136
+ j=          98 weight             109328347
+ j=          99 weight             112868256
+ j=         100 weight             115909707
+ j=         101 weight             119643404
+ j=         102 weight             123278423
+ j=         103 weight             126682591
+ j=         104 weight             130218613
+ j=         105 weight             133233682
+ j=         106 weight             136172282
+ j=         107 weight             138722926
+ j=         108 weight             141144288
+ j=         109 weight             142315480
+ j=         110 weight             144756990
+ j=         111 weight             147425554
+ j=         112 weight             151207619
+ j=         113 weight             154617130
+ j=         114 weight             158128240
+ j=         115 weight             162221478
+ j=         116 weight             166317096
+ j=         117 weight             170129689
+ j=         118 weight             173652670
+ j=         119 weight             172684218
+ j=         120 weight             169246398
+ j=         121 weight             167371874
+ j=         122 weight             166306314
+ j=         123 weight             167628535
+ j=         124 weight             169611377
+ j=         125 weight             173036014
+ j=         126 weight             176197244
+ j=         127 weight             171343826
+ j=         128 weight             165243294
+ j=         129 weight             160174549
+ j=         130 weight             155351183
+ j=         131 weight             152229628
+ j=         132 weight             152025435
+ j=         133 weight             151342045
+ j=         134 weight             142395584
+ j=         135 weight             133197378
+ j=         136 weight             124053085
+ j=         137 weight             117568706
+ j=         138 weight             113548155
+ j=         139 weight             100956150
+ j=         140 weight              89272046
+ j=         141 weight              78741805
+ j=         142 weight              68919502
+ j=         143 weight              59266016
+ j=         144 weight              48275597
+ j=         145 weight              38215811
+ j=         146 weight              33283485
+ j=         147 weight              30027508
+ j=         148 weight              30027508
+ j=         149 weight              30027508
+ j=         150 weight              30027508
+ j=         151 weight              30027508
+ check 4
+ weight_tot           16961651378 ideal_load             424041284
+slurmstepd: error: *** JOB 21029063 ON cpu-r-6 CANCELLED AT 2026-01-23T08:06:16 ***
+slurmstepd: error: *** STEP 21029063.0 ON cpu-r-6 CANCELLED AT 2026-01-23T08:06:16 ***
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015201BF50990  Unknown               Unknown  Unknown
+littleharsh        000000000044AAFB  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000015201B61B7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001533BB03B990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BBF3389C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BBF31B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BB5EFA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BB60A23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BB5D6BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BB5B6780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BB6B84FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001533BB59EA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001533BCD773E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001533BA7067E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000153E58584990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E5947C89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E5947AB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E58B38A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E58B5323E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E58B1FBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E58AFF780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E58C014FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000153E58AE7A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  0000153E5A2C03E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000153E57C4F7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B792A5F990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B79395789C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B793955B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B793013A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B79302E23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B792FFABD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B792FDA780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B7930DC4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B792FC2A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014B79479B3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014B79212A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001486068B8990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001486077B089C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001486077AEB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148606E6CA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148606E8723E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148606E53BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148606E33780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148606F354FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000148606E1BA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001486085F43E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000148605F837E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150042853990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015004374B89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150043749B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150042E07A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150042E2223E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150042DEEBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150042DCE780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150042ED04FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150042DB6A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000015004458F3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000150041F1E7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152471272990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015247216A89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152472168B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152471826A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015247184123E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015247180DBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001524717ED780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001524718EF4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001524717D5A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  0000152472FAE3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000015247093D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000149998C08990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000149999B0089C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000149999AFEB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001499991BCA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001499991D723E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001499991A3BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000149999183780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001499992854FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014999916BA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014999A9443E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001499982D37E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001507343FA990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001507352F289C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001507352F0B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001507349AEA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001507349C923E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150734995BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150734975780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150734A774FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015073495DA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001507361363E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000150733AC57E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001462257BE990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001462266B689C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001462266B4B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146225D72A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146225D8D23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146225D59BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146225D39780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146225E3B4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000146225D21A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001462274FA3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000146224E897E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001487CECFC990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CFBF489C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CFBF2B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CF2B0A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CF2CB23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CF297BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CF277780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CF3794FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001487CF25FA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001487D0A383E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001487CE3C77E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014EF0BD69990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0CC6189F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0CC5FB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0C31DA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0C33823E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0C304BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0C2E4780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0C3E64FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014EF0C2CCA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014EF0DAA53E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014EF0B4347E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B290E39990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B291D3189C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B291D2FB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B2913EDA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B29140823E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B2913D4BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B2913B4780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B2914B64FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B29139CA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014B292B753E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014B2905047E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001479C0940990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C183889C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C1836B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C0EF4A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C0F0F23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C0EDBBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C0EBB780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C0FBD4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479C0EA3A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001479C267C3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001479C000B7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001457D5409990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D630189C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D62FFB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D59BDA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D59D823E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D59A4BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D5984780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D5A864FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001457D596CA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001457D71453E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001457D4AD47E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014AF28B52990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF29A4A89F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF29A48B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF29106A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF2912123E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF290EDBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF290CD780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF291CF4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AF290B5A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014AF2A88E3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014AF2821D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001482A9370990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482AA26889C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482AA266B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482A9924A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482A993F23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482A990BBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482A98EB780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482A99ED4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001482A98D3A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001482AB0AC3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001482A8A3B7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000151BDC629990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDD52189A  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDD51FB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDCBDDA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDCBF823E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDCBC4BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDCBA4780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDCCA64FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000151BDCB8CA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  0000151BDE3653E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000151BDBCF47E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001479BD17B990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BE07389A  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BE071B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BD72FA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BD74A23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BD716BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BD6F6780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BD7F84FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001479BD6DEA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001479BEEB73E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001479BC8467E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014C51DC5C990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51EB5489C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51EB52B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51E210A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51E22B23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51E1F7BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51E1D7780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51E2D94FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014C51E1BFA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014C51F9983E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014C51D3277E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001519F634E990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F724689C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F7244B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F6902A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F691D23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F68E9BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F68C9780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F69CB4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001519F68B1A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001519F808A3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001519F5A197E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014A27245F990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A27335789C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A273355B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A272A13A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A272A2E23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A2729FABD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A2729DA780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A272ADC4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A2729C2A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014A27419B3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014A271B2A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000150802EF4990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150803DEC89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150803DEAB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001508034A8A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001508034C323E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015080348FBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015080346F780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001508035714FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000150803457A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  0000150804C303E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001508025BF7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001513E5E66990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E6D5E89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E6D5CB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E641AA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E643523E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E6401BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E63E1780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E64E34FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001513E63C9A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001513E7BA23E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001513E55317E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014B4DD26A990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DE16289F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DE160B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DD81EA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DD83923E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DD805BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DD7E5780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DD8E74FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014B4DD7CDA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014B4DEFA63E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014B4DC9357E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014CDF68AF990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF77A789F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF77A5B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF6E63A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF6E7E23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF6E4ABD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF6E2A780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF6F2C4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014CDF6E12A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014CDF85EB3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014CDF5F7A7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014E682771990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E68366988F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E683667B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E682D25A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E682D4023E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E682D0CBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E682CEC780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E682DEE4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E682CD4A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014E6844AD3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014E681E3C7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014E6B1E46990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B2D3E89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B2D3CB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B23FAA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B241523E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B23E1BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B23C1780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B24C34FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014E6B23A9A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014E6B3B823E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014E6B15117E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014AE88D30990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE89C2889C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE89C26B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE892E4A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE892FF23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE892CBBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE892AB780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE893AD4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014AE89293A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014AE8AA6C3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014AE883FB7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014D168792990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D16968A89F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D169688B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168D46A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168D6123E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168D2DBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168D0D780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168E0F4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168CF5A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014D16A4CE3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014D167E5D7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000015167E34B990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167F24389C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167F241B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167E8FFA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167E91A23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167E8E6BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167E8C6780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167E9C84FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015167E8AEA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001516800873E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000015167DA167E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014928D17C990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928E07489C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928E072B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928D730A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928D74B23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928D717BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928D6F7780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928D7F94FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014928D6DFA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014928EEB83E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014928C8477E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014973AD3A990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973BC3289C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973BC30B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973B2EEA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973B30923E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973B2D5BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973B2B5780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973B3B74FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014973B29DA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014973CA763E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014973A4057E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014996E73E990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996F63689C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996F634B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996ECF2A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996ED0D23E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996ECD9BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996ECB9780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996EDBB4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014996ECA1A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014997047A3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014996DE097E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001547080E4990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154708FDC89F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154708FDAB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154708698A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001547086B323E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015470867FBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000015470865F780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001547087614FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000154708647A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  0000154709E203E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001547077AF7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  0000152F6E309990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6F20189F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6F1FFB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6E8BDA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6E8D823E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6E8A4BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6E884780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6E9864FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   0000152F6E86CA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  0000152F700453E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       0000152F6D9D47E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014A34F636990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A35052E89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A35052CB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A34FBEAA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A34FC0523E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A34FBD1BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A34FBB1780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A34FCB34FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014A34FB99A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014A3513723E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014A34ED017E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  00001516CF54A990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516D044289C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516D0440B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516CFAFEA1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516CFB1923E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516CFAE5BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516CFAC5780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516CFBC74FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   00001516CFAADA8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  00001516D12863E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       00001516CEC157E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014D167AB5990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D1689AD89C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D1689ABB1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168069A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D16808423E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168050BD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168030780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D1681324FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014D168018A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014D1697F13E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014D1671807E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+forrtl: error (78): process killed (SIGTERM)
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B31B  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014F183DB1990  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F184CA989C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F184CA7B1F  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F184365A1C  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F18438023E  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F18434CBD4  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F18432C780  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F18442E4FD  Unknown               Unknown  Unknown
+libmpi.so.12.0.0   000014F184314A8F  MPI_Bcast             Unknown  Unknown
+libmpifort.so.12.  000014F185AED3E4  pmpi_bcast            Unknown  Unknown
+littleharsh        000000000044B2EA  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480733  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014F18347C7E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown

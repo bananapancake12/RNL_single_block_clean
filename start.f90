@@ -83,7 +83,7 @@ subroutine start(myid,status,ierr)
 !  - initialise the y-grid
 !  and send this data to the other procs.
   if (myid==0) then
-    open(40,file='input.in',form='formatted')
+    open(40,file='input_2.in',form='formatted')
     do i = 1,9
       read(40,10)             ! Input file header
     end do
@@ -141,6 +141,23 @@ subroutine start(myid,status,ierr)
     write(*,*) 'Nspec_x =', Nspec_x, ' Ngal_x =', Ngal_x
     write(*,*) 'Nspec_z =', Nspec_z, ' Ngal_z =', Ngal_z
 
+    !!!!!!!!!!!!!!!!!!!!!! Creating N for Hist write out !!!!!!!!!!!!!!!!!!!!
+    allocate(N(4,0:4))
+
+
+    N= 0 
+    N(1,1:3) = Nspec_x
+    N(1,4) = -2
+    N(2,1:3) = Nspec_z
+    N(3,3) = nyv
+    N(4,3) = nyu
+
+    if (myid == 0) then
+    write(6,*) "N:"
+    do i = 1,4
+    write(6,*) N(i,0:4)
+    end do
+    end if 
 
     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -476,15 +493,15 @@ end if
   !write(6,*) "meow"
   call proc_lims_columns(myid)
 
-  ! !! added nonlin read here so read before allocating proc_lims_planes
+  !! added nonlin read here so read before allocating proc_lims_planes
 
-  ! call MPI_BARRIER(MPI_COMM_WORLD,ierr)
-  ! if (myid == 0) then
-  !   write(*,*) 'Getting Weights'
-  !   write(*,*) dirlist
-  !   write(*,*)
-  !   call get_weights
-  ! end if
+  call MPI_BARRIER(MPI_COMM_WORLD,ierr)
+  if (myid == 0) then
+    write(*,*) 'Getting Weights'
+    write(*,*) dirlist
+    write(*,*)
+    call get_weights
+  end if
   
   call MPI_BARRIER(MPI_COMM_WORLD,ierr)
   ! write(*,*) 'finished reading nonlinear interaction list'
@@ -502,13 +519,13 @@ end if
   gridweighting(1) =-(yv(nyv_LB  )-yu(nyu_LB  ))/(yv(nyv_LB  )-yu(nyu_LB+1)) 
   gridweighting(2) = (yu(nyu+1)-yv(nyv+1))/(yv(nyv+1)-yu(nyu  )) 
 
-  write(6,*) "gridweighting 1 and 2", gridweighting(1), gridweighting(2)
+  ! write(6,*) "gridweighting 1 and 2", gridweighting(1), gridweighting(2)
 
   gridweighting_bc_u1 = (yu(0) - yv(0)) / (yu(1) - yv(0))
   gridweighting_bc_u3 = (yu(0) - yv(0)) / (yu(1) - yv(0))
 
-  write(6,*) 'gridweighting_bc_u1 after = ', gridweighting_bc_u1
-  write(6,*) 'gridweighting_bc_u3 after = ', gridweighting_bc_u3
+  ! write(6,*) 'gridweighting_bc_u1 after = ', gridweighting_bc_u1
+  ! write(6,*) 'gridweighting_bc_u3 after = ', gridweighting_bc_u3
 
 
 
@@ -1079,6 +1096,7 @@ subroutine proc_lims_planes(myid)
 
   ! new declarations 
   integer :: j, cut_plane, iplanes
+  integer :: startproc, endproc
   real(8) :: cumulative_load, cumulative_load_1, cumulative_load_2
   integer, allocatable :: jmin_plane(:), jmax_plane(:)
   integer, allocatable :: nplanes(:)
@@ -1094,145 +1112,165 @@ subroutine proc_lims_planes(myid)
   ! allocate(bandPL_FFT(0:np-1))
 
   jlow = nyu_LB + 1
-  jupp = nyu ! jupp in get weights was N(4,3)-1 so weight allocation nneeded to be weight 
+  jupp = nyu -1! jupp in get weights was N(4,3)-1 so weight allocation nneeded to be weight 
                     ! (jlow:jupp+1) but here its jsut jlow to j upp b it included the +1 already
 
   proc_load = 0.0d0
 
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DNS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DNS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  !-------------------------------------------------------------------------------------
-  ! Simple equal-plane partition in j: give each proc roughly same no. planes for DNS
-  !-------------------------------------------------------------------------------------
+  ! !-------------------------------------------------------------------------------------
+  ! ! Simple equal-plane partition in j: give each proc roughly same no. planes for DNS
+  ! !-------------------------------------------------------------------------------------
   
-  ! total number of active planes in j (without walls)
-  iplanes = jupp - jlow + 1
+  ! ! total number of active planes in j (without walls)
+  ! iplanes = jupp - jlow + 1
 
-  ! base number of planes per proc and remainder
-  proc_planes = iplanes / np
-  rem_planes  = mod(iplanes, np)
+  ! ! base number of planes per proc and remainder
+  ! proc_planes = iplanes / np
+  ! rem_planes  = mod(iplanes, np)
 
-  j = jlow
-  do iproc = 0, np-1
+  ! j = jlow
+  ! do iproc = 0, np-1
 
-     ! first rem_planes procs get one extra plane
-     if (iproc < rem_planes) then
-        nplanes(iproc) = proc_planes + 1
-     else
-        nplanes(iproc) = proc_planes
-     end if
+  !    ! first rem_planes procs get one extra plane
+  !    if (iproc < rem_planes) then
+  !       nplanes(iproc) = proc_planes + 1
+  !    else
+  !       nplanes(iproc) = proc_planes
+  !    end if
 
-     jmin_plane(iproc) = j
-     jmax_plane(iproc) = j + nplanes(iproc) - 1
+  !    jmin_plane(iproc) = j
+  !    jmax_plane(iproc) = j + nplanes(iproc) - 1
 
-     j = jmax_plane(iproc) + 1
+  !    j = jmax_plane(iproc) + 1
 
-     ! if you still want a "load" number, just set it ~ nplanes
-     proc_load(iproc) = nplanes(iproc)
+  !    ! if you still want a "load" number, just set it ~ nplanes
+  !    proc_load(iproc) = nplanes(iproc)
 
-  end do
+  ! end do
 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! RNL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   ! Rank 0 computes plane ownership for all ranks (indexed by iproc)
-  ! then sends his info to the other procs who can access it 
+  ! then sends this info to the other procs who can access it 
 
 
-  ! if (myid ==0) then 
+  if (myid ==0) then 
 
-  !   weight_tot = sum(weight)  
-  !   ideal_load = weight_tot / np
+    weight_tot = sum(weight)  
+    ideal_load = weight_tot / np
 
-  !   write(6,*) "weight_tot",weight_tot, "ideal_load", ideal_load
-  !   ! write(6,*) "weight(151)",weight(151), "weight(1)", weight(1)
+    write(6,*) "weight_tot",weight_tot, "ideal_load", ideal_load
+    ! write(6,*) "weight(151)",weight(151), "weight(1)", weight(1)
 
-  !   jmin_plane(0) = jlow
+    jmin_plane(0) = jlow
 
-  !   !initialising values 
-  !   cumulative_load = 0.0d0
-  !   iproc = 0
-  !   j = jlow
-  !   proc_load = 0
-  !   nplanes   = 0
+    !initialising values 
+    cumulative_load = 0.0d0
+    iproc = 0
+    j = jlow
+    ! proc_load = 0
+    ! nplanes   = 0
 
-  !   do while (j <= jupp .and. iproc <= np-1)
+    do while (iproc <= np-1)
+      if (j< jupp) then 
+        cumulative_load = cumulative_load + weight(j)
+        if (cumulative_load >= ideal_load) then
+          ! default: cut at j
+          cut_plane = j
+          proc_load(iproc) = cumulative_load
 
-  !     cumulative_load = cumulative_load + weight(j)
-  !     ! write(6,*) "cumulative_load", cumulative_load, "j",j , "weight", weight(j)
-  !     j = j+1
+          ! cut at j+1 only if it exists
+          !if (j < jupp) then
+            cumulative_load_2 = cumulative_load + weight(j+1)
+            if (abs(cumulative_load_2 - ideal_load) < abs(proc_load(iproc) - ideal_load)) then
+              cut_plane = j+1
+              proc_load(iproc) = cumulative_load_2
+            end if
+          !end if
+
+          !define max j fort hat proc and the no. planes 
+          jmax_plane(iproc) = cut_plane
+          nplanes(iproc) = jmax_plane(iproc) - jmin_plane(iproc) +1
+          
+          ! if we get to last proc before all j planes are taken, fill the last proc with all remaining planes 
+          if (iproc == np-1) then
+            jmax_plane(iproc) = jupp
+            proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
+            exit
+          else
+            iproc = iproc + 1
+            jmin_plane(iproc) = cut_plane + 1
+          end if
+
+          cumulative_load = 0.0d0
+          j = cut_plane + 1
+          endproc = iproc   ! <-- the last filled proc index
+        else
+          j = j + 1
+        end if
+      else 
+        !if we get to top proc before all planes are filled... 
+        endproc = iproc   ! <-- the last filled proc index
+        jmax_plane(iproc) = jupp
+        proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
+        nplanes(iproc) = jmax_plane(iproc) - jmin_plane(iproc) +1
+        do i = iproc+1, np-1
+          jmin_plane(i) = jupp + 1
+          jmax_plane(i) = jupp
+          proc_load(i)  = 0.0d0
+        end do
+        exit
+      end if 
+
+    end do
+    write(6,*) "endproc" , endproc, "jmax_plane(endproc)", jmax_plane(endproc)
+
+    !!!!!!!!!!!!!!!!!!!!  redistributing planes w nothing.. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    ! takes one from each of the last n planes and shifts the planes and the weights 
+    ! this frees up n planes where one plane will be given to the remaining unloaded procs 
+    if (endproc < np-1) then 
+      startproc = endproc - (np-1 - endproc) +1
+      write(6,*) "startproc", startproc
+      proc_load(startproc) = proc_load(startproc)-weight(jmax_plane(startproc))
+      jmax_plane(startproc) = jmax_plane(startproc) -1
+      write(6,*) "jmax_plane(startproc)", jmax_plane(startproc)
       
-      
-  !     if (cumulative_load >= ideal_load) then
-  !       !write(6,*) "enetered if statement"
+      do i = startproc+1, endproc
+      write(6,*) "i", i 
+        proc_load(i) = 0 
+        nplanes(i) = nplanes(i)-1   
+        write(6,*) "nplanes(i)", nplanes(i)
+        jmin_plane(i) = jmax_plane(i-1)+1
+        jmax_plane(i) = jmin_plane(i)+ nplanes(i) -1 !this minus 1 bc if start j = 110, then 3 planes is acc 110,111,112
+        write(6,*) "jmin_plane", jmin_plane(i), "jmax_plane(i)", jmax_plane(i)
+        do j =  jmin_plane(i), jmax_plane(i)
+          proc_load(i) = proc_load(i) + weight(j)
+        end do 
+      end do 
 
-  !       cumulative_load_1 = cumulative_load - weight(j-1)
-  !       cumulative_load_2 = cumulative_load
+      ! treatmeant of planes w. 0 load
 
-  !       if (abs(cumulative_load_1 - ideal_load )< abs(cumulative_load_2 - ideal_load)) then
-  !         cut_plane = j-1
-  !         proc_load(iproc) = cumulative_load_1
-  !       else
-  !         cut_plane = j 
-  !         proc_load(iproc) = cumulative_load_2
-  !       end if
-        
-      
-  !       ! jmax_plane(iproc) = cut_plane
-  !       ! iproc = iproc + 1
+      do i = endproc+1, np-1  
+        jmin_plane(i) = jmax_plane(i-1) +1
+        jmax_plane(i) = jmin_plane(i)
+        proc_load(i) = weight(jmax_plane(i))
+        write(6,*) "i", i,  "jmin_plane", jmin_plane(i), "jmax_plane(i)", jmax_plane(i)
+      end do 
 
-  !       ! if (iproc < np-1) then
-  !       !   jmin_plane(iproc) = cut_plane + 1
-  !       ! else
-  !       !   jmin_plane(iproc) = cut_plane + 1                     ! setting last proc to be whatever is left 
-  !       !   jmax_plane(iproc) = jupp
-  !       !   proc_load(iproc)  = weight_tot - sum(proc_load(0:iproc-1))
-  !       !   !exit
-  !       ! end if
+    end if 
 
-  !       jmax_plane(iproc) = cut_plane
+  end if 
 
-  !       if (iproc == np-1) then
-  !         jmax_plane(iproc) = jupp
-  !         proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
-  !         exit
-  !       else
-  !         iproc = iproc + 1
-  !         jmin_plane(iproc) = cut_plane + 1
-  !       end if
-
-
-
-  !       cumulative_load = 0.0d0
-  !       j = cut_plane + 1
-  !     end if
-
-  !   end do
-
-  !   ! Safety check 
-  !   ! If the loop ended because j ran out (j > jupp) before we reached iproc=np-1,
-  !   ! finalise the current proc with the remainder and mark the rest empty.
-  !   ! its unlikely but it could be taking the upper bound everytime so we could potentially run out.. 
-
-  !   if (iproc <= np-1 .and. j > jupp) then
-  !     jmax_plane(iproc) = jupp
-  !     proc_load(iproc)  = real(weight_tot,8) - sum(proc_load(0:iproc-1))
-  !     do i = iproc+1, np-1
-  !       jmin_plane(i) = jupp + 1
-  !       jmax_plane(i) = jupp
-  !       proc_load(i)  = 0.0d0
-  !     end do
-  !   end if
-
-
-  ! end if 
-
-  ! call MPI_BCAST(jmin_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
-  ! call MPI_BCAST(jmax_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
-  ! call MPI_BCAST(proc_load,  np, MPI_DOUBLE_PRECISION,   0, MPI_COMM_WORLD, ierr)
+  call MPI_BCAST(jmin_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
+  call MPI_BCAST(jmax_plane, np, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
+  call MPI_BCAST(proc_load,  np, MPI_DOUBLE_PRECISION,   0, MPI_COMM_WORLD, ierr)
 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!! Same from here for DNS and RNL !!!!!!!!!!!!!!!!!!!!!

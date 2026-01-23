@@ -1,0 +1,571 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane.
+
+JobID: 20998410
+======
+Time: Thu Jan 22 15:38:07 GMT 2026
+Running on master node: cpu-r-111
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane
+
+Nodes allocated:
+================
+cpu-r-111
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =          39
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =          18
+ Getting Weights
+ ./3e-9/                                                                        
+                                          
+ 
+ >>> entered proc_lims_columns, myid =          17
+ j=           1 weight              30027508
+ j=           2 weight              30027508
+ j=           3 weight              30027508
+ j=           4 weight              30027508
+ j=           5 weight              30027508
+ j=           6 weight              33283485
+ j=           7 weight              38215811
+ j=           8 weight              48275597
+ j=           9 weight              59266016
+ j=          10 weight              68919502
+ j=          11 weight              78741805
+ j=          12 weight              89272046
+ j=          13 weight             100956150
+ j=          14 weight             113548155
+ j=          15 weight             117568706
+ j=          16 weight             124053085
+ j=          17 weight             133197378
+ j=          18 weight             142395584
+ j=          19 weight             151342045
+ j=          20 weight             152025435
+ j=          21 weight             152229628
+ j=          22 weight             155351183
+ j=          23 weight             160174549
+ j=          24 weight             165243294
+ j=          25 weight             171343826
+ j=          26 weight             176197244
+ j=          27 weight             173036014
+ j=          28 weight             169611377
+ j=          29 weight             167628535
+ j=          30 weight             166306314
+ j=          31 weight             167371874
+ j=          32 weight             169246398
+ j=          33 weight             172684218
+ j=          34 weight             173652670
+ j=          35 weight             170129689
+ j=          36 weight             166317096
+ j=          37 weight             162221478
+ j=          38 weight             158128240
+ j=          39 weight             154617130
+ j=          40 weight             151207619
+ j=          41 weight             147425554
+ j=          42 weight             144756990
+ j=          43 weight             142315480
+ j=          44 weight             141144288
+ j=          45 weight             138722926
+ j=          46 weight             136172282
+ j=          47 weight             133233682
+ j=          48 weight             130218613
+ j=          49 weight             126682591
+ j=          50 weight             123278423
+ j=          51 weight             119643404
+ j=          52 weight             115909707
+ j=          53 weight             112868256
+ j=          54 weight             109328347
+ j=          55 weight             106222136
+ j=          56 weight             103470368
+ j=          57 weight             100986254
+ j=          58 weight              98067245
+ j=          59 weight              95900779
+ j=          60 weight              94052637
+ j=          61 weight              92053163
+ j=          62 weight              89499724
+ j=          63 weight              87199904
+ j=          64 weight              84770808
+ j=          65 weight              82218449
+ j=          66 weight              79959173
+ j=          67 weight              77372170
+ j=          68 weight              75036688
+ j=          69 weight              72657871
+ j=          70 weight              70277945
+ j=          71 weight              67676075
+ j=          72 weight              64404138
+ j=          73 weight              61715158
+ j=          74 weight              60675098
+ j=          75 weight              60675098
+ j=          76 weight              60675098
+ j=          77 weight              60675098
+ j=          78 weight              60675098
+ j=          79 weight              61715158
+ j=          80 weight              64404138
+ j=          81 weight              67676075
+ j=          82 weight              70277945
+ j=          83 weight              72657871
+ j=          84 weight              75036688
+ j=          85 weight              77372170
+ j=          86 weight              79959173
+ j=          87 weight              82218449
+ j=          88 weight              84770808
+ j=          89 weight              87199904
+ j=          90 weight              89499724
+ j=          91 weight              92053163
+ j=          92 weight              94052637
+ j=          93 weight              95900779
+ j=          94 weight              98067245
+ j=          95 weight             100986254
+ j=          96 weight             103470368
+ j=          97 weight             106222136
+ j=          98 weight             109328347
+ j=          99 weight             112868256
+ j=         100 weight             115909707
+ j=         101 weight             119643404
+ j=         102 weight             123278423
+ j=         103 weight             126682591
+ j=         104 weight             130218613
+ j=         105 weight             133233682
+ j=         106 weight             136172282
+ j=         107 weight             138722926
+ j=         108 weight             141144288
+ j=         109 weight             142315480
+ j=         110 weight             144756990
+ j=         111 weight             147425554
+ j=         112 weight             151207619
+ j=         113 weight             154617130
+ j=         114 weight             158128240
+ j=         115 weight             162221478
+ j=         116 weight             166317096
+ j=         117 weight             170129689
+ j=         118 weight             173652670
+ j=         119 weight             172684218
+ j=         120 weight             169246398
+ j=         121 weight             167371874
+ j=         122 weight             166306314
+ j=         123 weight             167628535
+ j=         124 weight             169611377
+ j=         125 weight             173036014
+ j=         126 weight             176197244
+ j=         127 weight             171343826
+ j=         128 weight             165243294
+ j=         129 weight             160174549
+ j=         130 weight             155351183
+ j=         131 weight             152229628
+ j=         132 weight             152025435
+ j=         133 weight             151342045
+ j=         134 weight             142395584
+ j=         135 weight             133197378
+ j=         136 weight             124053085
+ j=         137 weight             117568706
+ j=         138 weight             113548155
+ j=         139 weight             100956150
+ j=         140 weight              89272046
+ j=         141 weight              78741805
+ j=         142 weight              68919502
+ j=         143 weight              59266016
+ j=         144 weight              48275597
+ j=         145 weight              38215811
+ j=         146 weight              33283485
+ j=         147 weight              30027508
+ j=         148 weight              30027508
+ j=         149 weight              30027508
+ j=         150 weight              30027508
+ j=         151 weight              30027508
+ check 4
+ weight_tot           16961651378 ideal_load             424041284
+[cpu-r-111:3775190:0:3775190] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xffffffff367d1ea8)
+==== backtrace (tid:3775190) ====
+ 0  /usr/local/software/spack/csd3/opt-2024-06-01/linux-rocky8-x86_64_v4/gcc-8.5.0/ucx-1.15.0-3odtpik4wnhzdj6fgnc5ujwcmmnx4yjl/lib/libucs.so.0(ucs_handle_error+0x294) [0x1490e834c7a4]
+ 1  /usr/local/software/spack/csd3/opt-2024-06-01/linux-rocky8-x86_64_v4/gcc-8.5.0/ucx-1.15.0-3odtpik4wnhzdj6fgnc5ujwcmmnx4yjl/lib/libucs.so.0(+0x2d964) [0x1490e834c964]
+ 2  /usr/local/software/spack/csd3/opt-2024-06-01/linux-rocky8-x86_64_v4/gcc-8.5.0/ucx-1.15.0-3odtpik4wnhzdj6fgnc5ujwcmmnx4yjl/lib/libucs.so.0(+0x2dc08) [0x1490e834cc08]
+ 3  ./littleharsh() [0x44afc8]
+ 4  ./littleharsh() [0x43e531]
+ 5  ./littleharsh() [0x480653]
+ 6  ./littleharsh() [0x403962]
+ 7  /lib64/libc.so.6(__libc_start_main+0xe5) [0x14923a1817e5]
+ 8  ./littleharsh() [0x40386e]
+=================================
+forrtl: severe (174): SIGSEGV, segmentation fault occurred
+Image              PC                Routine            Line        Source             
+littleharsh        000000000049B20A  Unknown               Unknown  Unknown
+libpthread-2.28.s  000014923AAB6990  Unknown               Unknown  Unknown
+littleharsh        000000000044AFC8  Unknown               Unknown  Unknown
+littleharsh        000000000043E531  Unknown               Unknown  Unknown
+littleharsh        0000000000480653  Unknown               Unknown  Unknown
+littleharsh        0000000000403962  Unknown               Unknown  Unknown
+libc-2.28.so       000014923A1817E5  __libc_start_main     Unknown  Unknown
+littleharsh        000000000040386E  Unknown               Unknown  Unknown
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 1 PID 3775191 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 2 PID 3775192 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 3 PID 3775193 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 4 PID 3775194 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 5 PID 3775195 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 6 PID 3775196 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 7 PID 3775197 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 8 PID 3775198 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 9 PID 3775199 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 10 PID 3775200 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 11 PID 3775201 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 12 PID 3775202 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 13 PID 3775203 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 14 PID 3775206 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 15 PID 3775208 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 16 PID 3775212 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 17 PID 3775213 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 18 PID 3775214 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 19 PID 3775215 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 20 PID 3775216 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 21 PID 3775217 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 22 PID 3775218 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 23 PID 3775219 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 24 PID 3775220 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 25 PID 3775221 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 26 PID 3775222 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 27 PID 3775223 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 28 PID 3775224 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 29 PID 3775225 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 30 PID 3775226 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 31 PID 3775227 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 32 PID 3775228 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 33 PID 3775229 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 34 PID 3775230 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 35 PID 3775231 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 36 PID 3775232 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 37 PID 3775234 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 38 PID 3775238 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 39 PID 3775239 RUNNING AT cpu-r-111
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
