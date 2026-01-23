@@ -1,0 +1,777 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane.
+
+JobID: 21034429
+======
+Time: Fri Jan 23 11:36:09 GMT 2026
+Running on master node: cpu-r-4
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane
+
+Nodes allocated:
+================
+cpu-r-4
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =          23
+ Getting Weights
+ ./3e-9/                                                                        
+                                          
+ 
+ >>> entered proc_lims_columns, myid =          39
+ j=           1 weight              30027508
+ j=           2 weight              30027508
+ j=           3 weight              30027508
+ j=           4 weight              30027508
+ j=           5 weight              30027508
+ j=           6 weight              33283485
+ j=           7 weight              38215811
+ j=           8 weight              48275597
+ j=           9 weight              59266016
+ j=          10 weight              68919502
+ j=          11 weight              78741805
+ j=          12 weight              89272046
+ j=          13 weight             100956150
+ j=          14 weight             113548155
+ j=          15 weight             117568706
+ j=          16 weight             124053085
+ j=          17 weight             133197378
+ j=          18 weight             142395584
+ j=          19 weight             151342045
+ j=          20 weight             152025435
+ j=          21 weight             152229628
+ j=          22 weight             155351183
+ j=          23 weight             160174549
+ j=          24 weight             165243294
+ j=          25 weight             171343826
+ j=          26 weight             176197244
+ j=          27 weight             173036014
+ j=          28 weight             169611377
+ j=          29 weight             167628535
+ j=          30 weight             166306314
+ j=          31 weight             167371874
+ j=          32 weight             169246398
+ j=          33 weight             172684218
+ j=          34 weight             173652670
+ j=          35 weight             170129689
+ j=          36 weight             166317096
+ j=          37 weight             162221478
+ j=          38 weight             158128240
+ j=          39 weight             154617130
+ j=          40 weight             151207619
+ j=          41 weight             147425554
+ j=          42 weight             144756990
+ j=          43 weight             142315480
+ j=          44 weight             141144288
+ j=          45 weight             138722926
+ j=          46 weight             136172282
+ j=          47 weight             133233682
+ j=          48 weight             130218613
+ j=          49 weight             126682591
+ j=          50 weight             123278423
+ j=          51 weight             119643404
+ j=          52 weight             115909707
+ j=          53 weight             112868256
+ j=          54 weight             109328347
+ j=          55 weight             106222136
+ j=          56 weight             103470368
+ j=          57 weight             100986254
+ j=          58 weight              98067245
+ j=          59 weight              95900779
+ j=          60 weight              94052637
+ j=          61 weight              92053163
+ j=          62 weight              89499724
+ j=          63 weight              87199904
+ j=          64 weight              84770808
+ j=          65 weight              82218449
+ j=          66 weight              79959173
+ j=          67 weight              77372170
+ j=          68 weight              75036688
+ j=          69 weight              72657871
+ j=          70 weight              70277945
+ j=          71 weight              67676075
+ j=          72 weight              64404138
+ j=          73 weight              61715158
+ j=          74 weight              60675098
+ j=          75 weight              60675098
+ j=          76 weight              60675098
+ j=          77 weight              60675098
+ j=          78 weight              60675098
+ j=          79 weight              61715158
+ j=          80 weight              64404138
+ j=          81 weight              67676075
+ j=          82 weight              70277945
+ j=          83 weight              72657871
+ j=          84 weight              75036688
+ j=          85 weight              77372170
+ j=          86 weight              79959173
+ j=          87 weight              82218449
+ j=          88 weight              84770808
+ j=          89 weight              87199904
+ j=          90 weight              89499724
+ j=          91 weight              92053163
+ j=          92 weight              94052637
+ j=          93 weight              95900779
+ j=          94 weight              98067245
+ j=          95 weight             100986254
+ j=          96 weight             103470368
+ j=          97 weight             106222136
+ j=          98 weight             109328347
+ j=          99 weight             112868256
+ j=         100 weight             115909707
+ j=         101 weight             119643404
+ j=         102 weight             123278423
+ j=         103 weight             126682591
+ j=         104 weight             130218613
+ j=         105 weight             133233682
+ j=         106 weight             136172282
+ j=         107 weight             138722926
+ j=         108 weight             141144288
+ j=         109 weight             142315480
+ j=         110 weight             144756990
+ j=         111 weight             147425554
+ j=         112 weight             151207619
+ j=         113 weight             154617130
+ j=         114 weight             158128240
+ j=         115 weight             162221478
+ j=         116 weight             166317096
+ j=         117 weight             170129689
+ j=         118 weight             173652670
+ j=         119 weight             172684218
+ j=         120 weight             169246398
+ j=         121 weight             167371874
+ j=         122 weight             166306314
+ j=         123 weight             167628535
+ j=         124 weight             169611377
+ j=         125 weight             173036014
+ j=         126 weight             176197244
+ j=         127 weight             171343826
+ j=         128 weight             165243294
+ j=         129 weight             160174549
+ j=         130 weight             155351183
+ j=         131 weight             152229628
+ j=         132 weight             152025435
+ j=         133 weight             151342045
+ j=         134 weight             142395584
+ j=         135 weight             133197378
+ j=         136 weight             124053085
+ j=         137 weight             117568706
+ j=         138 weight             113548155
+ j=         139 weight             100956150
+ j=         140 weight              89272046
+ j=         141 weight              78741805
+ j=         142 weight              68919502
+ j=         143 weight              59266016
+ j=         144 weight              48275597
+ j=         145 weight              38215811
+ j=         146 weight              33283485
+ j=         147 weight              30027508
+ j=         148 weight              30027508
+ j=         149 weight              30027508
+ j=         150 weight              30027508
+ j=         151 weight              30027508
+ check 4
+ weight_tot           16961651378 ideal_load             424041284
+ jgal(ugrid,1)           1 jgal(ugrid,2)          11           0
+ iproc           0 nplanes          11 proc_load   476839756.000000     
+ iproc           1 nplanes           5 proc_load   545398142.000000     
+ iproc           2 nplanes           3 proc_load   426935007.000000     
+ iproc           3 nplanes           3 proc_load   459606246.000000     
+ iproc           4 nplanes           3 proc_load   496761669.000000     
+ iproc           5 nplanes           3 proc_load   518844635.000000     
+ iproc           6 nplanes           3 proc_load   501306723.000000     
+ iproc           7 nplanes           3 proc_load   515583286.000000     
+ iproc           8 nplanes           3 proc_load   498668263.000000     
+ iproc           9 nplanes           3 proc_load   463952989.000000     
+ iproc          10 nplanes           3 proc_load   434498024.000000     
+ iproc          11 nplanes           4 proc_load   549273178.000000     
+ iproc          12 nplanes           4 proc_load   499823031.000000     
+ iproc          13 nplanes           4 proc_load   444328446.000000     
+ iproc          14 nplanes           5 proc_load   492477283.000000     
+ iproc          15 nplanes           5 proc_load   435742048.000000     
+ iproc          16 nplanes           6 proc_load   442979922.000000     
+ iproc          17 nplanes           7 proc_load   429494786.000000     
+ iproc          18 nplanes           7 proc_load   489140045.000000     
+ iproc          19 nplanes           6 proc_load   515701221.000000     
+ iproc          20 nplanes           5 proc_load   492477283.000000     
+ iproc          21 nplanes           4 proc_load   444328446.000000     
+ iproc          22 nplanes           4 proc_load   499823031.000000     
+ iproc          23 nplanes           4 proc_load   549273178.000000     
+ iproc          24 nplanes           3 proc_load   434498024.000000     
+ iproc          25 nplanes           3 proc_load   463952989.000000     
+ iproc          26 nplanes           3 proc_load   498668263.000000     
+ iproc          27 nplanes           3 proc_load   515583286.000000     
+ iproc          28 nplanes           3 proc_load   501306723.000000     
+ iproc          29 nplanes           3 proc_load   518844635.000000     
+ iproc          30 nplanes           3 proc_load   496761669.000000     
+ iproc          31 nplanes           3 proc_load   459606246.000000     
+ iproc          32 nplanes           2 proc_load   293737629.000000     
+ iproc          33 nplanes           3 proc_load   374819169.000000     
+ iproc          34 nplanes           7 proc_load   558979271.000000     
+ iproc          35 nplanes           3 proc_load   101526804.000000     
+ iproc          36 nplanes           1 proc_load   30027508.0000000     
+ iproc          37 nplanes           1 proc_load   30027508.0000000     
+ iproc          38 nplanes           1 proc_load   30027508.0000000     
+ iproc          39 nplanes           0 proc_load   30027508.0000000     
+ jgal(ugrid,1)          12 jgal(ugrid,2)          16           1
+ jgal(ugrid,1)          17 jgal(ugrid,2)          19           2
+ jgal(ugrid,1)          20 jgal(ugrid,2)          22           3
+ jgal(ugrid,1)          23 jgal(ugrid,2)          25           4
+ jgal(ugrid,1)          26 jgal(ugrid,2)          28           5
+ jgal(ugrid,1)          29 jgal(ugrid,2)          31           6
+ jgal(ugrid,1)          32 jgal(ugrid,2)          34           7
+ jgal(ugrid,1)          35 jgal(ugrid,2)          37           8
+ jgal(ugrid,1)          38 jgal(ugrid,2)          40           9
+ jgal(ugrid,1)          41 jgal(ugrid,2)          43          10
+ jgal(ugrid,1)          44 jgal(ugrid,2)          47          11
+ jgal(ugrid,1)          48 jgal(ugrid,2)          51          12
+ jgal(ugrid,1)          52 jgal(ugrid,2)          55          13
+ jgal(ugrid,1)          56 jgal(ugrid,2)          60          14
+ jgal(ugrid,1)          61 jgal(ugrid,2)          65          15
+ jgal(ugrid,1)          66 jgal(ugrid,2)          71          16
+ jgal(ugrid,1)          72 jgal(ugrid,2)          78          17
+ jgal(ugrid,1)          79 jgal(ugrid,2)          85          18
+ jgal(ugrid,1)          86 jgal(ugrid,2)          91          19
+ jgal(ugrid,1)          92 jgal(ugrid,2)          96          20
+ jgal(ugrid,1)          97 jgal(ugrid,2)         100          21
+ jgal(ugrid,1)         101 jgal(ugrid,2)         104          22
+ jgal(ugrid,1)         105 jgal(ugrid,2)         108          23
+ jgal(ugrid,1)         109 jgal(ugrid,2)         111          24
+ jgal(ugrid,1)         112 jgal(ugrid,2)         114          25
+ jgal(ugrid,1)         115 jgal(ugrid,2)         117          26
+ jgal(ugrid,1)         118 jgal(ugrid,2)         120          27
+ jgal(ugrid,1)         121 jgal(ugrid,2)         123          28
+ jgal(ugrid,1)         124 jgal(ugrid,2)         126          29
+ jgal(ugrid,1)         127 jgal(ugrid,2)         129          30
+ jgal(ugrid,1)         130 jgal(ugrid,2)         132          31
+ jgal(ugrid,1)         133 jgal(ugrid,2)         134          32
+ jgal(ugrid,1)         135 jgal(ugrid,2)         137          33
+ jgal(ugrid,1)         138 jgal(ugrid,2)         144          34
+ jgal(ugrid,1)         145 jgal(ugrid,2)         147          35
+ jgal(ugrid,1)         148 jgal(ugrid,2)         148          36
+ jgal(ugrid,1)         149 jgal(ugrid,2)         149          37
+ jgal(ugrid,1)         150 jgal(ugrid,2)         150          38
+ jgal(ugrid,1)         152 jgal(ugrid,2)         151          39
+ myid          39 u         152         151
+ myid          39 v         151         151
+ myid          39 p         151         151
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ t=   16.8590683233924      =====> Finished Start
+ t=   16.8618198348559      =====> Calling getini 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ u2 from file ./input//u2_0128x0128x0153_t09455.dat,
+ u3 from file ./input//u3_0128x0128x0153_t09455.dat,
+ and p from file ./input//p_0128x0128x0153_t09455.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx             128
+ Nz             128
+ Nyv            151
+ Nyu            152
+ Ngalx          192
+ Ngalz          192
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ finished getini           0
+ finished getini           1
+ finished getini           2
+ finished getini           3
+ finished getini           4
+ finished getini           5
+ finished getini           6
+ finished getini           7
+ finished getini           8
+ finished getini           9
+ finished getini          10
+ finished getini          11
+ finished getini          12
+ finished getini          13
+ finished getini          15
+ finished getini          14
+ 
+ Initialised
+ finished getini          16
+ finished getini          17
+ finished getini          18
+ finished getini          19
+ finished getini          20
+ finished getini          21
+ finished getini          22
+ finished getini          23
+ finished getini          24
+ finished getini          25
+ finished getini          26
+ finished getini          27
+ finished getini          28
+ finished getini          29
+ finished getini          30
+ finished getini          31
+ finished getini          32
+ finished getini          33
+ finished getini          34
+ finished getini          35
+ finished getini          36
+ finished getini          37
+ finished getini          38
+ finished getini          39
+ t=   16.9641635665321      finished RHS =====> Building Nonlinear
+ t=   16.9674698630697      =====> Interpolating
+ t=   16.9720350654679      =====> Modes to planes
+ t=   17.0079536627163      =====> Spectra
+ t=   17.0079605187057      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   8.021097332376870E-003
+ Qx     1.75222647594346     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423825947899     
+ Uslp -1.058242342586234E-015
+ t=   17.3252878776984      =====> Ops in Planes
+ t=   18.4131546986755       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   18.4134348152438      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   18.6374844614184      =====> Finished Nonlin Inter U           0
+ t=   18.6378426948213      =====> Finished Derivatives -U           0
+ t=   18.6387186583597      =====> Finished U           0
+ t=   19.7007292023627       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   19.7009227010421      =====> Finished Linear Advection - V           0
+ t=   19.8621077108546      =====> Finished Nonlin Inter v           0
+ t=   19.8623104995349      =====> Finished Derivatives -V           0
+ t=   19.8629808464320      Finished V =====> Finished Ops in planes           0
+ t=   20.0510141815757      =====> Planes to modes UVP
+ t=   20.8377542705857      =====> Planes to modes NUVP
+ t=   20.8479910345632      =====> Derivatives
+ t=   20.8484870977118      =====> CFL and Stats
+ t=   21.2781087519252      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   21.2791533411364      Finished Solving Velocities =====> Solving Pressure 
+ t=   21.2800850095809      finished RHS =====> Building Nonlinear
+ t=   21.2812793886405      =====> Interpolating
+ t=   21.2836689306423      =====> Modes to planes
+ t=   21.2990468190401      =====> Spectra
+ t=   21.2990528990631      =====> Record Out
+ t=   21.2990540530300      =====> Ops in Planes
+ t=   22.3423386832001       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   22.3426061267382      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   22.5707573921536      =====> Finished Nonlin Inter U           0
+ t=   22.5710810826276      =====> Finished Derivatives -U           0
+ t=   22.5718253413797      =====> Finished U           0
+ t=   23.6443269939045       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   23.6446398143889      =====> Finished Linear Advection - V           0
+ t=   23.8106697471812      =====> Finished Nonlin Inter v           0
+ t=   23.8108763428172      =====> Finished Derivatives -V           0
+ t=   23.8115501776920      Finished V =====> Finished Ops in planes           0
+ t=   24.0024624860380      =====> Planes to modes UVP
+ t=   24.8123622275307      =====> Planes to modes NUVP
+ t=   24.8202233284246      =====> Derivatives
+ t=   24.8207524925820      =====> CFL and Stats
+ t=   24.8210145730991      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   24.8221340292366      Finished Solving Velocities =====> Solving Pressure 
+ t=   24.8231849804870      finished RHS =====> Building Nonlinear
+ t=   24.8252081441460      =====> Interpolating
+ t=   24.8279845215147      =====> Modes to planes
+ t=   24.8409733659355      =====> Spectra
+ t=   24.8409817179199      =====> Record Out
+ t=   24.8409829898737      =====> Ops in Planes
+ t=   25.9472581802402       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   25.9476586235687      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   26.1772786565125      =====> Finished Nonlin Inter U           0
+ t=   26.1777273397893      =====> Finished Derivatives -U           0
+ t=   26.1784794295090      =====> Finished U           0
+ t=   27.2604631492868       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   27.2606619579601      =====> Finished Linear Advection - V           0
+ t=   27.4270468121395      =====> Finished Nonlin Inter v           0
+ t=   27.4272545778076      =====> Finished Derivatives -V           0
+ t=   27.4280329204630      Finished V =====> Finished Ops in planes           0
+ t=   27.6201721368125      =====> Planes to modes UVP
+ t=   28.3754820880713      =====> Planes to modes NUVP
+ t=   28.3819142483990      =====> Derivatives
+ t=   28.3824400495505      =====> CFL and Stats
+ t=   28.3826977800927      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   28.3838193912525      Finished Solving Velocities =====> Solving Pressure 
+ t=   28.3849112734315      finished RHS =====> Building Nonlinear
+ t=   28.3869769649464      =====> Interpolating
+ t=   28.3898293332313      =====> Modes to planes
+ t=   28.4003092487692      =====> Spectra
+ t=   28.4006597892148      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           1
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err                      NaN
+ Qx                       NaN
+ mpgx -3.067500000000000E-003
+ Umax                     NaN
+ Uslp                     NaN
+ t=   28.5005193000543      =====> Ops in Planes
+ t=   29.5990864412161       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   29.5993649237789      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   29.8279020854970      =====> Finished Nonlin Inter U           0
+ t=   29.8282677308889      =====> Finished Derivatives -U           0
+ t=   29.8290177696617      =====> Finished U           0
+ t=   30.9224697073805       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   30.9226729540387      =====> Finished Linear Advection - V           0
+ t=   31.0879308680305      =====> Finished Nonlin Inter v           0
+ t=   31.0881436857162      =====> Finished Derivatives -V           0
+ t=   31.0888240655768      Finished V =====> Finished Ops in planes           0
+ t=   31.2791211079457      =====> Planes to modes UVP
+ t=   32.1385095440783      =====> Planes to modes NUVP
+ t=   32.1436623255140      =====> Derivatives
+ t=   32.1441695906688      =====> CFL and Stats
+ t=   32.2339288633084      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   32.2350644694525      Finished Solving Velocities =====> Solving Pressure 
+ t=   32.2360031428398      finished RHS =====> Building Nonlinear
+ t=   32.2373068807065      =====> Interpolating
+ t=   32.2397364836652      =====> Modes to planes
+ t=   32.2463495696429      =====> Spectra
+ t=   32.2463560156175      =====> Record Out
+ t=   32.2463572086417      =====> Ops in Planes
+ t=   33.3451913943863       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   33.3454767338699      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   33.5740085296566      =====> Finished Nonlin Inter U           0
+ t=   33.5743747670203      =====> Finished Derivatives -U           0
+ t=   33.5751326718018      =====> Finished U           0
+ t=   34.6467254668241       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   34.6469221485313      =====> Finished Linear Advection - V           0
+ t=   34.8119367079344      =====> Finished Nonlin Inter v           0
+ t=   34.8121460195980      =====> Finished Derivatives -V           0
+ t=   34.8128178804764      Finished V =====> Finished Ops in planes           0
+ t=   35.0033596944413      =====> Planes to modes UVP
+ t=   35.8881578402943      =====> Planes to modes NUVP
+ t=   35.8921938276035      =====> Derivatives
+ t=   35.8927632516716      =====> CFL and Stats
+ t=   35.8930162032484      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   35.8941142003750      Finished Solving Velocities =====> Solving Pressure 
+ t=   35.8952889634529      finished RHS =====> Building Nonlinear
+ t=   35.8974545178353      =====> Interpolating
+ t=   35.9000921594561      =====> Modes to planes
+ t=   35.9055228914367      =====> Spectra
+ t=   35.9055283184280      =====> Record Out
+ t=   35.9055297754239      =====> Ops in Planes
+ t=   37.0027835327783       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   37.0030541472952      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   37.2358951119240      =====> Finished Nonlin Inter U           0
+ t=   37.2362742352998      =====> Finished Derivatives -U           0
+ t=   37.2371632998111      =====> Finished U           0
+ t=   38.3149454325321       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   38.3151431862498      =====> Finished Linear Advection - V           0
+ t=   38.4811017391039      =====> Finished Nonlin Inter v           0
+ t=   38.4813032907550      =====> Finished Derivatives -V           0
+ t=   38.4820866414811      Finished V =====> Finished Ops in planes           0
+ t=   38.6727139073191      =====> Planes to modes UVP
+ t=   39.5469002538011      =====> Planes to modes NUVP
+ t=   39.5504092679475      =====> Derivatives
+ t=   39.5509712800267      =====> CFL and Stats
+ t=   39.5512322345749      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   39.5523405337590      Finished Solving Velocities =====> Solving Pressure 
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           2
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err                      NaN
+ Qx                       NaN
+ mpgx -3.067500000000000E-003
+ Umax                     NaN
+ Uslp                     NaN
+ process           1 over
+ process           2 over
+ process           3 over
+ process           4 over
+ process           5 over
+ process           6 over
+ process           7 over
+ process           8 over
+ process           9 over
+ process          10 over
+ process          11 over
+ process          12 over
+ process          13 over
+ process          14 over
+ process          15 over
+ process          16 over
+ process          17 over
+ process          18 over
+ process          19 over
+ process          20 over
+ process          21 over
+ process          22 over
+ process          23 over
+ process          24 over
+ process          25 over
+ process          26 over
+ process          27 over
+ process          28 over
+ process          29 over
+ process          30 over
+ process          31 over
+ process          32 over
+ process          33 over
+ process          34 over
+ process          35 over
+ process          36 over
+ process          37 over
+ process          38 over
+ process          39 over
+ process           0 over
+ 
+ ---------------LITTLE HARSH---------------
+          'That wasn't that harsh'         
+ ------------------------------------------
+ 

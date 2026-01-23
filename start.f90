@@ -510,6 +510,20 @@ end if
   call proc_lims_planes (myid)
   ! write(6,*) "finished proc lims planes"
 
+  block
+    integer :: r
+    do r = np-1, np-1
+      call MPI_Barrier(MPI_COMM_WORLD, ierr)
+      if (myid == r) then
+        write(6,*) "myid", myid, "u", planelim(ugrid,1,myid), planelim(ugrid,2,myid)
+        write(6,*) "myid", myid, "v", planelim(vgrid,1,myid), planelim(vgrid,2,myid)
+        write(6,*) "myid", myid, "p", planelim(pgrid,1,myid), planelim(pgrid,2,myid)
+        call flush(6)
+      end if
+    end do
+    call MPI_Barrier(MPI_COMM_WORLD, ierr)
+  end block
+
   
   !write(6,*) "doing grid weighting"
 
@@ -1271,7 +1285,7 @@ subroutine proc_lims_planes(myid)
 
   do iproc = 0, np-1
 
-    ! default: all grids use full j-range for this proc
+    ! default: all grids use full j-range 
     planelim(ugrid,1,iproc) = jmin_plane(iproc)
     planelim(ugrid,2,iproc) = jmax_plane(iproc)
 
@@ -1285,15 +1299,14 @@ subroutine proc_lims_planes(myid)
     if (iproc == 0) then
       planelim(pgrid,1,iproc) = jmin_plane(iproc) + 1
 
-    ! special case: last proc (shrink v and p by 1 at top)
-    else if (iproc == np-1) then
-      planelim(vgrid,2,iproc) = jmax_plane(iproc) - 1
-      planelim(pgrid,2,iproc) = jmax_plane(iproc) - 1
+    end if
+
+    ! special case: shift final u-grid by 1
+    if (iproc == np-1) then
+      planelim(ugrid,2,iproc) = jmax_plane(iproc) + 1
     end if
 
     nplanes(iproc) = planelim(ugrid,2,iproc) - planelim(ugrid,1,iproc) + 1
-
-    ! bandPL(iproc) = nband ! keeping this for now bc otherwise code will break but setting at a const
 
   end do
 
@@ -1318,7 +1331,7 @@ subroutine proc_lims_planes(myid)
   jgal(pgrid,1) = limPL_excw(pgrid,1,myid)
   jgal(pgrid,2) = limPL_excw(pgrid,2,myid)
 
-  ! write(6,*) "jgal(ugrid,1)", jgal(ugrid,1), "jgal(ugrid,2)", jgal(ugrid,2), myid
+  !write(6,*) "jgal(ugrid,1)", jgal(ugrid,1), "jgal(ugrid,2)", jgal(ugrid,2), myid
 
 
   if (myid == 0) then
@@ -2427,18 +2440,7 @@ subroutine get_weights
       read(40) tmpInt
       type = tmpInt(1)
       length = tmpInt(2)
-      ! write(6,*) "length", length
       weight(j) = weight(j) + length
-      ! write(6,*) "weight", weight(j), j 
-
-      ! if (allocated(nonlin(j,type)%list)) deallocate(nonlin(j,type)%list)
-      ! allocate(nonlin(j,type)%list(length,4))
-
-      ! read(40) nonlin(j,type)%list
-      ! write(6,*) "read done"
-      ! do len = 1,length
-      !   read(40) nonlin(j,type)%list(len,:)
-      ! end do 
 
       ! Skip the list data: list is (length,4) integers in the file
       nrem = length

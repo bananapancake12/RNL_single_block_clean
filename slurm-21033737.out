@@ -1,0 +1,777 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane.
+
+JobID: 21033737
+======
+Time: Fri Jan 23 11:13:21 GMT 2026
+Running on master node: cpu-r-4
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane
+
+Nodes allocated:
+================
+cpu-r-4
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+mpirun -ppn 40 -np 40 ./littleharsh 
+
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =          39
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =           5
+ Getting Weights
+ ./3e-9/                                                                        
+                                          
+ 
+ j=           1 weight              30027508
+ j=           2 weight              30027508
+ j=           3 weight              30027508
+ j=           4 weight              30027508
+ j=           5 weight              30027508
+ j=           6 weight              33283485
+ j=           7 weight              38215811
+ j=           8 weight              48275597
+ j=           9 weight              59266016
+ j=          10 weight              68919502
+ j=          11 weight              78741805
+ j=          12 weight              89272046
+ j=          13 weight             100956150
+ j=          14 weight             113548155
+ j=          15 weight             117568706
+ j=          16 weight             124053085
+ j=          17 weight             133197378
+ j=          18 weight             142395584
+ j=          19 weight             151342045
+ j=          20 weight             152025435
+ j=          21 weight             152229628
+ j=          22 weight             155351183
+ j=          23 weight             160174549
+ j=          24 weight             165243294
+ j=          25 weight             171343826
+ j=          26 weight             176197244
+ j=          27 weight             173036014
+ j=          28 weight             169611377
+ j=          29 weight             167628535
+ j=          30 weight             166306314
+ j=          31 weight             167371874
+ j=          32 weight             169246398
+ j=          33 weight             172684218
+ j=          34 weight             173652670
+ j=          35 weight             170129689
+ j=          36 weight             166317096
+ j=          37 weight             162221478
+ j=          38 weight             158128240
+ j=          39 weight             154617130
+ j=          40 weight             151207619
+ j=          41 weight             147425554
+ j=          42 weight             144756990
+ j=          43 weight             142315480
+ j=          44 weight             141144288
+ j=          45 weight             138722926
+ j=          46 weight             136172282
+ j=          47 weight             133233682
+ j=          48 weight             130218613
+ j=          49 weight             126682591
+ j=          50 weight             123278423
+ j=          51 weight             119643404
+ j=          52 weight             115909707
+ j=          53 weight             112868256
+ j=          54 weight             109328347
+ j=          55 weight             106222136
+ j=          56 weight             103470368
+ j=          57 weight             100986254
+ j=          58 weight              98067245
+ j=          59 weight              95900779
+ j=          60 weight              94052637
+ j=          61 weight              92053163
+ j=          62 weight              89499724
+ j=          63 weight              87199904
+ j=          64 weight              84770808
+ j=          65 weight              82218449
+ j=          66 weight              79959173
+ j=          67 weight              77372170
+ j=          68 weight              75036688
+ j=          69 weight              72657871
+ j=          70 weight              70277945
+ j=          71 weight              67676075
+ j=          72 weight              64404138
+ j=          73 weight              61715158
+ j=          74 weight              60675098
+ j=          75 weight              60675098
+ j=          76 weight              60675098
+ j=          77 weight              60675098
+ j=          78 weight              60675098
+ j=          79 weight              61715158
+ j=          80 weight              64404138
+ j=          81 weight              67676075
+ j=          82 weight              70277945
+ j=          83 weight              72657871
+ j=          84 weight              75036688
+ j=          85 weight              77372170
+ j=          86 weight              79959173
+ j=          87 weight              82218449
+ j=          88 weight              84770808
+ j=          89 weight              87199904
+ j=          90 weight              89499724
+ j=          91 weight              92053163
+ j=          92 weight              94052637
+ j=          93 weight              95900779
+ j=          94 weight              98067245
+ j=          95 weight             100986254
+ j=          96 weight             103470368
+ j=          97 weight             106222136
+ j=          98 weight             109328347
+ j=          99 weight             112868256
+ j=         100 weight             115909707
+ j=         101 weight             119643404
+ j=         102 weight             123278423
+ j=         103 weight             126682591
+ j=         104 weight             130218613
+ j=         105 weight             133233682
+ j=         106 weight             136172282
+ j=         107 weight             138722926
+ j=         108 weight             141144288
+ j=         109 weight             142315480
+ j=         110 weight             144756990
+ j=         111 weight             147425554
+ j=         112 weight             151207619
+ j=         113 weight             154617130
+ j=         114 weight             158128240
+ j=         115 weight             162221478
+ j=         116 weight             166317096
+ j=         117 weight             170129689
+ j=         118 weight             173652670
+ j=         119 weight             172684218
+ j=         120 weight             169246398
+ j=         121 weight             167371874
+ j=         122 weight             166306314
+ j=         123 weight             167628535
+ j=         124 weight             169611377
+ j=         125 weight             173036014
+ j=         126 weight             176197244
+ j=         127 weight             171343826
+ j=         128 weight             165243294
+ j=         129 weight             160174549
+ j=         130 weight             155351183
+ j=         131 weight             152229628
+ j=         132 weight             152025435
+ j=         133 weight             151342045
+ j=         134 weight             142395584
+ j=         135 weight             133197378
+ j=         136 weight             124053085
+ j=         137 weight             117568706
+ j=         138 weight             113548155
+ j=         139 weight             100956150
+ j=         140 weight              89272046
+ j=         141 weight              78741805
+ j=         142 weight              68919502
+ j=         143 weight              59266016
+ j=         144 weight              48275597
+ j=         145 weight              38215811
+ j=         146 weight              33283485
+ j=         147 weight              30027508
+ j=         148 weight              30027508
+ j=         149 weight              30027508
+ j=         150 weight              30027508
+ j=         151 weight              30027508
+ check 4
+ weight_tot           16961651378 ideal_load             424041284
+ iproc           0 nplanes          12 proc_load   476839756.000000     
+ iproc           1 nplanes           6 proc_load   545398142.000000     
+ iproc           2 nplanes           4 proc_load   426935007.000000     
+ iproc           3 nplanes           4 proc_load   459606246.000000     
+ iproc           4 nplanes           4 proc_load   496761669.000000     
+ iproc           5 nplanes           4 proc_load   518844635.000000     
+ iproc           6 nplanes           4 proc_load   501306723.000000     
+ iproc           7 nplanes           4 proc_load   515583286.000000     
+ iproc           8 nplanes           4 proc_load   498668263.000000     
+ iproc           9 nplanes           4 proc_load   463952989.000000     
+ iproc          10 nplanes           4 proc_load   434498024.000000     
+ iproc          11 nplanes           5 proc_load   549273178.000000     
+ iproc          12 nplanes           5 proc_load   499823031.000000     
+ iproc          13 nplanes           5 proc_load   444328446.000000     
+ iproc          14 nplanes           6 proc_load   492477283.000000     
+ iproc          15 nplanes           6 proc_load   435742048.000000     
+ iproc          16 nplanes           7 proc_load   442979922.000000     
+ iproc          17 nplanes           8 proc_load   429494786.000000     
+ iproc          18 nplanes           8 proc_load   489140045.000000     
+ iproc          19 nplanes           7 proc_load   515701221.000000     
+ iproc          20 nplanes           6 proc_load   492477283.000000     
+ iproc          21 nplanes           5 proc_load   444328446.000000     
+ iproc          22 nplanes           5 proc_load   499823031.000000     
+ iproc          23 nplanes           5 proc_load   549273178.000000     
+ iproc          24 nplanes           4 proc_load   434498024.000000     
+ iproc          25 nplanes           4 proc_load   463952989.000000     
+ iproc          26 nplanes           4 proc_load   498668263.000000     
+ iproc          27 nplanes           4 proc_load   515583286.000000     
+ iproc          28 nplanes           4 proc_load   501306723.000000     
+ iproc          29 nplanes           4 proc_load   518844635.000000     
+ iproc          30 nplanes           4 proc_load   496761669.000000     
+ iproc          31 nplanes           4 proc_load   459606246.000000     
+ iproc          32 nplanes           3 proc_load   293737629.000000     
+ iproc          33 nplanes           4 proc_load   374819169.000000     
+ iproc          34 nplanes           8 proc_load   558979271.000000     
+ iproc          35 nplanes           4 proc_load   101526804.000000     
+ iproc          36 nplanes           2 proc_load   30027508.0000000     
+ iproc          37 nplanes           2 proc_load   30027508.0000000     
+ iproc          38 nplanes           2 proc_load   30027508.0000000     
+ iproc          39 nplanes           2 proc_load   30027508.0000000     
+ myid           0 u           1          12
+ myid           0 v           1          11
+ myid           0 p           2          11
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ myid           1 u          12          17
+ myid           1 v          12          16
+ myid           1 p          12          16
+ myid           2 u          17          20
+ myid           2 v          17          19
+ myid           2 p          17          19
+ myid           3 u          20          23
+ myid           3 v          20          22
+ myid           3 p          20          22
+ myid           4 u          23          26
+ myid           4 v          23          25
+ myid           4 p          23          25
+ myid           5 u          26          29
+ myid           5 v          26          28
+ myid           5 p          26          28
+ myid           6 u          29          32
+ myid           6 v          29          31
+ myid           6 p          29          31
+ myid           7 u          32          35
+ myid           7 v          32          34
+ myid           7 p          32          34
+ myid           8 u          35          38
+ myid           8 v          35          37
+ myid           8 p          35          37
+ myid           9 u          38          41
+ myid           9 v          38          40
+ myid           9 p          38          40
+ myid          10 u          41          44
+ myid          10 v          41          43
+ myid          10 p          41          43
+ myid          11 u          44          48
+ myid          11 v          44          47
+ myid          11 p          44          47
+ myid          12 u          48          52
+ myid          12 v          48          51
+ myid          12 p          48          51
+ myid          13 u          52          56
+ myid          13 v          52          55
+ myid          13 p          52          55
+ myid          14 u          56          61
+ myid          14 v          56          60
+ myid          14 p          56          60
+ myid          15 u          61          66
+ myid          15 v          61          65
+ myid          15 p          61          65
+ myid          16 u          66          72
+ myid          16 v          66          71
+ myid          16 p          66          71
+ myid          17 u          72          79
+ myid          17 v          72          78
+ myid          17 p          72          78
+ myid          18 u          79          86
+ myid          18 v          79          85
+ myid          18 p          79          85
+ myid          19 u          86          92
+ myid          19 v          86          91
+ myid          19 p          86          91
+ myid          20 u          92          97
+ myid          20 v          92          96
+ myid          20 p          92          96
+ myid          21 u          97         101
+ myid          21 v          97         100
+ myid          21 p          97         100
+ myid          22 u         101         105
+ myid          22 v         101         104
+ myid          22 p         101         104
+ myid          23 u         105         109
+ myid          23 v         105         108
+ myid          23 p         105         108
+ myid          24 u         109         112
+ myid          24 v         109         111
+ myid          24 p         109         111
+ myid          25 u         112         115
+ myid          25 v         112         114
+ myid          25 p         112         114
+ myid          26 u         115         118
+ myid          26 v         115         117
+ myid          26 p         115         117
+ myid          27 u         118         121
+ myid          27 v         118         120
+ myid          27 p         118         120
+ myid          28 u         121         124
+ myid          28 v         121         123
+ myid          28 p         121         123
+ myid          29 u         124         127
+ myid          29 v         124         126
+ myid          29 p         124         126
+ myid          30 u         127         130
+ myid          30 v         127         129
+ myid          30 p         127         129
+ myid          31 u         130         133
+ myid          31 v         130         132
+ myid          31 p         130         132
+ myid          32 u         133         135
+ myid          32 v         133         134
+ myid          32 p         133         134
+ myid          33 u         135         138
+ myid          33 v         135         137
+ myid          33 p         135         137
+ myid          34 u         138         145
+ myid          34 v         138         144
+ myid          34 p         138         144
+ myid          35 u         145         148
+ myid          35 v         145         147
+ myid          35 p         145         147
+ myid          36 u         148         149
+ myid          36 v         148         148
+ myid          36 p         148         148
+ myid          37 u         149         150
+ myid          37 v         149         149
+ myid          37 p         149         149
+ myid          38 u         150         151
+ myid          38 v         150         150
+ myid          38 p         150         150
+ myid          39 u         151         152
+ myid          39 v         151         151
+ myid          39 p         151         151
+ t=   13.9099009419442      =====> Finished Start
+ t=   13.9126416245708      =====> Calling getini 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+forrtl: severe (24): end-of-file during read, unit 10, file /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane/./input//u1_0128x0128x0153_t09455.dat
+Image              PC                Routine            Line        Source             
+littleharsh        0000000000494AE9  Unknown               Unknown  Unknown
+littleharsh        00000000004B72F6  Unknown               Unknown  Unknown
+littleharsh        0000000000454E82  Unknown               Unknown  Unknown
+littleharsh        00000000004524D4  Unknown               Unknown  Unknown
+littleharsh        000000000045122E  Unknown               Unknown  Unknown
+littleharsh        0000000000482B95  Unknown               Unknown  Unknown
+littleharsh        0000000000403AA2  Unknown               Unknown  Unknown
+libc-2.28.so       000014877FCF37E5  __libc_start_main     Unknown  Unknown
+littleharsh        00000000004039AE  Unknown               Unknown  Unknown
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 1 PID 2797713 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 2 PID 2797714 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 3 PID 2797715 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 4 PID 2797716 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 5 PID 2797717 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 6 PID 2797718 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 7 PID 2797719 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 8 PID 2797720 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 9 PID 2797721 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 10 PID 2797722 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 11 PID 2797723 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 12 PID 2797724 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 13 PID 2797725 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 14 PID 2797726 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 15 PID 2797727 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 16 PID 2797728 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 17 PID 2797729 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 18 PID 2797730 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 19 PID 2797731 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 20 PID 2797732 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 21 PID 2797733 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 22 PID 2797734 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 23 PID 2797735 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 24 PID 2797736 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 25 PID 2797737 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 26 PID 2797738 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 27 PID 2797739 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 28 PID 2797740 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 29 PID 2797741 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 30 PID 2797742 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 31 PID 2797743 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 32 PID 2797744 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 33 PID 2797745 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 34 PID 2797746 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 35 PID 2797747 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 36 PID 2797748 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 37 PID 2797749 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 38 PID 2797750 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   RANK 39 PID 2797751 RUNNING AT cpu-r-4
+=   KILLED BY SIGNAL: 9 (Killed)
+===================================================================================
