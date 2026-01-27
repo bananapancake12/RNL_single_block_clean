@@ -32,7 +32,7 @@ FFT_F77FLAGS   = -c
 F90FLAGS = $(DEBUG_F90FLAGS)
 F77FLAGS = $(DEBUG_F77FLAGS)
 LFLAGS =
-#PREP = scorep
+PREP = scorep
 #PREP = skin
 
 ########################  objects alpha   #########################

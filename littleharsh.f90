@@ -135,9 +135,9 @@ program littleharsh
 
 
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Calling getini "
-  end if
+!   if(myid==0) then
+!     write(6,*) "t=", MPI_Wtime() - t1,"=====> Calling getini "
+!   end if
 
 
   ! Get the initial conditions
@@ -159,8 +159,8 @@ nextqt = floor(t*10d0)/10d0+0.1d0
   call MPI_BARRIER(MPI_COMM_WORLD,ierr)
 
   ! MAIN LOOP 
-  do while (t<maxt) ! This is the original condition
-  ! do while (t<maxt .AND. iter <2)
+  ! do while (t<maxt) ! This is the original condition
+  do while (t<maxt .AND. iter <200)
     ! Runge-Kutta substeps
     do kRK = 1,3
     
@@ -170,24 +170,24 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       call RHS0_u2(du2,u2,Nu2,p,myid)
       call RHS0_u3(du3,u3,Nu3,p,myid)
 
-        if(myid==0) then
-            write(6,*) "du1", du1(0,:)
-        end if 
+        ! if(myid==0) then
+        !     write(6,*) "du1", du1(0,:)
+        ! end if 
 
-      if(myid==0) then
-        write(6,*) "t=", MPI_Wtime() - t1,"finished RHS =====> Building Nonlinear"
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "t=", MPI_Wtime() - t1,"finished RHS =====> Building Nonlinear"
+    !   end if 
 
       ! Build non-linear terms of right-hand-side of Navier-Stokes equation
       call nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
 
-      if(myid==0) then
-        write(6,*) "du1 after nonlin", du1(0,:)
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "du1 after nonlin", du1(0,:)
+    !   end if 
       
-      if(myid==0) then
-        write(6,*) "t=", MPI_Wtime() - t1,"Finished Nonlinear =====> Solving"
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "t=", MPI_Wtime() - t1,"Finished Nonlinear =====> Solving"
+    !   end if 
 
       ! Resolve the matricial system (FFT BANDS IMPLEMENTED)
       ! call solveU(u1,du1,1,myid)
@@ -198,13 +198,13 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       call solveU_W(u1,du1,u3,du3,a_ugrid,myid)
       call solveV(u2,du2,a_vgrid,myid)
 
-      if(myid==0) then
-        write(6,*) "du1 after solve", du1(0,:)
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "du1 after solve", du1(0,:)
+    !   end if 
 
-      if(myid==0) then
-        write(6,*) "t=", MPI_Wtime() - t1,"Finished Solving Velocities =====> Solving Pressure "
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "t=", MPI_Wtime() - t1,"Finished Solving Velocities =====> Solving Pressure "
+    !   end if 
       
      ! Compute the pressure gradient if constant mass flow condition is set
      if (flag_ctpress==0) then
@@ -700,12 +700,12 @@ subroutine divergence(div,u1,u2,u3,myid)
 
   ! write(6,*) "C1", C1, "C2", C2, myid
 
-  if (myid == 0) then
-    write(6,*) 'du1, j=1..10, col=2'
-    do j = 0, 10
-        write(6,*) du1(j,2)
-    end do
-  end if
+!   if (myid == 0) then
+!     write(6,*) 'du1, j=1..10, col=2'
+!     do j = 0, 10
+!         write(6,*) du1(j,2)
+!     end do
+!   end if
 
 
   call laplacian_U(du1,u1,myid)

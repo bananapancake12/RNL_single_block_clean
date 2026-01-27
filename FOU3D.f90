@@ -99,9 +99,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   u2PL_itp = 0d0
   u3PL_itp = 0d0
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Interpolating"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Interpolating"
+  ! end if
 
   !C! Interpolate the grid velocities to the other grid points
   call interp_u(u1_itp,u1,myid)
@@ -117,9 +117,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   Nu2PL = 0d0
   Nu3PL = 0d0
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Modes to planes"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Modes to planes"
+  ! end if
 
   !C! Shift 6 velocity fields into planes
   !!!!!!!!!!  modes to planes: !!!!!!!!!!
@@ -131,9 +131,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   call modes_to_planes_UVP ( u3PL_itp,u3_itp,vgrid,nyv,nyv_LB,myid,status,ierr)
 
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Spectra"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Spectra"
+  ! end if
 
   !!!!!!!!!!!!!   spectra:  !!!!!!!!!!!!!
   if (flagst==1) then
@@ -141,9 +141,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   end if
   
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Record Out"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Record Out"
+  ! end if
 
   !!!!!!!!!!!!! record out: !!!!!!!!!!!!!
   if (flagwr==1) then
@@ -232,16 +232,16 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   ! u2PL_itp(iLkup(64):iLkup(64)+1,:,:) = 0
   ! u3PL_itp(iLkup(64):iLkup(64)+1,:,:) = 0
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Ops in Planes"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Ops in Planes"
+  ! end if
 
   !!!!!!!!! four to ops: !!!!!!!!!
   call ops_in_planes(myid,flagst) !C! ops in planes to compute velocity products and x/z derriatives
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1, "=====> Planes to modes UVP"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1, "=====> Planes to modes UVP"
+  ! end if
 
 
   !C! Shift y derrivative products to modes
@@ -250,9 +250,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   call planes_to_modes_UVP(wv_f,wv_fPL,vgrid,nyv,nyv_LB,myid,status,ierr)
   
   
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Planes to modes NUVP"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Planes to modes NUVP"
+  ! end if
 
 
   !C! Shift x/z derrivatives to modes
@@ -260,9 +260,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
   call planes_to_modes_NUVP(Nu2,Nu2PL,vgrid,nyv,nyv_LB,myid,status,ierr)
   call planes_to_modes_NUVP(Nu3,Nu3PL,ugrid,nyu,nyu_LB,myid,status,ierr)
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> Derivatives"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Derivatives"
+  ! end if
 
   !C! Calculate y derrivatives
     call der_yu_h(Nu1_dy,uv_f,myid)
@@ -281,9 +281,9 @@ subroutine nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
     enddo
   ! enddo   
 
-  if(myid==0) then
-    write(6,*) "t=", MPI_Wtime() - t1,"=====> CFL and Stats"
-  end if
+  ! if(myid==0) then
+  !   write(6,*) "t=", MPI_Wtime() - t1,"=====> CFL and Stats"
+  ! end if
 
 
   !!!!!!!!!!!  CFL and stats: !!!!!!!!!!!
@@ -501,6 +501,8 @@ subroutine der_x(u,dudx,kx)
     end do
   end do
 
+  deallocate(u_c,dudx_c)
+
 end subroutine
 
 subroutine der_x_N(u,dudx,kx) !For N
@@ -615,6 +617,8 @@ subroutine der_z(u,dudz,kz)
     end do
   end do
 
+  deallocate(u_c,dudz_c)
+
 
 end subroutine
 
@@ -657,6 +661,8 @@ subroutine der_z_N(u,dudz,kz)
       dudz(2*ip + 1, kp) = dimag( dudz_c(ip,kp) )
     end do
   end do
+
+  deallocate(u_c,dudz_c)
 
 end subroutine
 

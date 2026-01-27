@@ -21,18 +21,18 @@ dyq   =     10.d0 ! dymax/dymin
 pp    =         5 ! y polinomial exponent
 
 ! Initial conditions ---------------------------------------------------------------
-flgin =         2 ! 1 for initial conditions borrowed from another simulation
+flgin =         1 ! 1 for initial conditions borrowed from another simulation
                   ! 2 for continuing simulation
                   ! 3 parabolic profile
                   ! 4 --
-fnmeb = u1_0128x0128x0153_t10186.dat
+fnmeb = u1_0128x0128x0153_t09455.dat
                   ! initial conditions file path, if flgin=flag_init=1
 dirin  =./input/
 dirout =./output/
 
 ! Parameters of the numerical method I --------------------------------------------- 
 CFL   =     0.7d0 !0.7d0 ! CFL
-nwrite=       500 !1000 ! time steps between outputs in terminal
+nwrite=        10 !1000 ! time steps between outputs in terminal
 flpress    =    1 ! 0 for constant flow rate
                   ! 1 for constant pressure gradient
 mpgx  =-3.0675e-3 !-3.1289e-3 ! if flpress=1, mpgx is the prescribed mean pressure gradient

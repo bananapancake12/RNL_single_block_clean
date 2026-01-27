@@ -1,0 +1,455 @@
+S=C=A=N: Tue Jan 27 15:51:41 2026: Collect start
+/usr/local/software/spack/spack-views/rocky8-icelake-20220710/intel-oneapi-mpi-2021.6.0/intel-2021.6.0/guxuvcpmykplbrr2e3af2yd7njqhau5e/mpi/2021.6.0//bin/mpirun -ppn=40 -np=40 ./littleharsh
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ writing hist file
+ >>> entered proc_lims_columns, myid =           0
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          39
+ iproc           0 nplanes           4 proc_load   4.00000000000000     
+ iproc           1 nplanes           4 proc_load   4.00000000000000     
+ iproc           2 nplanes           4 proc_load   4.00000000000000     
+ iproc           3 nplanes           4 proc_load   4.00000000000000     
+ iproc           4 nplanes           4 proc_load   4.00000000000000     
+ iproc           5 nplanes           4 proc_load   4.00000000000000     
+ iproc           6 nplanes           4 proc_load   4.00000000000000     
+ iproc           7 nplanes           4 proc_load   4.00000000000000     
+ iproc           8 nplanes           4 proc_load   4.00000000000000     
+ iproc           9 nplanes           4 proc_load   4.00000000000000     
+ iproc          10 nplanes           4 proc_load   4.00000000000000     
+ iproc          11 nplanes           4 proc_load   4.00000000000000     
+ iproc          12 nplanes           4 proc_load   4.00000000000000     
+ iproc          13 nplanes           4 proc_load   4.00000000000000     
+ iproc          14 nplanes           4 proc_load   4.00000000000000     
+ iproc          15 nplanes           4 proc_load   4.00000000000000     
+ iproc          16 nplanes           4 proc_load   4.00000000000000     
+ iproc          17 nplanes           4 proc_load   4.00000000000000     
+ iproc          18 nplanes           4 proc_load   4.00000000000000     
+ iproc          19 nplanes           4 proc_load   4.00000000000000     
+ iproc          20 nplanes           4 proc_load   4.00000000000000     
+ iproc          21 nplanes           4 proc_load   4.00000000000000     
+ iproc          22 nplanes           4 proc_load   4.00000000000000     
+ iproc          23 nplanes           4 proc_load   4.00000000000000     
+ iproc          24 nplanes           4 proc_load   4.00000000000000     
+ iproc          25 nplanes           4 proc_load   4.00000000000000     
+ iproc          26 nplanes           4 proc_load   4.00000000000000     
+ iproc          27 nplanes           4 proc_load   4.00000000000000     
+ iproc          28 nplanes           4 proc_load   4.00000000000000     
+ iproc          29 nplanes           4 proc_load   4.00000000000000     
+ iproc          30 nplanes           4 proc_load   4.00000000000000     
+ iproc          31 nplanes           4 proc_load   4.00000000000000     
+ iproc          32 nplanes           3 proc_load   3.00000000000000     
+ iproc          33 nplanes           3 proc_load   3.00000000000000     
+ iproc          34 nplanes           3 proc_load   3.00000000000000     
+ iproc          35 nplanes           3 proc_load   3.00000000000000     
+ iproc          36 nplanes           3 proc_load   3.00000000000000     
+ iproc          37 nplanes           3 proc_load   3.00000000000000     
+ iproc          38 nplanes           3 proc_load   3.00000000000000     
+ iproc          39 nplanes           3 proc_load   3.00000000000000     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ gridweighting 1 and 2  0.723930630012712       0.723930630012712     
+ gridweighting_bc_u1 after =  -0.723930630012712     
+ gridweighting_bc_u3 after =  -0.723930630012712     
+ t=   4.47431771328775      =====> Finished Start
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+ u2 from file ./input//u2_0128x0128x0153_t09455.dat,
+ u3 from file ./input//u3_0128x0128x0153_t09455.dat,
+ and p from file ./input//p_0128x0128x0153_t09455.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx             128
+ Nz             128
+ Nyv            151
+ Nyu            152
+ Ngalx          192
+ Ngalz          192
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ finished getini           0
+ finished getini           1
+ finished getini           2
+ finished getini           3
+ finished getini           4
+ finished getini           5
+ finished getini           6
+ finished getini           7
+ finished getini           8
+ finished getini           9
+ finished getini          10
+ finished getini          11
+ finished getini          12
+ finished getini          13
+ finished getini          14
+ finished getini          15
+ finished getini          16
+ finished getini          17
+ finished getini          18
+ finished getini          19
+ finished getini          20
+ finished getini          22
+ finished getini          21
+ finished getini          23
+ 
+ Initialised
+ finished getini          24
+ finished getini          25
+ finished getini          26
+ finished getini          27
+ finished getini          28
+ finished getini          29
+ finished getini          30
+ finished getini          31
+ finished getini          32
+ finished getini          33
+ finished getini          34
+ finished getini          35
+ finished getini          36
+ finished getini          37
+ finished getini          38
+ finished getini          39
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   6.736447455048117E-017
+ Qx     1.75230615942311     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423825947899     
+ Uslp -1.058242342586234E-015
+ t=   8.44929551123641       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   8.45169476331648      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   11.7274385803648      =====> Finished Nonlin Inter U           2
+ t=   11.7289990587742      =====> Finished Derivatives -U           2
+ t=   11.7396652715979      =====> Finished U           2
+ t=   21.7193431440573       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   21.7211913217543      =====> Finished Linear Advection - V           2
+ t=   24.0811099587881      =====> Finished Nonlin Inter v           2
+ t=   24.0819521834856      =====> Finished Derivatives -V           2
+ t=   24.0922215531536      Finished V =====> Finished Ops in planes           2
+ solving u
+ solving w
+ solving v
+ t=   64.8431467330993       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   64.8453576566826      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   68.0126536783100      =====> Finished Nonlin Inter U           2
+ t=   68.0141642913222      =====> Finished Derivatives -U           2
+ t=   68.0244890104295      =====> Finished U           2
+ t=   77.7026541991399       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   77.7044253892236      =====> Finished Linear Advection - V           2
+ t=   79.9980062947143      =====> Finished Nonlin Inter v           2
+ t=   79.9988588294946      =====> Finished Derivatives -V           2
+ t=   80.0090355684224      Finished V =====> Finished Ops in planes           2
+ solving u
+ solving w
+ solving v
+ t=   120.133098091304       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   120.135438782920      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   123.344252445710      =====> Finished Nonlin Inter U           2
+ t=   123.345709339297      =====> Finished Derivatives -U           2
+ t=   123.356273816309      =====> Finished U           2
+ t=   133.146365475106       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   133.148171307465      =====> Finished Linear Advection - V           2
+ t=   135.454760170400      =====> Finished Nonlin Inter v           2
+ t=   135.455488428190      =====> Finished Derivatives -V           2
+ t=   135.465801375205      Finished V =====> Finished Ops in planes           2
+ solving u
+ solving w
+ solving v
+ t=   175.873719173418       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   175.875991417488      =====> nonlinear interaction into 0th mode - U
+           2
+ t=   179.093642357559      =====> Finished Nonlin Inter U           2
+ t=   179.095139239460      =====> Finished Derivatives -U           2
+ t=   179.106365710737      =====> Finished U           2
+ t=   188.932045323541       Finished 0th mode nonlin =====> Linear advection
+           2
+ t=   188.934323264657      =====> Finished Linear Advection - V           2
+ t=   191.252725550537      =====> Finished Nonlin Inter v           2
+ t=   191.253553166120      =====> Finished Derivatives -V           2
+ t=   191.264578260794      Finished V =====> Finished Ops in planes           2
