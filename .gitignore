@@ -10,3 +10,5 @@ littleharsh
 output/
 fort.*
 scorep_*/
+*.out *.out
+*.out
