@@ -427,81 +427,34 @@ subroutine der_x(u,dudx,kx)
   use declaration
   implicit none
 
-  integer i,k, ip, kp
-  real(8) u   (igal,kgal)
-  real(8) dudx(igal,kgal)
-
+  integer i,k
+  complex(8) u   (0:Ngal_x/2, Ngal_z)
+  complex(8) dudx(0:Ngal_x/2, Ngal_z)
   complex(8) kx(0:Nspec_x/2)
-
-  ! new variables for conversion
-  complex(8), allocatable :: u_c(:,:), dudx_c(:,:)
-  allocate(u_c(0:Ngal_x/2,Ngal_z))   
-  allocate(dudx_c(0:Ngal_x/2,Ngal_z))
-  
-  ! do k = 1,1
-  !   do i = 1,Ngal_x
-  !     write(6,*) "i", i, "u", u(i,1)
-  !   end do 
-  ! end do 
-
-  u_c = 0d0
-  dudx_c = 0d0
-
-  ! converting real to complex
-  ! the original code packed reals indexed 1:ngal, itno complex 0:ngal/2
-  ! it seems they added an extra index at the end, but this i guess is filled with 0's so it doesnt matter... 
-  ! to pack it manually gotta correct the complex indexes to be 0:ngel/2-1
-  ! also shifting the indexes by 1 
-  do kp = 1,Ngal_z
-    do ip = 0,Ngal_x/2 -1
-      u_c(ip,kp) = cmplx(u((ip*2)+1,kp), u(ip*2+2,kp), kind = 8)
-    end do
-  end do 
-
-  ! do k = 1,1
-  !   do i = 0,Ngal_x/2
-  !     write(6,*) "i", i, "u_c", u_c(i,1)
-  !   end do 
-  ! end do 
-
-  ! the acc calculation in complex space
 
   do k = 1,Nspec_z/2
     do i = 0,Nspec_x/2
-      dudx_c(i,k) = kx(i)*u_c(i,k)
-      ! if (k ==1) then 
-      !   write(6,*) "i", i, "dudx", dudx_c(i,k)
-      ! end if
+      dudx(i,k) = kx(i)*u(i,k)
     end do
     do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
-      dudx_c(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
+      dudx(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
     end do
   end do
 
   !Zeros includes mode Nz/2+1 mode (zero for advection derrivatives)
   do k = Nspec_z/2+1,Ngal_z-Nspec_z/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
     do i = 0,Ngal_x/2                        !!!!!!!!!!!!
-      dudx_c(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
+      dudx(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
     end do
   end do
   do k = Ngal_z-Nspec_z/2+2,Ngal_z
     do i = 0,Nspec_x/2
-      dudx_c(i,k) = kx(i )*u_c(i,k)
+      dudx(i,k) = kx(i )*u(i,k)
     end do
     do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
-      dudx_c(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
+      dudx(i,k) = 0d0                               !!!!!!!!!!!!  must be explicitly specified
     end do
   end do
-
-  ! converting dudz_c back to real to be compatible with rest of code
-  do kp = 1, Ngal_z
-    do ip = 0, Ngal_x/2 -1
-      dudx(2*ip+1,     kp) = real( dudx_c(ip,kp), kind = 8)
-      dudx(2*ip + 2, kp) = aimag( dudx_c(ip,kp))
-    end do
-  end do
-
-  deallocate(u_c,dudx_c)
 
 end subroutine
 
@@ -536,89 +489,35 @@ subroutine der_z(u,dudz,kz)
   implicit none
 
   integer i,k,dk2,k2
-  ! complex(8) u   (0:Ngal_x/2,Ngal_z)
-  ! complex(8) dudz(0:Ngal_x/2,Ngal_z)
-
-  real(8) u   (igal,kgal)
-  real(8) dudz(igal,kgal)
-
+  complex(8) u   (0:Ngal_x/2,Ngal_z)
+  complex(8) dudz(0:Ngal_x/2,Ngal_z)
   complex(8) kz(1:Nspec_z)
-
-  ! new variables for conversion
-  complex(8), allocatable :: u_c(:,:), dudz_c(:,:)
-  integer ip, kp
-
-  allocate(u_c(0:Ngal_x/2,Ngal_z))
-  allocate(dudz_c(0:Ngal_x/2,Ngal_z))
-
-  ! do k = 1,1
-  !   do i = 1,Ngal_x
-  !     write(6,*) "i", i, "u", u(i,1)
-  !   end do 
-  ! end do 
-
-  u_c    = 0d0
-  dudz_c = 0d0
-
-  ! write(6,*) "lbound(u)=", lbound(u,1), lbound(u,2), " ubound(u)=", ubound(u,1), ubound(u,2)
-
-
-  ! converting real to complex
-  do kp = 1, Ngal_z
-    do ip = 0, Ngal_x/2 -1
-      u_c(ip,kp) = cmplx(u(ip*2+1,kp), u(ip*2+2,kp), kind =8)
-    end do
-  end do
-
-  ! do k = 10,10
-  !   do i = 0,Ngal_x/2 
-  !     write(6,*) "i", i, "u_c, k=10", u_c(i,1)
-  !   end do 
-  ! end do 
 
   dk2=Nspec_z-Ngal_z
 
-  ! do k = 1,Nspec_z/2
-  !   write(6,*) "kz", kz(k)
-  ! end do 
-
   do k = 1,Nspec_z/2
     do i = 0,Nspec_x/2
-      dudz_c(i,k) = kz(k)*u_c(i,k)
-      ! if (k ==10) then 
-      !   write(6,*) "i", i, "dudz", dudz_c(i,k)
-      ! end if
+      dudz(i,k) = kz(k)*u(i,k)
     end do
     do i = Nspec_x/2+1,Ngal_x/2       !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
-      dudz_c(i,k) = 0d0
+      dudz(i,k) = 0d0
     end do
   end do
   !Zeros includes mode Nz/2+1 mode (zero for advection derrivatives)
   do k = Nspec_z/2+1,Ngal_z-Nspec_z/2+1!!!!!!!!!!!!  Zeros for the antialiasing region (z-dir)
     do i = 0,Ngal_x/2 
-      dudz_c(i,k) = 0d0
+      dudz(i,k) = 0d0
     end do
   end do
   do k = Ngal_z-Nspec_z/2+2,Ngal_z
     k2 = k+dk2
     do i = 0,Nspec_x/2
-      dudz_c(i,k) = kz(k2)*u_c(i,k)
+      dudz(i,k) = kz(k2)*u(i,k)
     end do
     do i = Nspec_x/2+1,Ngal_x/2           !!!!!!!!!!!!  Zeros for the antialiasing region (x-dir)
-      dudz_c(i,k) = 0d0
+      dudz(i,k) = 0d0
     end do
   end do
-
-  ! converting dudz_c back to real to be compatible with rest of code
-  do kp = 1, Ngal_z
-    do ip = 0, Ngal_x/2 -1
-      dudz(2*ip+1,     kp) = real( dudz_c(ip,kp), kind = 8 )
-      dudz(2*ip + 2, kp) = aimag( dudz_c(ip,kp) )
-    end do
-  end do
-
-  deallocate(u_c,dudz_c)
-
 
 end subroutine
 
@@ -631,38 +530,18 @@ subroutine der_z_N(u,dudz,kz)
   use declaration
   implicit none
 
-  integer i,k,dk2,k2, ip, kp
-  real(8) u   (0:Nspec_x+1,Nspec_z)
-  real(8) dudz(0:Nspec_x+1,Nspec_z)
+  integer i,k,dk2,k2
+  complex(8) u   (0:Nspec_x/2,Nspec_z)
+  complex(8) dudz(0:Nspec_x/2,Nspec_z) 
   complex(8) kz(1:Nspec_z)
-
-  complex(8), allocatable :: u_c(:,:), dudz_c(:,:)
-  allocate(u_c(0:Nspec_x/2,Nspec_z))
-  allocate(dudz_c(0:Nspec_x/2,Nspec_z))
-  
-  ! convering real to complex
-  do kp = 1,Nspec_z
-    do ip = 0,Nspec_x/2
-      u_c(ip,kp) = cmplx(u(ip*2,kp), u(ip*2+1,kp))
-    end do
-  end do 
 
   ! doing the operation in complex space 
     do k = 1,Nspec_z
       do i = 0,Nspec_x/2
-        dudz_c(i,k) = kz(k)*u_c(i,k)
+        dudz(i,k) = kz(k)*u(i,k)
       end do
     end do
 
-  ! converting dudz_c back to real to be compatible with rest of code
-  do kp = 1, Nspec_z
-    do ip = 0, Nspec_x/2
-      dudz(2*ip,     kp) = dble( dudz_c(ip,kp) )
-      dudz(2*ip + 1, kp) = dimag( dudz_c(ip,kp) )
-    end do
-  end do
-
-  deallocate(u_c,dudz_c)
 
 end subroutine
 
@@ -1411,10 +1290,10 @@ subroutine ops_in_planes(myid,flagst)
     ! write(6,*) "igal", igal, "kgal", kgal
 
     ! differentiate in x and z
-    call der_x(uu_cPL(:,:,j),du1dx,k1F_x)
-    call der_z(uw_cPL(:,:,j),du1dz,k1F_z)
-    call der_x(wu_cPL(:,:,j),du3dx,k1F_x)
-    call der_z(ww_cPL(:,:,j),du3dz,k1F_z)
+    call der_x(uu_cPL(1,1,j),du1dx,k1F_x)
+    call der_z(uw_cPL(1,1,j),du1dz,k1F_z)
+    call der_x(wu_cPL(1,1,j),du3dx,k1F_x)
+    call der_z(ww_cPL(1,1,j),du3dz,k1F_z)
 
     ! if(j==limPL_excw(ugrid,2,myid)) then
     if(j==10) then
@@ -1546,7 +1425,7 @@ subroutine ops_in_planes(myid,flagst)
 
 
     call der_x(vu_fPL(1,1,j),du2dx,k1F_x)
-    call der_z(vw_fPL(:,:,j),du2dz,k1F_z)
+    call der_z(vw_fPL(1,1,j),du2dz,k1F_z)
 
     ! if(j==10) then
     !   write(6,*) "=====> Finished Derivatives", myid
@@ -1696,9 +1575,9 @@ subroutine ops_in_planes2(myid,flagst)
     ! end if  
   
     call der_x(uu_cPL(1,1,j),du1dx,k1F_x)
-    call der_z(uw_cPL(:,:,j),du1dz,k1F_z)
+    call der_z(uw_cPL(1,1,j),du1dz,k1F_z)
     call der_x(uw_cPL(1,1,j),du3dx,k1F_x)
-    call der_z(ww_cPL(:,:,j),du3dz,k1F_z)
+    call der_z(ww_cPL(1,1,j),du3dz,k1F_z)
   
     do k = 1,Ngal_z
       do i = 1,Ngal_x
@@ -1756,7 +1635,7 @@ subroutine ops_in_planes2(myid,flagst)
     ! end if    
     
     call der_x(uv_fPL(1,1,j),du2dx,k1F_x)
-    call der_z(wv_fPL(:,:,j),du2dz,k1F_z)
+    call der_z(wv_fPL(1,1,j),du2dz,k1F_z)
 
     do k = 1,Ngal_z
       do i = 1,Ngal_x
