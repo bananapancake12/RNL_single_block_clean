@@ -160,11 +160,10 @@ nextqt = floor(t*10d0)/10d0+0.1d0
 
   ! MAIN LOOP 
   ! do while (t<maxt) ! This is the original condition
-  do while (t<maxt .AND. iter <5)
+  do while (t<maxt .AND. iter <20)
     ! Runge-Kutta substeps
     do kRK = 1,3
     
-
       ! Build     linear terms of right-hand-side of Navier-Stokes equation
       call RHS0_u1(du1,u1,Nu1,p,myid)
       call RHS0_u2(du2,u2,Nu2,p,myid)
@@ -174,9 +173,9 @@ nextqt = floor(t*10d0)/10d0+0.1d0
         !     write(6,*) "du1", du1(0,:)
         ! end if 
 
-      if(myid==0) then
-        write(6,*) "t=", MPI_Wtime() - t1,"finished RHS =====> Building Nonlinear"
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "t=", MPI_Wtime() - t1,"finished RHS =====> Building Nonlinear"
+    !   end if
 
       ! Build non-linear terms of right-hand-side of Navier-Stokes equation
       call nonlinear(Nu1,Nu2,Nu3,u1,u2,u3,du1,du2,du3,p,div,myid,status,ierr)
@@ -185,9 +184,9 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       !   write(6,*) "du1 after nonlin", du1(0,:)
       ! end if 
       
-      if(myid==0) then
-        write(6,*) "t=", MPI_Wtime() - t1,"Finished Nonlinear =====> Solving"
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "t=", MPI_Wtime() - t1,"Finished Nonlinear =====> Solving"
+    !   end if 
 
       ! Resolve the matricial system (FFT BANDS IMPLEMENTED)
       ! call solveU(u1,du1,1,myid)
@@ -202,9 +201,9 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       !   write(6,*) "du1 after solve", du1(0,:)
       ! end if 
 
-      if(myid==0) then
-        write(6,*) "t=", MPI_Wtime() - t1,"Finished Solving Velocities =====> Solving Pressure "
-      end if 
+    !   if(myid==0) then
+    !     write(6,*) "t=", MPI_Wtime() - t1,"Finished Solving Velocities =====> Solving Pressure "
+    !   end if 
       
      ! Compute the pressure gradient if constant mass flow condition is set
      if (flag_ctpress==0) then

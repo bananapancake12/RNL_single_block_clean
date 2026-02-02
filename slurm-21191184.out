@@ -1,0 +1,2543 @@
+Loading rhel8/default-icl
+  Loading requirement: rhel8/slurm singularity/current rhel8/global cuda/11.4
+    vgl/2.5.1/64 intel-oneapi-compilers/2022.1.0/gcc/b6zld2mz ucx/1.15.0
+    intel-oneapi-mpi/2021.6.0/intel/guxuvcpm
+Loading cube/4.8/gcc/23p4hfhj
+  Loading requirement: cubelib/4.8/gcc/d6dn6fbz libmd/1.0.4/gcc/cb4tpaqj
+    libbsd/0.11.5/gcc/xsr6mhaa expat/2.4.8/gcc/xuqakzcy
+    libiconv/1.16/gcc/aa2kwjch libxml2/2.9.13/gcc/fww2yzpt
+    ncurses/6.2/gcc/qke6jyyt gettext/0.21/gcc/lhdl4tbr libffi/3.4.2/gcc/alfpockh
+    pcre/8.45/gcc/jgwcvolz readline/8.1/gcc/bgw44yb2 gdbm/1.23/gcc/dviudcmk
+    sqlite/3.38.5/gcc/xdyquaax tcl/8.6.12/gcc/gf3ofu4d
+    inputproto/2.3.2/gcc/bwj4rzah kbproto/1.0.7/gcc/go5c2zyv
+    libpthread-stubs/0.4/gcc/zyf6irr6 xproto/7.0.31/gcc/f5csjg7w
+    libxau/1.0.8/gcc/dfmabka4 libxdmcp/1.1.2/gcc/iilv5r4i
+    xcb-proto/1.14.1/gcc/ppnp4lo4 libxcb/1.14/gcc/cmzk7sor
+    xextproto/7.3.0/gcc/oowjkbwu xtrans/1.3.5/gcc/zrqo6ghr
+    libx11/1.7.0/gcc/pe2khlxx font-util/1.3.2/gcc/d376rdkf
+    libpng/1.6.37/gcc/trvruff6 freetype/2.11.1/gcc/u4bjufog
+    util-linux-uuid/2.37.4/gcc/h7hztrtm fontconfig/2.13.1/gcc/ya6ibpmq
+    renderproto/0.11.1/gcc/b2jkdp6e libxrender/0.9.10/gcc/n6yxi44d
+    libxft/2.3.2/gcc/zay6bixf libxext/1.3.3/gcc/p7y37pfb
+    scrnsaverproto/1.2.2/gcc/fzbihsla libxscrnsaver/1.2.2/gcc/t5hd2qnu
+    tk/8.6.11/gcc/vdahj5in python/3.9.12/gcc/pdcqf4o5 glib/2.72.1/gcc/ossxhd4z
+    libice/1.0.9/gcc/ryauhh2f libsm/1.2.3/gcc/gc4ariqd dbus/1.12.8/gcc/uvq5cpwf
+    double-conversion/3.1.5/gcc/2k4uflia pixman/0.40.0/gcc/2wv7zavv
+    cairo/1.16.0/gcc/rxuyervx gobject-introspection/1.72.0/gcc/t2ffpwoo
+    icu4c/67.1/gcc/4ly45zrt harfbuzz/4.2.1/gcc/6e7bjt35
+    libjpeg-turbo/2.1.3/gcc/3m6u5lxl libtiff/4.3.0/gcc/zu2vruxu
+    lcms/2.13.1/gcc/fg5rmple libmng/2.0.3/gcc/saz7lols
+    util-macros/1.19.3/gcc/fnxpyih4 xkbdata/1.0.1/gcc/acidvg5x
+    libxkbcommon/1.4.0/gcc/g2nkfpxk pcre2/10.39/gcc/inuagvoq
+    xcb-util/0.4.0/gcc/mb5ul24d xcb-util-image/0.4.0/gcc/xfnuwvvw
+    xcb-util-keysyms/0.4.0/gcc/crcp222j xcb-util-renderutil/0.3.9/gcc/scn774ro
+    xcb-util-wm/0.4.1/gcc/kpzboqng zstd/1.5.2/gcc/xfbmozmj
+    qt/5.15.4/gcc/nscjhba7
+Loading scorep/8.0/intel/intel-oneapi-mpi/wsx7txgw
+  Loading requirement: libiconv/1.16/intel/6u2mmycs
+    libxml2/2.9.13/intel/fgfwdljc ncurses/6.2/intel/dnilgm7v
+    gettext/0.21/intel/oqzwvu37 binutils/2.40/intel/raz3tohr
+    cubelib/4.8/intel/udyz623t cubew/4.8/intel/5chsnzws
+    opari2/2.0.6/intel/aa6v73ny otf2/3.0/intel/6ymwom5i
+    papi/6.0.0.1/intel/ugkg3uzf
+Changed directory to /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane.
+
+JobID: 21191184
+======
+Time: Sun Jan 25 10:14:13 GMT 2026
+Running on master node: cpu-r-5
+Current directory: /rds/user/ld751/hpc-work/single_block/single_block_clean/RNL_single_block_clean_new_plane
+
+Nodes allocated:
+================
+cpu-r-5
+
+numtasks=40, numnodes=1, mpi_tasks_per_node=40 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+scalasca -analyze mpirun -ppn=40 -np=40 ./littleharsh 
+
+S=C=A=N: Scalasca 2.6.1 runtime summarization
+S=C=A=N: ./scorep_littleharsh_40_sum experiment archive
+S=C=A=N: Sun Jan 25 10:14:16 2026: Collect start
+/usr/local/software/spack/spack-views/rocky8-icelake-20220710/intel-oneapi-mpi-2021.6.0/intel-2021.6.0/guxuvcpmykplbrr2e3af2yd7njqhau5e/mpi/2021.6.0//bin/mpirun -ppn=40 -np=40 ./littleharsh
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+MPI startup(): Warning: I_MPI_PMI_LIBRARY will be ignored since the hydra process manager was found
+ 
+ ---------------LITTLE HARSH---------------
+          'That's a little harsh'          
+                    meow                   
+ ------------------------------------------
+ 
+ nyu =         152  nyv =         151  nyp =         151
+ nyu_LB =           0  nyp_LB =           1
+ Nspec_x =         128  Ngal_x =         192
+ Nspec_z =         128  Ngal_z =         192
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ reading parameters for numerical method
+ reading surface geometry
+ dthdyu(0) smooth   1204.29184034297     
+ >>> entered proc_lims_columns, myid =           0
+ Getting Weights
+ ./3e-9/                                                                        
+                                          
+ 
+ >>> entered proc_lims_columns, myid =           1
+ >>> entered proc_lims_columns, myid =           2
+ >>> entered proc_lims_columns, myid =           3
+ >>> entered proc_lims_columns, myid =           4
+ >>> entered proc_lims_columns, myid =           5
+ >>> entered proc_lims_columns, myid =           6
+ >>> entered proc_lims_columns, myid =           7
+ >>> entered proc_lims_columns, myid =           8
+ >>> entered proc_lims_columns, myid =           9
+ >>> entered proc_lims_columns, myid =          10
+ >>> entered proc_lims_columns, myid =          11
+ >>> entered proc_lims_columns, myid =          12
+ >>> entered proc_lims_columns, myid =          13
+ >>> entered proc_lims_columns, myid =          14
+ >>> entered proc_lims_columns, myid =          15
+ >>> entered proc_lims_columns, myid =          16
+ >>> entered proc_lims_columns, myid =          17
+ >>> entered proc_lims_columns, myid =          18
+ >>> entered proc_lims_columns, myid =          19
+ >>> entered proc_lims_columns, myid =          20
+ >>> entered proc_lims_columns, myid =          21
+ >>> entered proc_lims_columns, myid =          22
+ >>> entered proc_lims_columns, myid =          23
+ >>> entered proc_lims_columns, myid =          24
+ >>> entered proc_lims_columns, myid =          25
+ >>> entered proc_lims_columns, myid =          26
+ >>> entered proc_lims_columns, myid =          27
+ >>> entered proc_lims_columns, myid =          28
+ >>> entered proc_lims_columns, myid =          29
+ >>> entered proc_lims_columns, myid =          30
+ >>> entered proc_lims_columns, myid =          31
+ >>> entered proc_lims_columns, myid =          32
+ >>> entered proc_lims_columns, myid =          33
+ >>> entered proc_lims_columns, myid =          34
+ >>> entered proc_lims_columns, myid =          35
+ >>> entered proc_lims_columns, myid =          36
+ >>> entered proc_lims_columns, myid =          37
+ >>> entered proc_lims_columns, myid =          38
+ >>> entered proc_lims_columns, myid =          39
+ j=           1 weight              30027508
+ j=           2 weight              30027508
+ j=           3 weight              30027508
+ j=           4 weight              30027508
+ j=           5 weight              30027508
+ j=           6 weight              33283485
+ j=           7 weight              38215811
+ j=           8 weight              48275597
+ j=           9 weight              59266016
+ j=          10 weight              68919502
+ j=          11 weight              78741805
+ j=          12 weight              89272046
+ j=          13 weight             100956150
+ j=          14 weight             113548155
+ j=          15 weight             117568706
+ j=          16 weight             124053085
+ j=          17 weight             133197378
+ j=          18 weight             142395584
+ j=          19 weight             151342045
+ j=          20 weight             152025435
+ j=          21 weight             152229628
+ j=          22 weight             155351183
+ j=          23 weight             160174549
+ j=          24 weight             165243294
+ j=          25 weight             171343826
+ j=          26 weight             176197244
+ j=          27 weight             173036014
+ j=          28 weight             169611377
+ j=          29 weight             167628535
+ j=          30 weight             166306314
+ j=          31 weight             167371874
+ j=          32 weight             169246398
+ j=          33 weight             172684218
+ j=          34 weight             173652670
+ j=          35 weight             170129689
+ j=          36 weight             166317096
+ j=          37 weight             162221478
+ j=          38 weight             158128240
+ j=          39 weight             154617130
+ j=          40 weight             151207619
+ j=          41 weight             147425554
+ j=          42 weight             144756990
+ j=          43 weight             142315480
+ j=          44 weight             141144288
+ j=          45 weight             138722926
+ j=          46 weight             136172282
+ j=          47 weight             133233682
+ j=          48 weight             130218613
+ j=          49 weight             126682591
+ j=          50 weight             123278423
+ j=          51 weight             119643404
+ j=          52 weight             115909707
+ j=          53 weight             112868256
+ j=          54 weight             109328347
+ j=          55 weight             106222136
+ j=          56 weight             103470368
+ j=          57 weight             100986254
+ j=          58 weight              98067245
+ j=          59 weight              95900779
+ j=          60 weight              94052637
+ j=          61 weight              92053163
+ j=          62 weight              89499724
+ j=          63 weight              87199904
+ j=          64 weight              84770808
+ j=          65 weight              82218449
+ j=          66 weight              79959173
+ j=          67 weight              77372170
+ j=          68 weight              75036688
+ j=          69 weight              72657871
+ j=          70 weight              70277945
+ j=          71 weight              67676075
+ j=          72 weight              64404138
+ j=          73 weight              61715158
+ j=          74 weight              60675098
+ j=          75 weight              60675098
+ j=          76 weight              60675098
+ j=          77 weight              60675098
+ j=          78 weight              60675098
+ j=          79 weight              61715158
+ j=          80 weight              64404138
+ j=          81 weight              67676075
+ j=          82 weight              70277945
+ j=          83 weight              72657871
+ j=          84 weight              75036688
+ j=          85 weight              77372170
+ j=          86 weight              79959173
+ j=          87 weight              82218449
+ j=          88 weight              84770808
+ j=          89 weight              87199904
+ j=          90 weight              89499724
+ j=          91 weight              92053163
+ j=          92 weight              94052637
+ j=          93 weight              95900779
+ j=          94 weight              98067245
+ j=          95 weight             100986254
+ j=          96 weight             103470368
+ j=          97 weight             106222136
+ j=          98 weight             109328347
+ j=          99 weight             112868256
+ j=         100 weight             115909707
+ j=         101 weight             119643404
+ j=         102 weight             123278423
+ j=         103 weight             126682591
+ j=         104 weight             130218613
+ j=         105 weight             133233682
+ j=         106 weight             136172282
+ j=         107 weight             138722926
+ j=         108 weight             141144288
+ j=         109 weight             142315480
+ j=         110 weight             144756990
+ j=         111 weight             147425554
+ j=         112 weight             151207619
+ j=         113 weight             154617130
+ j=         114 weight             158128240
+ j=         115 weight             162221478
+ j=         116 weight             166317096
+ j=         117 weight             170129689
+ j=         118 weight             173652670
+ j=         119 weight             172684218
+ j=         120 weight             169246398
+ j=         121 weight             167371874
+ j=         122 weight             166306314
+ j=         123 weight             167628535
+ j=         124 weight             169611377
+ j=         125 weight             173036014
+ j=         126 weight             176197244
+ j=         127 weight             171343826
+ j=         128 weight             165243294
+ j=         129 weight             160174549
+ j=         130 weight             155351183
+ j=         131 weight             152229628
+ j=         132 weight             152025435
+ j=         133 weight             151342045
+ j=         134 weight             142395584
+ j=         135 weight             133197378
+ j=         136 weight             124053085
+ j=         137 weight             117568706
+ j=         138 weight             113548155
+ j=         139 weight             100956150
+ j=         140 weight              89272046
+ j=         141 weight              78741805
+ j=         142 weight              68919502
+ j=         143 weight              59266016
+ j=         144 weight              48275597
+ j=         145 weight              38215811
+ j=         146 weight              33283485
+ j=         147 weight              30027508
+ j=         148 weight              30027508
+ j=         149 weight              30027508
+ j=         150 weight              30027508
+ j=         151 weight              30027508
+ check 4
+ weight_tot           16961651378 ideal_load             424041284
+ iproc           0 nplanes          11 proc_load   476839756.000000     
+ iproc           1 nplanes           5 proc_load   545398142.000000     
+ iproc           2 nplanes           3 proc_load   426935007.000000     
+ iproc           3 nplanes           3 proc_load   459606246.000000     
+ iproc           4 nplanes           3 proc_load   496761669.000000     
+ iproc           5 nplanes           3 proc_load   518844635.000000     
+ iproc           6 nplanes           3 proc_load   501306723.000000     
+ iproc           7 nplanes           3 proc_load   515583286.000000     
+ iproc           8 nplanes           3 proc_load   498668263.000000     
+ iproc           9 nplanes           3 proc_load   463952989.000000     
+ iproc          10 nplanes           3 proc_load   434498024.000000     
+ iproc          11 nplanes           4 proc_load   549273178.000000     
+ iproc          12 nplanes           4 proc_load   499823031.000000     
+ iproc          13 nplanes           4 proc_load   444328446.000000     
+ iproc          14 nplanes           5 proc_load   492477283.000000     
+ iproc          15 nplanes           5 proc_load   435742048.000000     
+ iproc          16 nplanes           6 proc_load   442979922.000000     
+ iproc          17 nplanes           7 proc_load   429494786.000000     
+ iproc          18 nplanes           7 proc_load   489140045.000000     
+ iproc          19 nplanes           6 proc_load   515701221.000000     
+ iproc          20 nplanes           5 proc_load   492477283.000000     
+ iproc          21 nplanes           4 proc_load   444328446.000000     
+ iproc          22 nplanes           4 proc_load   499823031.000000     
+ iproc          23 nplanes           4 proc_load   549273178.000000     
+ iproc          24 nplanes           3 proc_load   434498024.000000     
+ iproc          25 nplanes           3 proc_load   463952989.000000     
+ iproc          26 nplanes           3 proc_load   498668263.000000     
+ iproc          27 nplanes           3 proc_load   515583286.000000     
+ iproc          28 nplanes           3 proc_load   501306723.000000     
+ iproc          29 nplanes           3 proc_load   518844635.000000     
+ iproc          30 nplanes           3 proc_load   496761669.000000     
+ iproc          31 nplanes           3 proc_load   459606246.000000     
+ iproc          32 nplanes           2 proc_load   293737629.000000     
+ iproc          33 nplanes           3 proc_load   374819169.000000     
+ iproc          34 nplanes           7 proc_load   558979271.000000     
+ iproc          35 nplanes           3 proc_load   101526804.000000     
+ iproc          36 nplanes           1 proc_load   30027508.0000000     
+ iproc          37 nplanes           1 proc_load   30027508.0000000     
+ iproc          38 nplanes           1 proc_load   30027508.0000000     
+ iproc          39 nplanes           2 proc_load   30027508.0000000     
+ myid          39 u         151         152
+ myid          39 v         151         151
+ myid          39 p         151         151
+ Reading in nonlinear interaction list
+ ./3e-9/                                                                        
+                                          
+ 
+ t=   52.0825501195723      =====> Finished Start
+ t=   52.0859208757265      =====> Calling getini 
+ Launching...
+ starting from multi-block, flat channel?
+ start file: ./input/u1_0128x0128x0153_t09455.dat
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+  Calling read in
+ Re_old,Re   3250.00000000000        3250.00000000000     
+ N2
+           0         128         128         128          -2
+           0         128         128         128           0
+           0          29         122         151           0
+           0          30         122         152           0
+ getting
+ u1 from file ./input//u1_0128x0128x0153_t09455.dat,
+ u2 from file ./input//u2_0128x0128x0153_t09455.dat,
+ u3 from file ./input//u3_0128x0128x0153_t09455.dat,
+ and p from file ./input//p_0128x0128x0153_t09455.dat,
+ 
+ Lx       6.28318530717959     
+ Ly       2.00000000000000     
+ Lz       3.14159265358979     
+ Nx             128
+ Nz             128
+ Nyv            151
+ Nyu            152
+ Ngalx          192
+ Ngalz          192
+ 
+ dymin   1.225435224106675E-003
+ dymax   1.614068685092982E-002
+ 
+ Re    3250.00000000000     
+ t    0.000000000000000E+000
+ finished getini           0
+ finished getini           1
+ finished getini           2
+ finished getini           3
+ finished getini           4
+ finished getini           5
+ finished getini           6
+ finished getini           7
+ finished getini           8
+ finished getini           9
+ finished getini          10
+ finished getini          11
+ finished getini          12
+ finished getini          13
+ finished getini          14
+ finished getini          15
+ 
+ Initialised
+ finished getini          16
+ finished getini          17
+ finished getini          18
+ finished getini          19
+ finished getini          20
+ finished getini          21
+ finished getini          22
+ finished getini          23
+ finished getini          24
+ finished getini          25
+ finished getini          26
+ finished getini          27
+ finished getini          28
+ finished getini          29
+ finished getini          30
+ finished getini          31
+ finished getini          32
+ finished getini          33
+ finished getini          34
+ finished getini          35
+ finished getini          36
+ finished getini          37
+ finished getini          38
+ finished getini          39
+ t=   52.7043519076724      finished RHS =====> Building Nonlinear
+ t=   52.7108557769589      =====> Interpolating
+ t=   52.7215868418825      =====> Modes to planes
+ t=   52.7570201083490      =====> Spectra
+ t=   52.7570258933265      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           0
+ t     0.000000000000000E+000
+ dtv   2.089558705412383E-003
+ dtc   0.000000000000000E+000
+ dt    0.000000000000000E+000
+ err   6.736447455048117E-017
+ Qx     1.75230615942311     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423825947899     
+ Uslp -1.058242342586234E-015
+ t=   53.0806744600177      =====> Ops in Planes
+ t=   67.3242363850459       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   67.3268729542160      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   70.5705119597569      =====> Finished Nonlin Inter U           0
+ t=   70.5724541927793      =====> Finished Derivatives -U           0
+ t=   70.5829786595532      =====> Finished U           0
+ t=   85.6393566751358       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   85.6415605280854      =====> Finished Linear Advection - V           0
+ t=   87.9578660534225      =====> Finished Nonlin Inter v           0
+ t=   87.9586870160492      =====> Finished Derivatives -V           0
+ t=   87.9692356757241      Finished V =====> Finished Ops in planes           0
+ t=   90.6520342947806      =====> Planes to modes UVP
+ t=   99.5481076853193      =====> Planes to modes NUVP
+ t=   99.5633937645343      =====> Derivatives
+ t=   99.5652543988926      =====> CFL and Stats
+ t=   100.281147829533      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   100.284903074111      Finished Solving Velocities =====> Solving Pressure 
+ t=   100.289526943119      finished RHS =====> Building Nonlinear
+ t=   100.295139208069      =====> Interpolating
+ t=   100.305827960166      =====> Modes to planes
+ t=   100.328789758856      =====> Spectra
+ t=   100.328797461825      =====> Record Out
+ t=   100.328799118819      =====> Ops in Planes
+ t=   115.751655927179       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   115.754079589224      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   118.987841394333      =====> Finished Nonlin Inter U           0
+ t=   118.989378496019      =====> Finished Derivatives -U           0
+ t=   119.000221526485      =====> Finished U           0
+ t=   134.048267578290       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   134.050594533732      =====> Finished Linear Advection - V           0
+ t=   136.365325469536      =====> Finished Nonlin Inter v           0
+ t=   136.366166889080      =====> Finished Derivatives -V           0
+ t=   136.376936892844      Finished V =====> Finished Ops in planes           0
+ t=   139.057925098337      =====> Planes to modes UVP
+ t=   148.292526728454      =====> Planes to modes NUVP
+ t=   148.306509228023      =====> Derivatives
+ t=   148.308271868784      =====> CFL and Stats
+ t=   148.308875027305      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   148.312298481245      Finished Solving Velocities =====> Solving Pressure 
+ t=   148.316730205042      finished RHS =====> Building Nonlinear
+ t=   148.322531010217      =====> Interpolating
+ t=   148.333436058429      =====> Modes to planes
+ t=   148.353870523499      =====> Spectra
+ t=   148.353878922464      =====> Record Out
+ t=   148.353880438457      =====> Ops in Planes
+ t=   163.686300478264       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   163.689143978585      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   166.911206033748      =====> Finished Nonlin Inter U           0
+ t=   166.913360797898      =====> Finished Derivatives -U           0
+ t=   166.923782163094      =====> Finished U           0
+ t=   181.912535729429       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   181.914785381188      =====> Finished Linear Advection - V           0
+ t=   184.226468553512      =====> Finished Nonlin Inter v           0
+ t=   184.227321161010      =====> Finished Derivatives -V           0
+ t=   184.238015246086      Finished V =====> Finished Ops in planes           0
+ t=   186.902172303708      =====> Planes to modes UVP
+ t=   195.821953108874      =====> Planes to modes NUVP
+ t=   195.832331612248      =====> Derivatives
+ t=   195.833537522294      =====> CFL and Stats
+ t=   195.834146474794      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   195.838231411015      Finished Solving Velocities =====> Solving Pressure 
+ t=   195.842847001059      finished RHS =====> Building Nonlinear
+ t=   195.848686887071      =====> Interpolating
+ t=   195.859083922369      =====> Modes to planes
+ t=   195.876720379931      =====> Spectra
+ t=   195.878242284680      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           1
+ t     5.223896763530959E-003
+ dtv   2.089558705412383E-003
+ dtc   1.367050473198921E-002
+ dt    5.223896763530959E-003
+ err   9.381951662078253E-017
+ Qx     1.75230591487433     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423708171791     
+ Uslp -1.057896737640909E-015
+ t=   195.972061606341      =====> Ops in Planes
+ t=   211.410268861653       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   211.413198610619      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   214.652282874868      =====> Finished Nonlin Inter U           0
+ t=   214.654241450822      =====> Finished Derivatives -U           0
+ t=   214.664568272408      =====> Finished U           0
+ t=   229.782126422708       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   229.784400323369      =====> Finished Linear Advection - V           0
+ t=   232.107136896293      =====> Finished Nonlin Inter v           0
+ t=   232.108053630527      =====> Finished Derivatives -V           0
+ t=   232.119067698290      Finished V =====> Finished Ops in planes           0
+ t=   234.817317004885      =====> Planes to modes UVP
+ t=   243.288972252618      =====> Planes to modes NUVP
+ t=   243.297341948242      =====> Derivatives
+ t=   243.298532090354      =====> CFL and Stats
+ t=   243.591598643654      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   243.595199957863      Finished Solving Velocities =====> Solving Pressure 
+ t=   243.599777599062      finished RHS =====> Building Nonlinear
+ t=   243.605424556867      =====> Interpolating
+ t=   243.616104998000      =====> Modes to planes
+ t=   243.630580717545      =====> Spectra
+ t=   243.630588834510      =====> Record Out
+ t=   243.630590257506      =====> Ops in Planes
+ t=   259.089289816651       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   259.092109962068      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   262.325727423769      =====> Finished Nonlin Inter U           0
+ t=   262.327270708431      =====> Finished Derivatives -U           0
+ t=   262.338161859698      =====> Finished U           0
+ t=   277.405122836813       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   277.406918809436      =====> Finished Linear Advection - V           0
+ t=   279.725865557926      =====> Finished Nonlin Inter v           0
+ t=   279.726590839948      =====> Finished Derivatives -V           0
+ t=   279.736851065805      Finished V =====> Finished Ops in planes           0
+ t=   282.446060244387      =====> Planes to modes UVP
+ t=   291.408354355941      =====> Planes to modes NUVP
+ t=   291.415947831752      =====> Derivatives
+ t=   291.417128888901      =====> CFL and Stats
+ t=   291.417718460480      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   291.421371169477      Finished Solving Velocities =====> Solving Pressure 
+ t=   291.425898040883      finished RHS =====> Building Nonlinear
+ t=   291.431010872884      =====> Interpolating
+ t=   291.441151057235      =====> Modes to planes
+ t=   291.455878659746      =====> Spectra
+ t=   291.455886267715      =====> Record Out
+ t=   291.455887668708      =====> Ops in Planes
+ t=   306.943225364230       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   306.945580112559      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   310.198914993274      =====> Finished Nonlin Inter U           0
+ t=   310.200440383009      =====> Finished Derivatives -U           0
+ t=   310.211361440153      =====> Finished U           0
+ t=   325.397719137876       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   325.399532725429      =====> Finished Linear Advection - V           0
+ t=   327.742500935256      =====> Finished Nonlin Inter v           0
+ t=   327.743367249697      =====> Finished Derivatives -V           0
+ t=   327.753921234349      Finished V =====> Finished Ops in planes           0
+ t=   330.457517480983      =====> Planes to modes UVP
+ t=   338.756860361449      =====> Planes to modes NUVP
+ t=   338.766131084370      =====> Derivatives
+ t=   338.767405484137      =====> CFL and Stats
+ t=   338.768038241538      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   338.771879680760      Finished Solving Velocities =====> Solving Pressure 
+ t=   338.776514075726      finished RHS =====> Building Nonlinear
+ t=   338.781993322220      =====> Interpolating
+ t=   338.792532208934      =====> Modes to planes
+ t=   338.807505684435      =====> Spectra
+ t=   338.809053340079      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           2
+ t     1.044779352706192E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367267118215302E-002
+ dt    5.223896763530959E-003
+ err   1.145048905048327E-016
+ Qx     1.75230567026825     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423594132769     
+ Uslp -1.057896737640909E-015
+ t=   338.904901482405      =====> Ops in Planes
+ t=   354.333012153187       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   354.335805258715      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   357.566045071289      =====> Finished Nonlin Inter U           0
+ t=   357.567614542842      =====> Finished Derivatives -U           0
+ t=   357.578551053924      =====> Finished U           0
+ t=   372.613342942166       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   372.615678567574      =====> Finished Linear Advection - V           0
+ t=   374.924423339966      =====> Finished Nonlin Inter v           0
+ t=   374.925266363502      =====> Finished Derivatives -V           0
+ t=   374.935868403958      Finished V =====> Finished Ops in planes           0
+ t=   377.614354291727      =====> Planes to modes UVP
+ t=   386.168913361953      =====> Planes to modes NUVP
+ t=   386.177009210700      =====> Derivatives
+ t=   386.178252503594      =====> CFL and Stats
+ t=   386.456752648723      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   386.460503966315      Finished Solving Velocities =====> Solving Pressure 
+ t=   386.465131169311      finished RHS =====> Building Nonlinear
+ t=   386.470985264266      =====> Interpolating
+ t=   386.481928712317      =====> Modes to planes
+ t=   386.496308413256      =====> Spectra
+ t=   386.496316896222      =====> Record Out
+ t=   386.496318470216      =====> Ops in Planes
+ t=   402.052017588958       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   402.055000472707      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   405.321400689762      =====> Finished Nonlin Inter U           0
+ t=   405.323485269198      =====> Finished Derivatives -U           0
+ t=   405.333936455274      =====> Finished U           0
+ t=   420.543835864304       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   420.545693407676      =====> Finished Linear Advection - V           0
+ t=   422.888118168734      =====> Finished Nonlin Inter v           0
+ t=   422.888965688253      =====> Finished Derivatives -V           0
+ t=   422.899788960800      Finished V =====> Finished Ops in planes           0
+ t=   425.605786054573      =====> Planes to modes UVP
+ t=   433.881290929947      =====> Planes to modes NUVP
+ t=   433.888796799118      =====> Derivatives
+ t=   433.889989254219      =====> CFL and Stats
+ t=   433.890586120770      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   433.894284125579      Finished Solving Velocities =====> Solving Pressure 
+ t=   433.899355777750      finished RHS =====> Building Nonlinear
+ t=   433.904529998497      =====> Interpolating
+ t=   433.915562164186      =====> Modes to planes
+ t=   433.929675760217      =====> Spectra
+ t=   433.929683842185      =====> Record Out
+ t=   433.929685265179      =====> Ops in Planes
+ t=   449.369059501698       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   449.371905456008      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   452.608804686231      =====> Finished Nonlin Inter U           0
+ t=   452.610322000999      =====> Finished Derivatives -U           0
+ t=   452.621110354688      =====> Finished U           0
+ t=   467.744043514913       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   467.746412287182      =====> Finished Linear Advection - V           0
+ t=   470.072716562454      =====> Finished Nonlin Inter v           0
+ t=   470.073458061408      =====> Finished Derivatives -V           0
+ t=   470.084375518567      Finished V =====> Finished Ops in planes           0
+ t=   472.782879239117      =====> Planes to modes UVP
+ t=   481.685131656277      =====> Planes to modes NUVP
+ t=   481.693076460646      =====> Derivatives
+ t=   481.694271491739      =====> CFL and Stats
+ t=   481.694887777207      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   481.698429837659      Finished Solving Velocities =====> Solving Pressure 
+ t=   481.703435883097      finished RHS =====> Building Nonlinear
+ t=   481.708555157071      =====> Interpolating
+ t=   481.719464553264      =====> Modes to planes
+ t=   481.733381923101      =====> Spectra
+ t=   481.734875744965      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           3
+ t     1.567169029059287E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367452954762080E-002
+ dt    5.223896763530959E-003
+ err   9.547285119299735E-017
+ Qx     1.75230542560849     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423483753025     
+ Uslp -1.058242342586234E-015
+ t=   481.823681184220      =====> Ops in Planes
+ t=   497.350426100884       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   497.353444739487      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   500.613300171421      =====> Finished Nonlin Inter U           0
+ t=   500.615329997085      =====> Finished Derivatives -U           0
+ t=   500.625772777194      =====> Finished U           0
+ t=   515.815827753731       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   515.818071108517      =====> Finished Linear Advection - V           0
+ t=   518.156809230717      =====> Finished Nonlin Inter v           0
+ t=   518.157524981778      =====> Finished Derivatives -V           0
+ t=   518.168175509034      Finished V =====> Finished Ops in planes           0
+ t=   520.869626751479      =====> Planes to modes UVP
+ t=   529.225376716264      =====> Planes to modes NUVP
+ t=   529.233087641593      =====> Derivatives
+ t=   529.234282753685      =====> CFL and Stats
+ t=   529.541961010971      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   529.545556922201      Finished Solving Velocities =====> Solving Pressure 
+ t=   529.550129449421      finished RHS =====> Building Nonlinear
+ t=   529.555834292991      =====> Interpolating
+ t=   529.566830554826      =====> Modes to planes
+ t=   529.580439133932      =====> Spectra
+ t=   529.580446794900      =====> Record Out
+ t=   529.580448265893      =====> Ops in Planes
+ t=   545.020664530955       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   545.023464173455      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   548.257821283119      =====> Finished Nonlin Inter U           0
+ t=   548.259354140824      =====> Finished Derivatives -U           0
+ t=   548.270170805397      =====> Finished U           0
+ t=   563.306234566415       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   563.308614747639      =====> Finished Linear Advection - V           0
+ t=   565.623052864647      =====> Finished Nonlin Inter v           0
+ t=   565.623897360178      =====> Finished Derivatives -V           0
+ t=   565.634565813360      Finished V =====> Finished Ops in planes           0
+ t=   568.314834493807      =====> Planes to modes UVP
+ t=   577.258648433264      =====> Planes to modes NUVP
+ t=   577.265979932152      =====> Derivatives
+ t=   577.267172202253      =====> CFL and Stats
+ t=   577.267765746816      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   577.271199300714      Finished Solving Velocities =====> Solving Pressure 
+ t=   577.276160925336      finished RHS =====> Building Nonlinear
+ t=   577.281167624771      =====> Interpolating
+ t=   577.291895337710      =====> Modes to planes
+ t=   577.305196236079      =====> Spectra
+ t=   577.305204251046      =====> Record Out
+ t=   577.305205618040      =====> Ops in Planes
+ t=   592.698922826085       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   592.701649290886      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   595.932581149618      =====> Finished Nonlin Inter U           0
+ t=   595.934087308433      =====> Finished Derivatives -U           0
+ t=   595.944941409853      =====> Finished U           0
+ t=   610.990324854592       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   610.992560382410      =====> Finished Linear Advection - V           0
+ t=   613.307780037208      =====> Finished Nonlin Inter v           0
+ t=   613.308630285715      =====> Finished Derivatives -V           0
+ t=   613.319248676104      Finished V =====> Finished Ops in planes           0
+ t=   615.989132008206      =====> Planes to modes UVP
+ t=   625.331456551876      =====> Planes to modes NUVP
+ t=   625.338484065012      =====> Derivatives
+ t=   625.339668495148      =====> CFL and Stats
+ t=   625.340260028719      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   625.343772196293      Finished Solving Velocities =====> Solving Pressure 
+ t=   625.348696830066      finished RHS =====> Building Nonlinear
+ t=   625.353725553412      =====> Interpolating
+ t=   625.364434244428      =====> Modes to planes
+ t=   625.377990946748      =====> Spectra
+ t=   625.379403327946      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           4
+ t     2.089558705412383E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367186152388507E-002
+ dt    5.223896763530959E-003
+ err   1.006289150081800E-016
+ Qx     1.75230518089866     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423376955990     
+ Uslp -1.058242342586234E-015
+ t=   625.471550848473      =====> Ops in Planes
+ t=   640.790986259612       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   640.793887887694      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   644.008681846708      =====> Finished Nonlin Inter U           0
+ t=   644.010096797896      =====> Finished Derivatives -U           0
+ t=   644.021149013503      =====> Finished U           0
+ t=   658.978587180456       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   658.980374239118      =====> Finished Linear Advection - V           0
+ t=   661.286032626185      =====> Finished Nonlin Inter v           0
+ t=   661.286865766762      =====> Finished Derivatives -V           0
+ t=   661.297480247167      Finished V =====> Finished Ops in planes           0
+ t=   663.953873022678      =====> Planes to modes UVP
+ t=   673.414112518041      =====> Planes to modes NUVP
+ t=   673.422542145419      =====> Derivatives
+ t=   673.423742734489      =====> CFL and Stats
+ t=   673.718304846645      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   673.721985126529      Finished Solving Velocities =====> Solving Pressure 
+ t=   673.726553824765      finished RHS =====> Building Nonlinear
+ t=   673.732150715778      =====> Interpolating
+ t=   673.742765004181      =====> Modes to planes
+ t=   673.756561670514      =====> Spectra
+ t=   673.756568533487      =====> Record Out
+ t=   673.756569888481      =====> Ops in Planes
+ t=   689.179022346503       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   689.181827689979      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   692.420980122948      =====> Finished Nonlin Inter U           0
+ t=   692.423077550333      =====> Finished Derivatives -U           0
+ t=   692.433410576892      =====> Finished U           0
+ t=   707.444933214709       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   707.447306067963      =====> Finished Linear Advection - V           0
+ t=   709.758519880213      =====> Finished Nonlin Inter v           0
+ t=   709.759243965240      =====> Finished Derivatives -V           0
+ t=   709.769909803432      Finished V =====> Finished Ops in planes           0
+ t=   712.456140329392      =====> Planes to modes UVP
+ t=   721.118316366606      =====> Planes to modes NUVP
+ t=   721.125484364167      =====> Derivatives
+ t=   721.126713841117      =====> CFL and Stats
+ t=   721.127307912677      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   721.130868120053      Finished Solving Velocities =====> Solving Pressure 
+ t=   721.135801620791      finished RHS =====> Building Nonlinear
+ t=   721.140789327304      =====> Interpolating
+ t=   721.151860967831      =====> Modes to planes
+ t=   721.166297468537      =====> Spectra
+ t=   721.166305493503      =====> Record Out
+ t=   721.166307046497      =====> Ops in Planes
+ t=   736.524963569545       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   736.527692163338      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   739.746912762170      =====> Finished Nonlin Inter U           0
+ t=   739.749015447534      =====> Finished Derivatives -U           0
+ t=   739.759375453983      =====> Finished U           0
+ t=   754.762721937381       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   754.764971677139      =====> Finished Linear Advection - V           0
+ t=   757.072265828490      =====> Finished Nonlin Inter v           0
+ t=   757.073115412000      =====> Finished Derivatives -V           0
+ t=   757.083955513477      Finished V =====> Finished Ops in planes           0
+ t=   759.758971728497      =====> Planes to modes UVP
+ t=   768.632961830737      =====> Planes to modes NUVP
+ t=   768.641413051026      =====> Derivatives
+ t=   768.642625480046      =====> CFL and Stats
+ t=   768.643235291542      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   768.647360431600      Finished Solving Velocities =====> Solving Pressure 
+ t=   768.651813915307      finished RHS =====> Building Nonlinear
+ t=   768.656985840065      =====> Interpolating
+ t=   768.668154108194      =====> Modes to planes
+ t=   768.682471032391      =====> Spectra
+ t=   768.683981102189      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           5
+ t     2.611948381765479E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366960147265088E-002
+ dt    5.223896763530959E-003
+ err   9.107298248878237E-017
+ Qx     1.75230493614246     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423273666335     
+ Uslp -1.057896737640909E-015
+ t=   768.776236227273      =====> Ops in Planes
+ t=   784.184512569520       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   784.186862513867      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   787.420045421353      =====> Finished Nonlin Inter U           0
+ t=   787.421584229034      =====> Finished Derivatives -U           0
+ t=   787.431999671255      =====> Finished U           0
+ t=   802.461634254680       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   802.463416298360      =====> Finished Linear Advection - V           0
+ t=   804.768655572150      =====> Finished Nonlin Inter v           0
+ t=   804.769391092128      =====> Finished Derivatives -V           0
+ t=   804.779706346761      Finished V =====> Finished Ops in planes           0
+ t=   807.441945906259      =====> Planes to modes UVP
+ t=   816.753647041707      =====> Planes to modes NUVP
+ t=   816.760782522400      =====> Derivatives
+ t=   816.761988665447      =====> CFL and Stats
+ t=   817.047693234985      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   817.051370521880      Finished Solving Velocities =====> Solving Pressure 
+ t=   817.056072602567      finished RHS =====> Building Nonlinear
+ t=   817.061280595177      =====> Interpolating
+ t=   817.071542415029      =====> Modes to planes
+ t=   817.084870143290      =====> Spectra
+ t=   817.084876701261      =====> Record Out
+ t=   817.084877974257      =====> Ops in Planes
+ t=   832.483992535133       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   832.486322796562      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   835.718778820034      =====> Finished Nonlin Inter U           0
+ t=   835.720332077653      =====> Finished Derivatives -U           0
+ t=   835.730833301523      =====> Finished U           0
+ t=   850.780601229255       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   850.782407466837      =====> Finished Linear Advection - V           0
+ t=   853.101416512069      =====> Finished Nonlin Inter v           0
+ t=   853.102161544010      =====> Finished Derivatives -V           0
+ t=   853.112534876404      Finished V =====> Finished Ops in planes           0
+ t=   855.790509279273      =====> Planes to modes UVP
+ t=   865.066486178452      =====> Planes to modes NUVP
+ t=   865.073592640263      =====> Derivatives
+ t=   865.074803674290      =====> CFL and Stats
+ t=   865.075437495685      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   865.079097306654      Finished Solving Velocities =====> Solving Pressure 
+ t=   865.083826001232      finished RHS =====> Building Nonlinear
+ t=   865.089071027689      =====> Interpolating
+ t=   865.099673680141      =====> Modes to planes
+ t=   865.113004397388      =====> Spectra
+ t=   865.113012497355      =====> Record Out
+ t=   865.113013923350      =====> Ops in Planes
+ t=   880.507150320673       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   880.509471913138      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   883.748560316368      =====> Finished Nonlin Inter U           0
+ t=   883.750146802851      =====> Finished Derivatives -U           0
+ t=   883.760634294777      =====> Finished U           0
+ t=   898.867941223181       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   898.869734902815      =====> Finished Linear Advection - V           0
+ t=   901.201593280273      =====> Finished Nonlin Inter v           0
+ t=   901.202346866177      =====> Finished Derivatives -V           0
+ t=   901.212834172104      Finished V =====> Finished Ops in planes           0
+ t=   903.924436021856      =====> Planes to modes UVP
+ t=   912.824749336982      =====> Planes to modes NUVP
+ t=   912.831939188451      =====> Derivatives
+ t=   912.833129933560      =====> CFL and Stats
+ t=   912.833744889034      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   912.837288704479      Finished Solving Velocities =====> Solving Pressure 
+ t=   912.841691305397      finished RHS =====> Building Nonlinear
+ t=   912.846694387847      =====> Interpolating
+ t=   912.857034448378      =====> Modes to planes
+ t=   912.870463464222      =====> Spectra
+ t=   912.871952280106      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           6
+ t     3.134338058118575E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366877902150021E-002
+ dt    5.223896763530959E-003
+ err   9.999730118710640E-017
+ Qx     1.75230469134362     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423173809979     
+ Uslp -1.057896737640909E-015
+ t=   912.958612367171      =====> Ops in Planes
+ t=   928.359274895689       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   928.362017107427      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   931.594736712816      =====> Finished Nonlin Inter U           0
+ t=   931.596271504512      =====> Finished Derivatives -U           0
+ t=   931.607060322200      =====> Finished U           0
+ t=   946.675194807496       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   946.677592328648      =====> Finished Linear Advection - V           0
+ t=   949.001382849243      =====> Finished Nonlin Inter v           0
+ t=   949.002235155742      =====> Finished Derivatives -V           0
+ t=   949.013021406441      Finished V =====> Finished Ops in planes           0
+ t=   951.701310149947      =====> Planes to modes UVP
+ t=   960.784176788278      =====> Planes to modes NUVP
+ t=   960.791500771196      =====> Derivatives
+ t=   960.792686838326      =====> CFL and Stats
+ t=   961.073721567043      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   961.077435416790      Finished Solving Velocities =====> Solving Pressure 
+ t=   961.082112447579      finished RHS =====> Building Nonlinear
+ t=   961.087718845552      =====> Interpolating
+ t=   961.098306844066      =====> Modes to planes
+ t=   961.111775958743      =====> Spectra
+ t=   961.111782443717      =====> Record Out
+ t=   961.111783867711      =====> Ops in Planes
+ t=   976.522791972737       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   976.525799637384      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   979.761764254445      =====> Finished Nonlin Inter U           0
+ t=   979.763308187104      =====> Finished Derivatives -U           0
+ t=   979.774099782780      =====> Finished U           0
+ t=   994.894128101934       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   994.896491863226      =====> Finished Linear Advection - V           0
+ t=   997.219427660331      =====> Finished Nonlin Inter v           0
+ t=   997.220171922274      =====> Finished Derivatives -V           0
+ t=   997.231090602429      Finished V =====> Finished Ops in planes           0
+ t=   999.916188098043      =====> Planes to modes UVP
+ t=   1008.69551890607      =====> Planes to modes NUVP
+ t=   1008.70359060692      =====> Derivatives
+ t=   1008.70479692897      =====> CFL and Stats
+ t=   1008.70540276448      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1008.70899047274      Finished Solving Velocities =====> Solving Pressure 
+ t=   1008.71445608629      finished RHS =====> Building Nonlinear
+ t=   1008.72036095504      =====> Interpolating
+ t=   1008.73206460997      =====> Modes to planes
+ t=   1008.74653353454      =====> Spectra
+ t=   1008.74654331150      =====> Record Out
+ t=   1008.74654487250      =====> Ops in Planes
+ t=   1024.15054224232       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1024.15345550535      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1027.38509693017      =====> Finished Nonlin Inter U           0
+ t=   1027.38704157318      =====> Finished Derivatives -U           0
+ t=   1027.39735733281      =====> Finished U           0
+ t=   1042.46293132063       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1042.46529531892      =====> Finished Linear Advection - V           0
+ t=   1044.78247134268      =====> Finished Nonlin Inter v           0
+ t=   1044.78320250468      =====> Finished Derivatives -V           0
+ t=   1044.79388575580      Finished V =====> Finished Ops in planes           0
+ t=   1047.47953361115      =====> Planes to modes UVP
+ t=   1056.61159164044      =====> Planes to modes NUVP
+ t=   1056.61939875037      =====> Derivatives
+ t=   1056.62061800036      =====> CFL and Stats
+ t=   1056.62122376588      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1056.62494129561      Finished Solving Velocities =====> Solving Pressure 
+ t=   1056.63005603960      finished RHS =====> Building Nonlinear
+ t=   1056.63527388117      =====> Interpolating
+ t=   1056.64627155800      =====> Modes to planes
+ t=   1056.66065970190      =====> Spectra
+ t=   1056.66209366701      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           7
+ t     3.656727734471671E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366939773593639E-002
+ dt    5.223896763530959E-003
+ err   7.980199367819594E-017
+ Qx     1.75230444650597     
+ mpgx -3.067500000000000E-003
+ Umax   1.01423077314094     
+ Uslp -1.058587947531559E-015
+ t=   1056.75191592409      =====> Ops in Planes
+ t=   1072.14912622479       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1072.15199557000      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1075.36789811046      =====> Finished Nonlin Inter U           0
+ t=   1075.36990311623      =====> Finished Derivatives -U           0
+ t=   1075.38021237889      =====> Finished U           0
+ t=   1090.36283457140       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1090.36521747962      =====> Finished Linear Advection - V           0
+ t=   1092.66720378577      =====> Finished Nonlin Inter v           0
+ t=   1092.66804812430      =====> Finished Derivatives -V           0
+ t=   1092.67870535853      Finished V =====> Finished Ops in planes           0
+ t=   1095.33849005511      =====> Planes to modes UVP
+ t=   1104.49016334183      =====> Planes to modes NUVP
+ t=   1104.49776811060      =====> Derivatives
+ t=   1104.49895276573      =====> CFL and Stats
+ t=   1104.79655657039      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1104.80024593124      Finished Solving Velocities =====> Solving Pressure 
+ t=   1104.80498500478      finished RHS =====> Building Nonlinear
+ t=   1104.81089645350      =====> Interpolating
+ t=   1104.82198462595      =====> Modes to planes
+ t=   1104.83639899475      =====> Spectra
+ t=   1104.83640810171      =====> Record Out
+ t=   1104.83640954571      =====> Ops in Planes
+ t=   1120.23285585154       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1120.23566552700      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1123.47399058237      =====> Finished Nonlin Inter U           0
+ t=   1123.47595236931      =====> Finished Derivatives -U           0
+ t=   1123.48666087533      =====> Finished U           0
+ t=   1138.49265908184       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1138.49502039514      =====> Finished Linear Advection - V           0
+ t=   1140.80404347539      =====> Finished Nonlin Inter v           0
+ t=   1140.80493215674      =====> Finished Derivatives -V           0
+ t=   1140.81572523341      Finished V =====> Finished Ops in planes           0
+ t=   1143.47993265582      =====> Planes to modes UVP
+ t=   1152.81888672533      =====> Planes to modes NUVP
+ t=   1152.82705365779      =====> Derivatives
+ t=   1152.82826541181      =====> CFL and Stats
+ t=   1152.82889353523      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1152.83251581935      Finished Solving Velocities =====> Solving Pressure 
+ t=   1152.83769350709      finished RHS =====> Building Nonlinear
+ t=   1152.84287377281      =====> Interpolating
+ t=   1152.85382164385      =====> Modes to planes
+ t=   1152.86776967156      =====> Spectra
+ t=   1152.86777856752      =====> Record Out
+ t=   1152.86778053151      =====> Ops in Planes
+ t=   1168.20218933015       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1168.20457137337      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1171.41816748130      =====> Finished Nonlin Inter U           0
+ t=   1171.41969588103      =====> Finished Derivatives -U           0
+ t=   1171.43013484115      =====> Finished U           0
+ t=   1186.38462907520       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1186.38645609569      =====> Finished Linear Advection - V           0
+ t=   1188.69077397527      =====> Finished Nonlin Inter v           0
+ t=   1188.69160558185      =====> Finished Derivatives -V           0
+ t=   1188.70175353217      Finished V =====> Finished Ops in planes           0
+ t=   1191.36477039548      =====> Planes to modes UVP
+ t=   1200.84974990423      =====> Planes to modes NUVP
+ t=   1200.85727280333      =====> Derivatives
+ t=   1200.85846788142      =====> CFL and Stats
+ t=   1200.85905142602      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1200.86257857054      Finished Solving Velocities =====> Solving Pressure 
+ t=   1200.86700698035      finished RHS =====> Building Nonlinear
+ t=   1200.87202276574      =====> Interpolating
+ t=   1200.88244863392      =====> Modes to planes
+ t=   1200.89610632983      =====> Spectra
+ t=   1200.89762427859      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           8
+ t     4.179117410824767E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367145168861668E-002
+ dt    5.223896763530959E-003
+ err   8.500483838713031E-017
+ Qx     1.75230420163336     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422984107111     
+ Uslp -1.058242342586234E-015
+ t=   1200.99945975633      =====> Ops in Planes
+ t=   1216.37730848355       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1216.37964596495      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1219.60487207311      =====> Finished Nonlin Inter U           0
+ t=   1219.60648648148      =====> Finished Derivatives -U           0
+ t=   1219.61703569216      =====> Finished U           0
+ t=   1234.64541475874       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1234.64720663038      =====> Finished Linear Advection - V           0
+ t=   1236.96006525587      =====> Finished Nonlin Inter v           0
+ t=   1236.96092846133      =====> Finished Derivatives -V           0
+ t=   1236.97118296621      Finished V =====> Finished Ops in planes           0
+ t=   1239.65025216958      =====> Planes to modes UVP
+ t=   1248.99627133208      =====> Planes to modes NUVP
+ t=   1249.00376859229      =====> Derivatives
+ t=   1249.00508270889      =====> CFL and Stats
+ t=   1249.27828986676      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1249.28189672994      Finished Solving Velocities =====> Solving Pressure 
+ t=   1249.28643049832      finished RHS =====> Building Nonlinear
+ t=   1249.29168301375      =====> Interpolating
+ t=   1249.30206784909      =====> Modes to planes
+ t=   1249.31559558053      =====> Spectra
+ t=   1249.31560224351      =====> Record Out
+ t=   1249.31560372950      =====> Ops in Planes
+ t=   1264.70194439384       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1264.70428819121      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1267.92974247144      =====> Finished Nonlin Inter U           0
+ t=   1267.93127284516      =====> Finished Derivatives -U           0
+ t=   1267.94172349423      =====> Finished U           0
+ t=   1282.98459317530       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1282.98639715389      =====> Finished Linear Advection - V           0
+ t=   1285.30240436245      =====> Finished Nonlin Inter v           0
+ t=   1285.30313654244      =====> Finished Derivatives -V           0
+ t=   1285.31343785513      Finished V =====> Finished Ops in planes           0
+ t=   1287.99186905913      =====> Planes to modes UVP
+ t=   1297.27833979921      =====> Planes to modes NUVP
+ t=   1297.28649595371      =====> Derivatives
+ t=   1297.28770729973      =====> CFL and Stats
+ t=   1297.28830108229      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1297.29189901551      Finished Solving Velocities =====> Solving Pressure 
+ t=   1297.29632033136      finished RHS =====> Building Nonlinear
+ t=   1297.30160907763      =====> Interpolating
+ t=   1297.31204514377      =====> Modes to planes
+ t=   1297.32624769944      =====> Spectra
+ t=   1297.32626095138      =====> Record Out
+ t=   1297.32626298837      =====> Ops in Planes
+ t=   1312.76261222432       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1312.76494743772      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1316.01065600677      =====> Finished Nonlin Inter U           0
+ t=   1316.01210580581      =====> Finished Derivatives -U           0
+ t=   1316.02267763939      =====> Finished U           0
+ t=   1331.12345822860       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1331.12524598826      =====> Finished Linear Advection - V           0
+ t=   1333.44093493213      =====> Finished Nonlin Inter v           0
+ t=   1333.44180748354      =====> Finished Derivatives -V           0
+ t=   1333.45202609357      Finished V =====> Finished Ops in planes           0
+ t=   1336.12785464326      =====> Planes to modes UVP
+ t=   1344.95292914141      =====> Planes to modes NUVP
+ t=   1344.96044905752      =====> Derivatives
+ t=   1344.96165726056      =====> CFL and Stats
+ t=   1344.96223409219      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1344.96582384644      Finished Solving Velocities =====> Solving Pressure 
+ t=   1344.97027341617      finished RHS =====> Building Nonlinear
+ t=   1344.97546492885      =====> Interpolating
+ t=   1344.98575352959      =====> Modes to planes
+ t=   1344.99910906973      =====> Spectra
+ t=   1345.00061439755      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter           9
+ t     4.701507087177863E-002
+ dtv   2.089558705412383E-003
+ dtc   1.367018608653264E-002
+ dt    5.223896763530959E-003
+ err   1.058749929371489E-016
+ Qx     1.75230395672973     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422894118725     
+ Uslp -1.058242342586234E-015
+ t=   1345.09265724251      =====> Ops in Planes
+ t=   1360.40816939976       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1360.41098773318      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1363.62158847342      =====> Finished Nonlin Inter U           0
+ t=   1363.62317429791      =====> Finished Derivatives -U           0
+ t=   1363.63426572035      =====> Finished U           0
+ t=   1378.59908836698       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1378.60133082277      =====> Finished Linear Advection - V           0
+ t=   1380.90426086804      =====> Finished Nonlin Inter v           0
+ t=   1380.90512942147      =====> Finished Derivatives -V           0
+ t=   1380.91587543634      Finished V =====> Finished Ops in planes           0
+ t=   1383.58223839090      =====> Planes to modes UVP
+ t=   1393.02863436912      =====> Planes to modes NUVP
+ t=   1393.03608142253      =====> Derivatives
+ t=   1393.03726793566      =====> CFL and Stats
+ t=   1393.31611316537      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1393.31970448262      Finished Solving Velocities =====> Solving Pressure 
+ t=   1393.32423238302      finished RHS =====> Building Nonlinear
+ t=   1393.32985292694      =====> Interpolating
+ t=   1393.34036331177      =====> Modes to planes
+ t=   1393.35339179926      =====> Spectra
+ t=   1393.35340011022      =====> Record Out
+ t=   1393.35340152622      =====> Ops in Planes
+ t=   1408.79965559448       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1408.80248862184      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1412.02879318358      =====> Finished Nonlin Inter U           0
+ t=   1412.03078149841      =====> Finished Derivatives -U           0
+ t=   1412.04115691480      =====> Finished U           0
+ t=   1427.08794299178       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1427.09039260972      =====> Finished Linear Advection - V           0
+ t=   1429.40800570569      =====> Finished Nonlin Inter v           0
+ t=   1429.40885682319      =====> Finished Derivatives -V           0
+ t=   1429.41986997396      Finished V =====> Finished Ops in planes           0
+ t=   1432.11096265194      =====> Planes to modes UVP
+ t=   1441.13025543539      =====> Planes to modes NUVP
+ t=   1441.13742982992      =====> Derivatives
+ t=   1441.13861021608      =====> CFL and Stats
+ t=   1441.13920794962      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1441.14278487793      Finished Solving Velocities =====> Solving Pressure 
+ t=   1441.14830846824      finished RHS =====> Building Nonlinear
+ t=   1441.15379249872      =====> Interpolating
+ t=   1441.16534938425      =====> Modes to planes
+ t=   1441.17907322988      =====> Spectra
+ t=   1441.17908152885      =====> Record Out
+ t=   1441.17908307884      =====> Ops in Planes
+ t=   1456.55898091365       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1456.56131530806      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1459.77460525725      =====> Finished Nonlin Inter U           0
+ t=   1459.77613505397      =====> Finished Derivatives -U           0
+ t=   1459.78702781623      =====> Finished U           0
+ t=   1474.73746970292       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1474.73926075356      =====> Finished Linear Advection - V           0
+ t=   1477.04664781253      =====> Finished Nonlin Inter v           0
+ t=   1477.04749904603      =====> Finished Derivatives -V           0
+ t=   1477.05807098861      Finished V =====> Finished Ops in planes           0
+ t=   1479.71885034111      =====> Planes to modes UVP
+ t=   1489.05390261364      =====> Planes to modes NUVP
+ t=   1489.06139359988      =====> Derivatives
+ t=   1489.06261312087      =====> CFL and Stats
+ t=   1489.06322098237      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1489.06680689164      Finished Solving Velocities =====> Solving Pressure 
+ t=   1489.07120369359      finished RHS =====> Building Nonlinear
+ t=   1489.07621168002      =====> Interpolating
+ t=   1489.08671204789      =====> Modes to planes
+ t=   1489.10001714124      =====> Spectra
+ t=   1489.10152073907      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          10
+ t     5.223896763530959E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366911493369749E-002
+ dt    5.223896763530959E-003
+ err   9.889445383256551E-017
+ Qx     1.75230371179904     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422807279896     
+ Uslp -1.058242342586234E-015
+ t=   1489.18944639993      =====> Ops in Planes
+ t=   1504.50124266045       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1504.50364076760      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1507.71457062948      =====> Finished Nonlin Inter U           0
+ t=   1507.71614529901      =====> Finished Derivatives -U           0
+ t=   1507.72664079091      =====> Finished U           0
+ t=   1522.69213614677       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1522.69393706037      =====> Finished Linear Advection - V           0
+ t=   1524.99384523506      =====> Finished Nonlin Inter v           0
+ t=   1524.99468937759      =====> Finished Derivatives -V           0
+ t=   1525.00504797905      Finished V =====> Finished Ops in planes           0
+ t=   1527.66979986122      =====> Planes to modes UVP
+ t=   1537.16570031012      =====> Planes to modes NUVP
+ t=   1537.17310285671      =====> Derivatives
+ t=   1537.17430643177      =====> CFL and Stats
+ t=   1537.44877153247      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1537.45239566059      Finished Solving Velocities =====> Solving Pressure 
+ t=   1537.45694201191      finished RHS =====> Building Nonlinear
+ t=   1537.46216810645      =====> Interpolating
+ t=   1537.47278530784      =====> Modes to planes
+ t=   1537.48627177345      =====> Spectra
+ t=   1537.48628627239      =====> Record Out
+ t=   1537.48628774238      =====> Ops in Planes
+ t=   1552.90584798428       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1552.90883140803      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1556.14205979433      =====> Finished Nonlin Inter U           0
+ t=   1556.14407250406      =====> Finished Derivatives -U           0
+ t=   1556.15450983919      =====> Finished U           0
+ t=   1571.21077040226       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1571.21311343064      =====> Finished Linear Advection - V           0
+ t=   1573.52794464203      =====> Finished Nonlin Inter v           0
+ t=   1573.52878238459      =====> Finished Derivatives -V           0
+ t=   1573.53938029806      Finished V =====> Finished Ops in planes           0
+ t=   1576.21930715591      =====> Planes to modes UVP
+ t=   1585.08838622032      =====> Planes to modes NUVP
+ t=   1585.09574131511      =====> Derivatives
+ t=   1585.09693161622      =====> CFL and Stats
+ t=   1585.09753302175      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1585.10095627969      Finished Solving Velocities =====> Solving Pressure 
+ t=   1585.10591414333      finished RHS =====> Building Nonlinear
+ t=   1585.11092289076      =====> Interpolating
+ t=   1585.12157187102      =====> Modes to planes
+ t=   1585.13463724636      =====> Spectra
+ t=   1585.13464444133      =====> Record Out
+ t=   1585.13464582532      =====> Ops in Planes
+ t=   1600.51328286730       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1600.51610121673      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1603.75252467791      =====> Finished Nonlin Inter U           0
+ t=   1603.75407044756      =====> Finished Derivatives -U           0
+ t=   1603.76489174611      =====> Finished U           0
+ t=   1618.83162323617       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1618.83396166356      =====> Finished Linear Advection - V           0
+ t=   1621.15421164270      =====> Finished Nonlin Inter v           0
+ t=   1621.15505438124      =====> Finished Derivatives -V           0
+ t=   1621.16563546578      Finished V =====> Finished Ops in planes           0
+ t=   1623.85995674551      =====> Planes to modes UVP
+ t=   1632.83432302348      =====> Planes to modes NUVP
+ t=   1632.84197387806      =====> Derivatives
+ t=   1632.84317062914      =====> CFL and Stats
+ t=   1632.84378114063      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1632.84721458553      Finished Solving Velocities =====> Solving Pressure 
+ t=   1632.85228495170      finished RHS =====> Building Nonlinear
+ t=   1632.85742856658      =====> Interpolating
+ t=   1632.86836642365      =====> Modes to planes
+ t=   1632.88282120729      =====> Spectra
+ t=   1632.88469292360      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          11
+ t     5.746286439884055E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366854632202600E-002
+ dt    5.223896763530959E-003
+ err   8.735844209138818E-017
+ Qx     1.75230346684531     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422723522855     
+ Uslp -1.058242342586234E-015
+ t=   1632.98158691463      =====> Ops in Planes
+ t=   1648.33286057000       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1648.33576096809      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1651.55599117677      =====> Finished Nonlin Inter U           0
+ t=   1651.55794348375      =====> Finished Derivatives -U           0
+ t=   1651.56824195946      =====> Finished U           0
+ t=   1666.55395135429       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1666.55627659074      =====> Finished Linear Advection - V           0
+ t=   1668.86007630845      =====> Finished Nonlin Inter v           0
+ t=   1668.86092675995      =====> Finished Derivatives -V           0
+ t=   1668.87160990107      Finished V =====> Finished Ops in planes           0
+ t=   1671.53156807094      =====> Planes to modes UVP
+ t=   1680.57655209186      =====> Planes to modes NUVP
+ t=   1680.58443450749      =====> Derivatives
+ t=   1680.58563747455      =====> CFL and Stats
+ t=   1680.86015326204      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1680.86371809440      Finished Solving Velocities =====> Solving Pressure 
+ t=   1680.86826130374      finished RHS =====> Building Nonlinear
+ t=   1680.87395520836      =====> Interpolating
+ t=   1680.88462871152      =====> Modes to planes
+ t=   1680.89824584459      =====> Spectra
+ t=   1680.89826716950      =====> Record Out
+ t=   1680.89826879749      =====> Ops in Planes
+ t=   1696.28881881655       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1696.29165258791      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1699.51933945297      =====> Finished Nonlin Inter U           0
+ t=   1699.52086100072      =====> Finished Derivatives -U           0
+ t=   1699.53163993645      =====> Finished U           0
+ t=   1714.55687956592       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1714.55922037831      =====> Finished Linear Advection - V           0
+ t=   1716.87114550364      =====> Finished Nonlin Inter v           0
+ t=   1716.87202057404      =====> Finished Derivatives -V           0
+ t=   1716.88274880298      Finished V =====> Finished Ops in planes           0
+ t=   1719.56064899115      =====> Planes to modes UVP
+ t=   1728.87882463901      =====> Planes to modes NUVP
+ t=   1728.88598618760      =====> Derivatives
+ t=   1728.88718635867      =====> CFL and Stats
+ t=   1728.88778807519      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1728.89120795515      Finished Solving Velocities =====> Solving Pressure 
+ t=   1728.89616015581      finished RHS =====> Building Nonlinear
+ t=   1728.90113448138      =====> Interpolating
+ t=   1728.91182638646      =====> Modes to planes
+ t=   1728.92491686570      =====> Spectra
+ t=   1728.92492434167      =====> Record Out
+ t=   1728.92492584766      =====> Ops in Planes
+ t=   1744.29808498414       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1744.30098979821      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1747.52304395641      =====> Finished Nonlin Inter U           0
+ t=   1747.52503984121      =====> Finished Derivatives -U           0
+ t=   1747.53539779167      =====> Finished U           0
+ t=   1762.65655537518       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1762.65883199583      =====> Finished Linear Advection - V           0
+ t=   1764.98322129997      =====> Finished Nonlin Inter v           0
+ t=   1764.98408478742      =====> Finished Derivatives -V           0
+ t=   1764.99473393668      Finished V =====> Finished Ops in planes           0
+ t=   1767.67566295342      =====> Planes to modes UVP
+ t=   1776.75406430609      =====> Planes to modes NUVP
+ t=   1776.76242575774      =====> Derivatives
+ t=   1776.76362819581      =====> CFL and Stats
+ t=   1776.76421223141      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1776.76842245711      Finished Solving Velocities =====> Solving Pressure 
+ t=   1776.77288486479      finished RHS =====> Building Nonlinear
+ t=   1776.77807986045      =====> Interpolating
+ t=   1776.78964975593      =====> Modes to planes
+ t=   1776.80368986626      =====> Spectra
+ t=   1776.80512357737      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          12
+ t     6.268676116237150E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366768104625408E-002
+ dt    5.223896763530959E-003
+ err   9.720644932127639E-017
+ Qx     1.75230322187260     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422642781106     
+ Uslp -1.058587947531559E-015
+ t=   1776.90131230530      =====> Ops in Planes
+ t=   1792.25819821362       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1792.26101449405      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1795.47478635827      =====> Finished Nonlin Inter U           0
+ t=   1795.47670825237      =====> Finished Derivatives -U           0
+ t=   1795.48700579408      =====> Finished U           0
+ t=   1810.43282757274       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1810.43514914021      =====> Finished Linear Advection - V           0
+ t=   1812.73659598857      =====> Finished Nonlin Inter v           0
+ t=   1812.73749240389      =====> Finished Derivatives -V           0
+ t=   1812.74828167458      Finished V =====> Finished Ops in planes           0
+ t=   1815.40711474007      =====> Planes to modes UVP
+ t=   1824.86143976372      =====> Planes to modes NUVP
+ t=   1824.86873241877      =====> Derivatives
+ t=   1824.86991447892      =====> CFL and Stats
+ t=   1825.15409490871      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1825.15778028358      Finished Solving Velocities =====> Solving Pressure 
+ t=   1825.16242133051      finished RHS =====> Building Nonlinear
+ t=   1825.16800566658      =====> Interpolating
+ t=   1825.17871536859      =====> Modes to planes
+ t=   1825.19218344627      =====> Spectra
+ t=   1825.19219126124      =====> Record Out
+ t=   1825.19219260024      =====> Ops in Planes
+ t=   1840.58372031627       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1840.58677258474      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1843.81843730446      =====> Finished Nonlin Inter U           0
+ t=   1843.81996641218      =====> Finished Derivatives -U           0
+ t=   1843.83077727478      =====> Finished U           0
+ t=   1858.86621445837       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1858.86802208994      =====> Finished Linear Advection - V           0
+ t=   1861.18528734234      =====> Finished Nonlin Inter v           0
+ t=   1861.18601203336      =====> Finished Derivatives -V           0
+ t=   1861.19670606144      Finished V =====> Finished Ops in planes           0
+ t=   1863.86980321134      =====> Planes to modes UVP
+ t=   1873.18432880719      =====> Planes to modes NUVP
+ t=   1873.19330231233      =====> Derivatives
+ t=   1873.19450193541      =====> CFL and Stats
+ t=   1873.19509862195      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1873.19926928582      Finished Solving Velocities =====> Solving Pressure 
+ t=   1873.20372648952      finished RHS =====> Building Nonlinear
+ t=   1873.20897851595      =====> Interpolating
+ t=   1873.22046731076      =====> Modes to planes
+ t=   1873.23557040373      =====> Spectra
+ t=   1873.23558092568      =====> Record Out
+ t=   1873.23558257968      =====> Ops in Planes
+ t=   1888.63985330338       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1888.64260883306      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1891.87038781374      =====> Finished Nonlin Inter U           0
+ t=   1891.87194435335      =====> Finished Derivatives -U           0
+ t=   1891.88284506757      =====> Finished U           0
+ t=   1906.94547924046       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1906.94782211384      =====> Finished Linear Advection - V           0
+ t=   1909.26834428586      =====> Finished Nonlin Inter v           0
+ t=   1909.26907119987      =====> Finished Derivatives -V           0
+ t=   1909.27979101384      Finished V =====> Finished Ops in planes           0
+ t=   1911.96635070445      =====> Planes to modes UVP
+ t=   1920.84579660328      =====> Planes to modes NUVP
+ t=   1920.85350180264      =====> Derivatives
+ t=   1920.85470410170      =====> CFL and Stats
+ t=   1920.85530494423      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1920.85886405761      Finished Solving Velocities =====> Solving Pressure 
+ t=   1920.86380126733      finished RHS =====> Building Nonlinear
+ t=   1920.86892342229      =====> Interpolating
+ t=   1920.87988952825      =====> Modes to planes
+ t=   1920.89373607638      =====> Spectra
+ t=   1920.89515649155      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          13
+ t     6.791065792590245E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366823036613214E-002
+ dt    5.223896763530959E-003
+ err   1.187747314989030E-016
+ Qx     1.75230297688503     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422564989425     
+ Uslp -1.058587947531559E-015
+ t=   1920.98249847781      =====> Ops in Planes
+ t=   1936.37815612189       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1936.38090456060      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1939.61096358092      =====> Finished Nonlin Inter U           0
+ t=   1939.61302537145      =====> Finished Derivatives -U           0
+ t=   1939.62339694885      =====> Finished U           0
+ t=   1954.64693892130       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1954.64875718083      =====> Finished Linear Advection - V           0
+ t=   1956.96439947189      =====> Finished Nonlin Inter v           0
+ t=   1956.96512851990      =====> Finished Derivatives -V           0
+ t=   1956.97589015270      Finished V =====> Finished Ops in planes           0
+ t=   1959.65110026392      =====> Planes to modes UVP
+ t=   1968.84647290316      =====> Planes to modes NUVP
+ t=   1968.85344098154      =====> Derivatives
+ t=   1968.85462643767      =====> CFL and Stats
+ t=   1969.13169662867      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   1969.13524441610      Finished Solving Velocities =====> Solving Pressure 
+ t=   1969.13978768844      finished RHS =====> Building Nonlinear
+ t=   1969.14529907580      =====> Interpolating
+ t=   1969.15582837156      =====> Modes to planes
+ t=   1969.16887382398      =====> Spectra
+ t=   1969.16888229394      =====> Record Out
+ t=   1969.16888385593      =====> Ops in Planes
+ t=   1984.55544483637       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   1984.55780961666      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   1987.78807118714      =====> Finished Nonlin Inter U           0
+ t=   1987.78962211577      =====> Finished Derivatives -U           0
+ t=   1987.79997481125      =====> Finished U           0
+ t=   2002.84305891544       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2002.84488530394      =====> Finished Linear Advection - V           0
+ t=   2005.16606143027      =====> Finished Nonlin Inter v           0
+ t=   2005.16694740563      =====> Finished Derivatives -V           0
+ t=   2005.17776112821      Finished V =====> Finished Ops in planes           0
+ t=   2007.85764872723      =====> Planes to modes UVP
+ t=   2017.19481240109      =====> Planes to modes NUVP
+ t=   2017.20307870114      =====> Derivatives
+ t=   2017.20428336619      =====> CFL and Stats
+ t=   2017.20489380269      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2017.20900600580      Finished Solving Velocities =====> Solving Pressure 
+ t=   2017.21345806251      finished RHS =====> Building Nonlinear
+ t=   2017.21862600728      =====> Interpolating
+ t=   2017.22981732232      =====> Modes to planes
+ t=   2017.24426835297      =====> Spectra
+ t=   2017.24427878392      =====> Record Out
+ t=   2017.24428061992      =====> Ops in Planes
+ t=   2032.66080328529       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2032.66368810244      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2035.90168904614      =====> Finished Nonlin Inter U           0
+ t=   2035.90365014909      =====> Finished Derivatives -U           0
+ t=   2035.91396880071      =====> Finished U           0
+ t=   2050.98106620626       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2050.98333376995      =====> Finished Linear Advection - V           0
+ t=   2053.30317871675      =====> Finished Nonlin Inter v           0
+ t=   2053.30391290573      =====> Finished Derivatives -V           0
+ t=   2053.31488305067      Finished V =====> Finished Ops in planes           0
+ t=   2056.00600962953      =====> Planes to modes UVP
+ t=   2064.70050166801      =====> Planes to modes NUVP
+ t=   2064.70904497092      =====> Derivatives
+ t=   2064.71025150496      =====> CFL and Stats
+ t=   2064.71083057059      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2064.71495039367      Finished Solving Velocities =====> Solving Pressure 
+ t=   2064.71938951743      finished RHS =====> Building Nonlinear
+ t=   2064.72451948636      =====> Interpolating
+ t=   2064.73566181960      =====> Modes to planes
+ t=   2064.74998114179      =====> Spectra
+ t=   2064.75188441397      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          14
+ t     7.313455468943340E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366842335499015E-002
+ dt    5.223896763530959E-003
+ err   8.092071311423672E-017
+ Qx     1.75230273188673     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422490083865     
+ Uslp -1.058587947531559E-015
+ t=   2064.85392619186      =====> Ops in Planes
+ t=   2080.27669506558       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2080.27960126464      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2083.51471354820      =====> Finished Nonlin Inter U           0
+ t=   2083.51672266695      =====> Finished Derivatives -U           0
+ t=   2083.52710116732      =====> Finished U           0
+ t=   2098.59678927324       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2098.59914711456      =====> Finished Linear Advection - V           0
+ t=   2100.91964704466      =====> Finished Nonlin Inter v           0
+ t=   2100.92049168620      =====> Finished Derivatives -V           0
+ t=   2100.93108794367      Finished V =====> Finished Ops in planes           0
+ t=   2103.61441526556      =====> Planes to modes UVP
+ t=   2112.22476632863      =====> Planes to modes NUVP
+ t=   2112.23197746801      =====> Derivatives
+ t=   2112.23317767909      =====> CFL and Stats
+ t=   2112.51149465097      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2112.51508935320      Finished Solving Velocities =====> Solving Pressure 
+ t=   2112.51962339258      finished RHS =====> Building Nonlinear
+ t=   2112.52523395554      =====> Interpolating
+ t=   2112.53582936502      =====> Modes to planes
+ t=   2112.54984283746      =====> Spectra
+ t=   2112.54985063843      =====> Record Out
+ t=   2112.54985200942      =====> Ops in Planes
+ t=   2128.03937568796       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2128.04233905679      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2131.29413340484      =====> Finished Nonlin Inter U           0
+ t=   2131.29609638377      =====> Finished Derivatives -U           0
+ t=   2131.30646722018      =====> Finished U           0
+ t=   2146.39875358028       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2146.40106708678      =====> Finished Linear Advection - V           0
+ t=   2148.71786419009      =====> Finished Nonlin Inter v           0
+ t=   2148.71871652659      =====> Finished Derivatives -V           0
+ t=   2148.72938848776      Finished V =====> Finished Ops in planes           0
+ t=   2151.40780884180      =====> Planes to modes UVP
+ t=   2160.15552409768      =====> Planes to modes NUVP
+ t=   2160.16286109955      =====> Derivatives
+ t=   2160.16405324665      =====> CFL and Stats
+ t=   2160.16467490110      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2160.16810913099      Finished Solving Velocities =====> Solving Pressure 
+ t=   2160.17307932958      finished RHS =====> Building Nonlinear
+ t=   2160.17809380498      =====> Interpolating
+ t=   2160.18887536570      =====> Modes to planes
+ t=   2160.20232638445      =====> Spectra
+ t=   2160.20233409342      =====> Record Out
+ t=   2160.20233544842      =====> Ops in Planes
+ t=   2175.57642677907       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2175.57922939356      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2178.80482991619      =====> Finished Nonlin Inter U           0
+ t=   2178.80676792723      =====> Finished Derivatives -U           0
+ t=   2178.81713131166      =====> Finished U           0
+ t=   2193.84219794785       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2193.84401667038      =====> Finished Linear Advection - V           0
+ t=   2196.15646190857      =====> Finished Nonlin Inter v           0
+ t=   2196.15729435815      =====> Finished Derivatives -V           0
+ t=   2196.16787356870      Finished V =====> Finished Ops in planes           0
+ t=   2198.84761538131      =====> Planes to modes UVP
+ t=   2208.17287119809      =====> Planes to modes NUVP
+ t=   2208.18080801949      =====> Derivatives
+ t=   2208.18206904631      =====> CFL and Stats
+ t=   2208.18269979572      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2208.18698322813      Finished Solving Velocities =====> Solving Pressure 
+ t=   2208.19176524749      finished RHS =====> Building Nonlinear
+ t=   2208.19712222548      =====> Interpolating
+ t=   2208.20867826202      =====> Modes to planes
+ t=   2208.22349841815      =====> Spectra
+ t=   2208.22499128302      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          15
+ t     7.835845145296436E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366600535463959E-002
+ dt    5.223896763530959E-003
+ err   9.195670808633379E-017
+ Qx     1.75230248688191     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422418001754     
+ Uslp -1.058933552476885E-015
+ t=   2208.32582097588      =====> Ops in Planes
+ t=   2223.62196784668       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2223.62482238695      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2226.83018025872      =====> Finished Nonlin Inter U           0
+ t=   2226.83172305939      =====> Finished Derivatives -U           0
+ t=   2226.84250250111      =====> Finished U           0
+ t=   2241.78645635645       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2241.78873475509      =====> Finished Linear Advection - V           0
+ t=   2244.08984536984      =====> Finished Nonlin Inter v           0
+ t=   2244.09072722722      =====> Finished Derivatives -V           0
+ t=   2244.10143835422      Finished V =====> Finished Ops in planes           0
+ t=   2246.76172462974      =====> Planes to modes UVP
+ t=   2256.31067892273      =====> Planes to modes NUVP
+ t=   2256.31842086393      =====> Derivatives
+ t=   2256.31962573698      =====> CFL and Stats
+ t=   2256.61755876730      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2256.62114828055      Finished Solving Velocities =====> Solving Pressure 
+ t=   2256.62570834682      finished RHS =====> Building Nonlinear
+ t=   2256.63132260377      =====> Interpolating
+ t=   2256.64191033828      =====> Modes to planes
+ t=   2256.65571447858      =====> Spectra
+ t=   2256.65572286355      =====> Record Out
+ t=   2256.65572429054      =====> Ops in Planes
+ t=   2272.07571342868       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2272.07852707712      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2275.32014421197      =====> Finished Nonlin Inter U           0
+ t=   2275.32166417972      =====> Finished Derivatives -U           0
+ t=   2275.33242854751      =====> Finished U           0
+ t=   2290.41843896539       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2290.42023683800      =====> Finished Linear Advection - V           0
+ t=   2292.74232075861      =====> Finished Nonlin Inter v           0
+ t=   2292.74305215060      =====> Finished Derivatives -V           0
+ t=   2292.75355311447      Finished V =====> Finished Ops in planes           0
+ t=   2295.43130663725      =====> Planes to modes UVP
+ t=   2304.33356150240      =====> Planes to modes NUVP
+ t=   2304.34120763800      =====> Derivatives
+ t=   2304.34242144201      =====> CFL and Stats
+ t=   2304.34301295258      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2304.34658974189      Finished Solving Velocities =====> Solving Pressure 
+ t=   2304.35105140557      finished RHS =====> Building Nonlinear
+ t=   2304.35630104700      =====> Interpolating
+ t=   2304.36668522235      =====> Modes to planes
+ t=   2304.38092336187      =====> Spectra
+ t=   2304.38093371083      =====> Record Out
+ t=   2304.38093531082      =====> Ops in Planes
+ t=   2319.77529181624       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2319.77763003564      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2323.01244359443      =====> Finished Nonlin Inter U           0
+ t=   2323.01387627854      =====> Finished Derivatives -U           0
+ t=   2323.02454124974      =====> Finished U           0
+ t=   2338.06259485959       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2338.06443952701      =====> Finished Linear Advection - V           0
+ t=   2340.38051598329      =====> Finished Nonlin Inter v           0
+ t=   2340.38135715283      =====> Finished Derivatives -V           0
+ t=   2340.39160719873      Finished V =====> Finished Ops in planes           0
+ t=   2343.07033286452      =====> Planes to modes UVP
+ t=   2352.36373353613      =====> Planes to modes NUVP
+ t=   2352.37100913925      =====> Derivatives
+ t=   2352.37220476734      =====> CFL and Stats
+ t=   2352.37280810186      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2352.37636766724      Finished Solving Velocities =====> Solving Pressure 
+ t=   2352.38085011583      finished RHS =====> Building Nonlinear
+ t=   2352.38592030400      =====> Interpolating
+ t=   2352.39631569331      =====> Modes to planes
+ t=   2352.40951937808      =====> Spectra
+ t=   2352.41102781688      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          16
+ t     8.358234821649531E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366498331023888E-002
+ dt    5.223896763530959E-003
+ err   1.009871323913994E-016
+ Qx     1.75230224187479     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422348681694     
+ Uslp -1.058587947531559E-015
+ t=   2352.50023597548      =====> Ops in Planes
+ t=   2367.89040426210       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2367.89332850509      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2371.12223645414      =====> Finished Nonlin Inter U           0
+ t=   2371.12375312491      =====> Finished Derivatives -U           0
+ t=   2371.13454521758      =====> Finished U           0
+ t=   2386.18009049766       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2386.18190295121      =====> Finished Linear Advection - V           0
+ t=   2388.49678897638      =====> Finished Nonlin Inter v           0
+ t=   2388.49763343391      =====> Finished Derivatives -V           0
+ t=   2388.50828849315      Finished V =====> Finished Ops in planes           0
+ t=   2391.19220687460      =====> Planes to modes UVP
+ t=   2400.44874420863      =====> Planes to modes NUVP
+ t=   2400.45591455118      =====> Derivatives
+ t=   2400.45710143430      =====> CFL and Stats
+ t=   2400.73598857884      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2400.73957451711      Finished Solving Velocities =====> Solving Pressure 
+ t=   2400.74417788520      finished RHS =====> Building Nonlinear
+ t=   2400.74978888016      =====> Interpolating
+ t=   2400.76039881058      =====> Modes to planes
+ t=   2400.77393766097      =====> Spectra
+ t=   2400.77394573394      =====> Record Out
+ t=   2400.77394722993      =====> Ops in Planes
+ t=   2416.20321243197       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2416.20603102240      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2419.45198027945      =====> Finished Nonlin Inter U           0
+ t=   2419.45399212618      =====> Finished Derivatives -U           0
+ t=   2419.46465357639      =====> Finished U           0
+ t=   2434.61049908651       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2434.61290957661      =====> Finished Linear Advection - V           0
+ t=   2436.94378104912      =====> Finished Nonlin Inter v           0
+ t=   2436.94462940864      =====> Finished Derivatives -V           0
+ t=   2436.95526631895      Finished V =====> Finished Ops in planes           0
+ t=   2439.66090203621      =====> Planes to modes UVP
+ t=   2448.47430934328      =====> Planes to modes NUVP
+ t=   2448.48144635296      =====> Derivatives
+ t=   2448.48264491904      =====> CFL and Stats
+ t=   2448.48325399654      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2448.48664588361      Finished Solving Velocities =====> Solving Pressure 
+ t=   2448.49159136530      finished RHS =====> Building Nonlinear
+ t=   2448.49662453762      =====> Interpolating
+ t=   2448.50734293760      =====> Modes to planes
+ t=   2448.52048132964      =====> Spectra
+ t=   2448.52048934960      =====> Record Out
+ t=   2448.52049073760      =====> Ops in Planes
+ t=   2463.84893160275       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2463.85171790331      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2467.06593925267      =====> Finished Nonlin Inter U           0
+ t=   2467.06800656418      =====> Finished Derivatives -U           0
+ t=   2467.07846654622      =====> Finished U           0
+ t=   2482.07158816361       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2482.07385966328      =====> Finished Linear Advection - V           0
+ t=   2484.38705614739      =====> Finished Nonlin Inter v           0
+ t=   2484.38789083596      =====> Finished Derivatives -V           0
+ t=   2484.39849653540      Finished V =====> Finished Ops in planes           0
+ t=   2487.07151739862      =====> Planes to modes UVP
+ t=   2496.30193019794      =====> Planes to modes NUVP
+ t=   2496.31042818004      =====> Derivatives
+ t=   2496.31166010697      =====> CFL and Stats
+ t=   2496.31227837443      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2496.31646893222      Finished Solving Velocities =====> Solving Pressure 
+ t=   2496.32094443584      finished RHS =====> Building Nonlinear
+ t=   2496.32689658239      =====> Interpolating
+ t=   2496.33794665001      =====> Modes to planes
+ t=   2496.35272629930      =====> Spectra
+ t=   2496.35423444911      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          17
+ t     8.880624498002626E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366535361172103E-002
+ dt    5.223896763530959E-003
+ err   9.894008689836364E-017
+ Qx     1.75230199686963     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422282063562     
+ Uslp -1.058933552476885E-015
+ t=   2496.47852966560      =====> Ops in Planes
+ t=   2511.86799536711       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2511.87074988479      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2515.09627539973      =====> Finished Nonlin Inter U           0
+ t=   2515.09779984247      =====> Finished Derivatives -U           0
+ t=   2515.10863871695      =====> Finished U           0
+ t=   2530.13870326161       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2530.14105021097      =====> Finished Linear Advection - V           0
+ t=   2532.46299605314      =====> Finished Nonlin Inter v           0
+ t=   2532.46383718569      =====> Finished Derivatives -V           0
+ t=   2532.47447681799      Finished V =====> Finished Ops in planes           0
+ t=   2535.17676327700      =====> Planes to modes UVP
+ t=   2544.29291903860      =====> Planes to modes NUVP
+ t=   2544.30021085965      =====> Derivatives
+ t=   2544.30139985577      =====> CFL and Stats
+ t=   2544.68978600357      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2544.69337288684      Finished Solving Velocities =====> Solving Pressure 
+ t=   2544.69779366468      finished RHS =====> Building Nonlinear
+ t=   2544.70341459759      =====> Interpolating
+ t=   2544.71398172919      =====> Modes to planes
+ t=   2544.72739000612      =====> Spectra
+ t=   2544.72739621909      =====> Record Out
+ t=   2544.72739760309      =====> Ops in Planes
+ t=   2560.16312669458       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2560.16601655971      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2563.40306608831      =====> Finished Nonlin Inter U           0
+ t=   2563.40505864313      =====> Finished Derivatives -U           0
+ t=   2563.41547346535      =====> Finished U           0
+ t=   2578.49834296813       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2578.50056015802      =====> Finished Linear Advection - V           0
+ t=   2580.82131943707      =====> Finished Nonlin Inter v           0
+ t=   2580.82203604913      =====> Finished Derivatives -V           0
+ t=   2580.83272828721      Finished V =====> Finished Ops in planes           0
+ t=   2583.52138793119      =====> Planes to modes UVP
+ t=   2592.21592549149      =====> Planes to modes NUVP
+ t=   2592.22455203306      =====> Derivatives
+ t=   2592.22575129313      =====> CFL and Stats
+ t=   2592.22635124367      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2592.23048848368      Finished Solving Velocities =====> Solving Pressure 
+ t=   2592.23492837344      finished RHS =====> Building Nonlinear
+ t=   2592.24004407943      =====> Interpolating
+ t=   2592.25105803119      =====> Modes to planes
+ t=   2592.26529934770      =====> Spectra
+ t=   2592.26530757867      =====> Record Out
+ t=   2592.26530901566      =====> Ops in Planes
+ t=   2607.70740115002       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2607.70973493943      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2610.94185628128      =====> Finished Nonlin Inter U           0
+ t=   2610.94340682291      =====> Finished Derivatives -U           0
+ t=   2610.95429044821      =====> Finished U           0
+ t=   2626.01252077418       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2626.01420900325      =====> Finished Linear Advection - V           0
+ t=   2628.33710678451      =====> Finished Nonlin Inter v           0
+ t=   2628.33783171653      =====> Finished Derivatives -V           0
+ t=   2628.34852587161      Finished V =====> Finished Ops in planes           0
+ t=   2631.02608863417      =====> Planes to modes UVP
+ t=   2639.82311196353      =====> Planes to modes NUVP
+ t=   2639.83249897998      =====> Derivatives
+ t=   2639.83381970055      =====> CFL and Stats
+ t=   2639.83445685093      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2639.83814432879      Finished Solving Velocities =====> Solving Pressure 
+ t=   2639.84330579359      finished RHS =====> Building Nonlinear
+ t=   2639.84869242847      =====> Interpolating
+ t=   2639.86009540063      =====> Modes to planes
+ t=   2639.87495001862      =====> Spectra
+ t=   2639.87641531860      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          18
+ t     9.403014174355721E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366650021804812E-002
+ dt    5.223896763530959E-003
+ err   8.429488864605353E-017
+ Qx     1.75230175187073     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422218088507     
+ Uslp -1.058587947531559E-015
+ t=   2639.97301912882      =====> Ops in Planes
+ t=   2655.35601622290       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2655.35881427241      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2658.58658248513      =====> Finished Nonlin Inter U           0
+ t=   2658.58863819869      =====> Finished Derivatives -U           0
+ t=   2658.59894298636      =====> Finished U           0
+ t=   2673.61857327488       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2673.62081261868      =====> Finished Linear Advection - V           0
+ t=   2675.93926981518      =====> Finished Nonlin Inter v           0
+ t=   2675.93999017322      =====> Finished Derivatives -V           0
+ t=   2675.95061479858      Finished V =====> Finished Ops in planes           0
+ t=   2678.63340549867      =====> Planes to modes UVP
+ t=   2687.94161226947      =====> Planes to modes NUVP
+ t=   2687.94898251020      =====> Derivatives
+ t=   2687.95018445127      =====> CFL and Stats
+ t=   2688.22593017171      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2688.22951743198      Finished Solving Velocities =====> Solving Pressure 
+ t=   2688.23409276618      finished RHS =====> Building Nonlinear
+ t=   2688.23967321526      =====> Interpolating
+ t=   2688.25035480139      =====> Modes to planes
+ t=   2688.26382429407      =====> Spectra
+ t=   2688.26383449403      =====> Record Out
+ t=   2688.26383599002      =====> Ops in Planes
+ t=   2703.66262023825       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2703.66535388502      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2706.89734441241      =====> Finished Nonlin Inter U           0
+ t=   2706.89892497692      =====> Finished Derivatives -U           0
+ t=   2706.90999495645      =====> Finished U           0
+ t=   2721.95530082551       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2721.95764550988      =====> Finished Linear Advection - V           0
+ t=   2724.27681604445      =====> Finished Nonlin Inter v           0
+ t=   2724.27765503500      =====> Finished Derivatives -V           0
+ t=   2724.28828763733      Finished V =====> Finished Ops in planes           0
+ t=   2726.97438859582      =====> Planes to modes UVP
+ t=   2736.24775569772      =====> Planes to modes NUVP
+ t=   2736.25542304023      =====> Derivatives
+ t=   2736.25662277630      =====> CFL and Stats
+ t=   2736.25723014481      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2736.26066974868      Finished Solving Velocities =====> Solving Pressure 
+ t=   2736.26569474004      finished RHS =====> Building Nonlinear
+ t=   2736.27077721116      =====> Interpolating
+ t=   2736.28176851102      =====> Modes to planes
+ t=   2736.29572960168      =====> Spectra
+ t=   2736.29573997164      =====> Record Out
+ t=   2736.29574152863      =====> Ops in Planes
+ t=   2751.69791122496       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2751.70069929651      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2754.93243179495      =====> Finished Nonlin Inter U           0
+ t=   2754.93396689364      =====> Finished Derivatives -U           0
+ t=   2754.94491078370      =====> Finished U           0
+ t=   2770.01242953552       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2770.01417018537      =====> Finished Linear Advection - V           0
+ t=   2772.33706924163      =====> Finished Nonlin Inter v           0
+ t=   2772.33779683464      =====> Finished Derivatives -V           0
+ t=   2772.34876693558      Finished V =====> Finished Ops in planes           0
+ t=   2775.02024867612      =====> Planes to modes UVP
+ t=   2784.06650338982      =====> Planes to modes NUVP
+ t=   2784.07489287937      =====> Derivatives
+ t=   2784.07614503722      =====> CFL and Stats
+ t=   2784.07675991370      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2784.08045359453      Finished Solving Velocities =====> Solving Pressure 
+ t=   2784.08559137443      finished RHS =====> Building Nonlinear
+ t=   2784.09075366722      =====> Interpolating
+ t=   2784.10175385204      =====> Modes to planes
+ t=   2784.11580645032      =====> Spectra
+ t=   2784.11725082239      =====> Record Out
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          19
+ t     9.925403850708817E-002
+ dtv   2.089558705412383E-003
+ dtc   1.366700485677411E-002
+ dt    5.223896763530959E-003
+ err   9.020562075079397E-017
+ Qx     1.75230150688243     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422156698946     
+ Uslp -1.058587947531559E-015
+ t=   2784.20788680913      =====> Ops in Planes
+ t=   2799.55770974845       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2799.56068303324      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2802.78736154245      =====> Finished Nonlin Inter U           0
+ t=   2802.78889050616      =====> Finished Derivatives -U           0
+ t=   2802.79968911381      =====> Finished U           0
+ t=   2817.80124092058       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2817.80358729094      =====> Finished Linear Advection - V           0
+ t=   2820.11374137655      =====> Finished Nonlin Inter v           0
+ t=   2820.11460417900      =====> Finished Derivatives -V           0
+ t=   2820.12544983046      Finished V =====> Finished Ops in planes           0
+ t=   2822.79943814770      =====> Planes to modes UVP
+ t=   2831.69389395088      =====> Planes to modes NUVP
+ t=   2831.70123113675      =====> Derivatives
+ t=   2831.70241767087      =====> CFL and Stats
+ t=   2831.98770630512      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2831.99129799437      Finished Solving Velocities =====> Solving Pressure 
+ t=   2831.99587795156      finished RHS =====> Building Nonlinear
+ t=   2832.00159946806      =====> Interpolating
+ t=   2832.01221896144      =====> Modes to planes
+ t=   2832.02593939809      =====> Spectra
+ t=   2832.02594618206      =====> Record Out
+ t=   2832.02594756205      =====> Ops in Planes
+ t=   2847.40319088476       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2847.40552131019      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2850.63019872661      =====> Finished Nonlin Inter U           0
+ t=   2850.63172755833      =====> Finished Derivatives -U           0
+ t=   2850.64215754849      =====> Finished U           0
+ t=   2865.70437420209       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2865.70621124955      =====> Finished Linear Advection - V           0
+ t=   2868.03006893487      =====> Finished Nonlin Inter v           0
+ t=   2868.03080792083      =====> Finished Derivatives -V           0
+ t=   2868.04148819196      Finished V =====> Finished Ops in planes           0
+ t=   2870.74075901836      =====> Planes to modes UVP
+ t=   2879.86299638099      =====> Planes to modes NUVP
+ t=   2879.87111348665      =====> Derivatives
+ t=   2879.87232077469      =====> CFL and Stats
+ t=   2879.87291275226      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2879.87707976115      Finished Solving Velocities =====> Solving Pressure 
+ t=   2879.88152396589      finished RHS =====> Building Nonlinear
+ t=   2879.88664875084      =====> Interpolating
+ t=   2879.89778062612      =====> Modes to planes
+ t=   2879.91169897895      =====> Spectra
+ t=   2879.91170901791      =====> Record Out
+ t=   2879.91171064791      =====> Ops in Planes
+ t=   2895.36388191687       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2895.36686699761      =====> nonlinear interaction into 0th mode - U
+           0
+ t=   2898.60994636044      =====> Finished Nonlin Inter U           0
+ t=   2898.61193512428      =====> Finished Derivatives -U           0
+ t=   2898.62232362761      =====> Finished U           0
+ t=   2913.71159990407       Finished 0th mode nonlin =====> Linear advection
+           0
+ t=   2913.71380430501      =====> Finished Linear Advection - V           0
+ t=   2916.03808545960      =====> Finished Nonlin Inter v           0
+ t=   2916.03883783750      =====> Finished Derivatives -V           0
+ t=   2916.04980903244      Finished V =====> Finished Ops in planes           0
+ t=   2918.73571911372      =====> Planes to modes UVP
+ t=   2927.51376127204      =====> Planes to modes NUVP
+ t=   2927.52106762103      =====> Derivatives
+ t=   2927.52226077913      =====> CFL and Stats
+ t=   2927.52285215970      Finished Nonlinear =====> Solving
+ solving u
+ solving w
+ solving v
+ t=   2927.52639853314      Finished Solving Velocities =====> Solving Pressure 
+ N:
+           0         128         128         128          -2
+           0         128         128         128           0
+           0           0           0         151           0
+           0           0           0         152           0
+ 
+ iter          20
+ t     0.104477935270619     
+ dtv   2.089558705412383E-003
+ dtc   1.366432860071466E-002
+ dt    5.223896763530959E-003
+ err   7.304401275299889E-017
+ Qx     1.75230126190908     
+ mpgx -3.067500000000000E-003
+ Umax   1.01422097838561     
+ Uslp -1.058933552476885E-015
+ process           1 over
+ process           2 over
+ process           3 over
+ process           4 over
+ process           5 over
+ process           6 over
+ process           7 over
+ process           8 over
+ process           9 over
+ process          10 over
+ process          11 over
+ process          12 over
+ process          13 over
+ process          14 over
+ process          15 over
+ process          16 over
+ process          17 over
+ process          18 over
+ process          19 over
+ process          20 over
+ process          21 over
+ process          22 over
+ process          23 over
+ process          24 over
+ process          25 over
+ process          26 over
+ process          27 over
+ process          28 over
+ process          29 over
+ process          30 over
+ process          31 over
+ process          32 over
+ process          33 over
+ process          34 over
+ process          35 over
+ process          36 over
+ process          37 over
+ process          38 over
+ process          39 over
+ process           0 over
+ 
+ ---------------LITTLE HARSH---------------
+          'That wasn't that harsh'         
+ ------------------------------------------
+ 
+S=C=A=N: Sun Jan 25 11:03:10 2026: Collect done (status=0) 2934s
+S=C=A=N: ./scorep_littleharsh_40_sum complete.

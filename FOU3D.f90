@@ -501,6 +501,8 @@ subroutine der_x(u,dudx,kx)
     end do
   end do
 
+  deallocate(u_c, dudx_c)
+
 end subroutine
 
 subroutine der_x_N(u,dudx,kx) !For N
@@ -615,6 +617,8 @@ subroutine der_z(u,dudz,kz)
     end do
   end do
 
+  deallocate(u_c, dudz_c)
+
 
 end subroutine
 
@@ -657,6 +661,8 @@ subroutine der_z_N(u,dudz,kz)
       dudz(2*ip + 1, kp) = dimag( dudz_c(ip,kp) )
     end do
   end do
+
+  deallocate(u_c, dudz_c)
 
 end subroutine
 
@@ -1290,9 +1296,9 @@ subroutine ops_in_planes(myid,flagst)
 
     
     ! if(j==limPL_excw(ugrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
+    ! end if 
 
 
     ! if(j==150) then
@@ -1360,9 +1366,9 @@ subroutine ops_in_planes(myid,flagst)
     ! end if 
 
     !if(j==limPL_excw(ugrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1,"=====> nonlinear interaction into 0th mode - U", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1,"=====> nonlinear interaction into 0th mode - U", myid
+    ! end if 
 
     
 
@@ -1383,9 +1389,9 @@ subroutine ops_in_planes(myid,flagst)
     ! end if 
 
     ! if(j==limPL_excw(ugrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Nonlin Inter U", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Nonlin Inter U", myid
+    ! end if 
 
     ! if (j == 28) then
     !   write(ext4,'(i5.5)') int(1000d0*(t-700)+kRK)
@@ -1411,9 +1417,9 @@ subroutine ops_in_planes(myid,flagst)
     call der_z(ww_cPL(:,:,j),du3dz,k1F_z)
 
     ! if(j==limPL_excw(ugrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -U", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -U", myid
+    ! end if 
   
     ! if (j == 28) then
     !   write(ext4,'(i5.5)') int(1000d0*(t-700)+kRK)
@@ -1445,9 +1451,9 @@ subroutine ops_in_planes(myid,flagst)
     call four_to_phys_u(u1PL(1,1,j),u2PL_itp(1,1,j),u3PL(1,1,j))
 
     ! if(j==limPL_excw(ugrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished U", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished U", myid
+    ! end if 
 
   end do
     
@@ -1461,9 +1467,9 @@ subroutine ops_in_planes(myid,flagst)
   ! end if 
 
   ! if(j==limPL_excw(ugrid,2,myid)) then
-  if(j==10) then
-    write(6,*) "t=", MPI_Wtime() - t1, "=====> Begining V", myid
-  end if 
+  ! if(j==10) then
+  !   write(6,*) "t=", MPI_Wtime() - t1, "=====> Begining V", myid
+  ! end if 
 
   do j = limPL_excw(vgrid,1,myid),limPL_excw(vgrid,2,myid)
     ! nonlinear interaction into 0th mode
@@ -1492,9 +1498,9 @@ subroutine ops_in_planes(myid,flagst)
     end do
 
     ! if(j==limPL_excw(vgrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1," Finished 0th mode nonlin =====> Linear advection", myid
+    ! end if 
     
     ! linear advection
     buff(:,:) = u1PL_itp(1,1,j)*u2PL(:,:,j) + u2PL(1,1,j)*u1PL_itp(:,:,j)
@@ -1509,9 +1515,9 @@ subroutine ops_in_planes(myid,flagst)
     wv_fPL(:,:,j) = wv_fPL(:,:,j) + buff(:,:)
 
     ! if(j==limPL_excw(vgrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Linear Advection - V", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1,"=====> Finished Linear Advection - V", myid
+    ! end if 
 
     ! nonlinear advection: go through a list
     ! fields = {'uu', 'uv', 'uw', 'vu', 'vv', 'vw', 'wu', 'wv', 'ww'}; in the order of 1 to 9, where the first is the passive
@@ -1525,9 +1531,9 @@ subroutine ops_in_planes(myid,flagst)
     ! end if 
 
     ! if(j==limPL_excw(vgrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Nonlin Inter v", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Nonlin Inter v", myid
+    ! end if 
 
 
     ! if (j == 130) then
@@ -1547,9 +1553,9 @@ subroutine ops_in_planes(myid,flagst)
     ! end if 
 
     ! if(j==limPL_excw(vgrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -V", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1, "=====> Finished Derivatives -V", myid
+    ! end if 
 
     do k = 1,Ngal_z
       do i = 1,Ngal_x
@@ -1560,9 +1566,9 @@ subroutine ops_in_planes(myid,flagst)
     call four_to_phys_u(u1PL_itp(1,1,j),u2PL(1,1,j),u3PL_itp(1,1,j))
 
     ! if(j==limPL_excw(vgrid,2,myid)) then
-    if(j==10) then
-      write(6,*) "t=", MPI_Wtime() - t1, "Finished V =====> Finished Ops in planes", myid
-    end if 
+    ! if(j==10) then
+    !   write(6,*) "t=", MPI_Wtime() - t1, "Finished V =====> Finished Ops in planes", myid
+    ! end if 
   
   end do
   
