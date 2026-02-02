@@ -29,6 +29,8 @@
 ##SBATCH --no-requeue
 
 #! sbatch directives end here (put any additional directives above this line)
+#SBATCH --mem-per-cpu=16G
+
 
 #! Notes:
 #! Charging is determined by cpu number*walltime.
