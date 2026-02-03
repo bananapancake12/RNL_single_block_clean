@@ -79,7 +79,7 @@
     ! -Original
         do column = 1,columns_num(myid)
           call LU_build(jlim(1,grid),jlim(2,grid),grid,column,myid,a)
-          call LU_dec(jlim(1,grid),jlim(2,grid),myid,a)
+          call LU_dec(jlim(1,grid),jlim(2,grid),a)
 
           u(jlim(1,grid),column)=rhsu(jlim(1,grid),column)*a(2,jlim(1,grid))
           
@@ -102,147 +102,6 @@
         !   end do
         ! end if 
   end subroutine
-
-
-
-  ! subroutine LUsolU_W(u,rhsu,w,rhsw,a,grid,myid)
-  !   !----------------------------------------------------------------------*
-  !   !      GIVEN a_j=L*U AND a_j*x_j=f_j FOR k=nstart:nend
-  !   !      FIRST SOLVE L_j*y_j=f_j AND THEN U_j*x_j=y_j
-  !   ! INPUT m_j number of unknowns
-  !   !       a(1,nystart:nyend-1,i,k) lower diagonal of L_j
-  !   !       a(2,:,i,k) inverse of the diagonal of L_j
-  !   !       a(3,nystart+1:nyend,i,k) upper diagonal of U_j
-  !   !       (note that the diagonal of U_j is 1)
-  !   !       x(nystart:nyend,i,k)   rhs of the problem
-  !   ! OUTPUT
-  !   !       all untouched but the solution 'x'
-  !   !----------------------------------------------------------------------*
-
-  !   use declaration
-  !   implicit none
-    
-  !   include 'mpif.h'             ! MPI variables
-  !   integer status(MPI_STATUS_SIZE),ierr
-
-  !   integer    :: i,k,j,column,grid
-  !   integer    :: iopt,myid
-  !   ! complex(8), intent(inout) :: u(jlim(1,grid):,:), w(jlim(1,grid):,:)
-  !   !complex(8), intent(inout) :: rhsu(jlim(1,grid):,:), rhsw(jlim(1,grid):,:)
-  !   complex(8) :: u ( jlim(1,ugrid)        : jlim(2,ugrid),      columns_num(myid) )
-  !   complex(8) :: w ( jlim(1,ugrid)        : jlim(2,ugrid),      columns_num(myid) )
-  !   complex(8) :: rhsu( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
-  !   complex(8) :: rhsw( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) ) 
-      
-  !   real(8)    :: a(3,jlim(1,grid):jlim(2,grid))
-
-
-  !   ! -Original
-  !       do column = 1,columns_num(myid)
-  !         call LU_buildU(jlim(1,grid),jlim(2,grid),column,myid,a)
-  !         call LU_dec(jlim(1,grid),jlim(2,grid),myid,a)
-
-  !         u(jlim(1,grid),column)=rhsu(jlim(1,grid),column)*a(2,jlim(1,grid))
-  !         w(jlim(1,grid),column)=rhsw(jlim(1,grid),column)*a(2,jlim(1,grid))
-          
-  !         do j = jlim(1,grid)+1,jlim(2,grid)
-  !           u(j,column) = (rhsu(j,column)-a(1,j)*u(j-1,column))*a(2,j)
-  !         end do
-
-  !         do j = jlim(2,grid)-1,jlim(1,grid),-1
-  !           u(j,column) =  u(j,column)-a(3,j)*u(j+1,column)
-  !         end do
-
-  !         do j = jlim(1,grid)+1,jlim(2,grid)
-  !         w(j,column) = (rhsw(j,column)-a(1,j)*w(j-1,column))*a(2,j)
-  !         end do
-
-  !         do j = jlim(2,grid)-1,jlim(1,grid),-1
-  !           w(j,column) =  w(j,column)-a(3,j)*w(j+1,column)
-  !         end do
-  !       end do
-
-  !       if(myid==0) then 
-  !         write(6,*) "solving u"
-  !       end if 
-
-  !       ! if(myid==0) then
-  !       !   do column = 1,10
-  !       !     write(6,*) u(2)%f(7,column)
-  !       !   end do
-  !       ! end if 
-
-
-  !       if(myid==0) then 
-  !         write(6,*) "solving w"
-  !       end if 
-
-  !       ! if(myid==0) then
-  !       !   do column = 1,10
-  !       !     write(6,*) w(2)%f(7,column)
-  !       !   end do
-  !       ! end if 
-
-    
-  ! end subroutine
-
-
-  ! subroutine LUsolV(u,rhsu,a,grid,myid)
-  !   !----------------------------------------------------------------------*
-  !   !      GIVEN a_j=L*U AND a_j*x_j=f_j FOR k=nstart:nend
-  !   !      FIRST SOLVE L_j*y_j=f_j AND THEN U_j*x_j=y_j
-  !   ! INPUT m_j number of unknowns
-  !   !       a(1,nystart:nyend-1,i,k) lower diagonal of L_j
-  !   !       a(2,:,i,k) inverse of the diagonal of L_j
-  !   !       a(3,nystart+1:nyend,i,k) upper diagonal of U_j
-  !   !       (note that the diagonal of U_j is 1)
-  !   !       x(nystart:nyend,i,k)   rhs of the problem
-  !   ! OUTPUT
-  !   !       all untouched but the solution 'x'
-  !   !----------------------------------------------------------------------*
-
-  !   use declaration
-  !   implicit none
-    
-  !   include 'mpif.h'             ! MPI variables
-  !   integer status(MPI_STATUS_SIZE),ierr
-
-  !   integer    :: i,k,j,column,grid
-  !   integer    :: iopt,myid
-  !   complex(8) :: u   ( jlim(1,grid)      : jlim(2,grid),      columns_num(myid) )
-  !   ! complex(8), intent(inout) :: rhsu(jlim(1,vgrid):,:)
-  !   complex(8) :: rhsu( jlim(1,grid)      : jlim(2,grid),      columns_num(myid) )
-      
-  !   real(8)    :: a(3,jlim(1,grid):jlim(2,grid))
-
-  !   ! -Original
-  !       do column = 1,columns_num(myid)
-  !         call LU_buildV(jlim(1,grid),jlim(2,grid),column,myid,a)
-  !         call LU_dec(jlim(1,grid),jlim(2,grid),myid,a)
-
-  !         u(jlim(1,grid),column)=rhsu(jlim(1,grid),column)*a(2,jlim(1,grid))
-
-  !         do j = jlim(1,grid)+1,jlim(2,grid)
-  !           u(j,column) = (rhsu(j,column)-a(1,j)*u(j-1,column))*a(2,j)
-  !         end do
-
-  !         do j = jlim(2,grid)-1,jlim(1,grid),-1
-  !           u(j,column) =  u(j,column)-a(3,j)*u(j+1,column)
-  !         end do
-  !       end do
-
-  !       if (myid ==0) then
-  !         write(6,*) "solving v"
-  !       end if 
-
-  !       ! if(myid==0) then
-  !       !   do column = 1,10
-  !       !     write(6,*) u(2)%f(7,column)
-  !       !   end do
-  !       ! end if 
-    
-
-  ! end subroutine
 
 
   subroutine LUsolP(x,myid,nystart,nyend)
@@ -295,7 +154,7 @@
     allocate(a(3,nystart:nyend))
 
     call LU_build0(nystart,nyend,a)
-    call LU_dec0  (nystart,nyend,a)
+    call LU_dec  (nystart,nyend,a)
 
     x(nystart) = x(nystart)*a(2,nystart)
     do j = nystart+1,nyend
@@ -371,45 +230,6 @@
   end subroutine
 
 
-  ! subroutine LU_buildV(nystart,nyend,column,myid,a)
-  !   !-------------------------------------------------------!
-  !   !       specifies original values of a(1:3,j,i,k)       !
-  !   !-------------------------------------------------------!
-
-  !   use declaration
-  !   implicit none
-  !   integer i,k,j,grid,myid,column
-  !   integer nystart,nyend
-  !   real(8) k2x,k2z,beta
-  !   real(8) a(3,nystart:nyend)
-
-  !   beta = bRK(kRK)*dt/Re
-    
-
-
-  !     !!!!!!!!!!!!!!!!!!!     v velocity:       !!!!!!!!!!!!!!!!!!!  
-  !         i = columns_i(column,myid)
-  !         k = columns_k(column,myid)
-  !         k2x = k2F_x(i)
-  !         k2z = k2F_z(k)
-
-  !           a(1,nystart) = 0d0
-  !           a(2,nystart) = 1d0  
-  !           a(3,nystart) = 0d0
-
-  !         do j = nystart+1,nyend-1
-  !           a(1,j) =    -beta* dyv2i(1,j)
-  !           a(2,j) = 1d0-beta*(dyv2i(2,j)+k2x+k2z)
-  !           a(3,j) =    -beta* dyv2i(3,j)
-  !         end do
-
-  !           a(1,nyend) = 0d0
-  !           a(2,nyend) = 1d0
-  !           a(3,nyend) = 0d0
-  ! end subroutine
-
-
-  !  
   subroutine LU_buildP(nystart,nyend,myid,a)
     !-------------------------------------------------------!
     !       specifies original values of a(1:3,j,i,k)       !
@@ -435,9 +255,7 @@
         G_vec_t(j+1) =  ddthetavi*dthdyv(j)
     end do
     
-    
-    
-    
+  
     do column = 1,columns_num(myid)
         i = columns_i(column,myid)
         k = columns_k(column,myid)
@@ -513,7 +331,7 @@
 
   end subroutine
 
-  subroutine LU_dec(nystart,nyend,myid,a)
+  subroutine LU_dec(nystart,nyend,a)
     !----------------------------------------------------------------------*
     !         GIVEN 'a_j' FOR j=nystart:nyend
     !         PERFORMS a_j=L_j*U_j
@@ -595,26 +413,6 @@
     end do
 
   end subroutine
-
-  subroutine LU_dec0(nystart,nyend,a)
-    !----------------------------------------------------------------------*
-    !                  LU_dec for real (0,0) mode
-    !----------------------------------------------------------------------*
-
-    use declaration
-    implicit none
-    integer j
-    integer nystart,nyend
-    real(8) a(3,nystart:nyend)
-
-    a(2,nystart) = 1d0/a(2,nystart)
-    do j = nystart+1,nyend
-        a(3,j-1) = a(3,j-1)*a(2,j-1)
-        a(2,j  ) = 1d0/(a(2,j)-a(1,j)*a(3,j-1))
-    end do
-
-  end subroutine
-
 
 
 ! *************************************************************************************************************** !
