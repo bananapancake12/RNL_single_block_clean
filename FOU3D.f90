@@ -2168,10 +2168,8 @@ subroutine record_out(u1,myid)
 
       Uslip = ((u1(1,1))*(-1d0-yu(0))+(u1(0,1))*(yu(1)+1d0))/(yu(1)-yu(0))
 
-      ! call flowrateIm(Qx,u1(nyu_LB,1))
-      call flowrateIm(Qx,u1(:,1))
-      ! call maxvel(u1(nyu_LB,1))
-      call maxvel(u1(:,1))
+      call flowrateIm(Qx,u1(nyu_LB,1))
+      call maxvel(u1(nyu_LB,1))
       write(*,*) ''
       write(*,*) 'iter',iter
       write(*,*) 't   ',t

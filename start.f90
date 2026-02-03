@@ -1355,8 +1355,8 @@ subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
     end if
     call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
     if (myid==0) then
-      ! call flowrateIm(Qx,u1(nyu_LB,1))        !check why flowrate used midband ! Column 1 of proc 0 is mode (0,1) [the meeeean]
-      call flowrateIm(Qx,u1(:,1))
+      call flowrateIm(Qx,u1(nyu_LB,1))        !check why flowrate used midband ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+      ! call flowrateIm(Qx,u1(:,1))
       !write(6,*) "flowrateIm", Qx
       if (flag_ctpress/=1) then
         QxT = Qx
@@ -1372,8 +1372,8 @@ subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
     end if
     call mblock_ini(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
     if (myid==0) then
-      !call flowrateIm(Qx,u1(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
-      call flowrateIm(Qx,u1(:,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+      call flowrateIm(Qx,u1(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+      ! call flowrateIm(Qx,u1(:,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
       ! TODO change this condition for 'flag_ctpress == 0'
       if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
         QxT = Qx
@@ -1386,7 +1386,7 @@ subroutine getini(u1,u2,u3,p,div,myid,status,ierr)
     end if
     !call mblock_ini_parabolic_profile(u1,u2,u3,p,myid,status,ierr)         ! Initializes u1, u2, u3, p, u1PL, u2PL, u3PL, ppPL
     if (myid==0) then
-      call flowrateIm(Qx,u1(:,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
+      call flowrateIm(Qx,u1(nyu_LB,1))        ! Column 1 of proc 0 is mode (0,1) [the meeeean]
       ! TODO change this condition for 'flag_ctpress == 0'
       if (flag_ctpress/=1) then  ! Constant flow rate (flag_ctpress == 1, constant pressure gradient)
         QxT = Qx

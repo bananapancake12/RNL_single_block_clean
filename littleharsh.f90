@@ -12,6 +12,51 @@
 ! Contains:
 !       littleharsh - Main program : Calls start, getini, RHS0_u1, RHS0_u2, RHS0_u3, nonlinear, solveU, solveV, meanflow_ctU, SolveP, v_corr, meanflow_ctP, finalize
 !                     - Does the main loop
+!        divergence - Calculates the divergence
+!                     - Called from a few places (inc. v_corr, getini, solveP)
+!       laplacian_U - Calculates the laplacian of u/w
+!                     - Called from RHS0_u1 and RHS0_u3
+!       laplacian_V - Calculates the laplacian of v
+!                     - Called from RHS0_u2
+!             error - Calculates the error
+!                     - Called in record out and finalize
+!                     - maximum of the divergance
+!                       - Should be machine round-off
+!          finalize - Records out last step
+!                     - Called at last step from littleharsh
+!                     - Should be renamed finalise
+!        flowrateIm - Calculates the mass flow rate (for real u?)
+!                     - Called from flowrate_corr and meanflow_ctP
+!        flowrateRe - Calculates the mass flow rate
+!                     - Called from flowrate_corr
+!     flowrate_corr - Calculates correction to mean pressure gradient and u for constant mass flow
+!                     - Called from meanflow_ctU
+!                     - Calls from flowrateRe, flowrateIm, LUsol0
+!            maxvel - Calculates the mximum velocitiy
+!                     - Called from record_out
+!      meanflow_ctP - Calculates instantainous mass flow rate if constant pressure gradient used 
+!                     - Called form littleharsh
+!                     - Calls flowrateIm
+!      meanflow_ctU - Calculates corrections to ensure constant mass flow rate
+!                     - Called form littleharsh
+!                     - Calls flowrate_corr
+!            solveP - Solves the pressure 
+!                     - Called form littleharsh
+!                     - Calls LUsolP
+!           RHS0_u1 - Solves the RHS of u1 (excluding lastest nonlinear term) includes mpg
+!                     - Called form littleharsh
+!           RHS0_u2 - Solves the RHS of u2 (excluding lastest nonlinear term)
+!                     - Called form littleharsh
+!           RHS0_u3 - Solves the RHS of u3 (excluding lastest nonlinear term)
+!                     - Called form littleharsh
+!            solveU - Solves the u/w velocities 
+!                     - Called form littleharsh
+!                     - Calls LUsol
+!            solveV - Solves the v velocity
+!                     - Called form littleharsh
+!                     - Calls LUsol
+!            v_corr - Pressure correction step
+!                     - Called form littleharsh
 !        
 !
 !  Everything else: Moved to littleharsh_mod!! 
@@ -195,8 +240,12 @@ nextqt = floor(t*10d0)/10d0+0.1d0
       ! call solveU(u3,du3,3,myid)
 
       ! Resolve the matricial system (NO FFT BANDS)
-      call solveU_W(u1,du1,u3,du3,a_ugrid,myid)
-      call solveV(u2,du2,a_vgrid,myid)
+    !   call solveU_W(u1,du1,u3,du3,a_ugrid,myid)
+    !   call solveV(u2,du2,a_vgrid,myid)
+
+      call solveU(u1,du1,ugrid,a_ugrid,myid) 
+      call solveU(u2,du2,vgrid,a_vgrid,myid) 
+      call solveU(u3,du3,ugrid,a_ugrid,myid) 
 
     !   if(myid==0) then
     !     write(6,*) "du1 after solve", du1(0,:)
@@ -582,8 +631,8 @@ subroutine divergence(div,u1,u2,u3,myid)
 
   ! Mean (mode 0,1) is in proc 0 column 1
   if (myid == 0) then 
-      ! call flowrateIm(Qx,u1(jlim(1,ugrid),1)) 
-      call flowrateIm(Qx,u1(:,1)) 
+      call flowrateIm(Qx,u1(jlim(1,ugrid),1)) 
+      ! call flowrateIm(Qx,u1(:,1)) 
   end if
 
   end subroutine
@@ -600,8 +649,7 @@ subroutine divergence(div,u1,u2,u3,myid)
 
   ! Mean (mode 0,1) is in proc 0 column 1
   if (myid == 0) then 
-      !call flowrate_corr(u1(jlim(1,ugrid),1),mpgx,dgx)
-      call flowrate_corr(u1(:,1),mpgx,dgx)
+      call flowrate_corr(u1(jlim(1,ugrid),1),mpgx,dgx)
   end if
 
   end subroutine
@@ -861,7 +909,7 @@ subroutine divergence(div,u1,u2,u3,myid)
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-  subroutine solveU_W(u,du,w,dw,a_ugrid,myid) !pass (u,du,w,dw)
+  subroutine solveU(u,du,grid,a_grid,myid) !pass (u,du,w,dw)
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!    SOLVE U1    !!!!!!!!!!!!!!!!!!!!!!!
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -871,62 +919,56 @@ subroutine divergence(div,u1,u2,u3,myid)
 
   implicit none
 
-  integer i,k,j,iband,column,myid
-  complex(8) :: u ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
-  complex(8) :: w ( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
-  complex(8) :: du( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
-  complex(8) :: dw( jlim(1,ugrid)      : jlim(2,ugrid),      columns_num(myid) )
-  real(8)  a_ugrid(3,jlim(1,ugrid):jlim(2,ugrid))
+  integer i,k,j,iband,column,myid,grid
+  complex(8) :: u ( jlim(1,grid)      : jlim(2,grid),      columns_num(myid) )
+  complex(8) :: du( jlim(1,grid)      : jlim(2,grid),      columns_num(myid) )
+  real(8)  a_grid(3,jlim(1,grid):jlim(2,grid))
 
       do column = 1,columns_num(myid)
           i = columns_i(column,myid)
           k = columns_k(column,myid)
-          du(jlim(1,ugrid),column) = 0d0
-          dw(jlim(1,ugrid),column) = 0d0
 
-          do j = jlim(1,ugrid)+1,jlim(2,ugrid)-1
-          du(j,column) = u(j,column)+dt*(du(j,column)) !For solving for u
-          dw(j,column) = w(j,column)+dt*(dw(j,column)) !For solving for w
+          du(jlim(1,grid),column) = 0d0
+
+          do j = jlim(1,grid)+1,jlim(2,grid)-1
+            du(j,column) = u(j,column)+dt*(du(j,column)) !For solving for u
           end do
 
-          du(jlim(2,ugrid),column) = 0d0
-          dw(jlim(2,ugrid),column) = 0d0
+          du(jlim(2,grid),column) = 0d0
+
       end do
 
-      ! they used to call immersed boundaries here !!!! how do we treat boundaries..? 
-      ! idk where to look fo smooth wall
-
-      call LUsolU_W(u,du,w,dw,a_ugrid(1:3,jlim(1,ugrid):jlim(2,ugrid)),ugrid,myid)
+      call LUsolU(u,du,a_grid(1:3,jlim(1,grid):jlim(2,grid)),grid,myid)
 
   end subroutine
 
-  subroutine solveV(u,du,a_vgrid,myid)
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!    SOLVE U1    !!!!!!!!!!!!!!!!!!!!!!!
-  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! subroutine solveV(u,du,a_vgrid,myid)
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!    SOLVE U1    !!!!!!!!!!!!!!!!!!!!!!!
+  ! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   
-  use declaration
-  ! use tridLU_3D
-  implicit none
-  integer i,k,j,iband,column,myid
-  complex(8) :: u ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
-  complex(8) :: du( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
-  real(8)    :: a_vgrid(3,jlim(1,vgrid):jlim(2,vgrid))
+  ! use declaration
+  ! ! use tridLU_3D
+  ! implicit none
+  ! integer i,k,j,iband,column,myid
+  ! complex(8) :: u ( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+  ! complex(8) :: du( jlim(1,vgrid)      : jlim(2,vgrid),      columns_num(myid) )
+  ! real(8)    :: a_vgrid(3,jlim(1,vgrid):jlim(2,vgrid))
 
-      do column = 1,columns_num(myid)
-          i = columns_i(column,myid)
-          k = columns_k(column,myid)
-          du(jlim(1,vgrid),column) = 0d0
-          do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
-          !         du%f(j,column) = dt*(du%f(j,column)) !For solving for du
-          du(j,column) = u(j,column)+dt*(du(j,column)) !For solving for u
-          end do
-          du(jlim(2,vgrid),column) = 0d0
-      end do
+  !     do column = 1,columns_num(myid)
+  !         i = columns_i(column,myid)
+  !         k = columns_k(column,myid)
+  !         du(jlim(1,vgrid),column) = 0d0
+  !         do j = jlim(1,vgrid)+1,jlim(2,vgrid)-1
+  !         !         du%f(j,column) = dt*(du%f(j,column)) !For solving for du
+  !         du(j,column) = u(j,column)+dt*(du(j,column)) !For solving for u
+  !         end do
+  !         du(jlim(2,vgrid),column) = 0d0
+  !     end do
 
-      call LUsolV(u,du,a_vgrid(1:3,jlim(1,vgrid):jlim(2,vgrid)),vgrid,myid)
+  !     call LUsolV(u,du,a_vgrid(1:3,jlim(1,vgrid):jlim(2,vgrid)),vgrid,myid)
 
-  end subroutine
+  ! end subroutine
 
 
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
